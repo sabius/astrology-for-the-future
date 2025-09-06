@@ -1,0 +1,12 @@
+---
+const { header, button } = Astro.props;
+---
+<section class="cta">
+  <h2>{header}</h2>
+  {button && <a href={button.url} class:list={["button", button.style]}>{button.text}</a>}
+</section>
+
+<style>
+  .cta { text-align: center; padding: 3rem 1rem; background-color: #333; color: white; }
+  .button.primary { background-color: royalblue; color: white; }
+</style>
