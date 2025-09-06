@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import { components } from '../components/componentMap';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (async () => {
+  // Astro.glob() automatically finds and parses YAML/JSON files
+  const pages = await getCollection('pages');
+
+  return pages.map((entry) => {
+    // entry.slug for 'index.md' will be 'index'
+    const slug = entry.slug === 'index' ? undefined : entry.slug;
+
+    return {
+      params: { slug },
+      props: { pageData: entry.data }, // The validated data is in entry.data
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { pageData } = Astro.props;
+const { meta, content } = pageData;
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <main>
+    {content.map(block => {
+      const Component = components[block.component] ?? components.fallback;
+      return <Component {...block}/>
+    })}
+  </main>
+</BaseLayout>
