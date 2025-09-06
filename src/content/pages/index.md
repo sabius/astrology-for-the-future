@@ -14,7 +14,7 @@ content:
 
   # Block 2: A Split Content Section
   - component: "split-content"
-    image: "https://via.placeholder.com/600x400"
+    image: "https://picsum.photos/id/120/600/400"
     image_alt: "A placeholder image."
     header: "Powerful Content Organization"
     copy: "By defining components in YAML, you can easily reorder, add, or remove sections of your page."
