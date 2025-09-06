@@ -32,10 +32,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install, build, and upload your site
+      - name: Install and build
         uses: withastro/action@v3
         with:
           node-version: '22.x'
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
 
   # Deployment job
   deploy:
