@@ -1,9 +1,19 @@
 ---
-const { header, copy, button } = Astro.props;
+const { header, copy, button, animate_header, animate_copy } = Astro.props;
+
+const headerStyles = animate_header ? `
+  --animation-duration: ${animate_header.duration ?? '0.5s'};
+  --animation-delay: ${animate_header.delay ?? '0s'};
+` : '';
+
+const copyStyles = animate_copy ? `
+  --animation-duration: ${animate_copy.duration ?? '0.5s'};
+  --animation-delay: ${animate_copy.delay ?? '0s'};
+` : '';
 ---
 <section class="hero">
-  <h1>{header}</h1>
-  <p>{copy}</p>
+  <h1 data-animate={!!animate_header} style={headerStyles}>{header}</h1>
+  <p data-animate={!!animate_copy} style={copyStyles}>{copy}</p>
   {button && <a href={button.url} class="button">{button.text}</a>}
 </section>
 

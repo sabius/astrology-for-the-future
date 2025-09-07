@@ -1,14 +1,24 @@
 ---
-const { image, image_alt, header, copy, image_position = 'left' } = Astro.props;
+const { image, image_alt, header, copy, image_position = 'left', animate_header, animate_copy } = Astro.props;
 const isImageLeft = image_position === 'left';
+
+const headerStyles = animate_header ? `
+  --animation-duration: ${animate_header.duration ?? '0.5s'};
+  --animation-delay: ${animate_header.delay ?? '0s'};
+` : '';
+
+const copyStyles = animate_copy ? `
+  --animation-duration: ${animate_copy.duration ?? '0.5s'};
+  --animation-delay: ${animate_copy.delay ?? '0s'};
+` : '';
 ---
 <section class:list={["split-content", { 'image-right': !isImageLeft }]}>
   <div class="image-wrapper">
     <img src={image} alt={image_alt} />
   </div>
   <div class="text-wrapper">
-    <h2>{header}</h2>
-    <p>{copy}</p>
+    <h2 data-animate={!!animate_header} style={headerStyles}>{header}</h2>
+    <p data-animate={!!animate_copy} style={copyStyles}>{copy}</p>
   </div>
 </section>
 

@@ -1,6 +1,12 @@
 ---
+const { animate_span } = Astro.props;
 const gridTitle = "Feature Grid"
+
+const spanStyles = animate_span ? `
+  --animation-duration: ${animate_span.duration ?? '0.5s'};
+  --animation-delay: ${animate_span.delay ?? '0s'};
+` : '';
 ---
 <section class="feature-grid">
-  <span>{gridTitle}</span>
+  <span data-animate={!!animate_span} style={spanStyles}>{gridTitle}</span>
 </section>
