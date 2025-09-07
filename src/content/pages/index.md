@@ -11,12 +11,6 @@ content:
     button:
       text: "Learn More"
       url: "/about"
-    animate_header:
-      duration: "0.7s"
-      delay: "0.2s"
-    animate_copy:
-      duration: "0.7s"
-      delay: "0.4s"
 
   # Block 2: A Split Content Section
   - component: "split-content"
@@ -25,10 +19,6 @@ content:
     header: "Powerful Content Organization"
     copy: "By defining components in YAML, you can easily reorder, add, or remove sections of your page."
     image_position: "left"
-    animate_header:
-      duration: "0.7s"
-    animate_copy:
-      delay: "0.2s"
 
   # Block 3: A Call to Action
   - component: "cta"
@@ -37,15 +27,6 @@ content:
       text: "Sign Up Now"
       url: "/signup"
       style: "primary"
-    animate_header:
-      duration: "1s"
-      delay: "0.5s"
-
-  # Block 4: A Feature Grid
-  - component: "feature-grid"
-    animate_span:
-      duration: "0.8s"
-      delay: "0.3s"
 ---
 
 <!-- You can leave the body of the markdown file empty -->

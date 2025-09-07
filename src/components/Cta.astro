@@ -1,13 +1,8 @@
 ---
-const { header, button, animate_header } = Astro.props;
-
-const headerStyles = animate_header ? `
-  --animation-duration: ${animate_header.duration ?? '0.5s'};
-  --animation-delay: ${animate_header.delay ?? '0s'};
-` : '';
+const { header, button } = Astro.props;
 ---
 <section class="cta">
-  <h2 data-animate={!!animate_header} style={headerStyles}>{header}</h2>
+  <h2>{header}</h2>
   {button && <a href={button.url} class:list={["button", button.style]}>{button.text}</a>}
 </section>
 
