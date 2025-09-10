@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: 'Cormorant Garamond Variable', serif;
+}
+
 .container {
   margin-inline: auto;
   padding-inline: 1rem;

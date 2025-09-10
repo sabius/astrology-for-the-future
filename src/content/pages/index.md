@@ -6,8 +6,8 @@ meta:
 content:
   # Block 1: The Hero Section
   - component: "hero"
-    header: "Welcome to my site"
-    copy: "This is a flexible paradigm for building pages."
+    header: "Glenda Ferreira P., M.D."
+    copy: "Expert Astrology Readings and Guidance"
     button:
       text: "Learn More"
       url: "/about"
@@ -17,14 +17,14 @@ content:
     image: "https://picsum.photos/id/120/600/400"
     image_alt: "A placeholder image."
     header: "Powerful Content Organization"
-    copy: "By defining components in YAML, you can easily reorder, add, or remove sections of your page."
+    copy: "By defining components in MD files. You can easily reorder, add, or remove sections of your page."
     image_position: "left"
 
   # Block 3: A Call to Action
   - component: "cta"
-    header: "Ready to Get Started?"
+    header: "Gift Card CTA could go here"
     button:
-      text: "Sign Up Now"
+      text: "Get yours now!"
       url: "/signup"
       style: "primary"
 ---
