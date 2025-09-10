@@ -2,9 +2,9 @@
 const { header, copy, button } = Astro.props;
 ---
 <section class="hero">
-  <h1>{header}</h1>
-  <p>{copy}</p>
-  {button && <a href={button.url} class="button">{button.text}</a>}
+  <h1 class="text-6xl font-medium">{header}</h1>
+  <p class="text-3xl font-medium">{copy}</p>
+  <!-- {button && <a href={button.url} class="button">{button.text}</a>} -->
 </section>
 
 <style>
