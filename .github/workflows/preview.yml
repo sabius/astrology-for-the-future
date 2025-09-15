@@ -1,0 +1,36 @@
+name: Build and deploy preview links on pull requests
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+
+jobs:
+  deploy-preview:
+    # Only run this job if the pull request was NOT closed
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install and build
+        uses: withastro/action@v4
+        with:
+          node-version: '22.x'
+
+      - name: Deploy the preview of the Pull Request to Github Pages
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: './dist'
+          preview-branch: 'gh-pages'
+          umbrella-dir: 'pr-preview'
+          action: 'deploy'
+
+      - name: Remove the Pull Request preview from Github Pages
+        if: github.event.action == 'closed'
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: './dist'
+          preview-branch: 'gh-pages'
+          umbrella-dir: 'pr-preview'
+          action: 'remove'

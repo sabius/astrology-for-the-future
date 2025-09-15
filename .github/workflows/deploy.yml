@@ -37,8 +37,6 @@ jobs:
         with:
           node-version: '22.x'
 
-      
-
   # Deployment job
   deploy:
     needs: build
