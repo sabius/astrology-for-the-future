@@ -27,6 +27,8 @@ jobs:
         uses: withastro/action@v4
         with:
           node-version: '22.x'
+        env:
+          BASE_URL: /${{ github.event.repository.name }}/pr-preview/pr-${{ github.event.pull_request.number }}
 
       - name: Deploy the preview of the Pull Request to Github Pages
         uses: rossjrw/pr-preview-action@v1
