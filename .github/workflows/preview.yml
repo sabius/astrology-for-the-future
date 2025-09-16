@@ -1,20 +1,16 @@
 # .github/workflows/preview.yml
-
 name: Deploy Pull Request Preview
 
 on:
-  # Run on pull requests targeting the master branch
   pull_request:
-    branches:
-      - master
+    branches: [ master ]
     types: [opened, synchronize, reopened, closed]
 
 jobs:
-  # Build the Astro site
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -23,40 +19,35 @@ jobs:
           node-version: '22.x'
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install
+        run: npm ci
 
-      - name: Build with Astro
+      - name: Build
         run: npm run build
 
-      - name: Upload artifact
-        # This action is specifically for GitHub Pages
+      - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
-  # Deploy the preview to a unique GitHub Pages URL
   deploy:
-    # This job only runs if the PR is open
     if: github.event.action != 'closed'
     needs: build
     runs-on: ubuntu-latest
-
-    # Grant permissions for the GITHUB_TOKEN
     permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment
-      pull-requests: write # to comment on the PR
-
-    # Define the deployment environment
+      pages: write
+      id-token: write
+      pull-requests: write
+    # give each PR its own environment (nice for visibility)
     environment:
       name: pr-preview-${{ github.event.pull_request.number }}
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy PR preview to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 # The official GitHub action
+        uses: actions/deploy-pages@v4
+        with:
+          preview: true
 
       - name: Post Preview Link as Comment
         uses: marocchino/sticky-pull-request-comment@v2
@@ -64,19 +55,4 @@ jobs:
           header: astro-preview
           message: |
             🚀 **Astro Preview is Ready!**
-
-            You can view the live preview of your changes here:
             ${{ steps.deployment.outputs.page_url }}
-
-  # Cleanup job to remove the sticky comment when PR is closed
-  cleanup:
-    if: github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    steps:
-      - name: Remove Preview Link Comment
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          header: astro-preview
-          message: 'The preview for this PR has been deactivated.'
