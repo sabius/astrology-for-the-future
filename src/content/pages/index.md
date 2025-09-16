@@ -36,7 +36,7 @@ content:
     copy: "Another section"
     image_position: "left"
 
-  # Block 3: A Call to Action
+  # Block 5: A Call to Action
   - component: "cta"
     header: "Gift card aca?"
     button:
