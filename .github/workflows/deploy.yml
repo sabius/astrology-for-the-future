@@ -35,4 +35,3 @@ jobs:
       - name: Deploy to Github Pages (production)
         id: deployment
         uses: actions/deploy-pages@v4
-        # NOTE: no preview:true here
