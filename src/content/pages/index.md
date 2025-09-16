@@ -17,12 +17,28 @@ content:
     image: "https://picsum.photos/id/120/600/400"
     image_alt: "A placeholder image."
     header: "Powerful Content Organization"
-    copy: "By defining components in MD files. You can easily reorder, add, or remove sections of your page. Prueba de contenido."
+    copy: "By defining components in MD files. You can easily reorder, add, or remove sections of your page."
+    image_position: "left"
+  
+    # Block 2: A Split Content Section
+  - component: "split-content"
+    image: "https://picsum.photos/id/120/600/400"
+    image_alt: "A placeholder image."
+    header: "Powerful Content Organization"
+    copy: "By defining components in MD files. You can easily reorder, add, or remove sections of your page."
+    image_position: "right"
+  
+    # Block 2: A Split Content Section
+  - component: "split-content"
+    image: "https://picsum.photos/id/120/600/400"
+    image_alt: "A placeholder image."
+    header: "Guarefo men"
+    copy: "Another section"
     image_position: "left"
 
   # Block 3: A Call to Action
   - component: "cta"
-    header: "Gift Card CTA could go here"
+    header: "Gift card aca?"
     button:
       text: "Get yours now!"
       url: "/signup"
