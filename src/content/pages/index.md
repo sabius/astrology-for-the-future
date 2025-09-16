@@ -32,7 +32,7 @@ content:
   - component: "split-content"
     image: "https://picsum.photos/id/120/600/400"
     image_alt: "A placeholder image."
-    header: "Another change, hope it works"
+    header: "Another change, hope it works again..."
     copy: "Another section"
     image_position: "left"
 
