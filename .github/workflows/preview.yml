@@ -1,58 +1,52 @@
 # .github/workflows/preview.yml
-
-name: Deploy Pull Request Preview
+name: Deploy PR Previews
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize, closed]
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: "preview-${{ github.ref }}"
+  cancel-in-progress: true
 
 jobs:
-  deploy-preview:
+  build-and-preview:
     runs-on: ubuntu-latest
-
-    concurrency:
-      group: "pr-preview-${{ github.head_ref }}"
-      cancel-in-progress: true
-
-    permissions:
-      contents: write      # Required to push the preview to the gh-pages branch
-      pull-requests: write # Required to comment on the PR
-
+    if: github.event.action != 'closed'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js 22.x
-        if: github.event.action != 'closed'
-        uses: actions/setup-node@v4
+      - name: Install and build
+        uses: withastro/action@v4
         with:
           node-version: '22.x'
-          cache: 'npm'
+          # The output directory for your Astro build is typically 'dist'
+          # This action will automatically use it.
 
-      - name: Install dependencies
-        if: github.event.action != 'closed'
-        run: npm install
+      - name: Create .nojekyll file
+        run: touch ./dist/.nojekyll
 
-      # This is the most critical step for this method.
-      # It builds the Astro site with the correct asset paths for the subfolder.
-      - name: Build with Astro
-        run: npm run build
-
-      - name: Deploy preview
-        uses: rossjrw/pr-preview-action@v1
+      - name: Deploy PR Preview
+        uses: rossjrw/pr-preview-action@v1.5.0
         with:
-          source-dir: ./dist/
-          
-        
-  # Cleanup job to remove the sticky comment when PR is closed
-  cleanup:
-    if: github.event.action == 'closed'
+          source-dir: './dist' # This should match your Astro build output directory
+          preview-branch: 'gh-pages' # A dedicated branch for previews
+
+  remove-preview:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
+    if: github.event.action == 'closed'
     steps:
-      - name: Remove Preview Link Comment
-        uses: marocchino/sticky-pull-request-comment@v2
+      - name: Remove PR Preview
+        uses: rossjrw/pr-preview-action@v1.5.0
         with:
-          header: astro-preview
-          message: 'The preview for this PR has been deactivated.'
+          action: 'remove'
+          preview-branch: 'gh-pages' # Must match the preview-branch above
