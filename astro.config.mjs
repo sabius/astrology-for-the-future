@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://sabius.github.io',
-  base: '/astrology-for-the-future',
+  base: process.env.BASE_URL || '/astrology-for-the-future',
   vite: {
     css: {
       transformer: 'lightningcss',
