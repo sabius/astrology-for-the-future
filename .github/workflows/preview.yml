@@ -3,63 +3,80 @@
 name: Deploy Pull Request Preview
 
 on:
+  # Run on pull requests targeting the master branch
   pull_request:
-    types: [opened, reopened, synchronize, closed]
+    branches:
+      - master
+    types: [opened, synchronize, reopened, closed]
 
 jobs:
-  deploy-preview:
+  # Build the Astro site
+  build:
     runs-on: ubuntu-latest
-
-    concurrency:
-      group: "pr-preview-${{ github.head_ref }}"
-      cancel-in-progress: true
-
-    permissions:
-      contents: write
-      pull-requests: write
-
     steps:
-      - name: Checkout repository
+      - name: Checkout your repository
         uses: actions/checkout@v4
 
-      # Setup Node.js to match your production environment
-      - name: Use Node.js 22.x
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22.x'
-          cache: 'npm' # Enable caching for faster installs
+          cache: 'npm'
 
-      # Explicitly install dependencies
       - name: Install dependencies
-        if: github.event.action != 'closed'
         run: npm install
 
-      # Construct the base URL and print it for debugging
-      - name: Set and Debug Base URL
-        if: github.event.action != 'closed'
-        run: |
-          echo "BASE_URL=/${{ github.event.repository.name }}/pr-preview/pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-          echo "Base URL for this build will be: /${{ github.event.repository.name }}/pr-preview/pr-${{ github.event.pull_request.number }}"
-
-      # Explicitly run the build command with the environment variable
-      - name: Build Astro Site
-        if: github.event.action != 'closed'
+      - name: Build with Astro
         run: npm run build
 
-      - name: Deploy PR Preview to GitHub Pages
-        if: github.event.action != 'closed'
-        uses: rossjrw/pr-preview-action@v1
+      - name: Upload artifact
+        # This action is specifically for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
         with:
-          source-dir: './dist'
-          preview-branch: 'gh-pages'
-          umbrella-dir: 'pr-preview'
-          action: 'deploy'
+          path: ./dist
 
-      - name: Remove PR Preview from GitHub Pages
-        if: github.event.action == 'closed'
-        uses: rossjrw/pr-preview-action@v1
+  # Deploy the preview to a unique GitHub Pages URL
+  deploy:
+    # This job only runs if the PR is open
+    if: github.event.action != 'closed'
+    needs: build
+    runs-on: ubuntu-latest
+
+    # Grant permissions for the GITHUB_TOKEN
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment
+      pull-requests: write # to comment on the PR
+
+    # Define the deployment environment
+    environment:
+      name: pr-preview-${{ github.event.pull_request.number }}
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # The official GitHub action
+
+      - name: Post Preview Link as Comment
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-          source-dir: './dist'
-          preview-branch: 'gh-pages'
-          umbrella-dir: 'pr-preview'
-          action: 'remove'
+          header: astro-preview
+          message: |
+            🚀 **Astro Preview is Ready!**
+
+            You can view the live preview of your changes here:
+            ${{ steps.deployment.outputs.page_url }}
+
+  # Cleanup job to remove the sticky comment when PR is closed
+  cleanup:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Remove Preview Link Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: astro-preview
+          message: 'The preview for this PR has been deactivated.'
