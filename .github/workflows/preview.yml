@@ -9,6 +9,16 @@ jobs:
     # Only run this job if the pull request was NOT closed
     if: github.event.action != 'closed'
     runs-on: ubuntu-latest
+
+    concurrency:
+      group: "pr-preview-${{ github.head_ref }}"
+      cancel-in-progress: true
+
+    # Granting the workflow write access
+    permissions:
+      contents: write      # Allows the action to push to the gh-pages branch
+      pull-requests: write # Allows the action to comment on the PR with the preview link
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
