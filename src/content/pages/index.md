@@ -32,7 +32,7 @@ content:
   - component: "split-content"
     image: "https://picsum.photos/id/120/600/400"
     image_alt: "A placeholder image."
-    header: "Powerful Content Organization"
+    header: "Dummy Update"
     copy: "Another section"
     image_position: "left"
 
