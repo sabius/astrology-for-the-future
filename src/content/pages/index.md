@@ -33,7 +33,7 @@ content:
     image: "https://picsum.photos/id/120/600/400"
     image_alt: "A placeholder image."
     header: "Powerful Content Organization"
-    copy: "This is a third section."
+    copy: "This is a third section for testing."
     image_position: "left"
 
   # Block 3: A Call to Action
