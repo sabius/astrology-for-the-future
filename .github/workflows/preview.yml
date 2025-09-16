@@ -1,4 +1,6 @@
-name: Build and deploy preview links on pull requests
+# .github/workflows/preview.yml
+
+name: Deploy Pull Request Preview
 
 on:
   pull_request:
@@ -6,31 +8,46 @@ on:
 
 jobs:
   deploy-preview:
-    # Only run this job if the pull request was NOT closed
-    if: github.event.action != 'closed'
     runs-on: ubuntu-latest
 
     concurrency:
       group: "pr-preview-${{ github.head_ref }}"
       cancel-in-progress: true
 
-    # Granting the workflow write access
     permissions:
-      contents: write      # Allows the action to push to the gh-pages branch
-      pull-requests: write # Allows the action to comment on the PR with the preview link
+      contents: write
+      pull-requests: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install and build
-        uses: withastro/action@v4
+      # Setup Node.js to match your production environment
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v4
         with:
           node-version: '22.x'
-        env:
-          BASE_URL: /${{ github.event.repository.name }}/pr-preview/pr-${{ github.event.pull_request.number }}
+          cache: 'npm' # Enable caching for faster installs
 
-      - name: Deploy the preview of the Pull Request to Github Pages
+      # Explicitly install dependencies
+      - name: Install dependencies
+        if: github.event.action != 'closed'
+        run: npm install
+
+      # Construct the base URL and print it for debugging
+      - name: Set and Debug Base URL
+        if: github.event.action != 'closed'
+        run: |
+          echo "BASE_URL=/${{ github.event.repository.name }}/pr-preview/pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+          echo "Base URL for this build will be: /${{ github.event.repository.name }}/pr-preview/pr-${{ github.event.pull_request.number }}"
+
+      # Explicitly run the build command with the environment variable
+      - name: Build Astro Site
+        if: github.event.action != 'closed'
+        run: npm run build
+
+      - name: Deploy PR Preview to GitHub Pages
+        if: github.event.action != 'closed'
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: './dist'
@@ -38,7 +55,7 @@ jobs:
           umbrella-dir: 'pr-preview'
           action: 'deploy'
 
-      - name: Remove the Pull Request preview from Github Pages
+      - name: Remove PR Preview from GitHub Pages
         if: github.event.action == 'closed'
         uses: rossjrw/pr-preview-action@v1
         with:
