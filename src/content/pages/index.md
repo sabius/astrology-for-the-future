@@ -25,7 +25,7 @@ content:
     image: "https://picsum.photos/id/120/600/400"
     image_alt: "A placeholder image."
     header: "Powerful Content Organization"
-    copy: "THIS IS A TEST"
+    copy: "Removing header test"
     image_position: "right"
   
     # Block 4: A Split Content Section
@@ -33,7 +33,7 @@ content:
     image: "https://picsum.photos/id/120/600/400"
     image_alt: "A placeholder image."
     header: "Powerful Content Organization"
-    copy: "Another section"
+    copy: "Another section, tightening the staging link creation"
     image_position: "left"
 
   # Block 5: A Call to Action
