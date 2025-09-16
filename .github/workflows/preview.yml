@@ -32,6 +32,9 @@ jobs:
           # The output directory for your Astro build is typically 'dist'
           # This action will automatically use it.
 
+      - name: Create .nojekyll file
+        run: touch ./dist/.nojekyll
+
       - name: Deploy PR Preview
         uses: rossjrw/pr-preview-action@v1.5.0
         with:
