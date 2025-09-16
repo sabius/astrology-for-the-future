@@ -33,7 +33,7 @@ content:
     image: "https://picsum.photos/id/120/600/400"
     image_alt: "A placeholder image."
     header: "Guarefo men"
-    copy: "Another section"
+    copy: "Come on! almost there!"
     image_position: "left"
 
   # Block 3: A Call to Action
