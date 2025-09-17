@@ -25,7 +25,7 @@ content:
     image: "https://picsum.photos/id/120/600/400"
     image_alt: "A placeholder image."
     header: "Powerful Content Organization"
-    copy: "By defining components in MD files. You can easily reorder, add, or remove sections of your page."
+    copy: "Cloudlfare rules bro!"
     image_position: "right"
   
     # Block 2: A Split Content Section
