@@ -1,25 +1,32 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { components } from '../components/componentMap';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import type { GetStaticPaths } from "astro";
 
+// This is the new, simplified logic
 export const getStaticPaths = (async () => {
-  // Astro.glob() automatically finds and parses YAML/JSON files
   const pages = await getCollection('pages');
 
   return pages.map((entry) => {
-    // entry.slug for 'index.md' will be 'index'
-    const slug = entry.slug === 'index' ? undefined : entry.slug;
+    // entry.slug will be "en/index", "es/about", etc.
+    // Astro's i18n router knows how to handle this structure perfectly.
+    // We just need to remove "index" for root pages.
+    const slug = entry.slug.endsWith('/index')
+      ? entry.slug.slice(0, -'/index'.length)
+      : entry.slug;
 
     return {
+      // The `slug` parameter here will match the URL structure, e.g., "en/about".
       params: { slug },
-      props: { pageData: entry.data }, // The validated data is in entry.data
+      props: { entry },
     };
   });
 }) satisfies GetStaticPaths;
 
-const { pageData } = Astro.props;
+// The entry contains the full data for the correct language
+const { entry } = Astro.props as { entry: CollectionEntry<'pages'> };
+const { data: pageData } = entry;
 const { meta, content } = pageData;
 ---
 
@@ -27,7 +34,8 @@ const { meta, content } = pageData;
   <main>
     {content.map(block => {
       const Component = components[block.component] ?? components.fallback;
-      return <Component {...block}/>
+
+      return <Component {...block} />;
     })}
   </main>
 </BaseLayout>
