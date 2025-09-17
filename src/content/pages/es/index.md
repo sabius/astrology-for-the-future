@@ -1,7 +1,7 @@
 ---
 meta:
-  title: "Mi Página de Inicio Asombrosa"
-  description: "Una descripción de la página para SEO."
+  title: "Astrology for the Future"
+  description: "Astrology for the Future ofrece lecturas astrológicas personalizadas, artículos y videos para guiarte en el camino de tu vida. Agenda una lectura hoy."
 
 content:
   # Block 1: The Hero Section
