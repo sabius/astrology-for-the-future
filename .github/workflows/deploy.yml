@@ -25,10 +25,6 @@ jobs:
         with:
           node-version: '22.x'
 
-      # --- ADD THIS STEP ---
-      - name: Create .nojekyll file
-        run: touch ./dist/.nojekyll
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
