@@ -19,7 +19,7 @@ content:
     header: "Powerful Content Organization"
     copy: "By defining components in MD files. You can easily reorder, add, or remove sections of your page."
     image_position: "left"
-  
+
     # Block 2: A Split Content Section
   - component: "split-content"
     image: "https://picsum.photos/id/120/600/400"
@@ -27,7 +27,7 @@ content:
     header: "Powerful Content Organization"
     copy: "Cloudlfare rules bro!"
     image_position: "right"
-  
+
     # Block 2: A Split Content Section
   - component: "split-content"
     image: "https://picsum.photos/id/120/600/400"
@@ -45,4 +45,4 @@ content:
       style: "primary"
 ---
 
-<!-- You can leave the body of the markdown file empty -->
+<!-- We can leave the body of this markdown file empty -->
