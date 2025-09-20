@@ -1,0 +1,52 @@
+---
+import Button from "../UI/Button.astro";
+
+  const {
+    header,
+    copy,
+    image,
+    image_alt,
+    list_items,
+    button
+  } = Astro.props;
+---
+
+<!-- Map Section -->
+<section class="py-16">
+  <div class="container">
+    <div class="text-center mb-12">
+      {header && <h2 class="text-3xl md:text-5xl font-bold mb-4">{header}</h2>}
+      {copy &&<p class="text-3xl text-gray-700 max-w-3xl mx-auto">
+        {copy}
+      </p>}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div class="bg-gray-200 rounded-lg overflow-hidden">
+        {image && <img src={image} alt={image_alt}>}
+      </div>
+
+      <div>
+        <div class="bg-white p-8 rounded-lg shadow-md">
+            {list_items.map(card_item => {
+              return <div>
+                {card_item.heading && <h4 class="font-bold text-2xl mb-2">{card_item.heading}</h4>}
+                {card_item.copy && <p class="text-gray-800 text-xl">
+                  {card_item.copy}
+                </p>}
+              </div>
+            })}
+          </div>
+
+          {button &&
+            <div class="mt-6">
+              <Button href={button.url} target="_blank" variant={button.variant}>
+                {button.text}
+              </Button>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
