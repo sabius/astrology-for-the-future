@@ -8,6 +8,10 @@
   --color-background-gray: 239, 234, 246;
 }
 
+main {
+  background-color: rgba(var(--color-background-gray), 0.95);
+}
+
 .container {
   margin-inline: auto;
   padding-inline: 1rem;

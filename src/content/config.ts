@@ -2,23 +2,38 @@ import { defineCollection, z } from 'astro:content';
 
 const heroBlock = z.object({
   component: z.literal('hero'),
-  header: z.string(),
-  copy: z.string(),
+  header: z.string().optional(),
+  copy: z.string().optional(),
   button: z.object({ text: z.string(), url: z.string(), }).optional()
 });
 
 const splitContentBlock = z.object({
   component: z.literal('split-content'),
-  image: z.string(),
-  image_alt: z.string(),
-  header: z.string(),
-  copy: z.string(),
+  image: z.string().optional(),
+  image_alt: z.string().optional(),
+  header: z.string().optional(),
+  copy: z.string().optional(),
   image_position: z.enum(['left', 'right']).optional(),
+});
+
+const featureCardBlock = z.object({
+  component: z.literal('feature-card'),
+  header: z.string().optional(),
+  copy: z.string().optional(),
+  image: z.string().optional(),
+  image_alt: z.string().optional(),
+  list_items: z.array(
+    z.object({
+      heading: z.string().optional(),
+      copy: z.string().optional(),
+    })
+  ).optional(),
+  button: z.object({ text: z.string(), url: z.string(), style: z.string().optional() }).optional(),
 });
 
 const ctaBlock = z.object({
   component: z.literal('cta'),
-  header: z.string(),
+  header: z.string().optional(),
   button: z.object({ text: z.string(), url: z.string(), style: z.string().optional() }),
 });
 
@@ -34,6 +49,7 @@ const pagesCollection = defineCollection({
       z.discriminatedUnion('component', [
         heroBlock,
         splitContentBlock,
+        featureCardBlock,
         ctaBlock,
       ])
     ),

@@ -13,20 +13,26 @@ content:
       url: "/about"
 
   # Block 2: A Split Content Section
-  - component: "split-content"
-    image: "https://picsum.photos/id/120/600/400"
-    image_alt: "A placeholder image."
-    header: "Powerful Content Organization"
-    copy: "By defining components in MD files. You can easily reorder, add, or remove sections of your page."
-    image_position: "left"
+  - component: "feature-card"
+    header: "Gift Card"
+    copy: "✨ A Journey Through the Stars Awaits! ✨"
+    image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758335017/Gift_Card_PLANTILLA_w0uyfd.webp"
+    image_alt: "The image of an example gift Astrology for the Future Gift card."
+    list_items:
+      - heading: Surprise someone special with an astrology reading gift card.
+        copy: It’s more than a gift—it’s an invitation to explore their purpose, potential, and path guided by the universe.
+    button:
+      text: "Get yours now!"
+      url: "/signup"
+      style: "primary"
 
   # Block 2: A Split Content Section
   - component: "split-content"
     image: "https://picsum.photos/id/120/600/400"
     image_alt: "A placeholder image."
     header: "Powerful Content Organization"
-    copy: "This is my new content block."
-    image_position: "right"
+    copy: "By defining components in MD files. You can easily reorder, add, or remove sections of your page."
+    image_position: "left"
 
   # Block 3: A Call to Action
   - component: "cta"

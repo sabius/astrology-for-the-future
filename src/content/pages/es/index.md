@@ -12,6 +12,20 @@ content:
       text: "Agenda una cita"
       url: "/about"
 
+    # Block 2: A Split Content Section
+  - component: "feature-card"
+    header: "Tarjeta de Regalo"
+    copy: "✨ ¡Un Viaje a Través de las Estrellas te Espera! ✨"
+    image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758335017/Gift_Card_PLANTILLA_w0uyfd.webp"
+    image_alt: "Imagen de una tarjeta de regalo de ejemplo de Astrología para el Futuro."
+    list_items:
+      - heading: "Sorprende a alguien especial con una tarjeta de regalo para una lectura de astrología."
+        copy: "Es más que un regalo: es una invitación a explorar su propósito, potencial y camino guiados por el universo."
+    button:
+      text: "¡Consigue la tuya ahora!"
+      url: "/signup"
+      style: "primary"
+
   # Block 2: A Split Content Section
   - component: "split-content"
     image: "https://picsum.photos/id/120/600/400"
