@@ -9,7 +9,7 @@ content:
     header: "Glenda Ferreira P., M.D."
     copy: "Lecturas y orientación experta en astrología"
     button:
-      text: "Agenda una cita"
+      text: "Agenda una cita ahora"
       url: "/about"
 
     # Block 2: A Split Content Section
