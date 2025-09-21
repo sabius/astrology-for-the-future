@@ -42,11 +42,9 @@ import Navigation from "./Navigation.astro";
         if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
           // Scroll down
           mainHeader.classList.add("nav-hidden");
-          console.log('hiding')
         } else {
           // Scroll up
           mainHeader.classList.remove("nav-hidden");
-          console.log('showing')
         }
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
       },
