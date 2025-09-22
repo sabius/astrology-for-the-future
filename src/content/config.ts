@@ -4,7 +4,8 @@ const heroBlock = z.object({
   component: z.literal('hero'),
   header: z.string().optional(),
   copy: z.string().optional(),
-  button: z.object({ text: z.string(), url: z.string(), }).optional()
+  button: z.object({ text: z.string(), url: z.string(), }).optional(),
+  background_image: z.string().optional(),
 });
 
 const splitContentBlock = z.object({

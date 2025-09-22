@@ -5,28 +5,30 @@ const {
   header,
   copy,
   button,
-  backgroundImage = 'https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/image-asset_zlvc49.webp',
+  background_image,
 } = Astro.props;
 ---
 
 <section
   class="relative min-h-[70vh] flex items-center bg-cover pt-30"
-  style={`background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${backgroundImage}); background-position: center 20%;`}
+  style={`background-image: url(${background_image}); background-position: center 20%;`}
 >
   <div class="container">
-    <div class="max-w-3xl text-white">
-      {header && <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">{header}</h1>}
-      {copy && <p class="text-xl md:text-2xl mb-8">{copy}</p>}
+    {header && copy && button &&
+      <div class="max-w-3xl text-white bg-gray-900/50 p-10 rounded-md">
+        {header && <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">{header}</h1>}
+        {copy && <p class="text-xl md:text-2xl mb-8">{copy}</p>}
 
-      {button && <div class="flex flex-wrap gap-4">
-        {
-          button && (
-            <Button href={button.url} variant="primary" size="lg">
-              {button.text}
-            </Button>
-          )
-        }
-      </div>}
-    </div>
+        {button && <div class="flex flex-wrap gap-4">
+          {
+            button && (
+              <Button href={button.url} variant="primary" size="lg">
+                {button.text}
+              </Button>
+            )
+          }
+        </div>}
+      </div>
+    }
   </div>
 </section>
