@@ -8,6 +8,7 @@ content:
   - component: "hero"
     header: "Glenda Ferreira P., M.D."
     copy: "Expert Astrology Readings and Guidance"
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/image-asset_zlvc49.webp"
     button:
       text: "Book a reading"
       url: "/about"
@@ -25,6 +26,10 @@ content:
       text: "Get yours now!"
       url: "/signup"
       style: "primary"
+
+  # Block 1: The Hero Section
+  - component: "hero"
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758503040/unsplash-image-kLqZ92hmqTw_ws9lzb.jpg"
 
   # Block 2: A Split Content Section
   - component: "split-content"
