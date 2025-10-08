@@ -172,8 +172,8 @@ const currentPath = Astro.url.pathname;
         !mobileMenu.contains(e.target as Node) &&
         !mobileMenuButton.contains(e.target as Node)
       ) {
-        console.log('menu open');
         toggleMobileMenu();
+      }
     });
 
     // Close menu when clicking a navigation link
