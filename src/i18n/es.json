@@ -1,5 +1,12 @@
 {
+  "site.title": "Astrología para el Futuro",
   "nav.home": "Inicio",
+  "nav.videos": "Videos",
+  "nav.blog": "Blog y Más",
   "nav.about": "Sobre Nosotros",
-  "footer.rights": "Todos los derechos reservados."
+  "nav.contact": "Contacto",
+  "footer.rights": "Todos los derechos reservados.",
+  "footer.follow": "Sígueme",
+  "footer.privacy": "Política de Privacidad",
+  "footer.terms": "Términos de Servicio"
 }

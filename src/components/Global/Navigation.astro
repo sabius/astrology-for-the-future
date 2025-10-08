@@ -1,10 +1,13 @@
 ---
+
+import { t, getCurrentLocaleFromAstro } from "../../i18n/index";
+const locale = getCurrentLocaleFromAstro(Astro);
 const navItems = [
-  { text: "Home", href: "/" },
-  { text: "Videos", href: "/videos" },
-  { text: "Blog & More", href: "/blog" },
-  { text: "About", href: "/about" },
-  { text: "Contact", href: "/contact" },
+  { text: await t("nav.home", locale), href: "/" },
+  { text: await t("nav.videos", locale), href: "/videos" },
+  { text: await t("nav.blog", locale), href: "/blog" },
+  { text: await t("nav.about", locale), href: "/about" },
+  { text: await t("nav.contact", locale), href: "/contact" },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -164,7 +167,6 @@ const currentPath = Astro.url.pathname;
 
     // Close menu when clicking outside
     document.addEventListener("click", (e) => {
-      console.log('clicking');
       if (
         isMenuOpen &&
         !mobileMenu.contains(e.target as Node) &&
@@ -172,7 +174,6 @@ const currentPath = Astro.url.pathname;
       ) {
         console.log('menu open');
         toggleMobileMenu();
-      }
     });
 
     // Close menu when clicking a navigation link

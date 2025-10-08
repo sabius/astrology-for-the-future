@@ -8,6 +8,7 @@ content:
   - component: "hero"
     header: "Glenda Ferreira P., M.D."
     copy: "Lecturas y orientación experta en astrología"
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/image-asset_zlvc49.webp"
     button:
       text: "Agenda una cita"
       url: "/about"

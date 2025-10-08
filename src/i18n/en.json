@@ -1,5 +1,12 @@
 {
+  "site.title": "Astrology for the Future",
   "nav.home": "Home",
+  "nav.videos": "Videos",
+  "nav.blog": "Blog & More",
   "nav.about": "About",
-  "footer.rights": "All rights reserved."
+  "nav.contact": "Contact",
+  "footer.rights": "All rights reserved.",
+  "footer.follow": "Follow me",
+  "footer.privacy": "Privacy Policy",
+  "footer.terms": "Terms of Service"
 }

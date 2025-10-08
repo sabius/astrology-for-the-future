@@ -1,4 +1,6 @@
 ---
+import { t, getCurrentLocaleFromAstro } from "../../i18n/index";
+const locale = getCurrentLocaleFromAstro(Astro);
 // Social media links
 const socialLinks = [
   {
@@ -26,13 +28,18 @@ const socialLinks = [
 
 // Current year for copyright
 const currentYear = new Date().getFullYear();
+
+const followMe = await t("footer.follow", locale);
+const copyright = await t("footer.rights", locale);
+const privacy = await t("footer.privacy", locale);
+const terms = await t("footer.terms", locale);
 ---
 
 <footer class="bg-gray-900 text-white pt-16 pb-8">
   <div class="container">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
       <div class="flex justify-center">
-        <h4 class="mr-6 space-x-4 text-lg font-bold text-white">Follow me</h4>
+  <h4 class="mr-6 space-x-4 text-lg font-bold text-white">{followMe}</h4>
         <ul>
           <div class="flex space-x-4">
             {
@@ -63,14 +70,10 @@ const currentYear = new Date().getFullYear();
     <div
       class="pt-8 mt-8 border-t border-gray-800 text-center text-gray-400 text-sm"
     >
-      <p>&copy; {currentYear} Astrology for the Future. All rights reserved.</p>
+  <p>&copy; {currentYear} {await t("site.title", locale)}. {copyright}</p>
       <p class="mt-2">
-        <a href="/privacy-policy" class="hover:text-primary-300 mr-4"
-          >Privacy Policy</a
-        >
-        <a href="/terms-of-service" class="hover:text-primary-300"
-          >Terms of Service</a
-        >
+        <a href="/privacy-policy" class="hover:text-primary-300 mr-4">{privacy}</a>
+        <a href="/terms-of-service" class="hover:text-primary-300">{terms}</a>
       </p>
     </div>
   </div>
