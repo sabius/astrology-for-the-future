@@ -29,11 +29,22 @@ content:
 
   # Block 2: A Split Content Section
   - component: "split-content"
-    image: "https://picsum.photos/id/120/600/400"
-    image_alt: "Una imagen de ejemplo."
-    header: "Organización de contenido poderosa"
-    copy: "Definiendo componentes en archivos MD puedes reorganizar, añadir o eliminar secciones de tu página fácilmente."
-    image_position: "left"
+    background_color: "#e4ddea"
+    columns:
+      - items:
+          - heading: "Médica Cirujana"
+            copy: "Colegio Mayor de Nuestra Señora del Rosario"
+            meta: "1983"
+          - heading: "Astrología"
+            copy: "Práctica profesional"
+            meta: "1995 - 2022"
+      - items:
+          - heading: "Especialista en Gestión de Salud Pública"
+            copy: "Colegio Mayor de Nuestra Señora del Rosario"
+            meta: "2000"
+          - heading: "Astrología Médica"
+            copy: "School of Traditional Astrology"
+            meta: "2022 - 2024"
 
   # Block 3: A Call to Action
   - component: "cta"

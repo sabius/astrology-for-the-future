@@ -10,11 +10,18 @@ const heroBlock = z.object({
 
 const splitContentBlock = z.object({
   component: z.literal('split-content'),
-  image: z.string().optional(),
-  image_alt: z.string().optional(),
-  header: z.string().optional(),
-  copy: z.string().optional(),
-  image_position: z.enum(['left', 'right']).optional(),
+  background_color: z.string().optional(),
+  columns: z.array(
+    z.object({
+      items: z.array(
+        z.object({
+          heading: z.string().optional(),
+          copy: z.string().optional(),
+          meta: z.string().optional(),
+        })
+      ).optional(),
+    })
+  ),
 });
 
 const featureCardBlock = z.object({

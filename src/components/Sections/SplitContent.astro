@@ -1,20 +1,69 @@
 ---
-const { image, image_alt, header, copy, image_position = 'left' } = Astro.props;
-const isImageLeft = image_position === 'left';
+const { columns = [], background_color = '#e7e0ec' } = Astro.props;
+const normalizedColumns = columns.slice(0, 2);
 ---
-<section class:list={["split-content", { 'image-right': !isImageLeft }]}>
-  <div class="image-wrapper">
-    <img src={image} alt={image_alt} />
-  </div>
-  <div class="text-wrapper">
-    <h2 class="text-5xl">{header}</h2>
-    <p class="mt-4 text-xl">{copy}</p>
+<section class="split-content" style={`--split-bg: ${background_color}`.trim()}>
+  <div class="columns">
+    {normalizedColumns.map((column) => (
+      <div class="column">
+        {column?.items?.map((item) => (
+          <article class="column-item">
+            {item?.heading && <h3>{item.heading}</h3>}
+            {item?.copy && <p class="copy">{item.copy}</p>}
+            {item?.meta && <p class="meta">{item.meta}</p>}
+          </article>
+        ))}
+      </div>
+    ))}
   </div>
 </section>
 
 <style>
-  .split-content { display: flex; gap: 2rem; align-items: center; padding: 4rem 1rem; }
-  .split-content.image-right { flex-direction: row-reverse; }
-  .image-wrapper, .text-wrapper { flex: 1; }
-  img { max-width: 100%; height: auto; }
+  .split-content {
+    --text-color: #2e2133;
+    --secondary-color: #4f3c57;
+    background-color: var(--split-bg, #e7e0ec);
+    display: flex;
+    justify-content: center;
+    padding: clamp(3rem, 8vw, 6rem) 1.5rem;
+  }
+
+  .columns {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    width: min(64rem, 100%);
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .column-item h3 {
+    color: var(--text-color);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    margin: 0;
+  }
+
+  .column-item .copy {
+    color: var(--secondary-color);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    line-height: 1.4;
+    margin: 0.5rem 0 0;
+  }
+
+  .column-item .meta {
+    color: var(--secondary-color);
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    margin: 0.75rem 0 0;
+  }
+
+  .column-item {
+    display: flex;
+    flex-direction: column;
+  }
 </style>
