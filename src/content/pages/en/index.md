@@ -34,7 +34,6 @@ content:
 
   # Block 2: A Split Content Section
   - component: "split-content"
-    background_color: "#ede7f1"
     columns:
       - items:
           - image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760067553/800px-Cuneiform_tablet-_commenta_esmxip.jpg"
@@ -48,7 +47,6 @@ content:
 
   # Block 2: A Split Content Section
   - component: "split-content"
-    background_color: "#e4ddea"
     columns:
       - items:
           - heading: "Surgeon Physician"

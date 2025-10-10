@@ -1,7 +1,7 @@
 ---
 import ResponsivePicture from '../UI/ResponsivePicture.astro';
 
-const { columns = [], background_color = '#e7e0ec' } = Astro.props;
+const { columns = [], background_color = '' } = Astro.props;
 const normalizedColumns = columns.slice(0, 2).map((column) => ({
   ...column,
   items: column?.items?.map((item) => ({
@@ -16,7 +16,7 @@ const normalizedColumns = columns.slice(0, 2).map((column) => ({
 ---
 <section
   class="flex justify-center px-6 py-12 md:py-20 lg:py-24"
-  style={{ backgroundColor: background_color ?? '#e7e0ec' }}
+  style={{ backgroundColor: background_color ?? '' }}
 >
   <div
     class="grid w-full max-w-5xl grid-cols-1 gap-10 md:grid-cols-2 md:gap-14"
