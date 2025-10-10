@@ -1,5 +1,4 @@
 ---
-
 import { t, getCurrentLocaleFromAstro } from "../../i18n/index";
 const locale = getCurrentLocaleFromAstro(Astro);
 const navItems = [
@@ -65,7 +64,7 @@ const currentPath = Astro.url.pathname;
 <!-- Mobile Menu Dropdown - Compact & Clean -->
 <div
   id="mobile-menu"
-  class="nav-mobile absolute top-full left-0 right-0 bg-white shadow-lg border-t border-none transform opacity-0 origin-top transition-opacity duration-300 ease-out lg:hidden z-50"
+  class="nav-mobile bg-white absolute top-full left-0 right-0 shadow-lg border-t border-none transform opacity-0 origin-top transition-opacity duration-300 ease-out invisible z-50"
   role="menu"
   aria-labelledby="mobile-menu-button"
 >
@@ -121,11 +120,6 @@ const currentPath = Astro.url.pathname;
   #mobile-menu a[aria-current="page"] {
     font-weight: 600;
   }
-
-  .nav-mobile {
-    background-color: rgba(var(--color-background-gray), 1);
-  }
-
   .nav-link {
     text-decoration: underline 1px rgba(0, 0, 0, 0);
     transition: text-decoration-color 300ms;
@@ -142,19 +136,22 @@ const currentPath = Astro.url.pathname;
     const mobileMenuButton = document.getElementById("mobile-menu-button")!;
     const mobileMenu = document.getElementById("mobile-menu")!;
 
-    let isMenuOpen = false;
+    // Use global variable for menu state
+    window.__NAV_MENU_OPEN__ = false;
 
     // Function to toggle mobile menu
     const toggleMobileMenu = () => {
-      isMenuOpen = !isMenuOpen;
+      window.__NAV_MENU_OPEN__ = !window.__NAV_MENU_OPEN__;
 
-      if (isMenuOpen) {
+      if (window.__NAV_MENU_OPEN__) {
         // Show menu
         mobileMenu.classList.remove("opacity-0");
+        mobileMenu.classList.remove("invisible");
         mobileMenuButton.setAttribute("aria-expanded", "true");
       } else {
         // Hide menu
         mobileMenu.classList.add("opacity-0");
+        mobileMenu.classList.add("invisible");
         mobileMenuButton.setAttribute("aria-expanded", "false");
       }
     };
@@ -168,7 +165,7 @@ const currentPath = Astro.url.pathname;
     // Close menu when clicking outside
     document.addEventListener("click", (e) => {
       if (
-        isMenuOpen &&
+        window.__NAV_MENU_OPEN__ &&
         !mobileMenu.contains(e.target as Node) &&
         !mobileMenuButton.contains(e.target as Node)
       ) {
@@ -180,7 +177,7 @@ const currentPath = Astro.url.pathname;
     const navLinks = mobileMenu?.querySelectorAll('a[href^="/"]');
     navLinks?.forEach((link) => {
       link.addEventListener("click", () => {
-        if (isMenuOpen) {
+        if (window.__NAV_MENU_OPEN__) {
           setTimeout(() => toggleMobileMenu(), 100);
         }
       });
@@ -188,14 +185,14 @@ const currentPath = Astro.url.pathname;
 
     // Keyboard navigation
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && isMenuOpen) {
+      if (e.key === "Escape" && window.__NAV_MENU_OPEN__) {
         toggleMobileMenu();
       }
     });
 
     // Handle window resize
     window.addEventListener("resize", () => {
-      if (window.innerWidth >= 1024 && isMenuOpen) {
+      if (window.innerWidth >= 1024 && window.__NAV_MENU_OPEN__) {
         toggleMobileMenu();
       }
     });

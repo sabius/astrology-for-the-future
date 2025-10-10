@@ -37,7 +37,7 @@ const isCloudinary = src.includes("res.cloudinary.com");
 
 // Define widths based on variant
 const baseWidths = [352, 768, 1024, 1280];
-const heroWidths = baseWidths.map((w) => w * 2);
+const heroWidths = baseWidths.map((w) => Math.floor(w * 2.4));
 const widths = type === "hero" ? heroWidths : baseWidths;
 
 const srcSet = isCloudinary
