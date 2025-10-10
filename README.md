@@ -1,6 +1,6 @@
 # Astrology for the Future
 
-Astrology for the Future is a multilingual marketing site for Glenda Ferreira P., M.D., offering astrology readings and educational resources. The site is built with [Astro](https://astro.build) and Tailwind CSS and renders statically so it can be hosted on any CDN or static hosting provider.
+Astrology for the Future is a multilingual landing site, offering astrology readings and educational resources. The site is built with [Astro](https://astro.build) and Tailwind CSS and renders statically so it can be hosted on any CDN or static hosting provider.
 
 ## Features
 
@@ -79,7 +79,7 @@ Example snippet:
 ```yaml
 content:
   - component: "hero"
-    header: "Glenda Ferreira P., M.D."
+    header: "Astrology for the Future"
     copy: "Expert Astrology Readings and Guidance"
     button:
       text: "Book a reading"
