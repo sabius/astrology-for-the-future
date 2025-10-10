@@ -8,6 +8,13 @@ try {
 } catch (e) {
   console.error("Error fetching site title:", e);
 }
+
+// Add TS declaration for global menu state
+declare global {
+  interface Window {
+    __NAV_MENU_OPEN__?: boolean;
+  }
+}
 ---
 
 <header class="font-sans sticky top-0 z-50 w-full bg-white backdrop-blur-md shadow-sm">
@@ -35,12 +42,6 @@ try {
 </style>
 
 <script>
-  // Add TS declaration for global menu state
-  declare global {
-    interface Window {
-      __NAV_MENU_OPEN__?: boolean;
-    }
-  }
   document.addEventListener("DOMContentLoaded", () => {
     const mainHeader = document.querySelector("header")!;
 
