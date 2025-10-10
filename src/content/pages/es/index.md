@@ -41,6 +41,10 @@ content:
               - "Enuma Anu Enlil es una composición literaria mesopotámica antigua, también conocida como las \"tablillas Enuma Anu Enlil\". Es una colección de alrededor de 70 tablillas de arcilla que datan del segundo milenio a. C., principalmente del período paleobabilónico. Las tablillas contienen una serie de textos astrológicos, astronómicos y de presagios, que ofrecen información sobre las creencias y prácticas de la civilización mesopotámica."
               - "Las tablillas Enuma Anu Enlil comprenden un compendio de presagios celestes, detallando las interpretaciones y predicciones de fenómenos celestes, como eclipses lunares y solares, posiciones planetarias y eventos meteorológicos. Se creía que estas observaciones ejercían una influencia significativa en los asuntos humanos y en el destino de los reyes. Los textos eran consultados por adivinos y astrólogos para obtener información sobre eventos futuros y orientar la toma de decisiones."
 
+  - component: "quote"
+    quote: "El alma del bebé recién nacido queda marcada de por vida por el patrón de las estrellas en el momento en que llega al mundo; lo recuerda inconscientemente y permanece sensible al retorno de configuraciones de naturaleza similar."
+    author: "Johannes Kepler"
+
   # Block 2: A Split Content Section
   - component: "split-content"
     background_color: "#e4ddea"
