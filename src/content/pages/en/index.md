@@ -9,6 +9,7 @@ content:
     header: "Glenda Ferreira P., M.D."
     copy: "Expert Astrology Readings and Guidance"
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/image-asset_zlvc49.webp"
+    image_alt: "The photo of a starred sky and an aurora boreal"
     button:
       text: "Book a reading"
       url: "/about"

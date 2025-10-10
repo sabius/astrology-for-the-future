@@ -6,6 +6,7 @@ const heroBlock = z.object({
   copy: z.string().optional(),
   button: z.object({ text: z.string(), url: z.string(), }).optional(),
   background_image: z.string().optional(),
+  image_alt: z.string().optional(),
 });
 
 const splitContentBlock = z.object({

@@ -1,0 +1,70 @@
+---
+interface Props {
+  src: string;
+  alt?: string;
+  class?: string;
+  imageClass?: string;
+  type?: "default" | "hero";
+}
+
+const createCloudinaryUrl = (url: string, transformations: string[] = []) => {
+  if (!url.includes("/upload/")) {
+    return url;
+  }
+
+  const [base, resource] = url.split("/upload/");
+
+  if (!resource) {
+    return url;
+  }
+
+  const transformationString = transformations.filter(Boolean).join(",");
+
+  return transformationString
+    ? `${base}/upload/${transformationString}/${resource}`
+    : `${base}/upload/${resource}`;
+};
+
+const {
+  src,
+  alt = "",
+  class: className = "",
+  imageClass = "w-full h-full object-cover",
+  type = "default",
+}: Props = Astro.props;
+
+const isCloudinary = src.includes("res.cloudinary.com");
+
+// Define widths based on variant
+const baseWidths = [352, 768, 1024, 1280];
+const heroWidths = baseWidths.map((w) => w * 2);
+const widths = type === "hero" ? heroWidths : baseWidths;
+
+const srcSet = isCloudinary
+  ? widths
+      .map((width) =>
+        `${createCloudinaryUrl(src, ["c_scale", `w_${width}`, "f_auto", "q_auto"])} ${width}w`
+      )
+      .join(", ")
+  : undefined;
+
+const fallbackSrc = isCloudinary
+  ? createCloudinaryUrl(src, ["f_auto", "q_auto"])
+  : src;
+
+const sizes =
+  type === "hero"
+    ? "(max-width: 1536px) 100vw, 100vw"
+    : "(max-width: 768px) 100vw, 50vw";
+---
+<picture class={className}>
+  {srcSet ? <source srcset={srcSet} sizes={sizes} /> : null}
+  <img
+    src={fallbackSrc}
+    alt={alt}
+    loading={type === "hero" ? "eager" : "lazy"}
+    fetchpriority={type === "hero" ? "high" : undefined}
+    decoding="async"
+    class={imageClass}
+  />
+</picture>
