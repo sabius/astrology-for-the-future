@@ -2,6 +2,8 @@
 interface Props {
   src: string;
   alt?: string;
+  class?: string;
+  imageClass?: string;
 }
 
 const createCloudinaryUrl = (url: string, transformations: string[] = []) => {
@@ -22,7 +24,12 @@ const createCloudinaryUrl = (url: string, transformations: string[] = []) => {
     : `${base}/upload/${resource}`;
 };
 
-const { src, alt = "" }: Props = Astro.props;
+const {
+  src,
+  alt = "",
+  class: className = "",
+  imageClass = "w-full h-full object-cover",
+}: Props = Astro.props;
 const isCloudinary = src.includes("res.cloudinary.com");
 const widths = [480, 768, 1024, 1280];
 
@@ -40,13 +47,13 @@ const fallbackSrc = isCloudinary
 
 const sizes = "(max-width: 768px) 100vw, 50vw";
 ---
-<picture>
+<picture class={className}>
   {srcSet ? <source srcset={srcSet} sizes={sizes} /> : null}
   <img
     src={fallbackSrc}
     alt={alt}
     loading="lazy"
     decoding="async"
-    class="w-full h-full object-cover"
+    class={imageClass}
   />
 </picture>

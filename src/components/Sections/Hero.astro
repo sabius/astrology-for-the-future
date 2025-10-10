@@ -1,5 +1,6 @@
 ---
 import Button from '../UI/Button.astro';
+import ResponsivePicture from '../UI/ResponsivePicture.astro';
 
 const {
   header,
@@ -7,13 +8,25 @@ const {
   button,
   background_image,
 } = Astro.props;
+
+const heroImageAlt = header ?? '';
 ---
 
 <section
-  class="relative min-h-[70vh] flex items-center bg-cover pt-30"
-  style={`background-image: url(${background_image}); background-position: center 20%;`}
+  class="relative min-h-[70vh] flex items-center pt-30 text-white overflow-hidden"
 >
-  <div class="container">
+  {background_image && (
+    <div class="absolute inset-0 -z-10">
+      <ResponsivePicture
+        src={background_image}
+        alt={heroImageAlt}
+        class="block h-full w-full"
+        imageClass="h-full w-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gray-900/40" aria-hidden="true"></div>
+    </div>
+  )}
+  <div class="container relative z-10">
     {header && copy && button &&
       <div class="max-w-3xl text-white bg-gray-900/50 p-10 rounded-md">
         {header && <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">{header}</h1>}
