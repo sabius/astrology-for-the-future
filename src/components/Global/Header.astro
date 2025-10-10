@@ -10,7 +10,7 @@ try {
 }
 ---
 
-<header class="font-sans sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md shadow-sm">
+<header class="font-sans sticky top-0 z-50 w-full bg-white backdrop-blur-md shadow-sm">
   <div class="container flex items-center justify-between h-20">
     <a href="/" class="text-2xl font-bold text-primary-800 flex items-center">
       <span class="sr-only">{siteTitle}</span>
@@ -35,6 +35,12 @@ try {
 </style>
 
 <script>
+  // Add TS declaration for global menu state
+  declare global {
+    interface Window {
+      __NAV_MENU_OPEN__?: boolean;
+    }
+  }
   document.addEventListener("DOMContentLoaded", () => {
     const mainHeader = document.querySelector("header")!;
 
@@ -46,6 +52,13 @@ try {
       "scroll",
       () => {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Prevent nav from hiding if mobile menu is open
+        if (window.__NAV_MENU_OPEN__) {
+          mainHeader.classList.remove("nav-hidden");
+          lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+          return;
+        }
 
         if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
           // Scroll down
