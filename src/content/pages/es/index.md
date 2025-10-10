@@ -29,6 +29,20 @@ content:
 
   # Block 2: A Split Content Section
   - component: "split-content"
+    background_color: "#ede7f1"
+    columns:
+      - items:
+          - image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760067553/800px-Cuneiform_tablet-_commenta_esmxip.jpg"
+            image_alt: "Tablilla cuneiforme con inscripciones mesopotámicas"
+            legend: "Tablilla cuneiforme: comentario del Enuma Anu Enlil, tablilla 5, ca. finales del primer milenio a. C. Metropolitan Museum of Art."
+      - items:
+          - boxed: true
+            copy:
+              - "Enuma Anu Enlil es una composición literaria mesopotámica antigua, también conocida como las \"tablillas Enuma Anu Enlil\". Es una colección de alrededor de 70 tablillas de arcilla que datan del segundo milenio a. C., principalmente del período paleobabilónico. Las tablillas contienen una serie de textos astrológicos, astronómicos y de presagios, que ofrecen información sobre las creencias y prácticas de la civilización mesopotámica."
+              - "Las tablillas Enuma Anu Enlil comprenden un compendio de presagios celestes, detallando las interpretaciones y predicciones de fenómenos celestes, como eclipses lunares y solares, posiciones planetarias y eventos meteorológicos. Se creía que estas observaciones ejercían una influencia significativa en los asuntos humanos y en el destino de los reyes. Los textos eran consultados por adivinos y astrólogos para obtener información sobre eventos futuros y orientar la toma de decisiones."
+
+  # Block 2: A Split Content Section
+  - component: "split-content"
     background_color: "#e4ddea"
     columns:
       - items:

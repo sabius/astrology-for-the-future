@@ -34,6 +34,20 @@ content:
 
   # Block 2: A Split Content Section
   - component: "split-content"
+    background_color: "#ede7f1"
+    columns:
+      - items:
+          - image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760067553/800px-Cuneiform_tablet-_commenta_esmxip.jpg"
+            image_alt: "Cuneiform tablet with ancient Mesopotamian inscriptions"
+            legend: "Cuneiform tablet: commentary on Enuma Anu Enlil, tablet 5, ca. late 1st millennium BC. Metropolitan Museum of Art."
+      - items:
+          - boxed: true
+            copy:
+              - "Enuma Anu Enlil is an ancient Mesopotamian literary composition, also known as the \"Enuma Anu Enlil tablets.\" It is a collection of around 70 clay tablets dating back to the second millennium BCE, primarily from the Old Babylonian period. The tablets contain a series of astrological, astronomical, and omen texts, providing insights into the beliefs and practices of the Mesopotamian civilization."
+              - "The Enuma Anu Enlil tablets comprise a compendium of celestial omens, detailing the interpretations and predictions of celestial phenomena, such as lunar and solar eclipses, planetary positions, and meteorological events. These observations were believed to hold significant influence over human affairs and the destinies of kings. The texts were consulted by diviners and astrologers to gain insight into future events and to guide decision-making."
+
+  # Block 2: A Split Content Section
+  - component: "split-content"
     background_color: "#e4ddea"
     columns:
       - items:
