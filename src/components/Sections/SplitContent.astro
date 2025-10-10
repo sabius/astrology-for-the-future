@@ -1,6 +1,18 @@
 ---
+import ResponsivePicture from '../UI/ResponsivePicture.astro';
+
 const { columns = [], background_color = '#e7e0ec' } = Astro.props;
-const normalizedColumns = columns.slice(0, 2);
+const normalizedColumns = columns.slice(0, 2).map((column) => ({
+  ...column,
+  items: column?.items?.map((item) => ({
+    ...item,
+    copySegments: Array.isArray(item?.copy)
+      ? item.copy
+      : item?.copy
+      ? [item.copy]
+      : [],
+  })) ?? [],
+}));
 ---
 <section
   class="flex justify-center px-6 py-12 md:py-20 lg:py-24"
@@ -11,24 +23,44 @@ const normalizedColumns = columns.slice(0, 2);
   >
     {normalizedColumns.map((column) => (
       <div class="flex flex-col gap-10 md:gap-14">
-        {column?.items?.map((item) => (
-          <article class="flex flex-col gap-3">
-            {item?.heading && (
-              <h3 class="text-2xl font-medium tracking-[0.01em] text-[#2e2133] md:text-[2rem]">
-                {item.heading}
-              </h3>
-            )}
-            {item?.copy && (
-              <p class="text-lg leading-relaxed text-[#4f3c57] md:text-xl">
-                {item.copy}
-              </p>
-            )}
-            {item?.meta && (
-              <p class="text-base text-[#4f3c57] md:text-lg">
-                {item.meta}
-              </p>
-            )}
-          </article>
+        {column.items?.map((item) => (
+          item?.image ? (
+            <figure class="flex flex-col gap-4">
+              <ResponsivePicture
+                src={item.image}
+                alt={item.image_alt ?? ''}
+                class="overflow-hidden rounded-[32px] shadow-md"
+                imageClass="h-full w-full object-cover"
+              />
+              {item?.legend && (
+                <figcaption class="text-sm leading-relaxed text-[#4f3c57] md:text-base">
+                  {item.legend}
+                </figcaption>
+              )}
+            </figure>
+          ) : (
+            <article
+              class={`flex flex-col gap-4 text-[#4f3c57] ${
+                item?.boxed ? 'rounded-[32px] bg-white p-8 shadow-lg md:p-10' : ''
+              }`}
+            >
+              {item?.heading && (
+                <h3 class="text-2xl font-medium tracking-[0.01em] text-[#2e2133] md:text-[2rem]">
+                  {item.heading}
+                </h3>
+              )}
+              {item?.copySegments?.map((paragraph) => (
+                <p class="text-lg leading-relaxed md:text-xl">
+                  {paragraph}
+                </p>
+              ))}
+              {item?.meta && (
+                <p class="text-base md:text-lg">
+                  {item.meta}
+                </p>
+              )}
+            </article>
+          )
         ))}
       </div>
     ))}

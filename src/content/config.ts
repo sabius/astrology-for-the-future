@@ -14,13 +14,19 @@ const splitContentBlock = z.object({
   background_color: z.string().optional(),
   columns: z.array(
     z.object({
-      items: z.array(
-        z.object({
-          heading: z.string().optional(),
-          copy: z.string().optional(),
-          meta: z.string().optional(),
-        })
-      ).optional(),
+      items: z
+        .array(
+          z.object({
+            heading: z.string().optional(),
+            copy: z.union([z.string(), z.array(z.string())]).optional(),
+            meta: z.string().optional(),
+            image: z.string().optional(),
+            image_alt: z.string().optional(),
+            legend: z.string().optional(),
+            boxed: z.boolean().optional(),
+          })
+        )
+        .optional(),
     })
   ),
 });
