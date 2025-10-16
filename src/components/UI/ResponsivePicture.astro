@@ -1,0 +1,67 @@
+---
+interface Props {
+  src: string;
+  alt?: string;
+  class?: string;
+  imageClass?: string;
+  sizes?: string;
+  loading?: "lazy" | "eager";
+  decoding?: "async" | "sync" | "auto";
+  fetchpriority?: "high" | "low" | "auto";
+}
+
+const createCloudinaryUrl = (url: string, transformations: string[] = []) => {
+  if (!url.includes("/upload/")) {
+    return url;
+  }
+
+  const [base, resource] = url.split("/upload/");
+
+  if (!resource) {
+    return url;
+  }
+
+  const transformationString = transformations.filter(Boolean).join(",");
+
+  return transformationString
+    ? `${base}/upload/${transformationString}/${resource}`
+    : `${base}/upload/${resource}`;
+};
+
+const {
+  src,
+  alt = "",
+  class: className = "",
+  imageClass = "w-full h-full object-cover",
+  sizes = "(max-width: 768px) 100vw, 50vw",
+  loading = "lazy",
+  decoding = "async",
+  fetchpriority,
+}: Props = Astro.props;
+const isCloudinary = src.includes("res.cloudinary.com");
+const widths = [480, 768, 1024, 1280];
+
+const srcSet = isCloudinary
+  ? widths
+      .map((width) =>
+        `${createCloudinaryUrl(src, ["c_scale", `w_${width}`, "f_auto", "q_auto"])} ${width}w`
+      )
+      .join(", ")
+  : undefined;
+
+const fallbackSrc = isCloudinary
+  ? createCloudinaryUrl(src, ["f_auto", "q_auto"])
+  : src;
+
+---
+<picture class={className}>
+  {srcSet ? <source srcset={srcSet} sizes={sizes} /> : null}
+  <img
+    src={fallbackSrc}
+    alt={alt}
+    loading={loading}
+    decoding={decoding}
+    fetchpriority={fetchpriority}
+    class={imageClass}
+  />
+</picture>
