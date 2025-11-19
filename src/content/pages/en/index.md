@@ -45,6 +45,10 @@ content:
               - "Enuma Anu Enlil is an ancient Mesopotamian literary composition, also known as the \"Enuma Anu Enlil tablets.\" It is a collection of around 70 clay tablets dating back to the second millennium BCE, primarily from the Old Babylonian period. The tablets contain a series of astrological, astronomical, and omen texts, providing insights into the beliefs and practices of the Mesopotamian civilization."
               - "The Enuma Anu Enlil tablets comprise a compendium of celestial omens, detailing the interpretations and predictions of celestial phenomena, such as lunar and solar eclipses, planetary positions, and meteorological events. These observations were believed to hold significant influence over human affairs and the destinies of kings. The texts were consulted by diviners and astrologers to gain insight into future events and to guide decision-making."
 
+  - component: "quote"
+    quote: "The soul of the newly born baby is marked for life by the pattern of the stars at the moment it comes into the world, unconsciously remembers it, and remains sensitive to the return of configurations of a similar kind."
+    author: "Johannes Kepler"
+
   # Block 2: A Split Content Section
   - component: "split-content"
     columns:

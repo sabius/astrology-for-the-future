@@ -46,6 +46,12 @@ const featureCardBlock = z.object({
   button: z.object({ text: z.string(), url: z.string(), style: z.string().optional() }).optional(),
 });
 
+const quoteBlock = z.object({
+  component: z.literal('quote'),
+  quote: z.string(),
+  author: z.string().optional(),
+});
+
 const ctaBlock = z.object({
   component: z.literal('cta'),
   header: z.string().optional(),
@@ -65,6 +71,7 @@ const pagesCollection = defineCollection({
         heroBlock,
         splitContentBlock,
         featureCardBlock,
+        quoteBlock,
         ctaBlock,
       ])
     ),
