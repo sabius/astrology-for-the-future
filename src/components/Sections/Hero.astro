@@ -48,30 +48,49 @@ const heroImageAlt = header ?? '';
 </section>
 
 <script>
-  const heroSection = document.querySelector('.hero-section');
-  if (heroSection) {
-    const bgContainer = heroSection.querySelector('.hero-bg');
-    const bgImage = bgContainer?.querySelector('img');
-    const contentContainer = heroSection.querySelector('.hero-content');
+  const heroSections = document.querySelectorAll('.hero-section');
 
-    const reveal = () => {
-      if (bgContainer) bgContainer.classList.remove('opacity-0');
-      
-      setTimeout(() => {
-        if (contentContainer) {
-          contentContainer.classList.remove('opacity-0');
-          contentContainer.classList.remove('translate-y-4');
+  const observerOptions = {
+    root: null, // viewport
+    rootMargin: '0px',
+    threshold: 0.2 // Trigger when 20% visible
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const heroSection = entry.target;
+        const bgContainer = heroSection.querySelector('.hero-bg');
+        const bgImage = bgContainer?.querySelector('img');
+        const contentContainer = heroSection.querySelector('.hero-content');
+
+        const reveal = () => {
+          if (bgContainer) bgContainer.classList.remove('opacity-0');
+          
+          setTimeout(() => {
+            if (contentContainer) {
+              contentContainer.classList.remove('opacity-0');
+              contentContainer.classList.remove('translate-y-4');
+            }
+          }, 500);
+        };
+
+        if (bgImage && bgImage.complete) {
+          reveal();
+        } else if (bgImage) {
+          bgImage.addEventListener('load', reveal);
+        } else {
+          // Fallback if no image
+          reveal();
         }
-      }, 500);
-    };
 
-    if (bgImage && bgImage.complete) {
-      reveal();
-    } else if (bgImage) {
-      bgImage.addEventListener('load', reveal);
-    } else {
-      // Fallback if no image
-      reveal();
-    }
-  }
+        // Stop observing this section once revealed
+        observer.unobserve(heroSection);
+      }
+    });
+  }, observerOptions);
+
+  heroSections.forEach(section => {
+    observer.observe(section);
+  });
 </script>
