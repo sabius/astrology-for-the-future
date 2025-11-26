@@ -9,6 +9,15 @@ const heroBlock = z.object({
   image_alt: z.string().optional(),
 });
 
+const solarHeroBlock = z.object({
+  component: z.literal('solar-hero'),
+  header: z.string().optional(),
+  copy: z.string().optional(),
+  button: z.object({ text: z.string(), url: z.string(), }).optional(),
+  background_image: z.string().optional(),
+  image_alt: z.string().optional(),
+});
+
 const splitContentBlock = z.object({
   component: z.literal('split-content'),
   background_color: z.string().optional(),
@@ -69,6 +78,7 @@ const pagesCollection = defineCollection({
       // This tells Zod that `content` is an array of one of our defined blocks
       z.discriminatedUnion('component', [
         heroBlock,
+        solarHeroBlock,
         splitContentBlock,
         featureCardBlock,
         quoteBlock,

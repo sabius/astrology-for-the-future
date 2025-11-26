@@ -14,7 +14,7 @@ const heroImageAlt = header ?? '';
 ---
 
 <section
-  class="relative min-h-[70vh] flex items-center pt-30 text-white overflow-hidden"
+  class="solar-hero relative min-h-[70vh] flex items-center pt-30 text-white overflow-hidden bg-black"
 >
   {background_image && (
     <div class="absolute inset-0">
@@ -22,16 +22,17 @@ const heroImageAlt = header ?? '';
         src={background_image}
         alt={heroImageAlt}
         class="block h-full w-full"
-        imageClass="h-full w-full object-cover"
+        imageClass="h-full w-full object-cover opacity-50"
         type="hero"
       />
-      <div class="absolute inset-0" aria-hidden="true"></div>
     </div>
   )}
-  <div id="solar-system" class="absolute inset-0 z-0 pointer-events-none"></div>
+  
+  <div class="js-solar-system absolute inset-0 z-0 pointer-events-none"></div>
+  
   <div class="container relative z-10">
     {header && copy && button &&
-      <div class="max-w-3xl text-white bg-gray-900/50 p-10 rounded-md">
+      <div class="max-w-3xl text-white bg-gray-900/50 p-10 rounded-md backdrop-blur-sm">
         {header && <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">{header}</h1>}
         {copy && <p class="text-xl md:text-2xl mb-8">{copy}</p>}
 
@@ -49,12 +50,13 @@ const heroImageAlt = header ?? '';
   </div>
 </section>
 
-<script is:inline>
-  import { onMount } from 'astro/runtime/client';
-  onMount(() => {
-    const container = document.getElementById('solar-system');
-    if (!container) return;
-    const cleanup = initSolarSystemCanvas(container);
-    return () => cleanup && cleanup();
+<script>
+  import { initSolarSystemCanvas } from './SolarSystemCanvas';
+  
+  const containers = document.querySelectorAll('.js-solar-system');
+  containers.forEach(container => {
+    if (container instanceof HTMLElement) {
+      initSolarSystemCanvas(container);
+    }
   });
 </script>
