@@ -1,6 +1,7 @@
 ---
 import Button from '../UI/Button.astro';
 import ResponsivePicture from '../UI/ResponsivePicture.astro';
+import { initSolarSystemCanvas } from './SolarSystemCanvas';
 
 const {
   header,
@@ -32,22 +33,25 @@ const heroImageAlt = header ?? '';
     </div>
   )}
   <div class="hero-content container relative z-10 transition-all duration-1000 ease-out">
-    {header && copy && button &&
-      <div class="max-w-3xl text-white bg-gray-900/50 p-10 rounded-md">
-        {header && <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">{header}</h1>}
-        {copy && <p class="text-xl md:text-2xl mb-8">{copy}</p>}
+  <div id="solar-system" class="absolute inset-0 z-0 pointer-events-none"></div>
+    <div class="container relative z-10">
+      {header && copy && button &&
+        <div class="max-w-3xl text-white bg-gray-900/50 p-10 rounded-md">
+          {header && <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">{header}</h1>}
+          {copy && <p class="text-xl md:text-2xl mb-8">{copy}</p>}
 
-        {button && <div class="flex flex-wrap gap-4">
-          {
-            button && (
-              <Button href={button.url} variant="primary" size="lg">
-                {button.text}
-              </Button>
-            )
-          }
-        </div>}
-      </div>
-    }
+          {button && <div class="flex flex-wrap gap-4">
+            {
+              button && (
+                <Button href={button.url} variant="primary" size="lg">
+                  {button.text}
+                </Button>
+              )
+            }
+          </div>}
+        </div>
+      }
+    </div>
   </div>
 </section>
 
@@ -95,7 +99,7 @@ const heroImageAlt = header ?? '';
   .hero-section.is-loading .hero-bg {
     opacity: 0;
   }
-  
+
   .hero-section.is-loading .hero-content {
     opacity: 0;
     transform: translateY(1rem);

@@ -14,6 +14,11 @@ content:
       text: "Book a reading"
       url: "/about"
 
+  # Block 1.5: Animated Solar Hero
+  - component: "solar-hero"
+    header: "Explore the Solar System"
+    copy: "A living, 3D solar system accompanies your journey."
+
   # Block 2: A Split Content Section
   - component: "feature-card"
     header: "Gift Card"

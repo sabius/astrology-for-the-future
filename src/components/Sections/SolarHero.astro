@@ -1,0 +1,62 @@
+---
+import Button from '../UI/Button.astro';
+import ResponsivePicture from '../UI/ResponsivePicture.astro';
+import { initSolarSystemCanvas } from './SolarSystemCanvas';
+
+const {
+  header,
+  copy,
+  button,
+  background_image,
+} = Astro.props;
+
+const heroImageAlt = header ?? '';
+---
+
+<section
+  class="solar-hero relative min-h-[70vh] flex items-center pt-30 text-white overflow-hidden bg-black"
+>
+  {background_image && (
+    <div class="absolute inset-0">
+      <ResponsivePicture
+        src={background_image}
+        alt={heroImageAlt}
+        class="block h-full w-full"
+        imageClass="h-full w-full object-cover opacity-50"
+        type="hero"
+      />
+    </div>
+  )}
+  
+  <div class="js-solar-system absolute inset-0 z-0 pointer-events-none"></div>
+  
+  <div class="container relative z-10">
+    {header && copy && button &&
+      <div class="max-w-3xl text-white bg-gray-900/50 p-10 rounded-md backdrop-blur-sm">
+        {header && <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">{header}</h1>}
+        {copy && <p class="text-xl md:text-2xl mb-8">{copy}</p>}
+
+        {button && <div class="flex flex-wrap gap-4">
+          {
+            button && (
+              <Button href={button.url} variant="primary" size="lg">
+                {button.text}
+              </Button>
+            )
+          }
+        </div>}
+      </div>
+    }
+  </div>
+</section>
+
+<script>
+  import { initSolarSystemCanvas } from './SolarSystemCanvas';
+  
+  const containers = document.querySelectorAll('.js-solar-system');
+  containers.forEach(container => {
+    if (container instanceof HTMLElement) {
+      initSolarSystemCanvas(container);
+    }
+  });
+</script>
