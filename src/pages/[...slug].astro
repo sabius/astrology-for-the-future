@@ -8,11 +8,15 @@ import type { GetStaticPaths } from "astro";
 // This is the new, simplified logic
 export const getStaticPaths = (async () => {
   const pages = await getCollection('pages');
-  
-  // Filter out docs pages in production and staging
+
+  // Show docs in development and Cloudflare Pages preview deployments (staging)
+  // Hide docs only in production builds
   const isDevelopment = import.meta.env.DEV;
-  const filteredPages = isDevelopment 
-    ? pages 
+  const isCloudflarePreview = import.meta.env.CF_PAGES_BRANCH && import.meta.env.CF_PAGES_BRANCH !== 'master';
+  const showDocs = isDevelopment || isCloudflarePreview;
+  
+  const filteredPages = showDocs
+    ? pages
     : pages.filter(entry => !entry.slug.includes('/docs'));
 
   return filteredPages.map((entry) => {
