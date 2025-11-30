@@ -2,13 +2,24 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { components } from '../components/componentMap';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import DocsLayout from '../layouts/DocsLayout.astro';
 import type { GetStaticPaths } from "astro";
 
 // This is the new, simplified logic
 export const getStaticPaths = (async () => {
   const pages = await getCollection('pages');
 
-  return pages.map((entry) => {
+  // Show docs in development and Cloudflare Pages preview deployments (staging)
+  // Hide docs only in production builds
+  const isDevelopment = import.meta.env.DEV;
+  const isCloudflarePreview = import.meta.env.CF_PAGES_BRANCH && import.meta.env.CF_PAGES_BRANCH !== 'master';
+  const showDocs = isDevelopment || isCloudflarePreview;
+
+  const filteredPages = showDocs
+    ? pages
+    : pages.filter(entry => !entry.slug.includes('/docs'));
+
+  return filteredPages.map((entry) => {
     // entry.slug will be "en/index", "es/about", etc.
     // Astro's i18n router knows how to handle this structure perfectly.
     // We just need to remove "index" for root pages.
@@ -28,14 +39,26 @@ export const getStaticPaths = (async () => {
 const { entry } = Astro.props as { entry: CollectionEntry<'pages'> };
 const { data: pageData } = entry;
 const { meta, content } = pageData;
+
+// Check if this is a docs page
+const isDocsPage = entry.slug.includes('/docs');
+
+// Render the body content if it exists
+const { Content } = await entry.render();
 ---
 
-<BaseLayout title={meta.title} description={meta.description}>
-  <main>
-    {content.map(block => {
-      const Component = components[block.component] ?? components.fallback;
+{isDocsPage ? (
+  <DocsLayout title={meta.title} description={meta.description} entry={entry}>
+    <Content />
+  </DocsLayout>
+) : (
+  <BaseLayout title={meta.title} description={meta.description}>
+    <main>
+      {content.map(block => {
+        const Component = components[block.component] ?? components.fallback;
 
-      return <Component {...block} />;
-    })}
-  </main>
-</BaseLayout>
+        return <Component {...block} />;
+      })}
+    </main>
+  </BaseLayout>
+)}

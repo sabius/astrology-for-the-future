@@ -1,0 +1,138 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { components } from '../components/componentMap';
+
+interface Props {
+  title: string;
+  description: string;
+  entry: any;
+}
+
+const { title, description, entry } = Astro.props;
+const { data: pageData } = entry;
+const { content } = pageData;
+
+// List of all available components for the sidebar
+const componentsList = [
+  { name: 'Hero', slug: 'heroes' },
+  { name: 'Split Content', slug: 'split-content' },
+  { name: 'Feature Card', slug: 'feature-card' },
+  { name: 'Quote', slug: 'quote' },
+  { name: 'CTA', slug: 'cta' },
+];
+
+// Get current page from URL
+const currentPath = Astro.url.pathname;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="docs-container min-h-screen bg-gray-50">
+    <div class="flex">
+      <!-- Sidebar Navigation -->
+      <aside class="docs-sidebar w-64 bg-white border-r border-gray-200 min-h-screen sticky top-0 overflow-y-auto">
+        <div class="p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-2">Component Docs</h2>
+          <p class="text-sm text-gray-600 mb-6">Browse available components</p>
+
+          <nav>
+            <ul class="space-y-1">
+              <li>
+                <a
+                  href="/en/docs"
+                  class={`block px-4 py-2 rounded-lg transition-colors ${
+                    currentPath === '/en/docs' || currentPath === '/en/docs/'
+                      ? 'bg-purple-100 text-purple-800 font-semibold'
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  Overview
+                </a>
+              </li>
+
+              <li class="pt-4">
+                <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                  Components
+                </p>
+                <ul class="space-y-1">
+                  {componentsList.map((component) => (
+                    <li>
+                      <a
+                        href={`/en/docs/${component.slug}`}
+                        class={`block px-4 py-2 rounded-lg transition-colors ${
+                          currentPath.includes(`/docs/${component.slug}`)
+                            ? 'bg-purple-100 text-purple-800 font-semibold'
+                            : 'text-gray-700 hover:bg-gray-100'
+                        }`}
+                      >
+                        {component.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="docs-main flex-1 p-8 md:p-12">
+        <div class="max-w-5xl mx-auto">
+          <!-- Page Header -->
+          <div class="mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h1>
+            {description && (
+              <p class="text-xl text-gray-600">{description}</p>
+            )}
+          </div>
+
+          <!-- Component Preview Section -->
+          {content && content.length > 0 && (
+            <div class="component-preview-section mb-12">
+              <h2 class="text-2xl font-bold text-gray-800 mb-4">Live Preview</h2>
+              <div class="border-2 border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm">
+                {content.map(block => {
+                  const Component = components[block.component] ?? components.fallback;
+                  return <Component {...block} />;
+                })}
+              </div>
+            </div>
+          )}
+
+          <!-- Slot for additional documentation content -->
+          <div class="documentation-content prose prose-lg max-w-none">
+            <slot />
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .docs-sidebar {
+    height: 100vh;
+  }
+
+  @media (max-width: 768px) {
+    .docs-sidebar {
+      display: none;
+    }
+  }
+
+  .prose {
+    color: #374151;
+  }
+
+  .prose h2 {
+    color: #1f2937;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose h3 {
+    color: #374151;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+</style>

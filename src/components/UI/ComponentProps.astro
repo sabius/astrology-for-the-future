@@ -1,0 +1,81 @@
+---
+interface Prop {
+  name: string;
+  type: string;
+  required?: boolean;
+  description?: string;
+  example?: string;
+}
+
+interface Props {
+  componentName: string;
+  props: Prop[];
+}
+
+const { componentName, props } = Astro.props;
+---
+
+<div class="component-props-card bg-white border border-gray-300 rounded-lg shadow-sm p-6 my-6">
+  <h3 class="text-2xl font-bold mb-4 text-gray-800">{componentName} Properties</h3>
+
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="bg-gray-100 border-b-2 border-gray-300">
+          <th class="text-left p-3 font-semibold text-gray-700">Property</th>
+          <th class="text-left p-3 font-semibold text-gray-700">Type</th>
+          <th class="text-left p-3 font-semibold text-gray-700">Required</th>
+          <th class="text-left p-3 font-semibold text-gray-700">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {props.map((prop) => (
+          <tr class="border-b border-gray-200 hover:bg-gray-50">
+            <td class="p-3">
+              <code class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-sm font-mono">
+                {prop.name}
+              </code>
+            </td>
+            <td class="p-3">
+              <code class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-mono">
+                {prop.type}
+              </code>
+            </td>
+            <td class="p-3">
+              {prop.required ? (
+                <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-semibold">
+                  Yes
+                </span>
+              ) : (
+                <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
+                  No
+                </span>
+              )}
+            </td>
+            <td class="p-3 text-gray-700">
+              {prop.description}
+              {prop.example && (
+                <div class="mt-2">
+                  <span class="text-xs font-semibold text-gray-500">Example:</span>
+                  <code class="block bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs font-mono mt-1">
+                    {prop.example}
+                  </code>
+                </div>
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+  .component-props-card {
+    max-width: 100%;
+  }
+
+  table {
+    min-width: 600px;
+  }
+</style>
