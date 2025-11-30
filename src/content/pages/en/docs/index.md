@@ -18,14 +18,14 @@ Welcome to the component documentation! Here you can explore all available compo
 
 ### Layout Components
 
-- **[Hero](/en/docs/heroes)** - Full-width hero sections with background images, headers, and call-to-action buttons
-- **[Split Content](/en/docs/split-content)** - Two-column layouts for text and image combinations
-- **[Feature Card](/en/docs/feature-card)** - Feature showcases with images, lists, and CTAs
+- **[Hero](/en/_docs/heroes)** - Full-width hero sections with background images, headers, and call-to-action buttons
+- **[Split Content](/en/_docs/split-content)** - Two-column layouts for text and image combinations
+- **[Feature Card](/en/_docs/feature-card)** - Feature showcases with images, lists, and CTAs
 
 ### Content Components
 
-- **[Quote](/en/docs/quote)** - Styled blockquotes with author attribution
-- **[CTA](/en/docs/cta)** - Call-to-action sections with buttons
+- **[Quote](/en/_docs/quote)** - Styled blockquotes with author attribution
+- **[CTA](/en/_docs/cta)** - Call-to-action sections with buttons
 
 ## How to Use
 

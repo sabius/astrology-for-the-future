@@ -14,7 +14,7 @@ export const getStaticPaths = (async () => {
   const isDevelopment = import.meta.env.DEV;
   const isCloudflarePreview = import.meta.env.CF_PAGES_BRANCH && import.meta.env.CF_PAGES_BRANCH !== 'master';
   const showDocs = isDevelopment || isCloudflarePreview;
-  
+
   const filteredPages = showDocs
     ? pages
     : pages.filter(entry => !entry.slug.includes('/docs'));
