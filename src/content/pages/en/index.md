@@ -45,6 +45,32 @@ content:
               - "Enuma Anu Enlil is an ancient Mesopotamian literary composition, also known as the \"Enuma Anu Enlil tablets.\" It is a collection of around 70 clay tablets dating back to the second millennium BCE, primarily from the Old Babylonian period. The tablets contain a series of astrological, astronomical, and omen texts, providing insights into the beliefs and practices of the Mesopotamian civilization."
               - "The Enuma Anu Enlil tablets comprise a compendium of celestial omens, detailing the interpretations and predictions of celestial phenomena, such as lunar and solar eclipses, planetary positions, and meteorological events. These observations were believed to hold significant influence over human affairs and the destinies of kings. The texts were consulted by diviners and astrologers to gain insight into future events and to guide decision-making."
 
+  # Block: Services Feature Grid
+  - component: "feature-grid"
+    header: "Explore My Services"
+    cards:
+      - icon: "🌍"
+        heading: "Natal Chart Reading"
+        copy: "Uncover your unique potential and life's purpose with an in-depth analysis of your birth chart."
+        button:
+          text: "Learn More"
+          url: "/services/natal-chart"
+          style: "secondary"
+      - icon: "💛"
+        heading: "Relationship Astrology"
+        copy: "Gain deeper insights into your relationships through the art of synastry and composite charts."
+        button:
+          text: "Learn More"
+          url: "/services/relationship"
+          style: "secondary"
+      - icon: "📈"
+        heading: "Predictive Astrology"
+        copy: "Navigate upcoming life periods with confidence using transits, progressions, and solar returns."
+        button:
+          text: "Learn More"
+          url: "/services/predictive"
+          style: "secondary"
+
   - component: "quote"
     quote: "The soul of the newly born baby is marked for life by the pattern of the stars at the moment it comes into the world, unconsciously remembers it, and remains sensitive to the return of configurations of a similar kind."
     author: "Johannes Kepler"
