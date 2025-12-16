@@ -58,6 +58,24 @@ const ctaBlock = z.object({
   button: z.object({ text: z.string(), url: z.string(), style: z.string().optional() }),
 });
 
+const featureGridBlock = z.object({
+  component: z.literal('feature-grid'),
+  header: z.string().optional(),
+  copy: z.string().optional(),
+  cards: z.array(
+    z.object({
+      icon: z.string().optional(),
+      heading: z.string().optional(),
+      copy: z.string().optional(),
+      button: z.object({ 
+        text: z.string(), 
+        url: z.string(), 
+        style: z.string().optional() 
+      }).optional(),
+    })
+  ).optional(),
+});
+
 // Define the main collection for our pages
 const pagesCollection = defineCollection({
   schema: z.object({
@@ -71,6 +89,7 @@ const pagesCollection = defineCollection({
         heroBlock,
         splitContentBlock,
         featureCardBlock,
+        featureGridBlock,
         quoteBlock,
         ctaBlock,
       ])
