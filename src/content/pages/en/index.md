@@ -14,12 +14,26 @@ content:
       text: "Book a reading"
       url: "/about"
 
-  - component: "feature-card"
-    header: "About me"
-    image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Mater3_dvnuhy.png"
-    image_alt: "The image of an example gift Astrology for the Future Gift card."
-    list_items:
-      - heading: I bridge the gap between clinical science and cosmic wisdom. With a background as a Medical Doctor and Public Health Administrator, I bring decades of diagnostic rigor to the art of Astrology. Having guided hundreds of clients and serving as an educator in the higher tiers of academic Medical Astrology, I offer a reading that is not just intuitive—it is structured, practical, and precise.
+  - component: "bio"
+    title: "About Me"
+    role: "Medical Doctor · Public Health Administrator"
+    headline: "Bridging clinical science and cosmic wisdom"
+    tags: ["MD", "Public Health", "Educator", "Medical Astrology"]
+    highlights:
+      - "Structured, practical readings—not vague."
+      - "Decades of diagnostic rigor applied to astrology."
+      - "Guided hundreds of clients and taught advanced students."
+    body:
+      - "My approach blends intuition with precision, helping you leave a session with clarity and actionable next steps."
+      - "Sessions are tailored to your goals—whether you need strategic planning, health-aligned insight, or mentorship on your own astrological studies."
+    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"
+    image_alt: "Portrait of Glenda Ferreira, smiling outdoors."
+    buttons:
+      - text: "Book a Reading"
+        url: "/about"
+      - text: "View Credentials"
+        url: "/about#credentials"
+        style: "outline"
 
   # Block 1: The Hero Section
   - component: "hero"
