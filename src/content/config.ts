@@ -46,6 +46,28 @@ const featureCardBlock = z.object({
   button: z.object({ text: z.string(), url: z.string(), style: z.string().optional() }).optional(),
 });
 
+const bioBlock = z.object({
+  component: z.literal('bio'),
+  title: z.string().optional(),
+  role: z.string().optional(),
+  headline: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  highlights: z.array(z.string()).optional(),
+  body: z.array(z.string()).optional(),
+  image: z.string().optional(),
+  image_alt: z.string().optional(),
+  buttons: z
+    .array(
+      z.object({
+        text: z.string(),
+        url: z.string(),
+        style: z.string().optional(),
+        target: z.string().optional(),
+      })
+    )
+    .optional(),
+});
+
 const quoteBlock = z.object({
   component: z.literal('quote'),
   quote: z.string(),
@@ -89,6 +111,7 @@ const pagesCollection = defineCollection({
         heroBlock,
         splitContentBlock,
         featureCardBlock,
+        bioBlock,
         featureGridBlock,
         quoteBlock,
         ctaBlock,
