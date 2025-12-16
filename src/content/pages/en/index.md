@@ -14,19 +14,12 @@ content:
       text: "Book a reading"
       url: "/about"
 
-  # Block 2: A Split Content Section
   - component: "feature-card"
-    header: "Gift Card"
-    copy: "✨ A Journey Through the Stars Awaits! ✨"
-    image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758335017/Gift_Card_PLANTILLA_w0uyfd.webp"
+    header: "About me"
+    image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Mater3_dvnuhy.png"
     image_alt: "The image of an example gift Astrology for the Future Gift card."
     list_items:
-      - heading: Surprise someone special with an astrology reading gift card.
-        copy: It’s more than a gift—it’s an invitation to explore their purpose, potential, and path guided by the universe.
-    button:
-      text: "Get yours now!"
-      url: "/signup"
-      style: "primary"
+      - heading: I bridge the gap between clinical science and cosmic wisdom. With a background as a Medical Doctor and Public Health Administrator, I bring decades of diagnostic rigor to the art of Astrology. Having guided hundreds of clients and serving as an educator in the higher tiers of academic Medical Astrology, I offer a reading that is not just intuitive—it is structured, practical, and precise.
 
   # Block 1: The Hero Section
   - component: "hero"
