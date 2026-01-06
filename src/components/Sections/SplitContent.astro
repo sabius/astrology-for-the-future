@@ -1,48 +1,50 @@
 ---
-import ResponsivePicture from '../UI/ResponsivePicture.astro';
+import ResponsivePicture from "../UI/ResponsivePicture.astro";
 
-const { columns = [], background_color = '' } = Astro.props;
+const { header, copy, columns = [], background_color = "" } = Astro.props;
+
 const normalizedColumns = columns.slice(0, 2).map((column) => ({
   ...column,
-  items: column?.items?.map((item) => ({
-    ...item,
-    copySegments: Array.isArray(item?.copy)
-      ? item.copy
-      : item?.copy
-      ? [item.copy]
-      : [],
-  })) ?? [],
+  items:
+    column?.items?.map((item) => ({
+      ...item,
+      copySegments: Array.isArray(item?.copy)
+        ? item.copy
+        : item?.copy
+          ? [item.copy]
+          : [],
+    })) ?? [],
 }));
-
-const { header, copy } = Astro.props;
 ---
+
 <section
   class="px-6 py-12 md:py-20 lg:py-24"
-  style={{ backgroundColor: background_color ?? '' }}
+  style={{ backgroundColor: background_color ?? "" }}
 >
-
   <div class="container">
-    {(header || copy) && (
-      <div class="text-center mb-16">
-        {header && <h2 class="text-3xl md:text-5xl font-bold">{header}</h2>}
-        {copy && <p class="text-3xl text-gray-700 max-w-3xl mx-auto">
-          {copy}
-        </p>}
-      </div>
-    )}
+    {
+      (header || copy) && (
+        <div class="text-center mb-16">
+          {header && <h2 class="text-3xl md:text-5xl font-bold">{header}</h2>}
+          {copy && (
+            <p class="text-3xl text-gray-700 max-w-3xl mx-auto">{copy}</p>
+          )}
+        </div>
+      )
+    }
   </div>
-  <div class="flex justify-center">
-    <div
-      class="grid w-full max-w-5xl grid-cols-1 gap-10 md:grid-cols-2 md:gap-14"
-    >
-      {normalizedColumns.map((column) => (
+  <div
+    class="grid w-full max-w-5xl grid-cols-1 gap-10 md:grid-cols-2 md:gap-14 mx-auto"
+  >
+    {
+      normalizedColumns.map((column) => (
         <div class="flex flex-col gap-10 md:gap-14">
-          {column.items?.map((item) => (
+          {column.items?.map((item) =>
             item?.image ? (
               <figure class="flex flex-col gap-4">
                 <ResponsivePicture
                   src={item.image}
-                  alt={item.image_alt ?? ''}
+                  alt={item.image_alt ?? ""}
                   class="overflow-hidden rounded-[32px] shadow-md"
                   imageClass="h-full w-full object-cover"
                 />
@@ -55,7 +57,9 @@ const { header, copy } = Astro.props;
             ) : (
               <article
                 class={`flex flex-col gap-4 text-[#4f3c57] ${
-                  item?.boxed ? 'rounded-[32px] bg-white p-8 shadow-lg md:p-10' : ''
+                  item?.boxed
+                    ? "rounded-[32px] bg-white p-8 shadow-lg md:p-10"
+                    : ""
                 }`}
               >
                 {item?.heading && (
@@ -64,20 +68,14 @@ const { header, copy } = Astro.props;
                   </h3>
                 )}
                 {item?.copySegments?.map((paragraph) => (
-                  <p class="text-lg leading-relaxed md:text-xl">
-                    {paragraph}
-                  </p>
+                  <p class="text-lg leading-relaxed md:text-xl">{paragraph}</p>
                 ))}
-                {item?.meta && (
-                  <p class="text-base md:text-lg">
-                    {item.meta}
-                  </p>
-                )}
+                {item?.meta && <p class="text-base md:text-lg">{item.meta}</p>}
               </article>
-            )
-          ))}
+            ),
+          )}
         </div>
-      ))}
-    </div>
+      ))
+    }
   </div>
 </section>

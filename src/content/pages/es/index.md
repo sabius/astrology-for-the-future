@@ -17,9 +17,9 @@ content:
   - component: "feature-card"
     header: "Sobre mí"
     image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Mater3_dvnuhy.png"
-    image_alt: "La imagen de una tarjeta de regalo de ejemplo de Astrología para el Futuro."
+    image_alt: "Un retrato de Glenda Ferreira P., M.D."
     list_items:
-      - heading: Cierro la brecha entre la ciencia clínica y la sabiduría cósmica. Con formación como Médica Cirujana y Administradora de Salud Pública, aporto décadas de rigor diagnóstico al arte de la Astrología. Habiendo guiado a cientos de clientes y sirviendo como educadora en los niveles superiores de Astrología Médica Académica, ofrezco una lectura que no es solo intuitiva, sino estructurada, práctica y precisa.
+      - copy: Cierro la brecha entre la ciencia clínica y la sabiduría cósmica. Con formación como Médica Cirujana y Administradora de Salud Pública, aporto décadas de rigor diagnóstico al arte de la Astrología. Habiendo guiado a cientos de clientes y sirviendo como educadora en los niveles superiores de Astrología Médica Académica, ofrezco una lectura que no es solo intuitiva, sino estructurada, práctica y precisa.
 
   # Block 1: The Hero Section
   - component: "hero"
