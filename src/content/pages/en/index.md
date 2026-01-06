@@ -25,19 +25,6 @@ content:
   - component: "hero"
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758503040/unsplash-image-kLqZ92hmqTw_ws9lzb.jpg"
 
-  # Block 2: A Split Content Section
-  - component: "split-content"
-    columns:
-      - items:
-          - image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760067553/800px-Cuneiform_tablet-_commenta_esmxip.jpg"
-            image_alt: "Cuneiform tablet with ancient Mesopotamian inscriptions"
-            legend: "Cuneiform tablet: commentary on Enuma Anu Enlil, tablet 5, ca. late 1st millennium BC. Metropolitan Museum of Art."
-      - items:
-          - boxed: true
-            copy:
-              - "Enuma Anu Enlil is an ancient Mesopotamian literary composition, also known as the \"Enuma Anu Enlil tablets.\" It is a collection of around 70 clay tablets dating back to the second millennium BCE, primarily from the Old Babylonian period. The tablets contain a series of astrological, astronomical, and omen texts, providing insights into the beliefs and practices of the Mesopotamian civilization."
-              - "The Enuma Anu Enlil tablets comprise a compendium of celestial omens, detailing the interpretations and predictions of celestial phenomena, such as lunar and solar eclipses, planetary positions, and meteorological events. These observations were believed to hold significant influence over human affairs and the destinies of kings. The texts were consulted by diviners and astrologers to gain insight into future events and to guide decision-making."
-
   # Block: Services Feature Grid
   - component: "feature-grid"
     header: "Explore My Services"
@@ -64,12 +51,9 @@ content:
           url: "/services/predictive"
           style: "secondary"
 
-  - component: "quote"
-    quote: "The soul of the newly born baby is marked for life by the pattern of the stars at the moment it comes into the world, unconsciously remembers it, and remains sensitive to the return of configurations of a similar kind."
-    author: "Johannes Kepler"
-
   # Block 2: A Split Content Section
   - component: "split-content"
+    header: "My Experience"
     columns:
       - items:
           - heading: "Surgeon Physician"
@@ -86,13 +70,9 @@ content:
             copy: "School of Traditional Astrology"
             meta: "2022 - 2024"
 
-  # Block 3: A Call to Action
-  - component: "cta"
-    header: "Gift card aca?"
-    button:
-      text: "Get yours now!"
-      url: "/signup"
-      style: "primary"
+  - component: "quote"
+    quote: "The soul of the newly born baby is marked for life by the pattern of the stars at the moment it comes into the world, unconsciously remembers it, and remains sensitive to the return of configurations of a similar kind."
+    author: "Johannes Kepler"
 ---
 
 <!-- We can leave the body of this markdown file empty -->
