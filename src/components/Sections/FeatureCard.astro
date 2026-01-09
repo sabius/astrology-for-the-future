@@ -1,5 +1,7 @@
 ---
 import { marked } from 'marked';
+import DOMPurify from 'isomorphic-dompurify';
+
 import Button from "../UI/Button.astro";
 import ResponsivePicture from "../UI/ResponsivePicture.astro";
 
@@ -33,11 +35,12 @@ const {
       <div>
         <div class="bg-white p-8 rounded-lg shadow-md">
             {list_items && list_items.map(card_item => {
-              const cardCopyHtml = marked.parse(card_item.copy);
+              const rawCardHtml = marked.parse(card_item.copy, { async: false });
+              const cleanCardHtml = DOMPurify.sanitize(rawCardHtml);
 
               return <div>
                 {card_item.heading && <h4 class="font-bold text-2xl mb-2">{card_item.heading}</h4>}
-                {card_item.copy && <div class="text-gray-950 text-xl" set:html={cardCopyHtml} />}
+                {card_item.copy && <div class="text-gray-950 text-xl" set:html={cleanCardHtml} />}
               </div>
             })}
           </div>
