@@ -20,7 +20,8 @@ content:
     image_alt: "The image of an example gift Astrology for the Future Gift card."
     list_items:
       - copy: |
-          Medicine taught me 'how' the body functions, but astrology taught me the 'why' behind our life experiences. My mission is to unite the best of science and spirit to help you find not just health, but meaning in your own story.
+          Medicine taught me 'how' the body functions, but astrology taught me the 'why' behind our life experiences. My mission is to unite the best of science and spirit to help you find not just health, but meaning in your own story. <br><br>
+
           I bridge the gap between clinical science and cosmic wisdom. Trained as a Physician, Surgeon, and Public Health Administrator, I bring decades of diagnostic rigor to my Astrology readings. Having guided hundreds of clients and served as an educator at the advanced levels of Academic Medical Astrology, I offer a reading that is not just intuitive, but structured, practical, and precise.
 
   # Block: Support hero section with a single image
