@@ -19,9 +19,9 @@ content:
     image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Mater3_dvnuhy.png"
     image_alt: "The image of an example gift Astrology for the Future Gift card."
     list_items:
-      - copy: I bridge the gap between clinical science and cosmic wisdom. With a background as a Medical Doctor and Public Health Administrator, I bring decades of diagnostic rigor to the art of Astrology. Having guided hundreds of clients and serving as an educator in the higher tiers of academic Medical Astrology, I offer a reading that is not just intuitive—it is structured, practical, and precise.
+      - copy: Medicine taught me 'how' the body functions, but astrology taught me the 'why' behind our life experiences. My mission is to unite the best of science and spirit to help you find not just health, but meaning in your own story. <br><br>I bridge the gap between clinical science and cosmic wisdom. Trained as a Physician, Surgeon, and Public Health Administrator, I bring decades of diagnostic rigor to my Astrology readings. Having guided hundreds of clients and served as an educator at the advanced levels of Academic Medical Astrology, I offer a reading that is not just intuitive, but structured, practical, and precise..
 
-  # Block 1: The Hero Section
+  # Block: Support hero section with a single image
   - component: "hero"
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758503040/unsplash-image-kLqZ92hmqTw_ws9lzb.jpg"
 
@@ -29,27 +29,12 @@ content:
   - component: "feature-grid"
     header: "Explore My Services"
     cards:
-      - icon: "🌍"
-        heading: "Natal Chart Reading"
+      - heading: "Natal Chart Reading"
         copy: "Uncover your unique potential and life's purpose with an in-depth analysis of your birth chart."
-        button:
-          text: "Learn More"
-          url: "/services/natal-chart"
-          style: "secondary"
-      - icon: "💛"
-        heading: "Relationship Astrology"
+      - heading: "Relationship Astrology"
         copy: "Gain deeper insights into your relationships through the art of synastry and composite charts."
-        button:
-          text: "Learn More"
-          url: "/services/relationship"
-          style: "secondary"
-      - icon: "📈"
-        heading: "Predictive Astrology"
+      - heading: "Predictive Astrology"
         copy: "Navigate upcoming life periods with confidence using transits, progressions, and solar returns."
-        button:
-          text: "Learn More"
-          url: "/services/predictive"
-          style: "secondary"
 
   # Block 2: A Split Content Section
   - component: "split-content"

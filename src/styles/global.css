@@ -17,8 +17,8 @@ main {
   padding-inline: 1rem;
 }
 
-/* @media (min-width: 1440px) {
+@media (min-width: 1440px) {
   html {
-    font-size: 1.25rem;
+    font-size: 1.33rem;
   }
-} */
+}
