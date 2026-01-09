@@ -34,8 +34,8 @@ const {
 
       <div>
         <div class="bg-white p-8 rounded-lg shadow-md">
-            {list_items && list_items.map(card_item => {
-              const rawCardHtml = marked.parse(card_item.copy, { async: false });
+            {list_items && list_items.map(async (card_item) => {
+              const rawCardHtml = await marked.parse(card_item.copy ?? '');
               const cleanCardHtml = DOMPurify.sanitize(rawCardHtml);
 
               return <div>
