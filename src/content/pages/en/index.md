@@ -27,7 +27,7 @@ content:
 
   # Block: Services Feature Grid
   - component: "feature-grid"
-    header: "Explore My Services"
+    header: "My Services"
     cards:
       - heading: "Natal Chart Reading"
         copy: "Uncover your unique potential and life's purpose with an in-depth analysis of your birth chart."
