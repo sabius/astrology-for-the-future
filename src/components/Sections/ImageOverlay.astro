@@ -1,0 +1,131 @@
+---
+import ResponsivePicture from "../UI/ResponsivePicture.astro";
+
+const {
+  headline,
+  subheadline,
+  body_copy = [],
+  background_image,
+  image_alt = "",
+} = Astro.props;
+
+const bodySegments = Array.isArray(body_copy) ? body_copy : body_copy ? [body_copy] : [];
+---
+
+<section
+  class="image-overlay-section relative min-h-[60vh] md:min-h-[70vh] flex items-center py-12 md:py-20 overflow-hidden mt-16 md:mt-24"
+>
+  <script is:inline>
+    // Progressive enhancement: Add loading state only if JS is enabled
+    document.currentScript.parentElement.classList.add('is-loading');
+  </script>
+  {background_image && (
+    <div class="overlay-bg absolute inset-0 transition-opacity duration-1000 ease-in-out">
+      <ResponsivePicture
+        src={background_image}
+        alt={image_alt}
+        class="block h-full w-full"
+        imageClass="h-full w-full object-cover"
+        type="hero"
+      />
+    </div>
+  )}
+
+  <div class="overlay-content container relative z-10 px-6 transition-all duration-1000 ease-out">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <!-- Left side: Headline (only on larger screens) -->
+      <div class="hidden md:flex items-center justify-center px-4">
+        {headline && (
+          <h2 class="text-3xl lg:text-5xl xl:text-6xl font-serif text-white text-center leading-tight break-words">
+            {headline}
+          </h2>
+        )}
+      </div>
+
+      <!-- Right side: Content Box -->
+      <div class="bg-white/95 backdrop-blur-sm p-8 md:p-10 rounded-lg shadow-lg">
+        {/* Mobile headline */}
+        {headline && (
+          <h2 class="md:hidden text-3xl font-serif text-gray-900 mb-4">
+            {headline}
+          </h2>
+        )}
+
+        {subheadline && (
+          <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-950 mb-6 break-words">
+            {subheadline}
+          </h3>
+        )}
+
+        {bodySegments.length > 0 && (
+          <div class="space-y-4 text-gray-950 text-base md:text-lg lg:text-xl leading-relaxed">
+            {bodySegments.map((paragraph) => (
+              <p set:html={paragraph} />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const overlaySections = document.querySelectorAll('.image-overlay-section');
+
+  const observerOptions = {
+    root: null, // viewport
+    rootMargin: '0px',
+    threshold: 0.2 // Trigger when 20% visible
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const overlaySection = entry.target;
+        const bgContainer = overlaySection.querySelector('.overlay-bg');
+        const bgImage = bgContainer?.querySelector('img');
+
+        const reveal = () => {
+          overlaySection.classList.remove('is-loading');
+        };
+
+        if (bgImage && bgImage.complete) {
+          reveal();
+        } else if (bgImage) {
+          bgImage.addEventListener('load', reveal);
+        } else {
+          // Fallback if no image
+          reveal();
+        }
+
+        // Stop observing this section once revealed
+        observer.unobserve(overlaySection);
+      }
+    });
+  }, observerOptions);
+
+  overlaySections.forEach(section => {
+    observer.observe(section);
+  });
+</script>
+
+<style>
+  .image-overlay-section {
+    background-attachment: fixed;
+  }
+
+  @media (max-width: 768px) {
+    .image-overlay-section {
+      background-attachment: scroll;
+    }
+  }
+
+  .image-overlay-section.is-loading .overlay-bg {
+    opacity: 0;
+  }
+  
+  .image-overlay-section.is-loading .overlay-content {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+</style>

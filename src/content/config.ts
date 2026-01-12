@@ -78,6 +78,15 @@ const featureGridBlock = z.object({
   ).optional(),
 });
 
+const imageOverlayBlock = z.object({
+  component: z.literal('image-overlay'),
+  headline: z.string().optional(),
+  subheadline: z.string().optional(),
+  body_copy: z.union([z.string(), z.array(z.string())]).optional(),
+  background_image: z.string().optional(),
+  image_alt: z.string().optional(),
+});
+
 // Define the main collection for our pages
 const pagesCollection = defineCollection({
   schema: z.object({
@@ -93,6 +102,7 @@ const pagesCollection = defineCollection({
         featureCardBlock,
         featureGridBlock,
         quoteBlock,
+        imageOverlayBlock,
         ctaBlock,
       ])
     ),
