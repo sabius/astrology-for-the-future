@@ -14,7 +14,6 @@ content:
       text: "Book a reading"
       url: "/about"
 
-
   # Block: Image Overlay Section
   - component: "image-overlay"
     headline: "Navigate Your Life with Clarity"
@@ -38,7 +37,6 @@ content:
   # Block: Support hero section with a single image
   - component: "hero"
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758503040/unsplash-image-kLqZ92hmqTw_ws9lzb.jpg"
-
 
   # Block: Services Feature Grid
   - component: "feature-grid"

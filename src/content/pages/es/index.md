@@ -14,6 +14,16 @@ content:
       text: "Reserva una lectura"
       url: "/about"
 
+  # Block: Image Overlay Section
+  - component: "image-overlay"
+    headline: "Navega Tu Vida con Claridad"
+    subheadline: "Sabiduría antigua para desafíos modernos"
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/image-asset_2_v5ailt.jpg"
+    image_alt: "Cielo nocturno estrellado con montañas"
+    body_copy:
+      - "Durante miles de años, las civilizaciones han observado el movimiento de los planetas para comprender los eventos en la Tierra. Hoy, usamos esa misma lógica celestial para ayudarte a navegar las estaciones de tu vida."
+      - "La astrología no se trata de predecir un futuro fijo—se trata de entender el clima cósmico para que puedas prepararte. Desde planificar grandes decisiones profesionales hasta comprender la dinámica de las relaciones, una lectura astrológica proporciona la perspectiva que necesitas para tomar decisiones empoderadas y alinear tus acciones con el ritmo natural del universo."
+
   - component: "feature-card"
     header: "Sobre mí"
     image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Mater3_dvnuhy.png"
