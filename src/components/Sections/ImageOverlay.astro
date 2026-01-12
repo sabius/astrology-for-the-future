@@ -58,7 +58,7 @@ const bodySegments = Array.isArray(body_copy) ? body_copy : body_copy ? [body_co
         )}
 
         {bodySegments.length > 0 && (
-          <div class="space-y-4 text-gray-950 text-base md:text-lg lg:text-xl leading-relaxed">
+          <div class="space-y-4 text-gray-950 text-xl leading-relaxed">
             {bodySegments.map((paragraph) => (
               <p set:html={paragraph} />
             ))}
@@ -123,7 +123,7 @@ const bodySegments = Array.isArray(body_copy) ? body_copy : body_copy ? [body_co
   .image-overlay-section.is-loading .overlay-bg {
     opacity: 0;
   }
-  
+
   .image-overlay-section.is-loading .overlay-content {
     opacity: 0;
     transform: translateY(1rem);
