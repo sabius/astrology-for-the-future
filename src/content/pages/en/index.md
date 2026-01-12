@@ -14,6 +14,17 @@ content:
       text: "Book a reading"
       url: "/about"
 
+
+  # Block: Image Overlay Section
+  - component: "image-overlay"
+    headline: "Navigate Your Life with Clarity"
+    subheadline: "Ancient wisdom for modern challenges."
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/image-asset_2_v5ailt.jpg"
+    image_alt: "Starry night sky with mountains"
+    body_copy:
+      - "For thousands of years, civilizations have looked to the movement of the planets to understand events on Earth. Today, we use that same celestial logic to help you navigate the seasons of your life."
+      - "Astrology isn't about predicting a fixed future—it is about understanding the cosmic weather so you can prepare for it. From timing big career moves to understanding relationship dynamics, an astrology reading provides the perspective you need to make empowered decisions and align your actions with the universe's natural rhythm."
+
   - component: "feature-card"
     header: "About me"
     image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Mater3_dvnuhy.png"
@@ -27,6 +38,7 @@ content:
   # Block: Support hero section with a single image
   - component: "hero"
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758503040/unsplash-image-kLqZ92hmqTw_ws9lzb.jpg"
+
 
   # Block: Services Feature Grid
   - component: "feature-grid"
