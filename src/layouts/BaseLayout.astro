@@ -5,6 +5,7 @@ import "../styles/global.css";
 
 import Header from "../components/Global/Header.astro";
 import Footer from "../components/Global/Footer.astro";
+import WhatsAppButton from "../components/UI/WhatsAppButton.astro";
 
 const { title, description } = Astro.props;
 ---
@@ -29,6 +30,12 @@ const { title, description } = Astro.props;
 
       <Footer />
     </div>
+
+    <!-- WhatsApp Floating Button -->
+    <WhatsAppButton 
+      phoneNumber="1234567890"
+      message="Hello! I'm interested in learning more about your services."
+    />
   </body>
 </html>
 
