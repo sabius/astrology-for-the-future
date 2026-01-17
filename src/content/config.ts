@@ -93,7 +93,8 @@ const pagesCollection = defineCollection({
     meta: z.object({
       title: z.string(),
       description: z.string(),
-    }),
+      image: z.string().optional(),
+    }).optional(),
     content: z.array(
       // This tells Zod that `content` is an array of one of our defined blocks
       z.discriminatedUnion('component', [
@@ -110,5 +111,13 @@ const pagesCollection = defineCollection({
 });
 
 export const collections = {
-  pages: pagesCollection
+  pages: pagesCollection,
+  seo: defineCollection({
+    type: 'data',
+    schema: z.object({
+      title: z.string(),
+      description: z.string(),
+      image: z.string().optional(),
+    }),
+  }),
 }
