@@ -1,8 +1,4 @@
 ---
-meta:
-  title: "Astrology for the Future"
-  description: "Astrology for the Future offers personalized astrology readings, articles and videos to guide you on your life's journey. Book a reading today."
-
 content:
   # Block 1: The Hero Section
   - component: "hero"
