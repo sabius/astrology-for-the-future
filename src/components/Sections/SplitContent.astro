@@ -18,7 +18,7 @@ const normalizedColumns = columns.slice(0, 2).map((column) => ({
 ---
 
 <section
-  class="split-content-section px-6 py-12 md:py-20 lg:py-24"
+  class="px-6 py-12 md:py-20 lg:py-24"
   style={{ backgroundColor: background_color ?? "" }}
 >
   <div class="container">
@@ -49,21 +49,21 @@ const normalizedColumns = columns.slice(0, 2).map((column) => ({
                   imageClass="h-full w-full object-cover"
                 />
                 {item?.legend && (
-                  <figcaption class="text-sm leading-relaxed md:text-base">
+                  <figcaption class="text-sm leading-relaxed text-[#4f3c57] md:text-base">
                     {item.legend}
                   </figcaption>
                 )}
               </figure>
             ) : (
               <article
-                class={`flex flex-col gap-4 ${
+                class={`flex flex-col gap-4 text-[#4f3c57] ${
                   item?.boxed
                     ? "rounded-[32px] bg-white p-8 shadow-lg md:p-10"
                     : ""
                 }`}
               >
                 {item?.heading && (
-                  <h3 class="text-2xl font-bold tracking-[0.01em] md:text-[2rem]">
+                  <h3 class="text-2xl font-bold tracking-[0.01em] text-[#2e2133] md:text-[2rem]">
                     {item.heading}
                   </h3>
                 )}

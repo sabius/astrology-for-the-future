@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { components } from '../components/componentMap';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DocsLayout from '../layouts/DocsLayout.astro';
@@ -37,14 +37,8 @@ export const getStaticPaths = (async () => {
 
 // The entry contains the full data for the correct language
 const { entry } = Astro.props as { entry: CollectionEntry<'pages'> };
-
-// Fetch SEO entry
-const seoEntry = await getEntry('seo', entry.slug);
-// If not separate file, try to use frontmatter meta, otherwise default empty
-const pageMeta = seoEntry?.data ?? entry.data.meta ?? { title: '', description: '' };
-
 const { data: pageData } = entry;
-const { content } = pageData;
+const { meta, content } = pageData;
 
 // Check if this is a docs page
 const isDocsPage = entry.slug.includes('/docs');
@@ -54,11 +48,11 @@ const { Content } = await entry.render();
 ---
 
 {isDocsPage ? (
-  <DocsLayout title={pageMeta.title} description={pageMeta.description} image={pageMeta.image} entry={entry}>
+  <DocsLayout title={meta.title} description={meta.description} entry={entry}>
     <Content />
   </DocsLayout>
 ) : (
-  <BaseLayout title={pageMeta.title} description={pageMeta.description} image={pageMeta.image}>
+  <BaseLayout title={meta.title} description={meta.description}>
     <main>
       {content.map(block => {
         const Component = components[block.component] ?? components.fallback;
