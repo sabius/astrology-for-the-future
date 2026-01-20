@@ -2,6 +2,7 @@
 meta:
   title: "Hero Component"
   description: "Full-width hero sections with background images, headers, and call-to-action buttons."
+  image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/image-asset_2_v5ailt.jpg"
 
 content:
   - component: "hero"

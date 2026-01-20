@@ -1,13 +1,14 @@
 ---
 meta:
-  title: "Astrología para el Futuro"
-  description: "Astrology for the Future ofrece lecturas astrológicas personalizadas, artículos y videos para guiarte en tu camino vital. Reserva una lectura hoy."
+  title: "Glenda Ferreira"
+  description: "Glenda Ferreira ofrece lecturas astrológicas personalizadas, artículos y videos para guiarte en tu camino de vida. Reserva una lectura hoy."
+  image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/image-asset_2_v5ailt.jpg"
 
 content:
   # Block 1: The Hero Section
   - component: "hero"
-    header: "Glenda Ferreira P., M.D."
-    copy: "Lecturas y Orientación Astrológica Experta"
+    header: "Claridad y Dirección"
+    copy: "Consultas de astrología y orientación experta."
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/image-asset_zlvc49.webp"
     image_alt: "La foto de un cielo estrellado y una aurora boreal"
     button:
@@ -16,7 +17,7 @@ content:
 
   # Block: Image Overlay Section
   - component: "image-overlay"
-    headline: "Navega Tu Vida con Claridad"
+    headline: "Navega Tu Vida con Propósito"
     subheadline: "Sabiduría antigua para desafíos modernos"
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/image-asset_2_v5ailt.jpg"
     image_alt: "Cielo nocturno estrellado con montañas"
