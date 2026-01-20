@@ -9,7 +9,7 @@ content:
   - component: "hero"
     header: "Clarity and Direction"
     copy: "Expert Astrology Readings and Guidance"
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/image-asset_zlvc49.webp"
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
     image_alt: "The photo of a starred sky and an aurora boreal"
     button:
       text: "Book a reading"
@@ -19,7 +19,7 @@ content:
   - component: "image-overlay"
     headline: "Navigate Your Life with Purpose"
     subheadline: "Ancient wisdom for modern challenges."
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/image-asset_2_v5ailt.jpg"
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/Glenda%20Ferreira/image-asset_2_v5ailt.jpg"
     image_alt: "Starry night sky with mountains"
     body_copy:
       - "For thousands of years, civilizations have looked to the movement of the planets to understand events on Earth. Today, we use that same celestial logic to help you navigate the seasons of your life."
@@ -27,7 +27,7 @@ content:
 
   - component: "feature-card"
     header: "About me"
-    image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Mater3_dvnuhy.png"
+    image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Glenda%20Ferreira/Mater3_dvnuhy.png"
     image_alt: "The image of an example gift Astrology for the Future Gift card."
     list_items:
       - copy: |
@@ -37,7 +37,7 @@ content:
 
   # Block: Support hero section with a single image
   - component: "hero"
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758503040/unsplash-image-kLqZ92hmqTw_ws9lzb.jpg"
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758503040/Glenda%20Ferreira/unsplash-image-kLqZ92hmqTw_ws9lzb.jpg"
 
   # Block: Services Feature Grid
   - component: "feature-grid"
