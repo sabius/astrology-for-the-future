@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description, image } = Astro.props as Props;
+
+const site = Astro.site?.toString();
+const pathname = Astro.url?.pathname ?? '/';
+const canonical = site ? new URL(pathname, site).toString() : undefined;
+const locale = (Astro.currentLocale ?? 'en') as 'en' | 'es';
+const ogLocale = locale === 'es' ? 'es_ES' : 'en_US';
+const siteName = 'Astrology for the Future';
+const twitterCard = image ? 'summary_large_image' : 'summary';
+---
+
+{description && (<meta name="description" content={description} />)}
+{canonical && (<link rel="canonical" href={canonical} />)}
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={title} />
+{description && (<meta property="og:description" content={description} />)}
+{canonical && (<meta property="og:url" content={canonical} />)}
+<meta property="og:locale" content={ogLocale} />
+{image && (<meta property="og:image" content={image} />)}
+
+<!-- Twitter -->
+<meta name="twitter:card" content={twitterCard} />
+<meta name="twitter:title" content={title} />
+{description && (<meta name="twitter:description" content={description} />)}
+{image && (<meta name="twitter:image" content={image} />)}

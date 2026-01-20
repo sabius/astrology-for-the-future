@@ -52,7 +52,7 @@ const { Content } = await entry.render();
     <Content />
   </DocsLayout>
 ) : (
-  <BaseLayout title={meta.title} description={meta.description}>
+  <BaseLayout title={meta.title} description={meta.description} image={meta.image}>
     <main>
       {content.map(block => {
         const Component = components[block.component] ?? components.fallback;

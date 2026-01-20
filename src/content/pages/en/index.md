@@ -1,12 +1,13 @@
 ---
 meta:
-  title: "Astrology for the Future"
-  description: "Astrology for the Future offers personalized astrology readings, articles and videos to guide you on your life's journey. Book a reading today."
+  title: "Glenda Ferreira"
+  description: "Glenda Ferreira offers personalized astrology readings, articles and videos to guide you on your life's journey. Book a reading today."
+  image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/image-asset_2_v5ailt.jpg"
 
 content:
   # Block 1: The Hero Section
   - component: "hero"
-    header: "Glenda Ferreira P., M.D."
+    header: "Clarity and Direction"
     copy: "Expert Astrology Readings and Guidance"
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/image-asset_zlvc49.webp"
     image_alt: "The photo of a starred sky and an aurora boreal"
@@ -16,7 +17,7 @@ content:
 
   # Block: Image Overlay Section
   - component: "image-overlay"
-    headline: "Navigate Your Life with Clarity"
+    headline: "Navigate Your Life with Purpose"
     subheadline: "Ancient wisdom for modern challenges."
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/image-asset_2_v5ailt.jpg"
     image_alt: "Starry night sky with mountains"

@@ -33,7 +33,7 @@ const heroImageAlt = header ?? '';
   )}
   <div class="hero-content container relative z-10 transition-all duration-1000 ease-out">
     {header && copy && button &&
-      <div class="max-w-3xl text-white bg-gray-900/50 p-10 rounded-md">
+      <div class="max-w-3xl text-white bg-gray-900/50 backdrop-blur-sm p-10 rounded-md">
         {header && <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">{header}</h1>}
         {copy && <p class="text-xl md:text-2xl mb-8">{copy}</p>}
 
@@ -95,7 +95,7 @@ const heroImageAlt = header ?? '';
   .hero-section.is-loading .hero-bg {
     opacity: 0;
   }
-  
+
   .hero-section.is-loading .hero-content {
     opacity: 0;
     transform: translateY(1rem);

@@ -93,6 +93,7 @@ const pagesCollection = defineCollection({
     meta: z.object({
       title: z.string(),
       description: z.string(),
+      image: z.string().url().optional(),
     }),
     content: z.array(
       // This tells Zod that `content` is an array of one of our defined blocks
