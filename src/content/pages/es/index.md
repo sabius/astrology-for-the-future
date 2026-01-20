@@ -9,7 +9,7 @@ content:
   - component: "hero"
     header: "Claridad y Dirección"
     copy: "Consultas de astrología y orientación experta."
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/image-asset_zlvc49.webp"
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
     image_alt: "La foto de un cielo estrellado y una aurora boreal"
     button:
       text: "Reserva una lectura"
@@ -19,7 +19,7 @@ content:
   - component: "image-overlay"
     headline: "Navega Tu Vida con Propósito"
     subheadline: "Sabiduría antigua para desafíos modernos"
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/image-asset_2_v5ailt.jpg"
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/Glenda%20Ferreira/image-asset_2_v5ailt.jpg"
     image_alt: "Cielo nocturno estrellado con montañas"
     body_copy:
       - "Durante miles de años, las civilizaciones han observado el movimiento de los planetas para comprender los eventos en la Tierra. Hoy, usamos esa misma lógica celestial para ayudarte a navegar las estaciones de tu vida."
@@ -27,7 +27,7 @@ content:
 
   - component: "feature-card"
     header: "Sobre mí"
-    image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Mater3_dvnuhy.png"
+    image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Glenda%20Ferreira/Mater3_dvnuhy.png"
     image_alt: "Un retrato de Glenda Ferreira P., M.D."
     list_items:
       - copy: |
@@ -37,7 +37,7 @@ content:
 
   # Block 1: The Hero Section
   - component: "hero"
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758503040/unsplash-image-kLqZ92hmqTw_ws9lzb.jpg"
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758503040/Glenda%20Ferreira/unsplash-image-kLqZ92hmqTw_ws9lzb.jpg"
 
   # Block: Services Feature Grid
   - component: "feature-grid"
