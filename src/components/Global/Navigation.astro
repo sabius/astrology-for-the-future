@@ -1,38 +1,46 @@
 ---
 import { t, getCurrentLocaleFromAstro } from "../../i18n/index";
 const locale = getCurrentLocaleFromAstro(Astro);
+const getPath = (path, locale) => {
+  if (locale === "es") {
+    return path === "/" ? "/es/" : `/${locale}${path}`;
+  }
+  return path;
+};
 const navItems = [
-  { text: await t("nav.home", locale), href: "/" },
-  { text: await t("nav.videos", locale), href: "/videos" },
-  { text: await t("nav.contact", locale), href: "/contact" },
+  { text: await t("nav.home", locale), href: getPath("/", locale) },
+  { text: await t("nav.videos", locale), href: getPath("/videos", locale) },
+  { text: await t("nav.contact", locale), href: getPath("/contact", locale) },
 ];
 
 const currentPath = Astro.url.pathname;
+
+const navLinks = navItems.map((item) => {
+  const isActive =
+    item.href.length > 1
+      ? currentPath.startsWith(item.href)
+      : currentPath === item.href;
+  return { ...item, isActive };
+});
 ---
 
 <!-- Desktop Navigation -->
 <nav class="hidden lg:block">
   <ul class="flex items-center space-x-6">
     {
-      navItems.map((item) => {
-        const isActive =
-          currentPath === item.href ||
-          (item.href !== "/" && currentPath.startsWith(item.href));
-
-        return (
-          <li>
-            <a
-              href={item.href}
-              class={`nav-link text-xl font-medium transition-colors hover:text-primary-600 hover:underline ${
-                isActive ? "text-primary-600" : "text-stone-950"
-              }`}
-              aria-current={isActive ? "page" : undefined}
-            >
-              {item.text}
-            </a>
-          </li>
-        );
-      })
+      navLinks.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class={`nav-link text-xl font-medium transition-colors hover:text-primary-600 hover:underline ${
+              item.isActive ? "text-primary-600" : "text-stone-950"
+            }`}
+            aria-current={item.isActive ? "page" : undefined}
+          >
+            {item.text}
+          </a>
+        </li>
+      ))
     }
   </ul>
 </nav>
@@ -70,26 +78,20 @@ const currentPath = Astro.url.pathname;
   <div class="px-4 py-6">
     <div class="grid grid-cols-1 gap-3">
       {
-        navItems.map((item) => {
-          const isActive =
-            currentPath === item.href ||
-            (item.href !== "/" && currentPath.startsWith(item.href));
-
-          return (
-            <a
-              href={item.href}
-              class={`block px-4 py-3 font-medium rounded-lg transition-colors text-center text-3xl text-stone-950 ${
-                isActive
-                  ? "bg-primary-50 text-primary-600 border border-primary-200"
-                  : "text-gray-900 hover:text-primary-600 border border-transparent"
-              }`}
-              role="menuitem"
-              aria-current={isActive ? "page" : undefined}
-            >
-              {item.text}
-            </a>
-          );
-        })
+        navLinks.map((item) => (
+          <a
+            href={item.href}
+            class={`block px-4 py-3 font-medium rounded-lg transition-colors text-center text-3xl text-stone-950 ${
+              item.isActive
+                ? "bg-primary-50 text-primary-600 border border-primary-200"
+                : "text-gray-900 hover:text-primary-600 border border-transparent"
+            }`}
+            role="menuitem"
+            aria-current={item.isActive ? "page" : undefined}
+          >
+            {item.text}
+          </a>
+        ))
       }
     </div>
   </div>

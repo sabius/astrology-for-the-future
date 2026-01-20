@@ -2,7 +2,7 @@
 meta:
   title: "Glenda Ferreira"
   description: "Glenda Ferreira ofrece lecturas astrológicas personalizadas, artículos y videos para guiarte en tu camino de vida. Reserva una lectura hoy."
-  image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/image-asset_2_v5ailt.jpg"
+  image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1768882107/Glenda%20Ferreira/meta-img-es.jpg"
 
 content:
   # Block 1: The Hero Section
