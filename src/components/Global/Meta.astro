@@ -12,7 +12,7 @@ const pathname = Astro.url?.pathname ?? '/';
 const canonical = site ? new URL(pathname, site).toString() : undefined;
 const locale = (Astro.currentLocale ?? 'en') as 'en' | 'es';
 const ogLocale = locale === 'es' ? 'es_ES' : 'en_US';
-const siteName = 'Astrology for the Future';
+const siteName = 'Glenda Ferreira';
 const twitterCard = image ? 'summary_large_image' : 'summary';
 ---
 
