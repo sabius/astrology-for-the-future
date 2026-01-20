@@ -17,9 +17,9 @@ const currentPath = Astro.url.pathname;
 
 const navLinks = navItems.map((item) => {
   const isActive =
-    item.href.length > 1
-      ? currentPath.startsWith(item.href)
-      : currentPath === item.href;
+    item.href === getPath("/", locale)
+      ? currentPath === item.href
+      : currentPath.startsWith(item.href);
   return { ...item, isActive };
 });
 ---
