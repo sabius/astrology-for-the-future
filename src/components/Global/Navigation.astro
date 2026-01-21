@@ -2,10 +2,10 @@
 import { t, getCurrentLocaleFromAstro } from "../../i18n/index";
 const locale = getCurrentLocaleFromAstro(Astro);
 const getPath = (path, locale) => {
-  if (locale === "es") {
-    return path === "/" ? "/es/" : `/${locale}${path}`;
+  if (path === "/") {
+    return locale === "en" ? "/" : `/${locale}/`;
   }
-  return path;
+  return `/${locale}${path}`;
 };
 const navItems = [
   { text: await t("nav.home", locale), href: getPath("/", locale) },
