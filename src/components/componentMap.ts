@@ -4,6 +4,7 @@ import FeatureCard from './Sections/FeatureCard.astro';
 import FeatureGrid from './Sections/FeatureGrid.astro';
 import Quote from './Sections/Quote.astro';
 import ImageOverlay from './Sections/ImageOverlay.astro';
+import ContactForm from './Sections/ContactForm.astro';
 import Cta from './UI/Cta.astro';
 import Fallback from './Fallback.astro';
 
@@ -14,6 +15,7 @@ export const components = {
   'feature-grid': FeatureGrid,
   'quote': Quote,
   'image-overlay': ImageOverlay,
+  'contact-form': ContactForm,
   'cta': Cta,
   'fallback': Fallback,
 };
