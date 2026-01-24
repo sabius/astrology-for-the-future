@@ -87,15 +87,6 @@ const imageOverlayBlock = z.object({
   image_alt: z.string().optional(),
 });
 
-const contactFormBlock = z.object({
-  component: z.literal('contact-form'),
-  header: z.string().optional(),
-  copy: z.string().optional(),
-  email: z.string().optional(),
-  phone: z.string().optional(),
-  address: z.string().optional(),
-});
-
 // Define the main collection for our pages
 const pagesCollection = defineCollection({
   schema: z.object({
@@ -114,7 +105,6 @@ const pagesCollection = defineCollection({
         quoteBlock,
         imageOverlayBlock,
         ctaBlock,
-        contactFormBlock,
       ])
     ),
   }),
