@@ -11,10 +11,18 @@ export async function t(key: string, locale: string = 'en'): Promise<string> {
   return dict && key in dict ? dict[key] : key;
 }
 
+const SUPPORTED_LOCALES = ['en', 'es'] as const;
+type Locale = typeof SUPPORTED_LOCALES[number];
+
 interface AstroContext {
-  currentLocale?: string;
+  url: URL;
 }
 
-export function getCurrentLocaleFromAstro(Astro: AstroContext): string {
-  return Astro?.currentLocale || 'en';
+/**
+ * Derives the current locale from the URL pathname.
+ * e.g. /es/contact -> 'es', /en/videos -> 'en', /videos -> 'en'
+ */
+export function getCurrentLocaleFromAstro(Astro: AstroContext): Locale {
+  const [, maybeLocale] = Astro.url.pathname.split('/');
+  return SUPPORTED_LOCALES.find(l => l === maybeLocale) ?? 'en';
 }
