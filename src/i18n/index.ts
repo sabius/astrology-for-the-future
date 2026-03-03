@@ -24,7 +24,5 @@ interface AstroContext {
  */
 export function getCurrentLocaleFromAstro(Astro: AstroContext): Locale {
   const [, maybeLocale] = Astro.url.pathname.split('/');
-  return (SUPPORTED_LOCALES as readonly string[]).includes(maybeLocale)
-    ? (maybeLocale as Locale)
-    : 'en';
+  return SUPPORTED_LOCALES.find(l => l === maybeLocale) ?? 'en';
 }

@@ -11,8 +11,8 @@
     <meta http-equiv="refresh" content="0; url=/en" />
     <script is:inline>
       (function () {
-        var lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-        var target = lang.startsWith('es') ? '/es' : '/en';
+        const lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+        const target = lang.startsWith('es') ? '/es' : '/en';
         window.location.replace(target);
       })();
     </script>
