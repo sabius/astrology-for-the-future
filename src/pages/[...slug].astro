@@ -9,7 +9,7 @@ import type { GetStaticPaths } from "astro";
 export const getStaticPaths = (async () => {
   // Default language configuration
   const DEFAULT_LOCALE = 'en';
-  
+
   const pages = await getCollection('pages');
 
   // Show docs in development and Cloudflare Pages preview deployments (staging)
@@ -40,9 +40,12 @@ export const getStaticPaths = (async () => {
     // For default language pages, also create routes without the language prefix
     if (entry.slug.startsWith(`${DEFAULT_LOCALE}/`)) {
       const slugWithoutLang = entry.slug.slice(DEFAULT_LOCALE.length + 1); // Remove "en/"
-      const finalSlug = slugWithoutLang.endsWith('/index')
-        ? slugWithoutLang.slice(0, -'/index'.length)
-        : slugWithoutLang;
+      // "index" alone means the root page — skip it so index.astro handles the redirect
+      const finalSlug = slugWithoutLang === 'index'
+        ? ''
+        : slugWithoutLang.endsWith('/index')
+          ? slugWithoutLang.slice(0, -'/index'.length)
+          : slugWithoutLang;
 
       // Only add non-empty slugs (videos, about, etc.) - empty means root "/"
       if (finalSlug) {

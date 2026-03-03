@@ -7,7 +7,7 @@ import Header from "../components/Global/Header.astro";
 import Footer from "../components/Global/Footer.astro";
 import WhatsAppButton from "../components/UI/WhatsAppButton.astro";
 import Meta from "../components/Global/Meta.astro";
-import { t } from "../i18n";
+import { t, getCurrentLocaleFromAstro } from "../i18n";
 
 import favicon16 from '../assets/favicon-16x16.png';
 import favicon32 from '../assets/favicon-32x32.png';
@@ -23,12 +23,12 @@ interface Props {
 }
 
 const { title, description, image } = Astro.props as Props;
-const currentLocale = Astro.currentLocale ?? 'en';
+const currentLocale = getCurrentLocaleFromAstro(Astro);
 const whatsappMessage = await t('whatsapp.message', currentLocale);
 ---
 
 <!doctype html>
-<html lang={Astro.currentLocale ?? 'en'}>
+<html lang={currentLocale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -55,7 +55,7 @@ const whatsappMessage = await t('whatsapp.message', currentLocale);
     </div>
 
     <!-- WhatsApp Floating Button -->
-    <WhatsAppButton 
+    <WhatsAppButton
       message={whatsappMessage}
     />
   </body>

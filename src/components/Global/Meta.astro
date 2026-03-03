@@ -1,4 +1,6 @@
 ---
+import { getCurrentLocaleFromAstro } from '../../i18n/index';
+
 interface Props {
   title: string;
   description?: string;
@@ -10,7 +12,7 @@ const { title, description, image } = Astro.props as Props;
 const site = Astro.site?.toString();
 const pathname = Astro.url?.pathname ?? '/';
 const canonical = site ? new URL(pathname, site).toString() : undefined;
-const locale = (Astro.currentLocale ?? 'en') as 'en' | 'es';
+const locale = getCurrentLocaleFromAstro(Astro) as 'en' | 'es';
 const ogLocale = locale === 'es' ? 'es_ES' : 'en_US';
 const siteName = 'Glenda Ferreira';
 const twitterCard = image ? 'summary_large_image' : 'summary';
