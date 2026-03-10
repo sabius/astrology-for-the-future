@@ -15,6 +15,26 @@ content:
       text: "Book a reading"
       url: "/about"
 
+  - component: "bio"
+    title: "About Me"
+    role: "Medical Doctor · Public Health Administrator"
+    headline: "Bridging clinical science and cosmic wisdom"
+    tags: ["MD", "Public Health", "Educator", "Medical Astrology"]
+    highlights:
+      - "Structured, practical readings—not vague."
+      - "Decades of diagnostic rigor applied to astrology."
+      - "Guided hundreds of clients and taught advanced students."
+    body:
+      - "My approach blends intuition with precision, helping you leave a session with clarity and actionable next steps."
+      - "Sessions are tailored to your goals—whether you need strategic planning, health-aligned insight, or mentorship on your own astrological studies."
+    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"
+    image_alt: "Portrait of Glenda Ferreira, smiling outdoors."
+    buttons:
+      - text: "Book a Reading"
+        url: "/about"
+      - text: "View Credentials"
+        url: "/about#credentials"
+        style: "outline"
   # Block: Image Overlay Section
   - component: "image-overlay"
     headline: "Navigate Your Life with Purpose"
