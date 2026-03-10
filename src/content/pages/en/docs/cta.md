@@ -2,6 +2,7 @@
 meta:
   title: "CTA Component"
   description: "Call-to-action sections with buttons to drive user engagement."
+  image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/image-asset_2_v5ailt.jpg"
 
 content:
   - component: "cta"

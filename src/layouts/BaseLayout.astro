@@ -5,18 +5,42 @@ import "../styles/global.css";
 
 import Header from "../components/Global/Header.astro";
 import Footer from "../components/Global/Footer.astro";
+import WhatsAppButton from "../components/UI/WhatsAppButton.astro";
+import Meta from "../components/Global/Meta.astro";
+import { t, getCurrentLocaleFromAstro } from "../i18n";
 
-const { title, description } = Astro.props;
+import favicon16 from '../assets/favicon-16x16.png';
+import favicon32 from '../assets/favicon-32x32.png';
+import appleTouchIcon from '../assets/apple-touch-icon.png';
+import faviconIco from '../assets/favicon.ico';
+import android192 from '../assets/android-chrome-192x192.png';
+import android512 from '../assets/android-chrome-512x512.png';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description, image } = Astro.props as Props;
+const currentLocale = getCurrentLocaleFromAstro(Astro);
+const whatsappMessage = await t('whatsapp.message', currentLocale);
 ---
 
 <!doctype html>
-<html lang={Astro.currentLocale ?? 'en'}>
+<html lang={currentLocale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="shortcut icon" href={faviconIco.src} />
+    <link rel="icon" type="image/png" sizes="32x32" href={favicon32.src} />
+    <link rel="icon" type="image/png" sizes="16x16" href={favicon16.src} />
+    <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon.src} />
+    <link rel="icon" type="image/png" sizes="192x192" href={android192.src} />
+    <link rel="icon" type="image/png" sizes="512x512" href={android512.src} />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description}>
+    <Meta title={title} description={description} image={image} />
     <title>{title}</title>
   </head>
   <body class="font-sans">
@@ -29,6 +53,11 @@ const { title, description } = Astro.props;
 
       <Footer />
     </div>
+
+    <!-- WhatsApp Floating Button -->
+    <WhatsAppButton
+      message={whatsappMessage}
+    />
   </body>
 </html>
 

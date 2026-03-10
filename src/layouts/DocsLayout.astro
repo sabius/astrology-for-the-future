@@ -25,7 +25,7 @@ const componentsList = [
 const currentPath = Astro.url.pathname;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} image={pageData?.meta?.image}>
   <div class="docs-container min-h-screen bg-gray-50">
     <div class="flex">
       <!-- Sidebar Navigation -->

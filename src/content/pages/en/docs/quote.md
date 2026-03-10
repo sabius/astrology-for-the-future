@@ -2,6 +2,7 @@
 meta:
   title: "Quote Component"
   description: "Styled blockquotes with author attribution for testimonials or inspirational content."
+  image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/image-asset_2_v5ailt.jpg"
 
 content:
   - component: "quote"

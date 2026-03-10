@@ -11,6 +11,8 @@ const heroBlock = z.object({
 
 const splitContentBlock = z.object({
   component: z.literal('split-content'),
+  header: z.string().optional(),
+  copy: z.string().optional(),
   background_color: z.string().optional(),
   columns: z.array(
     z.object({
@@ -89,13 +91,22 @@ const featureGridBlock = z.object({
       icon: z.string().optional(),
       heading: z.string().optional(),
       copy: z.string().optional(),
-      button: z.object({ 
-        text: z.string(), 
-        url: z.string(), 
-        style: z.string().optional() 
+      button: z.object({
+        text: z.string(),
+        url: z.string(),
+        style: z.string().optional()
       }).optional(),
     })
   ).optional(),
+});
+
+const imageOverlayBlock = z.object({
+  component: z.literal('image-overlay'),
+  headline: z.string().optional(),
+  subheadline: z.string().optional(),
+  body_copy: z.union([z.string(), z.array(z.string())]).optional(),
+  background_image: z.string().optional(),
+  image_alt: z.string().optional(),
 });
 
 // Define the main collection for our pages
@@ -104,6 +115,7 @@ const pagesCollection = defineCollection({
     meta: z.object({
       title: z.string(),
       description: z.string(),
+      image: z.string().url().optional(),
     }),
     content: z.array(
       // This tells Zod that `content` is an array of one of our defined blocks
@@ -114,6 +126,7 @@ const pagesCollection = defineCollection({
         bioBlock,
         featureGridBlock,
         quoteBlock,
+        imageOverlayBlock,
         ctaBlock,
       ])
     ),

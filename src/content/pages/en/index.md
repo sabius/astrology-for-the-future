@@ -1,14 +1,15 @@
 ---
 meta:
-  title: "Astrology for the Future"
-  description: "Astrology for the Future offers personalized astrology readings, articles and videos to guide you on your life's journey. Book a reading today."
+  title: "Glenda Ferreira"
+  description: "Glenda Ferreira offers personalized astrology readings, articles and videos to guide you on your life's journey. Book a reading today."
+  image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1768881851/Glenda%20Ferreira/meta-img-en.jpg"
 
 content:
   # Block 1: The Hero Section
   - component: "hero"
-    header: "Glenda Ferreira P., M.D."
+    header: "Clarity and Direction"
     copy: "Expert Astrology Readings and Guidance"
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/image-asset_zlvc49.webp"
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
     image_alt: "The photo of a starred sky and an aurora boreal"
     button:
       text: "Book a reading"
@@ -34,56 +35,44 @@ content:
       - text: "View Credentials"
         url: "/about#credentials"
         style: "outline"
+  # Block: Image Overlay Section
+  - component: "image-overlay"
+    headline: "Navigate Your Life with Purpose"
+    subheadline: "Ancient wisdom for modern challenges."
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/Glenda%20Ferreira/image-asset_2_v5ailt.jpg"
+    image_alt: "Starry night sky with mountains"
+    body_copy:
+      - "For thousands of years, civilizations have looked to the movement of the planets to understand events on Earth. Today, we use that same celestial logic to help you navigate the seasons of your life."
+      - "Astrology isn't about predicting a fixed future—it is about understanding the cosmic weather so you can prepare for it. From timing big career moves to understanding relationship dynamics, an astrology reading provides the perspective you need to make empowered decisions and align your actions with the universe's natural rhythm."
 
-  # Block 1: The Hero Section
+  - component: "feature-card"
+    header: "About me"
+    image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Glenda%20Ferreira/Mater3_dvnuhy.png"
+    image_alt: "The image of an example gift Astrology for the Future Gift card."
+    list_items:
+      - copy: |
+          Medicine taught me 'how' the body functions, but astrology taught me the 'why' behind our life experiences. My mission is to unite the best of science and spirit to help you find not just health, but meaning in your own story. <br><br>
+
+          I bridge the gap between clinical science and cosmic wisdom. Trained as a Physician, Surgeon, and Public Health Administrator, I bring decades of diagnostic rigor to my Astrology readings. Having guided hundreds of clients and served as an educator at the advanced levels of Academic Medical Astrology, I offer a reading that is not just intuitive, but structured, practical, and precise.
+
+  # Block: Support hero section with a single image
   - component: "hero"
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758503040/unsplash-image-kLqZ92hmqTw_ws9lzb.jpg"
-
-  # Block 2: A Split Content Section
-  - component: "split-content"
-    columns:
-      - items:
-          - image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760067553/800px-Cuneiform_tablet-_commenta_esmxip.jpg"
-            image_alt: "Cuneiform tablet with ancient Mesopotamian inscriptions"
-            legend: "Cuneiform tablet: commentary on Enuma Anu Enlil, tablet 5, ca. late 1st millennium BC. Metropolitan Museum of Art."
-      - items:
-          - boxed: true
-            copy:
-              - "Enuma Anu Enlil is an ancient Mesopotamian literary composition, also known as the \"Enuma Anu Enlil tablets.\" It is a collection of around 70 clay tablets dating back to the second millennium BCE, primarily from the Old Babylonian period. The tablets contain a series of astrological, astronomical, and omen texts, providing insights into the beliefs and practices of the Mesopotamian civilization."
-              - "The Enuma Anu Enlil tablets comprise a compendium of celestial omens, detailing the interpretations and predictions of celestial phenomena, such as lunar and solar eclipses, planetary positions, and meteorological events. These observations were believed to hold significant influence over human affairs and the destinies of kings. The texts were consulted by diviners and astrologers to gain insight into future events and to guide decision-making."
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758503040/Glenda%20Ferreira/unsplash-image-kLqZ92hmqTw_ws9lzb.jpg"
 
   # Block: Services Feature Grid
   - component: "feature-grid"
-    header: "Explore My Services"
+    header: "My Services"
     cards:
-      - icon: "🌍"
-        heading: "Natal Chart Reading"
+      - heading: "Natal Chart Reading"
         copy: "Uncover your unique potential and life's purpose with an in-depth analysis of your birth chart."
-        button:
-          text: "Learn More"
-          url: "/services/natal-chart"
-          style: "secondary"
-      - icon: "💛"
-        heading: "Relationship Astrology"
+      - heading: "Relationship Astrology"
         copy: "Gain deeper insights into your relationships through the art of synastry and composite charts."
-        button:
-          text: "Learn More"
-          url: "/services/relationship"
-          style: "secondary"
-      - icon: "📈"
-        heading: "Predictive Astrology"
+      - heading: "Predictive Astrology"
         copy: "Navigate upcoming life periods with confidence using transits, progressions, and solar returns."
-        button:
-          text: "Learn More"
-          url: "/services/predictive"
-          style: "secondary"
-
-  - component: "quote"
-    quote: "The soul of the newly born baby is marked for life by the pattern of the stars at the moment it comes into the world, unconsciously remembers it, and remains sensitive to the return of configurations of a similar kind."
-    author: "Johannes Kepler"
 
   # Block 2: A Split Content Section
   - component: "split-content"
+    header: "My Experience"
     columns:
       - items:
           - heading: "Surgeon Physician"
@@ -100,13 +89,9 @@ content:
             copy: "School of Traditional Astrology"
             meta: "2022 - 2024"
 
-  # Block 3: A Call to Action
-  - component: "cta"
-    header: "Gift card aca?"
-    button:
-      text: "Get yours now!"
-      url: "/signup"
-      style: "primary"
+  - component: "quote"
+    quote: "The soul of the newly born baby is marked for life by the pattern of the stars at the moment it comes into the world, unconsciously remembers it, and remains sensitive to the return of configurations of a similar kind."
+    author: "Johannes Kepler"
 ---
 
 <!-- We can leave the body of this markdown file empty -->

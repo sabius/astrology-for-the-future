@@ -1,5 +1,5 @@
 {
-  "site.title": "Astrology for the Future",
+  "site.title": "Glenda Ferreira",
   "nav.home": "Home",
   "nav.videos": "Videos",
   "nav.blog": "Blog & More",
@@ -8,5 +8,6 @@
   "footer.rights": "All rights reserved.",
   "footer.follow": "Follow me",
   "footer.privacy": "Privacy Policy",
-  "footer.terms": "Terms of Service"
+  "footer.terms": "Terms of Service",
+  "whatsapp.message": "Hello! I'm interested in learning more about your services."
 }

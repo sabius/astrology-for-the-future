@@ -1,53 +1,59 @@
 ---
 meta:
-  title: "Astrology for the Future"
-  description: "Astrology for the Future ofrece lecturas astrológicas personalizadas, artículos y videos para guiarte en el camino de tu vida. Agenda una lectura hoy."
+  title: "Glenda Ferreira"
+  description: "Glenda Ferreira ofrece lecturas astrológicas personalizadas, artículos y videos para guiarte en tu camino de vida. Reserva una lectura hoy."
+  image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1768882107/Glenda%20Ferreira/meta-img-es.jpg"
 
 content:
   # Block 1: The Hero Section
   - component: "hero"
-    header: "Glenda Ferreira P., M.D."
-    copy: "Lecturas y orientación experta en astrología"
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/image-asset_zlvc49.webp"
+    header: "Claridad y Dirección"
+    copy: "Consultas de astrología y orientación experta."
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
+    image_alt: "La foto de un cielo estrellado y una aurora boreal"
     button:
-      text: "Agenda una cita"
+      text: "Reserva una lectura"
       url: "/about"
 
-    # Block 2: A Split Content Section
+  # Block: Image Overlay Section
+  - component: "image-overlay"
+    headline: "Navega Tu Vida con Propósito"
+    subheadline: "Sabiduría antigua para desafíos modernos"
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/Glenda%20Ferreira/image-asset_2_v5ailt.jpg"
+    image_alt: "Cielo nocturno estrellado con montañas"
+    body_copy:
+      - "Durante miles de años, las civilizaciones han observado el movimiento de los planetas para comprender los eventos en la Tierra. Hoy, usamos esa misma lógica celestial para ayudarte a navegar las estaciones de tu vida."
+      - "La astrología no se trata de predecir un futuro fijo—se trata de entender el clima cósmico para que puedas prepararte. Desde planificar grandes decisiones profesionales hasta comprender la dinámica de las relaciones, una lectura astrológica proporciona la perspectiva que necesitas para tomar decisiones empoderadas y alinear tus acciones con el ritmo natural del universo."
+
   - component: "feature-card"
-    header: "Tarjeta de Regalo"
-    copy: "✨ ¡Un Viaje a Través de las Estrellas te Espera! ✨"
-    image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758335017/Gift_Card_PLANTILLA_w0uyfd.webp"
-    image_alt: "Imagen de una tarjeta de regalo de ejemplo de Astrología para el Futuro."
+    header: "Sobre mí"
+    image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Glenda%20Ferreira/Mater3_dvnuhy.png"
+    image_alt: "Un retrato de Glenda Ferreira P., M.D."
     list_items:
-      - heading: "Sorprende a alguien especial con una tarjeta de regalo para una lectura de astrología."
-        copy: "Es más que un regalo: es una invitación a explorar su propósito, potencial y camino guiados por el universo."
-    button:
-      text: "¡Consigue la tuya ahora!"
-      url: "/signup"
-      style: "primary"
+      - copy: |
+          La medicina me enseñó el 'cómo' funciona el cuerpo, pero la astrología me enseñó el 'por qué' nos sucede lo que nos sucede. Mi misión es unir lo mejor de la ciencia y el espíritu para ayudarte a encontrar, no solo salud, sino sentido a tu propia historia. <br><br>
+
+          Cierro la brecha entre la ciencia clínica y la sabiduría cósmica. Con formación como Médica Cirujana y Administradora de Salud Pública, aporto décadas de rigor diagnóstico a mis lecturas de Astrología. Habiendo guiado a cientos de clientes y sirviendo como educadora en los niveles superiores de Astrología Médica Académica, ofrezco una lectura que no es solo intuitiva, sino estructurada, práctica y precisa.
+
+  # Block 1: The Hero Section
+  - component: "hero"
+    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758503040/Glenda%20Ferreira/unsplash-image-kLqZ92hmqTw_ws9lzb.jpg"
+
+  # Block: Services Feature Grid
+  - component: "feature-grid"
+    header: "Mis Servicios"
+    cards:
+      - heading: "Lectura de Carta Natal"
+        copy: "Descubre tu potencial único y propósito de vida con un análisis en profundidad de tu carta natal."
+      - heading: "Astrología de Relaciones"
+        copy: "Obtén perspectivas más profundas sobre tus relaciones a través del arte de la sinastría y cartas compuestas."
+      - heading: "Astrología Predictiva"
+        copy: "Navega los próximos períodos de vida con confianza usando tránsitos, progresiones y retornos solares."
+
 
   # Block 2: A Split Content Section
   - component: "split-content"
-    background_color: "#ede7f1"
-    columns:
-      - items:
-          - image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760067553/800px-Cuneiform_tablet-_commenta_esmxip.jpg"
-            image_alt: "Tablilla cuneiforme con inscripciones mesopotámicas"
-            legend: "Tablilla cuneiforme: comentario del Enuma Anu Enlil, tablilla 5, ca. finales del primer milenio a. C. Metropolitan Museum of Art."
-      - items:
-          - boxed: true
-            copy:
-              - "Enuma Anu Enlil es una composición literaria mesopotámica antigua, también conocida como las \"tablillas Enuma Anu Enlil\". Es una colección de alrededor de 70 tablillas de arcilla que datan del segundo milenio a. C., principalmente del período paleobabilónico. Las tablillas contienen una serie de textos astrológicos, astronómicos y de presagios, que ofrecen información sobre las creencias y prácticas de la civilización mesopotámica."
-              - "Las tablillas Enuma Anu Enlil comprenden un compendio de presagios celestes, detallando las interpretaciones y predicciones de fenómenos celestes, como eclipses lunares y solares, posiciones planetarias y eventos meteorológicos. Se creía que estas observaciones ejercían una influencia significativa en los asuntos humanos y en el destino de los reyes. Los textos eran consultados por adivinos y astrólogos para obtener información sobre eventos futuros y orientar la toma de decisiones."
-
-  - component: "quote"
-    quote: "El alma del bebé recién nacido queda marcada de por vida por el patrón de las estrellas en el momento en que llega al mundo; lo recuerda inconscientemente y permanece sensible al retorno de configuraciones de naturaleza similar."
-    author: "Johannes Kepler"
-
-  # Block 2: A Split Content Section
-  - component: "split-content"
-    background_color: "#e4ddea"
+    header: "Mi Experiencia"
     columns:
       - items:
           - heading: "Médica Cirujana"
@@ -64,13 +70,9 @@ content:
             copy: "School of Traditional Astrology"
             meta: "2022 - 2024"
 
-  # Block 3: A Call to Action
-  - component: "cta"
-    header: "¿Tarjeta de regalo acá?"
-    button:
-      text: "¡Consíguela ya!"
-      url: "/signup"
-      style: "primary"
+  - component: "quote"
+    quote: "El alma del bebé recién nacido queda marcada de por vida por el patrón de las estrellas en el momento en que llega al mundo; lo recuerda inconscientemente y permanece sensible al retorno de configuraciones de naturaleza similar."
+    author: "Johannes Kepler"
 ---
 
 <!-- We can leave the body of this markdown file empty -->
