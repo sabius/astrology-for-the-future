@@ -1,0 +1,133 @@
+---
+const { header, copy, videos } = Astro.props;
+---
+
+<section class="section-video-gallery py-16">
+  <div class="container mx-auto px-6">
+    {header && (
+      <h2 class="text-3xl md:text-5xl font-bold text-center mb-8 text-[#2e2133]">
+        {header}
+      </h2>
+    )}
+    {copy && (
+      <p class="text-lg md:text-xl text-center text-[#4f3c57] mb-12 max-w-3xl mx-auto leading-relaxed">
+        {copy}
+      </p>
+    )}
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+      {videos && videos.map((video: { youtube_id: string; headline?: string; copy?: string; start_time?: number }) => (
+        <button
+          class="video-card group text-left bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 flex flex-col"
+          data-youtube-id={video.youtube_id}
+          data-start-time={video.start_time ?? ''}
+          aria-label={`Play video: ${video.headline ?? 'Watch video'}`}
+        >
+          <div class="relative aspect-video overflow-hidden">
+            <img
+              src={`https://img.youtube.com/vi/${video.youtube_id}/hqdefault.jpg`}
+              alt={video.headline ?? ''}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+              width="480"
+              height="360"
+            />
+            <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+              <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
+                <svg class="w-6 h-6 text-red-600 ml-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            {video.headline && (
+              <h3 class="text-lg font-semibold text-[#2e2133] mb-2 line-clamp-2">
+                {video.headline}
+              </h3>
+            )}
+            {video.copy && (
+              <p class="text-sm text-[#4f3c57] leading-relaxed line-clamp-7">
+                {video.copy}
+              </p>
+            )}
+          </div>
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Video Modal -->
+  <div
+    id="video-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Video player"
+  >
+    <div class="relative w-full max-w-4xl">
+      <button
+        id="modal-close-btn"
+        class="absolute -top-10 right-0 text-white hover:text-gray-300 transition-colors"
+        aria-label="Close video"
+      >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="aspect-video w-full">
+        <iframe
+          id="video-iframe"
+          class="w-full h-full rounded-xl"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          title="YouTube video player"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const modal = document.getElementById('video-modal') as HTMLElement | null;
+  const iframe = document.getElementById('video-iframe') as HTMLIFrameElement | null;
+  const closeBtn = document.getElementById('modal-close-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.video-card');
+
+  function openModal(youtubeId: string, startTime?: string) {
+    if (!iframe || !modal) return;
+    const t = startTime ? `&start=${startTime}` : '';
+    iframe.src = `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0${t}`;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    closeBtn?.focus();
+  }
+
+  function closeModal() {
+    if (!iframe || !modal) return;
+    iframe.src = '';
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  cards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const youtubeId = card.dataset.youtubeId;
+      const startTime = card.dataset.startTime;
+      if (youtubeId) openModal(youtubeId, startTime);
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
