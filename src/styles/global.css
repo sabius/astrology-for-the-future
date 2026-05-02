@@ -6,6 +6,20 @@
 
   /* Colors */
   --color-background-gray: 239, 234, 246;
+  --color-brand-whatsapp: #25D366;
+
+  /* Primary Palette (Astrology Theme) */
+  --color-primary-50: #f5f3fa;
+  --color-primary-100: #ebe5f5;
+  --color-primary-200: #d4c5eb;
+  --color-primary-300: #b8a0dd;
+  --color-primary-400: #9a76cc;
+  --color-primary-500: #8050bc;
+  --color-primary-600: #6B4FAE;
+  --color-primary-700: #573f8c;
+  --color-primary-800: #4f3c57;
+  --color-primary-900: #2e2133;
+  --color-primary-950: #1F1534;
 }
 
 main {

@@ -49,21 +49,21 @@ const normalizedColumns = columns.slice(0, 2).map((column) => ({
                   imageClass="h-full w-full object-cover"
                 />
                 {item?.legend && (
-                  <figcaption class="text-sm leading-relaxed text-[#4f3c57] md:text-base">
+                  <figcaption class="text-sm leading-relaxed text-primary-800 md:text-base">
                     {item.legend}
                   </figcaption>
                 )}
               </figure>
             ) : (
               <article
-                class={`flex flex-col gap-4 text-[#4f3c57] ${
+                class={`flex flex-col gap-4 text-primary-800 ${
                   item?.boxed
                     ? "rounded-[32px] bg-white p-8 shadow-lg md:p-10"
                     : ""
                 }`}
               >
                 {item?.heading && (
-                  <h3 class="text-2xl font-bold tracking-[0.01em] text-[#2e2133] md:text-[2rem]">
+                  <h3 class="text-2xl font-bold tracking-wide text-primary-900 md:text-4xl">
                     {item.heading}
                   </h3>
                 )}
