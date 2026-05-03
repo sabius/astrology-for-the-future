@@ -1,0 +1,47 @@
+---
+import { marked } from "marked";
+import DOMPurify from "isomorphic-dompurify";
+
+const { header, copy, videos } = Astro.props;
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="container">
+    {(header || copy) && (
+      <div class="text-center mb-16">
+        {header && <h2 class="text-3xl md:text-5xl font-bold mb-4">{header}</h2>}
+        {copy && <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto">{copy}</p>}
+      </div>
+    )}
+
+    <div class="flex flex-col gap-16">
+      {videos && videos.map(async (video: any, index: number) => {
+        const rawCopyHtml = await marked.parse(video.copy ?? "");
+        const cleanCopyHtml = DOMPurify.sanitize(rawCopyHtml);
+        const flexDir = index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse";
+
+        return (
+          <div class={`flex flex-col ${flexDir} gap-8 items-center`}>
+            <div class="w-full md:w-1/2 rounded-lg overflow-hidden shadow-lg aspect-video">
+              <iframe
+                class="w-full h-full"
+                src={`https://www.youtube.com/embed/${video.video_id}`}
+                title={video.title || "YouTube video player"}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+            
+            <div class="w-full md:w-1/2">
+              <div class="bg-white p-8 rounded-lg shadow-md h-full flex flex-col justify-center">
+                {video.title && <h3 class="text-2xl font-bold mb-4">{video.title}</h3>}
+                <div class="text-gray-800 text-lg leading-relaxed space-y-4" set:html={cleanCopyHtml}></div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

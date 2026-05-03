@@ -41,7 +41,7 @@ const { header, copy, image, image_alt, list_items, button } = Astro.props;
         <div class="bg-white p-8 rounded-lg shadow-md">
           {
             list_items &&
-              list_items.map(async (card_item) => {
+              list_items.map(async (card_item: { heading?: string; copy?: string }) => {
                 const rawCardHtml = await marked.parse(card_item.copy ?? "");
                 const cleanCardHtml = DOMPurify.sanitize(rawCardHtml);
 
