@@ -15,60 +15,60 @@ content:
       url: "/about"
 ---
 
-import ComponentProps from '../../../components/UI/ComponentProps.astro';
+import ComponentProps from "../../../components/UI/ComponentProps.astro";
 
 <ComponentProps
   componentName="Hero"
   props={[
     {
-      name: 'header',
-      type: 'string',
+      name: "header",
+      type: "string",
       required: false,
-      description: 'The main heading text displayed in the hero section',
-      example: '"Welcome to Astrology"'
+      description: "The main heading text displayed in the hero section",
+      example: '"Welcome to Astrology"',
     },
     {
-      name: 'copy',
-      type: 'string',
+      name: "copy",
+      type: "string",
       required: false,
-      description: 'The description or body text displayed below the header',
-      example: '"Discover your cosmic journey with personalized readings"'
+      description: "The description or body text displayed below the header",
+      example: '"Discover your cosmic journey with personalized readings"',
     },
     {
-      name: 'background_image',
-      type: 'string (URL)',
+      name: "background_image",
+      type: "string (URL)",
       required: false,
-      description: 'URL of the background image for the hero section',
-      example: '"https://example.com/image.jpg"'
+      description: "URL of the background image for the hero section",
+      example: '"https://example.com/image.jpg"',
     },
     {
-      name: 'image_alt',
-      type: 'string',
+      name: "image_alt",
+      type: "string",
       required: false,
-      description: 'Alternative text for the background image (accessibility)',
-      example: '"Beautiful starry night sky"'
+      description: "Alternative text for the background image (accessibility)",
+      example: '"Beautiful starry night sky"',
     },
     {
-      name: 'button',
-      type: 'object',
+      name: "button",
+      type: "object",
       required: false,
-      description: 'Call-to-action button configuration',
-      example: '{ text: "Get Started", url: "/contact" }'
+      description: "Call-to-action button configuration",
+      example: '{ text: "Get Started", url: "/contact" }',
     },
     {
-      name: 'button.text',
-      type: 'string',
+      name: "button.text",
+      type: "string",
       required: true,
-      description: 'Text displayed on the button',
-      example: '"Book a Reading"'
+      description: "Text displayed on the button",
+      example: '"Book a Reading"',
     },
     {
-      name: 'button.url',
-      type: 'string',
+      name: "button.url",
+      type: "string",
       required: true,
-      description: 'URL or path the button links to',
-      example: '"/booking"'
-    }
+      description: "URL or path the button links to",
+      example: '"/booking"',
+    },
   ]}
 />
 

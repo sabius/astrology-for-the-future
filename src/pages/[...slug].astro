@@ -1,34 +1,36 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
-import { components } from '../components/componentMap';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import DocsLayout from '../layouts/DocsLayout.astro';
+import { getCollection, type CollectionEntry } from "astro:content";
+import { components } from "../components/componentMap";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import DocsLayout from "../layouts/DocsLayout.astro";
 import type { GetStaticPaths } from "astro";
 
 // This is the new, simplified logic
 export const getStaticPaths = (async () => {
   // Default language configuration
-  const DEFAULT_LOCALE = 'en';
+  const DEFAULT_LOCALE = "en";
 
-  const pages = await getCollection('pages');
+  const pages = await getCollection("pages");
 
   // Show docs in development and Cloudflare Pages preview deployments (staging)
   // Hide docs only in production builds
   const isDevelopment = import.meta.env.DEV;
-  const isCloudflarePreview = import.meta.env.CF_PAGES_BRANCH && import.meta.env.CF_PAGES_BRANCH !== 'master';
+  const isCloudflarePreview =
+    import.meta.env.CF_PAGES_BRANCH &&
+    import.meta.env.CF_PAGES_BRANCH !== "master";
   const showDocs = isDevelopment || isCloudflarePreview;
 
   const filteredPages = showDocs
     ? pages
-    : pages.filter(entry => !entry.slug.includes('/docs'));
+    : pages.filter((entry) => !entry.slug.includes("/docs"));
 
   const paths = [];
 
   for (const entry of filteredPages) {
     // entry.slug will be "en/index", "es/about", etc.
     // We need to remove "index" for root pages.
-    const slug = entry.slug.endsWith('/index')
-      ? entry.slug.slice(0, -'/index'.length)
+    const slug = entry.slug.endsWith("/index")
+      ? entry.slug.slice(0, -"/index".length)
       : entry.slug;
 
     // Always create the full path with language prefix (e.g., "en/videos", "es/videos")
@@ -41,11 +43,12 @@ export const getStaticPaths = (async () => {
     if (entry.slug.startsWith(`${DEFAULT_LOCALE}/`)) {
       const slugWithoutLang = entry.slug.slice(DEFAULT_LOCALE.length + 1); // Remove "en/"
       // "index" alone means the root page — skip it so index.astro handles the redirect
-      const finalSlug = slugWithoutLang === 'index'
-        ? ''
-        : slugWithoutLang.endsWith('/index')
-          ? slugWithoutLang.slice(0, -'/index'.length)
-          : slugWithoutLang;
+      const finalSlug =
+        slugWithoutLang === "index"
+          ? ""
+          : slugWithoutLang.endsWith("/index")
+            ? slugWithoutLang.slice(0, -"/index".length)
+            : slugWithoutLang;
 
       // Only add non-empty slugs (videos, about, etc.) - empty means root "/"
       if (finalSlug) {
@@ -61,29 +64,35 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 // The entry contains the full data for the correct language
-const { entry } = Astro.props as { entry: CollectionEntry<'pages'> };
+const { entry } = Astro.props as { entry: CollectionEntry<"pages"> };
 const { data: pageData } = entry;
 const { meta, content } = pageData;
 
 // Check if this is a docs page
-const isDocsPage = entry.slug.includes('/docs');
+const isDocsPage = entry.slug.includes("/docs");
 
 // Render the body content if it exists
 const { Content } = await entry.render();
 ---
 
-{isDocsPage ? (
-  <DocsLayout title={meta.title} description={meta.description} entry={entry}>
-    <Content />
-  </DocsLayout>
-) : (
-  <BaseLayout title={meta.title} description={meta.description} image={meta.image}>
-    <main>
-      {content.map(block => {
-        const Component = components[block.component] ?? components.fallback;
+{
+  isDocsPage ? (
+    <DocsLayout title={meta.title} description={meta.description} entry={entry}>
+      <Content />
+    </DocsLayout>
+  ) : (
+    <BaseLayout
+      title={meta.title}
+      description={meta.description}
+      image={meta.image}
+    >
+      <main>
+        {content.map((block) => {
+          const Component = components[block.component] ?? components.fallback;
 
-        return <Component {...block} />;
-      })}
-    </main>
-  </BaseLayout>
-)}
+          return <Component {...block} />;
+        })}
+      </main>
+    </BaseLayout>
+  )
+}

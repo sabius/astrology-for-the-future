@@ -3,7 +3,7 @@ import { t, getCurrentLocaleFromAstro } from "../../i18n/index";
 const locale = getCurrentLocaleFromAstro(Astro);
 const getPath = (path: string, locale: string) => {
   // Always use locale prefix so links stay within the current language
-  return `/${locale}${path === '/' ? '' : path}`;
+  return `/${locale}${path === "/" ? "" : path}`;
 };
 const navItems = [
   { text: await t("nav.home", locale), href: getPath("/", locale) },

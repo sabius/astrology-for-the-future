@@ -42,8 +42,9 @@ const widths = type === "hero" ? heroWidths : baseWidths;
 
 const srcSet = isCloudinary
   ? widths
-      .map((width) =>
-        `${createCloudinaryUrl(src, ["c_scale", `w_${width}`, "f_auto", "q_auto"])} ${width}w`
+      .map(
+        (width) =>
+          `${createCloudinaryUrl(src, ["c_scale", `w_${width}`, "f_auto", "q_auto"])} ${width}w`
       )
       .join(", ")
   : undefined;
@@ -57,6 +58,7 @@ const sizes =
     ? "(max-width: 1536px) 100vw, 100vw"
     : "(max-width: 768px) 100vw, 50vw";
 ---
+
 <picture class={className}>
   {srcSet ? <source srcset={srcSet} sizes={sizes} /> : null}
   <img

@@ -20,81 +20,82 @@ content:
             legend: "Caption text for the image"
 ---
 
-import ComponentProps from '../../../components/UI/ComponentProps.astro';
+import ComponentProps from "../../../components/UI/ComponentProps.astro";
 
 <ComponentProps
   componentName="Split Content"
   props={[
     {
-      name: 'background_color',
-      type: 'string (hex color)',
+      name: "background_color",
+      type: "string (hex color)",
       required: false,
-      description: 'Background color for the entire section',
-      example: '"#f9f7fc"'
+      description: "Background color for the entire section",
+      example: '"#f9f7fc"',
     },
     {
-      name: 'columns',
-      type: 'array',
+      name: "columns",
+      type: "array",
       required: true,
-      description: 'Array of column objects (maximum 2 columns)',
-      example: '[{ items: [...] }, { items: [...] }]'
+      description: "Array of column objects (maximum 2 columns)",
+      example: "[{ items: [...] }, { items: [...] }]",
     },
     {
-      name: 'columns[].items',
-      type: 'array',
+      name: "columns[].items",
+      type: "array",
       required: true,
-      description: 'Array of content items within each column',
-      example: '[{ heading: "Title", copy: ["Text"] }]'
+      description: "Array of content items within each column",
+      example: '[{ heading: "Title", copy: ["Text"] }]',
     },
     {
-      name: 'columns[].items[].heading',
-      type: 'string',
+      name: "columns[].items[].heading",
+      type: "string",
       required: false,
-      description: 'Heading text for a content block',
-      example: '"About Our Services"'
+      description: "Heading text for a content block",
+      example: '"About Our Services"',
     },
     {
-      name: 'columns[].items[].copy',
-      type: 'string | array',
+      name: "columns[].items[].copy",
+      type: "string | array",
       required: false,
-      description: 'Body text - can be a single string or array of paragraphs',
-      example: '["First paragraph", "Second paragraph"]'
+      description: "Body text - can be a single string or array of paragraphs",
+      example: '["First paragraph", "Second paragraph"]',
     },
     {
-      name: 'columns[].items[].meta',
-      type: 'string',
+      name: "columns[].items[].meta",
+      type: "string",
       required: false,
-      description: 'Additional metadata or supplementary text',
-      example: '"Last updated: November 2025"'
+      description: "Additional metadata or supplementary text",
+      example: '"Last updated: November 2025"',
     },
     {
-      name: 'columns[].items[].image',
-      type: 'string (URL)',
+      name: "columns[].items[].image",
+      type: "string (URL)",
       required: false,
-      description: 'URL of an image to display',
-      example: '"https://example.com/photo.jpg"'
+      description: "URL of an image to display",
+      example: '"https://example.com/photo.jpg"',
     },
     {
-      name: 'columns[].items[].image_alt',
-      type: 'string',
+      name: "columns[].items[].image_alt",
+      type: "string",
       required: false,
-      description: 'Alternative text for the image',
-      example: '"Team photo in the office"'
+      description: "Alternative text for the image",
+      example: '"Team photo in the office"',
     },
     {
-      name: 'columns[].items[].legend',
-      type: 'string',
+      name: "columns[].items[].legend",
+      type: "string",
       required: false,
-      description: 'Caption text displayed below an image',
-      example: '"Photo taken in June 2025"'
+      description: "Caption text displayed below an image",
+      example: '"Photo taken in June 2025"',
     },
     {
-      name: 'columns[].items[].boxed',
-      type: 'boolean',
+      name: "columns[].items[].boxed",
+      type: "boolean",
       required: false,
-      description: 'Whether to display the content in a bordered card with shadow',
-      example: 'true'
-    }
+      description:
+        "Whether to display the content in a bordered card with shadow",
+      example: "true",
+    },
   ]}
 />
 

@@ -1,10 +1,11 @@
 ---
-import BaseLayout from './BaseLayout.astro';
-import { components } from '../components/componentMap';
+import BaseLayout from "./BaseLayout.astro";
+import { components } from "../components/componentMap";
 
 interface Props {
   title: string;
   description: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   entry: any;
 }
 
@@ -14,22 +15,28 @@ const { content } = pageData;
 
 // List of all available components for the sidebar
 const componentsList = [
-  { name: 'Hero', slug: 'heroes' },
-  { name: 'Split Content', slug: 'split-content' },
-  { name: 'Feature Card', slug: 'feature-card' },
-  { name: 'Quote', slug: 'quote' },
-  { name: 'CTA', slug: 'cta' },
+  { name: "Hero", slug: "heroes" },
+  { name: "Split Content", slug: "split-content" },
+  { name: "Feature Card", slug: "feature-card" },
+  { name: "Quote", slug: "quote" },
+  { name: "CTA", slug: "cta" },
 ];
 
 // Get current page from URL
 const currentPath = Astro.url.pathname;
 ---
 
-<BaseLayout title={title} description={description} image={pageData?.meta?.image}>
+<BaseLayout
+  title={title}
+  description={description}
+  image={pageData?.meta?.image}
+>
   <div class="docs-container min-h-screen bg-gray-50">
     <div class="flex">
       <!-- Sidebar Navigation -->
-      <aside class="docs-sidebar w-64 bg-white border-r border-gray-200 min-h-screen sticky top-0 overflow-y-auto">
+      <aside
+        class="docs-sidebar w-64 bg-white border-r border-gray-200 min-h-screen sticky top-0 overflow-y-auto"
+      >
         <div class="p-6">
           <h2 class="text-xl font-bold text-gray-800 mb-2">Component Docs</h2>
           <p class="text-sm text-gray-600 mb-6">Browse available components</p>
@@ -40,9 +47,9 @@ const currentPath = Astro.url.pathname;
                 <a
                   href="/en/docs"
                   class={`block px-4 py-2 rounded-lg transition-colors ${
-                    currentPath === '/en/docs' || currentPath === '/en/docs/'
-                      ? 'bg-purple-100 text-purple-800 font-semibold'
-                      : 'text-gray-700 hover:bg-gray-100'
+                    currentPath === "/en/docs" || currentPath === "/en/docs/"
+                      ? "bg-purple-100 text-purple-800 font-semibold"
+                      : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
                   Overview
@@ -50,24 +57,28 @@ const currentPath = Astro.url.pathname;
               </li>
 
               <li class="pt-4">
-                <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                <p
+                  class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2"
+                >
                   Components
                 </p>
                 <ul class="space-y-1">
-                  {componentsList.map((component) => (
-                    <li>
-                      <a
-                        href={`/en/docs/${component.slug}`}
-                        class={`block px-4 py-2 rounded-lg transition-colors ${
-                          currentPath.includes(`/docs/${component.slug}`)
-                            ? 'bg-purple-100 text-purple-800 font-semibold'
-                            : 'text-gray-700 hover:bg-gray-100'
-                        }`}
-                      >
-                        {component.name}
-                      </a>
-                    </li>
-                  ))}
+                  {
+                    componentsList.map((component) => (
+                      <li>
+                        <a
+                          href={`/en/docs/${component.slug}`}
+                          class={`block px-4 py-2 rounded-lg transition-colors ${
+                            currentPath.includes(`/docs/${component.slug}`)
+                              ? "bg-purple-100 text-purple-800 font-semibold"
+                              : "text-gray-700 hover:bg-gray-100"
+                          }`}
+                        >
+                          {component.name}
+                        </a>
+                      </li>
+                    ))
+                  }
                 </ul>
               </li>
             </ul>
@@ -80,24 +91,29 @@ const currentPath = Astro.url.pathname;
         <div class="max-w-5xl mx-auto">
           <!-- Page Header -->
           <div class="mb-8">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h1>
-            {description && (
-              <p class="text-xl text-gray-600">{description}</p>
-            )}
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {title}
+            </h1>
+            {description && <p class="text-xl text-gray-600">{description}</p>}
           </div>
 
           <!-- Component Preview Section -->
-          {content && content.length > 0 && (
-            <div class="component-preview-section mb-12">
-              <h2 class="text-2xl font-bold text-gray-800 mb-4">Live Preview</h2>
-              <div class="border-2 border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm">
-                {content.map(block => {
-                  const Component = components[block.component] ?? components.fallback;
-                  return <Component {...block} />;
-                })}
+          {
+            content && content.length > 0 && (
+              <div class="component-preview-section mb-12">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                  Live Preview
+                </h2>
+                <div class="border-2 border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm">
+                  {content.map((block) => {
+                    const Component =
+                      components[block.component] ?? components.fallback;
+                    return <Component {...block} />;
+                  })}
+                </div>
               </div>
-            </div>
-          )}
+            )
+          }
 
           <!-- Slot for additional documentation content -->
           <div class="documentation-content prose prose-lg max-w-none">

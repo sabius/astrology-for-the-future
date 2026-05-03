@@ -22,88 +22,88 @@ content:
       url: "/services"
 ---
 
-import ComponentProps from '../../../components/UI/ComponentProps.astro';
+import ComponentProps from "../../../components/UI/ComponentProps.astro";
 
 <ComponentProps
   componentName="Feature Card"
   props={[
     {
-      name: 'header',
-      type: 'string',
+      name: "header",
+      type: "string",
       required: false,
-      description: 'Main heading for the feature section',
-      example: '"Our Services"'
+      description: "Main heading for the feature section",
+      example: '"Our Services"',
     },
     {
-      name: 'copy',
-      type: 'string',
+      name: "copy",
+      type: "string",
       required: false,
-      description: 'Introductory text or description',
-      example: '"Explore our comprehensive astrology offerings"'
+      description: "Introductory text or description",
+      example: '"Explore our comprehensive astrology offerings"',
     },
     {
-      name: 'image',
-      type: 'string (URL)',
+      name: "image",
+      type: "string (URL)",
       required: false,
-      description: 'URL of the featured image',
-      example: '"https://example.com/feature.jpg"'
+      description: "URL of the featured image",
+      example: '"https://example.com/feature.jpg"',
     },
     {
-      name: 'image_alt',
-      type: 'string',
+      name: "image_alt",
+      type: "string",
       required: false,
-      description: 'Alternative text for the image',
-      example: '"Astrology consultation room"'
+      description: "Alternative text for the image",
+      example: '"Astrology consultation room"',
     },
     {
-      name: 'list_items',
-      type: 'array',
+      name: "list_items",
+      type: "array",
       required: false,
-      description: 'Array of feature items to display',
-      example: '[{ heading: "Title", copy: "Description" }]'
+      description: "Array of feature items to display",
+      example: '[{ heading: "Title", copy: "Description" }]',
     },
     {
-      name: 'list_items[].heading',
-      type: 'string',
+      name: "list_items[].heading",
+      type: "string",
       required: false,
-      description: 'Heading for each list item',
-      example: '"24/7 Availability"'
+      description: "Heading for each list item",
+      example: '"24/7 Availability"',
     },
     {
-      name: 'list_items[].copy',
-      type: 'string',
+      name: "list_items[].copy",
+      type: "string",
       required: false,
-      description: 'Description text for each list item',
-      example: '"Access readings anytime, anywhere"'
+      description: "Description text for each list item",
+      example: '"Access readings anytime, anywhere"',
     },
     {
-      name: 'button',
-      type: 'object',
+      name: "button",
+      type: "object",
       required: false,
-      description: 'Optional call-to-action button',
-      example: '{ text: "Get Started", url: "/signup" }'
+      description: "Optional call-to-action button",
+      example: '{ text: "Get Started", url: "/signup" }',
     },
     {
-      name: 'button.text',
-      type: 'string',
+      name: "button.text",
+      type: "string",
       required: true,
-      description: 'Text displayed on the button',
-      example: '"View Details"'
+      description: "Text displayed on the button",
+      example: '"View Details"',
     },
     {
-      name: 'button.url',
-      type: 'string',
+      name: "button.url",
+      type: "string",
       required: true,
-      description: 'URL or path the button links to',
-      example: '"/features"'
+      description: "URL or path the button links to",
+      example: '"/features"',
     },
     {
-      name: 'button.variant',
-      type: 'string',
+      name: "button.variant",
+      type: "string",
       required: false,
-      description: 'Button style variant',
-      example: '"primary"'
-    }
+      description: "Button style variant",
+      example: '"primary"',
+    },
   ]}
 />
 
