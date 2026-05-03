@@ -7,26 +7,45 @@ meta:
 content:
   - component: "hero"
     header: "Contact"
-    copy: "Book a reading"
+    copy: "Begin your journey through the stars today. Book a personalized reading."
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
     image_alt: "Starry night sky"
+    button:
+      text: "Book a Reading"
+      url: "mailto:astrologyforthefuture@gmail.com"
 
-  - component: "split-content"
-    header: "astrologyforthefuture@gmail.com"
-    background_color: "#f8f9fa"
-    columns:
-      - items:
-          - heading: "Spanish"
-            copy: "Consultas disponibles en español"
-          - heading: "English"
-            copy: "Readings available in English"
+  - component: "feature-grid"
+    header: "Get in Touch"
+    copy: "Whether you have questions about a reading or want to book a session, I'm here to guide you."
+    cards:
+      - icon: "✉️"
+        heading: "Email"
+        copy: "astrologyforthefuture@gmail.com"
+        button:
+          text: "Send Email"
+          url: "mailto:astrologyforthefuture@gmail.com"
+          style: "primary"
+      - icon: "📱"
+        heading: "WhatsApp"
+        copy: "Connect with me directly for quick inquiries."
+        button:
+          text: "Message Me"
+          url: "https://wa.me/1234567890"
+          style: "secondary"
+      - icon: "🌍"
+        heading: "Global Reach"
+        copy: "Online sessions available worldwide via Zoom, recorded for you."
+        button:
+          text: "Learn More"
+          url: "#sessions"
+          style: "outline"
 
   - component: "feature-card"
-    header: "From anywhere in the world."
-    copy: "Online recorded sessions"
+    header: "Online Sessions"
+    copy: "From anywhere in the world."
     list_items:
       - heading: "VIA ZOOM"
-        copy: "Convenient online sessions that you can revisit anytime"
+        copy: "Convenient online sessions that you can revisit anytime. All readings are recorded so you can focus on the experience."
     button:
       text: "Bookings"
       url: "mailto:astrologyforthefuture@gmail.com"
@@ -41,7 +60,7 @@ content:
       - copy: "Surprise someone special with an astrology reading gift card."
       - copy: "It's more than a gift—it's an invitation to explore their purpose, potential, and path guided by the universe."
     button:
-      text: "Info: astrologyforthefuture@gmail.com"
+      text: "Gift Card Info"
       url: "mailto:astrologyforthefuture@gmail.com"
       style: "secondary"
 ---

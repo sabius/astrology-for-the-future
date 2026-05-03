@@ -1,6 +1,23 @@
 ---
 import Button from "../UI/Button.astro";
 
+interface Card {
+  icon?: string;
+  heading?: string;
+  copy?: string;
+  button?: {
+    url: string;
+    text: string;
+    style?: "primary" | "secondary" | "accent" | "outline";
+  };
+}
+
+interface Props {
+  header?: string;
+  copy?: string;
+  cards?: Card[];
+}
+
 const { header, copy, cards } = Astro.props;
 ---
 
@@ -22,7 +39,7 @@ const { header, copy, cards } = Astro.props;
     >
       {
         cards &&
-          cards.map((card: any, index: number) => (
+          cards.map((card, index: number) => (
             <div
               class={`bg-white rounded-[32px] shadow-lg p-8 md:p-10 hover:shadow-xl transition-shadow duration-300 ${cards.length === 3 && index === 2 ? "md:col-span-2 md:max-w-md md:mx-auto lg:col-span-1 lg:max-w-none" : ""}`}
             >

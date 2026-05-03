@@ -34,7 +34,12 @@ const normalizedColumns = columns.slice(0, 2).map((column) => ({
     }
   </div>
   <div
-    class="grid w-full max-w-5xl grid-cols-1 gap-10 md:grid-cols-2 md:gap-14 mx-auto"
+    class:list={[
+      "grid w-full max-w-5xl mx-auto gap-10 md:gap-14",
+      normalizedColumns.length > 1
+        ? "grid-cols-1 md:grid-cols-2"
+        : "grid-cols-1 max-w-3xl",
+    ]}
   >
     {
       normalizedColumns.map((column) => (
@@ -56,11 +61,13 @@ const normalizedColumns = columns.slice(0, 2).map((column) => ({
               </figure>
             ) : (
               <article
-                class={`flex flex-col gap-4 text-primary-800 ${
+                class:list={[
+                  "flex flex-col gap-4 text-primary-800",
                   item?.boxed
                     ? "rounded-[32px] bg-white p-8 shadow-lg md:p-10"
-                    : ""
-                }`}
+                    : "",
+                  normalizedColumns.length === 1 && "text-center",
+                ]}
               >
                 {item?.heading && (
                   <h3 class="text-2xl font-bold tracking-wide text-primary-900 md:text-4xl">

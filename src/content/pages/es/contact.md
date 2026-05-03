@@ -7,26 +7,45 @@ meta:
 content:
   - component: "hero"
     header: "Contacto"
-    copy: "Reserva una lectura"
+    copy: "Comienza tu viaje a través de las estrellas hoy. Reserva una lectura personalizada."
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
     image_alt: "Cielo nocturno estrellado"
+    button:
+      text: "Reservar una Lectura"
+      url: "mailto:astrologyforthefuture@gmail.com"
 
-  - component: "split-content"
-    header: "astrologyforthefuture@gmail.com"
-    background_color: "#f8f9fa"
-    columns:
-      - items:
-          - heading: "Español"
-            copy: "Consultas disponibles en español"
-          - heading: "English"
-            copy: "Lecturas disponibles en inglés"
+  - component: "feature-grid"
+    header: "Ponte en Contacto"
+    copy: "Ya sea que tengas preguntas sobre una lectura o quieras reservar una sesión, estoy aquí para guiarte."
+    cards:
+      - icon: "✉️"
+        heading: "Correo Electrónico"
+        copy: "astrologyforthefuture@gmail.com"
+        button:
+          text: "Enviar Correo"
+          url: "mailto:astrologyforthefuture@gmail.com"
+          style: "primary"
+      - icon: "📱"
+        heading: "WhatsApp"
+        copy: "Conéctate conmigo directamente para consultas rápidas."
+        button:
+          text: "Mensaje"
+          url: "https://wa.me/1234567890"
+          style: "secondary"
+      - icon: "🌍"
+        heading: "Alcance Global"
+        copy: "Sesiones en línea disponibles en todo el mundo a través de Zoom, grabadas para ti."
+        button:
+          text: "Saber Más"
+          url: "#sesiones"
+          style: "outline"
 
   - component: "feature-card"
-    header: "Desde cualquier parte del mundo."
-    copy: "Sesiones grabadas en línea"
+    header: "Sesiones en Línea"
+    copy: "Desde cualquier parte del mundo."
     list_items:
       - heading: "VÍA ZOOM"
-        copy: "Sesiones en línea convenientes que puedes volver a ver en cualquier momento"
+        copy: "Sesiones en línea convenientes que puedes volver a ver en cualquier momento. Todas las lecturas se graban para que puedas concentrarte en la experiencia."
     button:
       text: "Reservas"
       url: "mailto:astrologyforthefuture@gmail.com"
@@ -41,7 +60,7 @@ content:
       - copy: "Sorprende a alguien especial con una tarjeta de regalo de lectura astrológica."
       - copy: "Es más que un regalo: es una invitación a explorar su propósito, potencial y camino guiado por el universo."
     button:
-      text: "Info: astrologyforthefuture@gmail.com"
+      text: "Info Tarjeta Regalo"
       url: "mailto:astrologyforthefuture@gmail.com"
       style: "secondary"
 ---
