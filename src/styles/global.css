@@ -2,7 +2,7 @@
 
 @theme {
   /* Font */
-  --font-sans: 'Cormorant Garamond Variable', serif;
+  --font-sans: "Cormorant Garamond Variable", serif;
 
   /* Colors */
   --color-background-gray: 239, 234, 246;

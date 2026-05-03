@@ -10,25 +10,25 @@ content:
     author: "Sarah Johnson"
 ---
 
-import ComponentProps from '../../../components/UI/ComponentProps.astro';
+import ComponentProps from "../../../components/UI/ComponentProps.astro";
 
 <ComponentProps
   componentName="Quote"
   props={[
     {
-      name: 'quote',
-      type: 'string',
+      name: "quote",
+      type: "string",
       required: true,
-      description: 'The quote text to display',
-      example: '"Astrology is the poetry of the cosmos"'
+      description: "The quote text to display",
+      example: '"Astrology is the poetry of the cosmos"',
     },
     {
-      name: 'author',
-      type: 'string',
+      name: "author",
+      type: "string",
       required: false,
-      description: 'Name of the person being quoted',
-      example: '"Jane Smith"'
-    }
+      description: "Name of the person being quoted",
+      example: '"Jane Smith"',
+    },
   ]}
 />
 

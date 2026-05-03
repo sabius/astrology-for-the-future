@@ -1,15 +1,10 @@
 ---
-import Button from '../UI/Button.astro';
-import ResponsivePicture from '../UI/ResponsivePicture.astro';
+import Button from "../UI/Button.astro";
+import ResponsivePicture from "../UI/ResponsivePicture.astro";
 
-const {
-  header,
-  copy,
-  button,
-  background_image,
-} = Astro.props;
+const { header, copy, button, background_image } = Astro.props;
 
-const heroImageAlt = header ?? '';
+const heroImageAlt = header ?? "";
 ---
 
 <section
@@ -17,64 +12,74 @@ const heroImageAlt = header ?? '';
 >
   <script is:inline>
     // Progressive enhancement: Add loading state only if JS is enabled
-    document.currentScript.parentElement.classList.add('is-loading');
+    document.currentScript.parentElement.classList.add("is-loading");
   </script>
-  {background_image && (
-    <div class="hero-bg absolute inset-0 transition-opacity duration-1000 ease-in-out">
-      <ResponsivePicture
-        src={background_image}
-        alt={heroImageAlt}
-        class="block h-full w-full"
-        imageClass="h-full w-full object-cover"
-        type="hero"
-      />
-      <div class="absolute inset-0" aria-hidden="true"></div>
-    </div>
-  )}
-  <div class="hero-content container relative z-10 transition-all duration-1000 ease-out">
-    {header && copy && button &&
-      <div class="max-w-3xl text-white bg-gray-900/50 backdrop-blur-sm p-10 rounded-md">
-        {header && <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">{header}</h1>}
-        {copy && <p class="text-xl md:text-2xl mb-8">{copy}</p>}
-
-        {button && <div class="flex flex-wrap gap-4">
-          {
-            button && (
-              <Button href={button.url} variant="primary" size="lg">
-                {button.text}
-              </Button>
-            )
-          }
-        </div>}
+  {
+    background_image && (
+      <div class="hero-bg absolute inset-0 transition-opacity duration-1000 ease-in-out">
+        <ResponsivePicture
+          src={background_image}
+          alt={heroImageAlt}
+          class="block h-full w-full"
+          imageClass="h-full w-full object-cover"
+          type="hero"
+        />
+        <div class="absolute inset-0" aria-hidden="true" />
       </div>
+    )
+  }
+  <div
+    class="hero-content container relative z-10 transition-all duration-1000 ease-out"
+  >
+    {
+      header && copy && button && (
+        <div class="max-w-3xl text-white bg-gray-900/50 backdrop-blur-sm p-10 rounded-md">
+          {header && (
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">
+              {header}
+            </h1>
+          )}
+          {copy && <p class="text-xl md:text-2xl mb-8">{copy}</p>}
+
+          {button && (
+            <div class="flex flex-wrap gap-4">
+              {button && (
+                <Button href={button.url} variant="primary" size="lg">
+                  {button.text}
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
+      )
     }
   </div>
 </section>
 
 <script>
-  const heroSections = document.querySelectorAll('.hero-section');
+  const heroSections = document.querySelectorAll(".hero-section");
 
   const observerOptions = {
     root: null, // viewport
-    rootMargin: '0px',
-    threshold: 0.2 // Trigger when 20% visible
+    rootMargin: "0px",
+    threshold: 0.2, // Trigger when 20% visible
   };
 
   const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const heroSection = entry.target;
-        const bgContainer = heroSection.querySelector('.hero-bg');
-        const bgImage = bgContainer?.querySelector('img');
+        const bgContainer = heroSection.querySelector(".hero-bg");
+        const bgImage = bgContainer?.querySelector("img");
 
         const reveal = () => {
-          heroSection.classList.remove('is-loading');
+          heroSection.classList.remove("is-loading");
         };
 
         if (bgImage && bgImage.complete) {
           reveal();
         } else if (bgImage) {
-          bgImage.addEventListener('load', reveal);
+          bgImage.addEventListener("load", reveal);
         } else {
           // Fallback if no image
           reveal();
@@ -86,7 +91,7 @@ const heroImageAlt = header ?? '';
     });
   }, observerOptions);
 
-  heroSections.forEach(section => {
+  heroSections.forEach((section) => {
     observer.observe(section);
   });
 </script>

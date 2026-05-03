@@ -6,7 +6,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "install:ext": "code --install-extension astro-build.astro-vscode --install-extension bradlc.vscode-tailwindcss --install-extension EditorConfig.EditorConfig --install-extension eamodio.gitlens --install-extension vscode-icons-team.vscode-icons --install-extension esbenp.prettier-vscode --install-extension dbaeumer.vscode-eslint"
   },
   "dependencies": {
     "@fontsource-variable/cormorant-garamond": "^5.2.4",
@@ -20,8 +23,16 @@
     "stylus": "^0.64.0"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.59.1",
+    "@typescript-eslint/parser": "^8.59.1",
     "autoprefixer": "^10.4.21",
+    "eslint": "^10.3.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "globals": "^17.6.0",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.12"
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "tailwindcss": "^4.1.12",
+    "typescript-eslint": "^8.59.1"
   }
 }

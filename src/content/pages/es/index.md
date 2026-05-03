@@ -50,7 +50,6 @@ content:
       - heading: "Astrología Predictiva"
         copy: "Navega los próximos períodos de vida con confianza usando tránsitos, progresiones y retornos solares."
 
-
   # Block 2: A Split Content Section
   - component: "split-content"
     header: "Mi Experiencia"
