@@ -7,7 +7,7 @@ When building or modifying components in this project, you **must strictly adher
 - **Primary Font**: `Cormorant Garamond Variable` (Serif).
 - **Fallback**: Built-in sans/serif fallbacks as configured in Tailwind.
 - **Sizing**: Use standard Tailwind typography utilities (`text-sm`, `text-base`, `text-lg`, `text-xl`, `text-2xl`, `text-3xl`, `text-4xl`, `text-5xl`, etc.).
-- **Tracking/Spacing**: Use standard utilities (`tracking-tight`, `tracking-normal`, `tracking-wide`). 
+- **Tracking/Spacing**: Use standard utilities (`tracking-tight`, `tracking-normal`, `tracking-wide`).
 - 🚫 **NEVER** use arbitrary font sizes or letter spacing (e.g., `text-[2rem]`, `tracking-[0.01em]`).
 
 ## 2. Color Palette (The "Primary" Theme)
@@ -16,7 +16,7 @@ The project has a unified astrology-themed purple/violet palette defined in `src
 
 - **Backgrounds**: `--color-background-gray` mapped to a soft purple-gray.
 - **Brand Colors**: `--color-brand-whatsapp` (`#25D366`).
-- **Primary Scale**: 
+- **Primary Scale**:
   - `primary-50` to `primary-400`: Light purple tints (used for soft backgrounds, active menu states).
   - `primary-500` to `primary-700`: Vibrant purples (used for accents, buttons, and hover states). `primary-600` is the main accent color.
   - `primary-800` to `primary-950`: Dark desaturated purples (used for standard text, headings, and high-contrast elements).
