@@ -59,8 +59,8 @@ const terms = await t("footer.terms", locale);
         </ul>
       </div>
       <div class="flex justify-center">
-        <a class="pr-6" href="/en/">English</a>
-        <a class="pl-6" href="/es/">Español</a>
+        <a class="pr-6" href={Astro.url.pathname.replace(/^\/(en|es)/, "/en")}>English</a>
+        <a class="pl-6" href={Astro.url.pathname.replace(/^\/(en|es)/, "/es")}>Español</a>
       </div>
     </div>
 

@@ -99,6 +99,19 @@ const imageOverlayBlock = z.object({
   image_alt: z.string().optional(),
 });
 
+const videoSectionBlock = z.object({
+  component: z.literal("video-section"),
+  header: z.string().optional(),
+  copy: z.string().optional(),
+  videos: z.array(
+    z.object({
+      video_id: z.string(),
+      title: z.string().optional(),
+      copy: z.string().optional(),
+    })
+  ).optional(),
+});
+
 // Define the main collection for our pages
 const pagesCollection = defineCollection({
   schema: z.object({
@@ -117,6 +130,7 @@ const pagesCollection = defineCollection({
         quoteBlock,
         imageOverlayBlock,
         ctaBlock,
+        videoSectionBlock,
       ])
     ),
   }),
