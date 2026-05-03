@@ -22,23 +22,26 @@ const { header, copy, image, image_alt, list_items, button } = Astro.props;
       )
     }
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-      <div
-        class="bg-gray-200 rounded-lg overflow-hidden aspect-square max-w-[26rem] md:max-h-[600px] mx-auto md:mx-auto w-full"
-      >
-        {
-          image && (
+    <div
+      class:list={[
+        "grid gap-8 items-center",
+        image ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1 max-w-3xl mx-auto",
+      ]}
+    >
+      {
+        image && (
+          <div class="bg-gray-200 rounded-lg overflow-hidden aspect-square max-w-[26rem] md:max-h-[600px] mx-auto w-full">
             <ResponsivePicture
               src={image}
               alt={image_alt}
               imageClass="w-full h-full object-cover object-center"
             />
-          )
-        }
-      </div>
+          </div>
+        )
+      }
 
-      <div>
-        <div class="bg-white p-8 rounded-lg shadow-md">
+      <div class:list={[!image && "text-center flex flex-col items-center"]}>
+        <div class="bg-white p-8 rounded-lg shadow-md w-full">
           {
             list_items &&
               list_items.map(async (card_item: { heading?: string; copy?: string }) => {
