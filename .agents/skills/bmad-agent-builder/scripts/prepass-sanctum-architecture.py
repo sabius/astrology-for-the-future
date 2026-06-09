@@ -75,7 +75,7 @@ FIRST_BREATH_CONFIG_SECTIONS = [
 
 def count_content_lines(file_path: Path) -> int:
     """Count non-blank, non-frontmatter lines in a markdown file."""
-    content = file_path.read_text()
+    content = file_path.read_text(encoding='utf-8')
 
     # Strip frontmatter
     stripped = re.sub(r"^---\s*\n.*?\n---\s*\n", "", content, count=1, flags=re.DOTALL)
@@ -89,7 +89,7 @@ def extract_h2_h3_sections(file_path: Path) -> list[str]:
     sections = []
     if not file_path.exists():
         return sections
-    for line in file_path.read_text().split("\n"):
+    for line in file_path.read_text(encoding='utf-8').split("\n"):
         match = re.match(r"^#{2,3}\s+(.+)", line)
         if match:
             sections.append(match.group(1).strip())
@@ -99,7 +99,7 @@ def extract_h2_h3_sections(file_path: Path) -> list[str]:
 def parse_frontmatter(file_path: Path) -> dict:
     """Extract YAML frontmatter from a markdown file."""
     meta = {}
-    content = file_path.read_text()
+    content = file_path.read_text(encoding='utf-8')
     match = re.match(r"^---\s*\n(.*?)\n---", content, re.DOTALL)
     if not match:
         return meta
@@ -122,7 +122,7 @@ def extract_init_script_params(script_path: Path) -> dict:
     if not script_path.exists():
         return params
 
-    content = script_path.read_text()
+    content = script_path.read_text(encoding='utf-8')
 
     # SKILL_NAME
     match = re.search(r'SKILL_NAME\s*=\s*["\']([^"\']+)["\']', content)
@@ -375,7 +375,7 @@ def output_json(data: dict, output_path: str | None) -> None:
     json_str = json.dumps(data, indent=2)
     if output_path:
         Path(output_path).parent.mkdir(parents=True, exist_ok=True)
-        Path(output_path).write_text(json_str + "\n")
+        Path(output_path).write_text(json_str + "\n", encoding='utf-8')
         print(f"Wrote: {output_path}", file=sys.stderr)
     else:
         print(json_str)

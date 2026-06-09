@@ -735,7 +735,7 @@ def main() -> int:
 
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(output)
+        args.output.write_text(output, encoding='utf-8')
         print(f"Results written to {args.output}", file=sys.stderr)
     else:
         print(output)
