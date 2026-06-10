@@ -8,7 +8,7 @@ interface Card {
   button?: {
     url: string;
     text: string;
-    style?: "primary" | "secondary" | "accent" | "outline";
+    style?: string;
   };
 }
 
@@ -19,6 +19,8 @@ interface Props {
 }
 
 const { header, copy, cards } = Astro.props;
+
+const allowedVariants = new Set(["primary", "secondary", "accent", "outline"]);
 ---
 
 <section class="section-feature-grid py-16">
@@ -62,7 +64,7 @@ const { header, copy, cards } = Astro.props;
                 <div class="flex justify-center">
                   <Button
                     href={card.button.url}
-                    variant={card.button.style || "secondary"}
+                    variant={allowedVariants.has(card.button.style ?? "") ? card.button.style as "primary" | "secondary" | "accent" | "outline" : "secondary"}
                   >
                     {card.button.text}
                   </Button>
