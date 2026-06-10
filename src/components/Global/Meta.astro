@@ -13,7 +13,8 @@ const site = Astro.site?.toString();
 const pathname = Astro.url?.pathname ?? "/";
 
 function normalizePath(path: string): string {
-  if (path === "/en" || path === "/en/") return "/";
+  // Keep the English homepage canonical on /en because / is a language redirect route.
+  if (path === "/en" || path === "/en/") return "/en";
   if (path.startsWith("/en/")) return path.slice(3);
   return path;
 }
