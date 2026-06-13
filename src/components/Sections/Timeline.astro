@@ -1,0 +1,90 @@
+---
+interface TimelineItem {
+  date?: string;
+  heading?: string;
+  copy?: string;
+  current?: boolean;
+}
+
+interface Props {
+  header?: string;
+  eyebrow?: string;
+  items?: TimelineItem[];
+}
+
+const { header, eyebrow, items = [] } = Astro.props;
+---
+
+<section
+  data-reveal
+  class="border-t border-gold/10 bg-gradient-to-b from-bg-panel to-bg-950"
+>
+  <div class="container mx-auto px-6 py-24 md:py-28">
+    <div class="mb-16 text-center">
+      {
+        eyebrow && (
+          <div class="mb-4 text-[11px] uppercase tracking-[0.3em] text-gold">
+            {eyebrow}
+          </div>
+        )
+      }
+      {
+        header && (
+          <h2 class="m-0 font-serif text-[clamp(32px,4.2vw,56px)] font-medium text-ivory-200">
+            {header}
+          </h2>
+        )
+      }
+    </div>
+
+    <div class="relative">
+      <!-- Horizontal spine (desktop) -->
+      <div
+        class="absolute left-0 right-0 top-1.5 hidden h-px md:block"
+        style="background:linear-gradient(90deg,transparent,rgba(201,162,39,.5) 10%,rgba(201,162,39,.5) 90%,transparent);"
+        aria-hidden="true"
+      >
+      </div>
+      <!-- Vertical spine (mobile) -->
+      <div
+        class="absolute bottom-1.5 left-[5px] top-1.5 w-px md:hidden"
+        style="background:linear-gradient(180deg,transparent,rgba(201,162,39,.55) 12%,rgba(201,162,39,.55) 88%,transparent);"
+        aria-hidden="true"
+      >
+      </div>
+
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-8">
+        {
+          items.map((item) => (
+            <div class="relative pl-14 md:pl-0 md:pt-9">
+              <span
+                class:list={[
+                  "absolute left-0 top-1.5 h-[13px] w-[13px] rounded-full border border-gold md:top-0",
+                  item.current
+                    ? "bg-gold shadow-[0_0_0_4px_rgba(201,162,39,.2)]"
+                    : "bg-bg-950 shadow-[0_0_0_4px_rgba(201,162,39,.12)]",
+                ]}
+                aria-hidden="true"
+              />
+              {item.date && (
+                <div class="mb-2.5 text-xs tracking-[0.16em] text-gold">
+                  {item.date}
+                </div>
+              )}
+              {item.heading && (
+                <h3 class="m-0 mb-1.5 font-serif text-[22px] font-medium leading-tight text-ivory-200">
+                  {item.heading}
+                </h3>
+              )}
+              {item.copy && (
+                <p class="m-0 text-[13px] font-light leading-relaxed text-muted-2">
+                  {item.copy}
+                </p>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

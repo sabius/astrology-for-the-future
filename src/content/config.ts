@@ -4,7 +4,9 @@ const heroBlock = z.object({
   component: z.literal("hero"),
   header: z.string().optional(),
   copy: z.string().optional(),
+  eyebrow: z.string().optional(),
   button: z.object({ text: z.string(), url: z.string() }).optional(),
+  link: z.object({ text: z.string(), url: z.string() }).optional(),
   background_image: z.string().optional(),
   image_alt: z.string().optional(),
 });
@@ -35,8 +37,11 @@ const splitContentBlock = z.object({
 
 const featureCardBlock = z.object({
   component: z.literal("feature-card"),
+  id: z.string().optional(),
   header: z.string().optional(),
   copy: z.string().optional(),
+  eyebrow: z.string().optional(),
+  pullquote: z.string().optional(),
   image: z.string().optional(),
   image_alt: z.string().optional(),
   list_items: z
@@ -44,6 +49,14 @@ const featureCardBlock = z.object({
       z.object({
         heading: z.string().optional(),
         copy: z.string().optional(),
+      })
+    )
+    .optional(),
+  stats: z
+    .array(
+      z.object({
+        figure: z.string().optional(),
+        label: z.string().optional(),
       })
     )
     .optional(),
@@ -56,11 +69,14 @@ const quoteBlock = z.object({
   component: z.literal("quote"),
   quote: z.string(),
   author: z.string().optional(),
+  background_image: z.string().optional(),
 });
 
 const ctaBlock = z.object({
   component: z.literal("cta"),
   header: z.string().optional(),
+  eyebrow: z.string().optional(),
+  copy: z.string().optional(),
   button: z.object({
     text: z.string(),
     url: z.string(),
@@ -68,10 +84,27 @@ const ctaBlock = z.object({
   }),
 });
 
+const timelineBlock = z.object({
+  component: z.literal("timeline"),
+  header: z.string().optional(),
+  eyebrow: z.string().optional(),
+  items: z
+    .array(
+      z.object({
+        date: z.string().optional(),
+        heading: z.string().optional(),
+        copy: z.string().optional(),
+        current: z.boolean().optional(),
+      })
+    )
+    .optional(),
+});
+
 const featureGridBlock = z.object({
   component: z.literal("feature-grid"),
   header: z.string().optional(),
   copy: z.string().optional(),
+  eyebrow: z.string().optional(),
   cards: z
     .array(
       z.object({
@@ -131,6 +164,7 @@ const pagesCollection = defineCollection({
         imageOverlayBlock,
         ctaBlock,
         videoSectionBlock,
+        timelineBlock,
       ])
     ),
   }),

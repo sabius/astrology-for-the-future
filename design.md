@@ -1,39 +1,70 @@
 # Design System & Styling Rules for LLM Agents
 
-When building or modifying components in this project, you **must strictly adhere** to the established design system. This project uses **Tailwind CSS v4** and requires the use of predefined utility classes over arbitrary values to ensure visual consistency across the entire site.
+This site uses a **celestial, deep-navy + gold, editorial** aesthetic (the "Star Map" redesign,
+Direction B). It is built with **Astro 5 + Tailwind CSS v4**. Design tokens live in
+`src/styles/global.css` under `@theme`. Prefer the predefined token utilities over hardcoded hex.
 
 ## 1. Typography
 
-- **Primary Font**: `Cormorant Garamond Variable` (Serif).
-- **Fallback**: Built-in sans/serif fallbacks as configured in Tailwind.
-- **Sizing**: Use standard Tailwind typography utilities (`text-sm`, `text-base`, `text-lg`, `text-xl`, `text-2xl`, `text-3xl`, `text-4xl`, `text-5xl`, etc.).
-- **Tracking/Spacing**: Use standard utilities (`tracking-tight`, `tracking-normal`, `tracking-wide`).
-- 🚫 **NEVER** use arbitrary font sizes or letter spacing (e.g., `text-[2rem]`, `tracking-[0.01em]`).
+Editorial contrast between two families:
 
-## 2. Color Palette (The "Primary" Theme)
+- **Display serif — Cormorant Garamond** (`font-serif`, self-hosted via `@fontsource-variable`).
+  Used for all headings, numerals, pull-quotes, the Kepler quote, stat figures, and the logo wordmark.
+  Headings (`h1`–`h6`) default to `font-serif` / weight 500 globally.
+- **Sans — Work Sans** (`font-sans`, the default body font, loaded via Google Fonts in `BaseLayout`).
+  Used for body copy, eyebrows/labels, nav, buttons, captions.
 
-The project has a unified astrology-themed purple/violet palette defined in `src/styles/global.css`. You must use the `primary-*` classes instead of hardcoding hex colors.
+Fluid display sizes use `clamp()` (e.g. hero `clamp(54px,7vw,104px)`, section H2
+`clamp(32px,4.2vw,56px)`). Eyebrows/labels: uppercase Work Sans, 11–12px, tracking `.26em`–`.42em`,
+color `--color-gold`. Buttons: uppercase, weight 600, tracking `.18em`.
 
-- **Backgrounds**: `--color-background-gray` mapped to a soft purple-gray.
-- **Brand Colors**: `--color-brand-whatsapp` (`#25D366`).
-- **Primary Scale**:
-  - `primary-50` to `primary-400`: Light purple tints (used for soft backgrounds, active menu states).
-  - `primary-500` to `primary-700`: Vibrant purples (used for accents, buttons, and hover states). `primary-600` is the main accent color.
-  - `primary-800` to `primary-950`: Dark desaturated purples (used for standard text, headings, and high-contrast elements).
+## 2. Color Palette (Celestial)
 
-### Usage Examples:
-- **Headings**: `text-primary-900` or `text-primary-950`
-- **Body Text**: `text-primary-800` or standard `text-gray-700`
-- **Buttons / Highlights**: `bg-primary-600`, `text-primary-600`
-- 🚫 **NEVER** use arbitrary hex colors in classes (e.g., `text-[#4f3c57]`, `bg-[#2e2133]`).
+Defined as Tailwind theme colors — use the utilities (`text-gold`, `bg-bg-950`, `border-gold/16`,
+`text-ivory-200`, etc.), and the `/<opacity>` modifier for gold-alpha hairlines.
 
-## 3. Spacing & Layout
+| Token / utility | Hex | Usage |
+|---|---|---|
+| `bg-900` | `#070e18` | Page background |
+| `bg-950` | `#060b13` | Deepest background (Direction B base) |
+| `bg-850` | `#0b1626` | Mid gradient stop |
+| `bg-panel` | `#0a1322` | Section panels (timeline, video) |
+| `bg-footer` | `#05090f` | Footer background |
+| `ink` | `#0a1422` | Text *on* gold buttons |
+| `gold` | `#c9a227` | Primary accent (buttons, rules, eyebrows, nodes) |
+| `gold-light` | `#e3c46a` | Hover/active gold, glints, italic accents |
+| `gold-muted` | `#cbb978` | Italic pull-quotes |
+| `ivory-100/200/300` | `#f6f0e6` / `#f3ece1` / `#f1eadd` | Headlines / quote text |
+| `body`, `body-2` | `#aebccb` / `#b9c6d4` | Body copy / hero subtitle |
+| `muted`, `muted-2` | `#9fb0c0` / `#8e9db0` | Secondary copy / captions, stat labels |
+| `faint`, `faintest` | `#7c8aa0` / `#5d6b7d` | Footer body / legal line |
+| `navlink` | `#cdd8e4` | Nav + footer links |
 
-- Use standard Tailwind spacing utilities (`p-4`, `m-8`, `gap-10`, `py-16`).
-- For constraints, use standard `max-w-*` utilities (e.g., `max-w-3xl`, `max-w-5xl`).
-- 🚫 **NEVER** use arbitrary pixel or rem values for layout containers unless absolutely necessary for complex, custom grid alignments not supported by standard utilities.
+**Gold-alpha hairlines:** use `border-gold/10`–`/18` for dividers/card borders, `/25`–`/32` for
+orbital rings, `/55` for active rules/button outlines. Selection is gold-on-navy (set globally).
 
-## 4. Components
+🚫 Avoid raw hex in classes when a token exists. Arbitrary values **are** permitted for the
+hifi specifics this design depends on: `clamp()` type scales, gold-alpha rings, and the exact
+gradient/box-shadow strings the prototype specifies.
 
-- **Buttons**: The `Button.astro` component handles its own styles based on the `variant` prop (`primary`, `secondary`, `outline`, `accent`). Use the component directly instead of manually styling anchor tags.
-- **Responsiveness**: Always build mobile-first. Use `md:` and `lg:` prefixes to adjust font sizes and padding on larger screens (e.g., `text-2xl md:text-4xl py-12 md:py-20`).
+## 3. Spacing & layout
+
+- Centered `.container`; section vertical rhythm ~`py-24`/`py-28` (96–112px), heroes `min-h-screen`.
+- Two-column splits collapse to single column below `md`.
+
+## 4. Motion
+
+- **Scroll reveal:** add `data-reveal` to a section; the global runtime in `BaseLayout.astro` fades
+  it in (`opacity 0→1`, `translateY(28px)→0`) via IntersectionObserver, once.
+- **Starfield:** add `<canvas data-starfield>`; the same runtime twinkles ~150 stars.
+- **Orbital rings:** `.animate-spinslow` (default 90s; override duration with inline `--dur`),
+  `.animate-pulsering` (7s), `.animate-flcue`.
+- All motion is gated behind `prefers-reduced-motion: reduce`.
+
+## 5. Components
+
+- **Page builder:** sections are content blocks in `src/content/pages/[lang]/*.md`, mapped by
+  `src/components/componentMap.ts` and validated by `src/content/config.ts` (Zod). See `AGENTS.md`.
+- **Buttons:** use `Button.astro` (`variant`: `primary` = solid gold; `outline`/`accent` = gold
+  outline; `secondary` = tinted gold). Sharp 2px radius, uppercase label.
+- **Responsiveness:** build mobile-first; use `md:`/`lg:` prefixes. `clamp()` type already fluid-scales.

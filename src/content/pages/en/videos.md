@@ -40,6 +40,6 @@ content:
     header: "Prefer a one-on-one reading?"
     button:
       text: "Book a session"
-      url: "/about"
+      url: "/en/contact"
       style: "primary"
 ---

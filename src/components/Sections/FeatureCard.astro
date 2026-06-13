@@ -5,82 +5,169 @@ import DOMPurify from "isomorphic-dompurify";
 import Button from "../UI/Button.astro";
 import ResponsivePicture from "../UI/ResponsivePicture.astro";
 
-const { header, copy, image, image_alt, list_items, button } = Astro.props;
+interface Stat {
+  figure?: string;
+  label?: string;
+}
+
+const {
+  id,
+  header,
+  copy,
+  eyebrow,
+  pullquote,
+  image,
+  image_alt,
+  list_items = [],
+  stats = [] as Stat[],
+  button,
+} = Astro.props;
+
+// "About" treatment (circular portrait + stats) kicks in when stats are present.
+const isAbout = Array.isArray(stats) && stats.length > 0;
+
+const renderedItems = await Promise.all(
+  (list_items ?? []).map(
+    async (item: { heading?: string; copy?: string }) => ({
+      heading: item.heading,
+      html: item.copy
+        ? DOMPurify.sanitize(await marked.parse(item.copy))
+        : "",
+    })
+  )
+);
 ---
 
-<!-- Map Section -->
-<section class="feature-card py-16">
-  <div class="container">
-    {
-      (header || copy) && (
-        <div class="text-center mb-16">
-          {header && <h2 class="text-3xl md:text-5xl font-bold">{header}</h2>}
-          {copy && (
-            <p class="text-3xl text-gray-700 max-w-3xl mx-auto">{copy}</p>
-          )}
-        </div>
-      )
-    }
-
-    <div
-      class:list={[
-        "grid gap-8 items-center",
-        image ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1 max-w-3xl mx-auto",
-      ]}
-    >
+<section id={id} data-reveal class="scroll-mt-24 px-6 py-24 md:py-28">
+  <div
+    class:list={[
+      "container mx-auto",
+      image
+        ? "grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16"
+        : "max-w-3xl text-center",
+    ]}
+  >
+    <!-- Text column -->
+    <div class:list={[image && isAbout ? "md:order-1" : ""]}>
       {
-        image && (
-          <div class="bg-gray-200 rounded-lg overflow-hidden aspect-square max-w-[26rem] md:max-h-[600px] mx-auto w-full">
-            <ResponsivePicture
-              src={image}
-              alt={image_alt}
-              imageClass="w-full h-full object-cover object-center"
-            />
+        eyebrow && (
+          <div class="mb-5 text-[11px] uppercase tracking-[0.3em] text-gold">
+            {eyebrow}
+          </div>
+        )
+      }
+      {
+        header && (
+          <h2 class="m-0 mb-6 font-serif text-[clamp(32px,4.2vw,56px)] font-medium leading-[1.06] text-ivory-200">
+            {header}
+          </h2>
+        )
+      }
+      {
+        pullquote && (
+          <p class="mb-6 font-serif text-[22px] italic leading-[1.5] text-gold-muted">
+            {pullquote}
+          </p>
+        )
+      }
+      {
+        copy && (
+          <p class="mb-6 font-serif text-xl italic text-gold-muted">{copy}</p>
+        )
+      }
+
+      {
+        renderedItems.map((item) => (
+          <div class="mb-5">
+            {item.heading && (
+              <h3 class="mb-2 font-serif text-2xl font-medium text-ivory-200">
+                {item.heading}
+              </h3>
+            )}
+            {item.html && (
+              <div
+                class="text-base font-light leading-[1.85] text-body"
+                set:html={item.html}
+              />
+            )}
+          </div>
+        ))
+      }
+
+      {
+        isAbout && (
+          <div class="mt-8 grid grid-cols-3 gap-6 border-t border-gold/[0.18] pt-8">
+            {stats.map((stat: Stat) => (
+              <div>
+                <div class="font-serif text-[42px] leading-none text-gold-light">
+                  {stat.figure}
+                </div>
+                <div class="mt-2 text-xs font-light tracking-wide text-muted-2">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
           </div>
         )
       }
 
-      <div class:list={[!image && "text-center flex flex-col items-center"]}>
-        <div class="bg-white p-8 rounded-lg shadow-md w-full">
-          {
-            list_items &&
-              list_items.map(async (card_item: { heading?: string; copy?: string }) => {
-                const rawCardHtml = await marked.parse(card_item.copy ?? "");
-                const cleanCardHtml = DOMPurify.sanitize(rawCardHtml);
-
-                return (
-                  <div>
-                    {card_item.heading && (
-                      <h4 class="font-bold text-2xl mb-2">
-                        {card_item.heading}
-                      </h4>
-                    )}
-                    {card_item.copy && (
-                      <div
-                        class="text-gray-950 text-xl"
-                        set:html={cleanCardHtml}
-                      />
-                    )}
-                  </div>
-                );
-              })
-          }
-        </div>
-
-        {
-          button && (
-            <div class="mt-6">
-              <Button
-                href={button.url}
-                target="_blank"
-                variant={button.variant}
-              >
-                {button.text}
-              </Button>
-            </div>
-          )
-        }
-      </div>
+      {
+        button && (
+          <div class:list={["mt-8", !image && "flex justify-center"]}>
+            <Button
+              href={button.url}
+              target="_blank"
+              variant={button.style ?? "primary"}
+            >
+              {button.text}
+            </Button>
+          </div>
+        )
+      }
     </div>
+
+    <!-- Image column -->
+    {
+      image && isAbout && (
+        <div class="relative mx-auto w-full max-w-md md:order-2">
+          <div
+            class="pointer-events-none absolute -inset-5 rounded-full border border-gold/25"
+            aria-hidden="true"
+          />
+          <div class="relative aspect-square w-full overflow-hidden rounded-full">
+            <ResponsivePicture
+              src={image}
+              alt={image_alt ?? ""}
+              imageClass="h-full w-full object-cover [filter:saturate(.95)_brightness(.95)]"
+            />
+          </div>
+          <span
+            class="absolute left-1/2 top-[-22px] -ml-[5px] h-[11px] w-[11px] rounded-full bg-gold-light"
+            style="box-shadow:0 0 14px rgba(227,196,106,.9);"
+            aria-hidden="true"
+          />
+        </div>
+      )
+    }
+    {
+      image && !isAbout && (
+        <div class="relative mx-auto w-full max-w-md">
+          <div
+            class="pointer-events-none absolute right-[-1px] top-[-1px] z-10 h-16 w-16 border-r border-t border-gold"
+            aria-hidden="true"
+          />
+          <div
+            class="pointer-events-none absolute bottom-[-1px] left-[-1px] z-10 h-16 w-16 border-b border-l border-gold"
+            aria-hidden="true"
+          />
+          <ResponsivePicture
+            src={image}
+            alt={image_alt ?? ""}
+            class="block overflow-hidden"
+            imageClass="h-full w-full object-cover [filter:saturate(.92)_brightness(.92)]"
+          />
+        </div>
+      )
+    }
   </div>
 </section>

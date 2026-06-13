@@ -17,12 +17,12 @@ interface Props {
 const { header, copy, videos } = Astro.props;
 ---
 
-<section class="py-16 bg-gray-50">
+<section data-reveal class="py-24 md:py-28 bg-gradient-to-b from-bg-panel to-bg-950 border-t border-gold/10">
   <div class="container">
     {(header || copy) && (
       <div class="text-center mb-16">
-        {header && <h2 class="text-3xl md:text-5xl font-bold mb-4">{header}</h2>}
-        {copy && <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto">{copy}</p>}
+        {header && <h2 class="font-serif text-[clamp(32px,4.2vw,56px)] font-medium mb-4 text-ivory-200">{header}</h2>}
+        {copy && <p class="text-base md:text-lg font-light text-muted max-w-2xl mx-auto leading-relaxed">{copy}</p>}
       </div>
     )}
 
@@ -34,7 +34,7 @@ const { header, copy, videos } = Astro.props;
 
         return (
           <div class={`flex flex-col ${flexDir} gap-8 items-center`}>
-            <div class="w-full md:w-1/2 rounded-lg overflow-hidden shadow-lg aspect-video">
+            <div class="w-full md:w-1/2 overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.4)] aspect-video border border-gold/16">
               <iframe
                 class="w-full h-full"
                 src={`https://www.youtube.com/embed/${video.video_id}`}
@@ -44,11 +44,11 @@ const { header, copy, videos } = Astro.props;
                 allowfullscreen
               ></iframe>
             </div>
-            
+
             <div class="w-full md:w-1/2">
-              <div class="bg-white p-8 rounded-lg shadow-md h-full flex flex-col justify-center">
-                {video.title && <h3 class="text-2xl font-bold mb-4">{video.title}</h3>}
-                <div class="text-gray-800 text-lg leading-relaxed space-y-4" set:html={cleanCopyHtml}></div>
+              <div class="bg-white/[0.02] border border-gold/16 border-t-2 border-t-gold p-8 h-full flex flex-col justify-center">
+                {video.title && <h3 class="font-serif text-2xl font-medium mb-4 text-ivory-200">{video.title}</h3>}
+                <div class="text-body text-[15px] font-light leading-[1.8] space-y-4" set:html={cleanCopyHtml}></div>
               </div>
             </div>
           </div>

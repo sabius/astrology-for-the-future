@@ -5,6 +5,7 @@ interface Props {
   class?: string;
   imageClass?: string;
   type?: "default" | "hero";
+  loading?: "eager" | "lazy";
 }
 
 const createCloudinaryUrl = (url: string, transformations: string[] = []) => {
@@ -31,6 +32,7 @@ const {
   class: className = "",
   imageClass = "w-full h-full object-cover",
   type = "default",
+  loading,
 }: Props = Astro.props;
 
 const isCloudinary = src.includes("res.cloudinary.com");
@@ -64,8 +66,8 @@ const sizes =
   <img
     src={fallbackSrc}
     alt={alt}
-    loading={type === "hero" ? "eager" : "lazy"}
-    fetchpriority={type === "hero" ? "high" : undefined}
+    loading={loading ?? (type === "hero" ? "eager" : "lazy")}
+    fetchpriority={loading === "lazy" ? undefined : type === "hero" ? "high" : undefined}
     decoding="async"
     class={imageClass}
   />

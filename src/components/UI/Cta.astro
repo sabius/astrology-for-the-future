@@ -1,27 +1,51 @@
 ---
-const { header, button } = Astro.props;
+import Button from "./Button.astro";
+
+const { header, eyebrow, copy, button } = Astro.props;
 ---
 
-<section class="cta">
-  <h2>{header}</h2>
-  {
-    button && (
-      <a href={button.url} class:list={["button", button.style]}>
-        {button.text}
-      </a>
-    )
-  }
-</section>
+<section
+  data-reveal
+  class="relative overflow-hidden px-6 py-28 text-center md:py-32"
+>
+  <!-- Slow rotating orbital ring -->
+  <div
+    class="animate-spinslow pointer-events-none absolute left-1/2 top-1/2 -ml-[300px] -mt-[300px] h-[600px] w-[600px] rounded-full border border-gold/12"
+    style="--dur:120s;"
+    aria-hidden="true"
+  >
+  </div>
 
-<style>
-  .cta {
-    text-align: center;
-    padding: 3rem 1rem;
-    background-color: #333;
-    color: white;
-  }
-  .button.primary {
-    background-color: royalblue;
-    color: white;
-  }
-</style>
+  <div class="relative mx-auto max-w-3xl">
+    {
+      eyebrow && (
+        <div class="mb-5 text-[11px] uppercase tracking-[0.3em] text-gold">
+          {eyebrow}
+        </div>
+      )
+    }
+    {
+      header && (
+        <h2 class="m-0 font-serif text-[clamp(40px,6vw,82px)] font-medium leading-[1.04] text-ivory-100">
+          {header}
+        </h2>
+      )
+    }
+    {
+      copy && (
+        <p class="mx-auto mt-6 max-w-lg text-base font-light leading-relaxed text-body md:text-[17px]">
+          {copy}
+        </p>
+      )
+    }
+    {
+      button && (
+        <div class="mt-10 flex justify-center">
+          <Button href={button.url} variant={button.style ?? "primary"} size="lg">
+            {button.text}
+          </Button>
+        </div>
+      )
+    }
+  </div>
+</section>

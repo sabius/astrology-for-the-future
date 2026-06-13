@@ -26,49 +26,40 @@ const {
 
 const baseStyles = [
   "inline-flex items-center justify-center gap-2",
-  "font-sans text-base font-medium",
-  "border-2 rounded-lg",
+  "font-sans font-semibold uppercase tracking-[0.18em]",
+  "border rounded-[2px]",
   "transition-all duration-300 ease-in-out",
-  "focus:outline-none focus:ring-2 focus:ring-offset-2",
+  "focus:outline-none focus:ring-2 focus:ring-gold/60 focus:ring-offset-2 focus:ring-offset-bg-900",
   "disabled:opacity-50 disabled:cursor-not-allowed",
-  "min-h-[44px] min-w-[44px]", // Mobile touch target
-  "transform hover:scale-105 active:scale-95",
+  "min-h-[44px]", // Mobile touch target
 ];
 
 const sizeStyles = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-6 py-3",
-  lg: "px-8 py-4 text-lg",
+  sm: "px-7 py-3 text-[11px]",
+  md: "px-9 py-4 text-xs",
+  lg: "px-11 py-4 text-xs",
 };
 
 const variantStyles = {
+  // Solid gold — primary CTA
   primary: [
-    "bg-gradient-to-r from-primary-600 to-primary-700 text-white border-primary-600",
-    "hover:from-primary-700 hover:to-primary-800 hover:border-primary-700",
-    "active:from-primary-800 active:to-primary-900",
-    "focus:ring-primary-500",
-    "shadow-lg hover:shadow-xl",
+    "bg-gold text-ink border-gold",
+    "shadow-[0_14px_40px_rgba(201,162,39,0.3)]",
+    "hover:bg-gold-light hover:border-gold-light hover:-translate-y-0.5",
   ].join(" "),
+  // Tinted gold — secondary
   secondary: [
-    "bg-gradient-to-r from-purple-600 to-purple-700 text-white border-purple-600",
-    "hover:from-purple-700 hover:to-purple-800 hover:border-purple-700",
-    "active:from-purple-800 active:to-purple-900",
-    "focus:ring-purple-500",
-    "shadow-lg hover:shadow-xl",
+    "bg-gold/10 text-gold-light border-gold/30",
+    "hover:bg-gold/15 hover:border-gold/50 hover:-translate-y-0.5",
   ].join(" "),
+  // Gold outline
   accent: [
-    "bg-gradient-to-r from-orange-500 to-orange-600 text-white border-orange-500",
-    "hover:from-orange-600 hover:to-orange-700 hover:border-orange-600",
-    "active:from-orange-700 active:to-orange-800",
-    "focus:ring-orange-500",
-    "shadow-lg hover:shadow-xl",
+    "bg-transparent text-gold-light border-gold/55",
+    "hover:bg-gold hover:text-ink hover:border-gold",
   ].join(" "),
   outline: [
-    "bg-white text-gray-800 border-gray-300",
-    "hover:bg-gray-50 hover:border-gray-400",
-    "active:bg-gray-100",
-    "focus:ring-blue-500",
-    "shadow-md hover:shadow-lg",
+    "bg-transparent text-gold-light border-gold/55",
+    "hover:bg-gold hover:text-ink hover:border-gold",
   ].join(" "),
 };
 

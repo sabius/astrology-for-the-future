@@ -2,105 +2,129 @@
 import Button from "../UI/Button.astro";
 import ResponsivePicture from "../UI/ResponsivePicture.astro";
 
-const { header, copy, button, background_image } = Astro.props;
+const {
+  header,
+  copy,
+  eyebrow,
+  button,
+  link,
+  background_image,
+  image_alt,
+} = Astro.props;
 
-const heroImageAlt = header ?? "";
+const heroImageAlt = image_alt ?? header ?? "";
+
+// Split the headline so the final word becomes the gold italic accent.
+const words = (header ?? "").trim().split(/\s+/).filter(Boolean);
+const lastWord = words.length ? words[words.length - 1] : "";
+const leadWords = words.slice(0, -1).join(" ");
+
+const hasContent = Boolean(header || copy);
 ---
 
-<section
-  class="hero-section relative min-h-[70vh] flex items-center pt-30 text-white overflow-hidden"
->
-  <script is:inline>
-    // Progressive enhancement: Add loading state only if JS is enabled
-    document.currentScript.parentElement.classList.add("is-loading");
-  </script>
-  {
-    background_image && (
-      <div class="hero-bg absolute inset-0 transition-opacity duration-1000 ease-in-out">
+{
+  hasContent ? (
+    /* ---- Direction B: split hero with orbital rings ---- */
+    <section
+      class="hero-split relative grid min-h-screen grid-cols-1 overflow-hidden md:grid-cols-[1.05fr_0.95fr]"
+    >
+      <canvas
+        data-starfield
+        class="pointer-events-none absolute inset-0 z-0 h-full w-full"
+      />
+
+      {/* Text column */}
+      <div
+        class="relative z-20 flex flex-col justify-center px-6 pb-20 pt-32 sm:px-10 md:px-16 md:py-32"
+      >
+        {eyebrow && (
+          <div class="mb-7 text-xs uppercase tracking-[0.4em] text-gold">
+            {eyebrow}
+          </div>
+        )}
+        {header && (
+          <h1 class="m-0 font-serif text-[clamp(54px,7vw,104px)] font-medium leading-[1.02] text-ivory-100">
+            {leadWords && <>{leadWords}{" "}</>}
+            <span class="italic text-gold-light">{lastWord}</span>
+          </h1>
+        )}
+        {copy && (
+          <p class="mt-8 max-w-md text-lg font-light leading-relaxed text-body-2">
+            {copy}
+          </p>
+        )}
+        {(button || link) && (
+          <div class="mt-10 flex flex-wrap items-center gap-7">
+            {button && (
+              <Button href={button.url} variant="primary" size="md">
+                {button.text}
+              </Button>
+            )}
+            {link && (
+              <a
+                href={link.url}
+                class="border-b border-gold/50 pb-1 text-sm tracking-wide text-navlink transition-colors hover:text-gold-light"
+              >
+                {link.text}
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Image column with gradient mask + orbital rings */}
+      <div class="relative z-10 hidden overflow-hidden md:block">
+        {background_image && (
+          <ResponsivePicture
+            src={background_image}
+            alt={heroImageAlt}
+            class="absolute inset-0 block h-full w-full"
+            imageClass="h-full w-full object-cover"
+            type="hero"
+          />
+        )}
+        <div
+          class="absolute inset-0"
+          style="background:linear-gradient(90deg,#060b13 0%,rgba(6,11,19,.35) 22%,rgba(6,11,19,0) 55%,rgba(6,11,19,.45));"
+          aria-hidden="true"
+        />
+        {/* Outer rotating ring with glint */}
+        <div
+          class="animate-spinslow absolute top-1/2 h-[520px] w-[520px] -translate-y-1/2 rounded-full border border-gold/30"
+          style="right:-160px;"
+          aria-hidden="true"
+        >
+          <span
+            class="absolute left-1/2 top-[-5px] -ml-1 h-[9px] w-[9px] rounded-full bg-gold-light"
+            style="box-shadow:0 0 12px rgba(227,196,106,.9);"
+          />
+        </div>
+        {/* Inner static ring */}
+        <div
+          class="absolute top-1/2 h-[360px] w-[360px] -translate-y-1/2 rounded-full border border-gold/20"
+          style="right:-90px;"
+          aria-hidden="true"
+        />
+      </div>
+    </section>
+  ) : (
+    /* ---- Decorative full-bleed cosmic band (image-only hero) ---- */
+    <section class="relative min-h-[45vh] overflow-hidden md:min-h-[55vh]">
+      {background_image && (
         <ResponsivePicture
           src={background_image}
           alt={heroImageAlt}
-          class="block h-full w-full"
-          imageClass="h-full w-full object-cover"
+          class="absolute inset-0 block h-full w-full"
+          imageClass="h-full w-full object-cover [filter:saturate(.95)_brightness(.9)]"
           type="hero"
+          loading="lazy"
         />
-        <div class="absolute inset-0" aria-hidden="true" />
-      </div>
-    )
-  }
-  <div
-    class="hero-content container relative z-10 transition-all duration-1000 ease-out"
-  >
-    {
-      (header || copy) && (
-        <div class="max-w-3xl text-white bg-gray-900/50 backdrop-blur-sm p-10 rounded-md">
-          {header && (
-            <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">
-              {header}
-            </h1>
-          )}
-          {copy && <p class="text-xl md:text-2xl mb-8">{copy}</p>}
-
-          {button && (
-            <div class="flex flex-wrap gap-4">
-              <Button href={button.url} variant="primary" size="lg">
-                {button.text}
-              </Button>
-            </div>
-          )}
-        </div>
-      )
-    }
-  </div>
-</section>
-
-<script>
-  const heroSections = document.querySelectorAll(".hero-section");
-
-  const observerOptions = {
-    root: null, // viewport
-    rootMargin: "0px",
-    threshold: 0.2, // Trigger when 20% visible
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const heroSection = entry.target;
-        const bgContainer = heroSection.querySelector(".hero-bg");
-        const bgImage = bgContainer?.querySelector("img");
-
-        const reveal = () => {
-          heroSection.classList.remove("is-loading");
-        };
-
-        if (bgImage && bgImage.complete) {
-          reveal();
-        } else if (bgImage) {
-          bgImage.addEventListener("load", reveal);
-        } else {
-          // Fallback if no image
-          reveal();
-        }
-
-        // Stop observing this section once revealed
-        observer.unobserve(heroSection);
-      }
-    });
-  }, observerOptions);
-
-  heroSections.forEach((section) => {
-    observer.observe(section);
-  });
-</script>
-
-<style>
-  .hero-section.is-loading .hero-bg {
-    opacity: 0;
-  }
-
-  .hero-section.is-loading .hero-content {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-</style>
+      )}
+      <div
+        class="absolute inset-0"
+        style="background:linear-gradient(180deg,rgba(7,14,24,.6),rgba(7,14,24,.35) 45%,rgba(7,14,24,.85));"
+        aria-hidden="true"
+      />
+    </section>
+  )
+}

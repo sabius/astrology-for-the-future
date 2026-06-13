@@ -40,6 +40,6 @@ content:
     header: "¿Prefieres una lectura personal?"
     button:
       text: "Agenda una sesión"
-      url: "/about"
+      url: "/es/contact"
       style: "primary"
 ---

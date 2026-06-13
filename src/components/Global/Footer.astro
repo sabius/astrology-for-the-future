@@ -33,14 +33,33 @@ const followMe = await t("footer.follow", locale);
 const copyright = await t("footer.rights", locale);
 const privacy = await t("footer.privacy", locale);
 const terms = await t("footer.terms", locale);
+const tagline = await t("footer.tagline", locale);
+const language = await t("footer.language", locale);
 ---
 
-<footer class="bg-gray-900 text-white pt-16 pb-8">
+<footer class="border-t border-gold/16 bg-bg-footer text-faint">
   <div class="container">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
-      <div class="flex justify-center">
-        <h4 class="mr-6 space-x-4 text-lg font-bold text-white">{followMe}</h4>
-        <ul class="flex space-x-4">
+    <div
+      class="grid grid-cols-1 gap-10 pt-16 pb-10 md:grid-cols-[1.4fr_1fr_1fr]"
+    >
+      <!-- Wordmark + tagline -->
+      <div>
+        <div class="mb-4 font-serif text-2xl text-ivory-200">
+          {await t("site.title", locale)}
+        </div>
+        <p class="max-w-xs text-sm font-light leading-relaxed text-faint">
+          {tagline}
+        </p>
+      </div>
+
+      <!-- Follow me -->
+      <div>
+        <div
+          class="mb-5 text-[11px] uppercase tracking-[0.24em] text-gold"
+        >
+          {followMe}
+        </div>
+        <ul class="flex flex-col gap-3">
           {
             socialLinks.map((link) => (
               <li>
@@ -48,33 +67,59 @@ const terms = await t("footer.terms", locale);
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="inline-flex items-center gap-3 text-sm font-light text-navlink transition-colors hover:text-gold-light"
                   aria-label={link.name}
                 >
                   <Fragment set:html={link.icon} />
+                  <span>{link.name}</span>
                 </a>
               </li>
             ))
           }
         </ul>
       </div>
-      <div class="flex justify-center">
-        <a class="pr-6" href={Astro.url.pathname.replace(/^\/(en|es)/, "/en")}>English</a>
-        <a class="pl-6" href={Astro.url.pathname.replace(/^\/(en|es)/, "/es")}>Español</a>
+
+      <!-- Language -->
+      <div>
+        <div
+          class="mb-5 text-[11px] uppercase tracking-[0.24em] text-gold"
+        >
+          {language}
+        </div>
+        <div class="flex flex-col gap-3">
+          <a
+            href={Astro.url.pathname.replace(/^\/(en|es)/, "/en")}
+            class={`text-sm transition-colors hover:text-gold-light ${locale === "en" ? "font-normal text-gold-light" : "font-light text-navlink"}`}
+            >English</a
+          >
+          <a
+            href={Astro.url.pathname.replace(/^\/(en|es)/, "/es")}
+            class={`text-sm transition-colors hover:text-gold-light ${locale === "es" ? "font-normal text-gold-light" : "font-light text-navlink"}`}
+            >Español</a
+          >
+        </div>
       </div>
     </div>
 
-    <!-- Copyright -->
+    <!-- Bottom bar -->
     <div
-      class="pt-8 mt-8 border-t border-gray-800 text-center text-gray-400 text-sm"
+      class="flex flex-wrap items-center justify-between gap-4 border-t border-white/5 py-8"
     >
-      <p>&copy; {currentYear} {await t("site.title", locale)}. {copyright}</p>
-      <p class="mt-2">
-        <a href="/privacy-policy" class="hover:text-primary-300 mr-4"
+      <span class="text-[13px] font-light text-faintest"
+        >&copy; {currentYear} {await t("site.title", locale)}. {copyright}</span
+      >
+      <div class="flex gap-7">
+        <a
+          href="/privacy-policy"
+          class="text-[13px] font-light text-faintest transition-colors hover:text-navlink"
           >{privacy}</a
         >
-        <a href="/terms-of-service" class="hover:text-primary-300">{terms}</a>
-      </p>
+        <a
+          href="/terms-of-service"
+          class="text-[13px] font-light text-faintest transition-colors hover:text-navlink"
+          >{terms}</a
+        >
+      </div>
     </div>
   </div>
 </footer>
