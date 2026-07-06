@@ -1,0 +1,147 @@
+---
+import { marked } from "marked";
+import DOMPurify from "isomorphic-dompurify";
+import Button from "../UI/Button.astro";
+import ResponsivePicture from "../UI/ResponsivePicture.astro";
+
+interface Props {
+  component: "blog-entry";
+  title: string;
+  date: string;
+  author: string;
+  category: string;
+  image?: string;
+  image_alt?: string;
+  image_position?: "left" | "right" | "center";
+  content: string[];
+  button?: {
+    text: string;
+    url: string;
+  };
+}
+
+const {
+  title,
+  date,
+  author,
+  category,
+  image,
+  image_alt = "",
+  image_position = "left",
+  content = [],
+  button,
+} = Astro.props as Props;
+
+// Parse paragraphs content to allow HTML formatting safely
+const parsedParagraphs = await Promise.all(
+  content.map(async (paragraph) => {
+    const rawHtml = await marked.parse(paragraph);
+    return DOMPurify.sanitize(rawHtml);
+  })
+);
+
+const isRight = image_position === "right";
+const isCenter = image_position === "center";
+---
+
+<section class="blog-entry py-12 md:py-16 px-4">
+  <article class="bg-white/80 backdrop-blur-md border border-white/50 p-6 md:p-12 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 max-w-5xl mx-auto">
+    
+    <!-- Blog Post Header Metadata -->
+    <div class="flex flex-wrap items-center gap-3 mb-4 text-stone-600">
+      <span class="bg-primary-100 text-primary-800 font-sans font-semibold text-sm tracking-wider uppercase px-3 py-1 rounded-full border border-primary-200 shadow-sm">
+        {category}
+      </span>
+      <span class="text-stone-400">•</span>
+      <time class="text-sm font-medium uppercase tracking-wider">{date}</time>
+      <span class="text-stone-400">•</span>
+      <span class="text-sm font-medium uppercase tracking-wider">{author}</span>
+    </div>
+
+    <!-- Title -->
+    <h2 class="text-3xl md:text-5xl font-sans font-bold text-stone-950 leading-tight mb-8">
+      {title}
+    </h2>
+
+    <!-- Content Layout Grid -->
+    <div class:list={[
+      "grid gap-8 lg:gap-12 items-start",
+      (image && !isCenter) ? "grid-cols-1 lg:grid-cols-5" : "grid-cols-1"
+    ]}>
+      
+      <!-- Featured Image (if left or right position) -->
+      {image && !isCenter && (
+        <div class:list={[
+          "lg:col-span-2 overflow-hidden rounded-xl shadow-lg border border-stone-100 aspect-[4/3] w-full",
+          isRight ? "lg:order-last" : ""
+        ]}>
+          <div class="relative w-full h-full overflow-hidden group">
+            <ResponsivePicture
+              src={image}
+              alt={image_alt || title}
+              imageClass="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+          </div>
+        </div>
+      )}
+
+      <!-- Body Copy Text -->
+      <div class:list={[
+        (image && !isCenter) ? "lg:col-span-3" : "max-w-3xl mx-auto w-full"
+      ]}>
+        
+        <!-- Featured Image (if center position) -->
+        {image && isCenter && (
+          <div class="mb-8 overflow-hidden rounded-xl shadow-lg border border-stone-100 aspect-[16/9] w-full max-w-3xl mx-auto">
+            <div class="relative w-full h-full overflow-hidden group">
+              <ResponsivePicture
+                src={image}
+                alt={image_alt || title}
+                imageClass="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+            </div>
+          </div>
+        )}
+
+        <!-- Paragraphs content rendering -->
+        <div class="prose prose-stone max-w-none text-stone-900 text-xl font-light leading-relaxed space-y-6">
+          {parsedParagraphs.map((htmlContent) => (
+            <div set:html={htmlContent} class="blog-p" />
+          ))}
+        </div>
+
+        <!-- Optional CTA button -->
+        {button && (
+          <div class="mt-8 flex justify-start">
+            <Button
+              href={button.url}
+              variant="primary"
+              size="md"
+            >
+              {button.text}
+            </Button>
+          </div>
+        )}
+      </div>
+
+    </div>
+
+  </article>
+</section>
+
+<style is:global>
+  /* Subtle styling updates for links and rich elements within blog paragraph markup */
+  .blog-p a {
+    color: var(--color-primary-600);
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  .blog-p a:hover {
+    color: var(--color-primary-800);
+  }
+  .blog-p strong {
+    font-weight: 600;
+    color: var(--color-primary-950);
+  }
+</style>

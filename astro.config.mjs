@@ -6,6 +6,7 @@ export default defineConfig({
   // You might want to update this to your new production URL for SEO
   site: "https://astrology-for-the-future.pages.dev",
   base: "/", // Always deploy to the root
+  publicDir: "static",
   vite: {
     css: {
       transformer: "lightningcss",

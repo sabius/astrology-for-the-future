@@ -8,6 +8,7 @@ const getPath = (path: string, locale: string) => {
 const navItems = [
   { text: await t("nav.home", locale), href: getPath("/", locale) },
   { text: await t("nav.videos", locale), href: getPath("/videos", locale) },
+  { text: await t("nav.blog", locale), href: getPath("/blog", locale) },
   { text: await t("nav.contact", locale), href: getPath("/contact", locale) },
 ];
 

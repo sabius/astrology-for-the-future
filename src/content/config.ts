@@ -112,6 +112,24 @@ const videoSectionBlock = z.object({
   ).optional(),
 });
 
+const blogEntryBlock = z.object({
+  component: z.literal("blog-entry"),
+  title: z.string(),
+  date: z.string(),
+  author: z.string(),
+  category: z.string(),
+  image: z.string().optional(),
+  image_alt: z.string().optional(),
+  image_position: z.enum(["left", "right", "center"]).default("left"),
+  content: z.array(z.string()),
+  button: z
+    .object({
+      text: z.string(),
+      url: z.string(),
+    })
+    .optional(),
+});
+
 // Define the main collection for our pages
 const pagesCollection = defineCollection({
   schema: z.object({
@@ -131,6 +149,7 @@ const pagesCollection = defineCollection({
         imageOverlayBlock,
         ctaBlock,
         videoSectionBlock,
+        blogEntryBlock,
       ])
     ),
   }),

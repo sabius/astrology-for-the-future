@@ -5,6 +5,7 @@ import FeatureGrid from "./Sections/FeatureGrid.astro";
 import Quote from "./Sections/Quote.astro";
 import ImageOverlay from "./Sections/ImageOverlay.astro";
 import VideoSection from "./Sections/VideoSection.astro";
+import BlogEntry from "./Sections/BlogEntry.astro";
 import Cta from "./UI/Cta.astro";
 import Fallback from "./Fallback.astro";
 
@@ -16,6 +17,7 @@ export const components = {
   quote: Quote,
   "image-overlay": ImageOverlay,
   "video-section": VideoSection,
+  "blog-entry": BlogEntry,
   cta: Cta,
   fallback: Fallback,
 };
