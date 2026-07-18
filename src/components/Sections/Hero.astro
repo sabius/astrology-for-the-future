@@ -8,7 +8,7 @@ const heroImageAlt = header ?? "";
 ---
 
 <section
-  class="hero-section relative min-h-[70vh] flex items-center pt-30 text-white overflow-hidden"
+  class="hero-section relative flex min-h-[76vh] items-center overflow-hidden pt-28 text-white"
 >
   <script is:inline>
     // Progressive enhancement: Add loading state only if JS is enabled
@@ -24,7 +24,7 @@ const heroImageAlt = header ?? "";
           imageClass="h-full w-full object-cover"
           type="hero"
         />
-        <div class="absolute inset-0" aria-hidden="true" />
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-950/80 via-primary-900/35 to-transparent" aria-hidden="true" />
       </div>
     )
   }
@@ -33,13 +33,13 @@ const heroImageAlt = header ?? "";
   >
     {
       (header || copy) && (
-        <div class="max-w-3xl text-white bg-gray-900/50 backdrop-blur-sm p-10 rounded-md">
+        <div class="max-w-3xl rounded-[2rem] border border-white/15 bg-primary-950/55 p-8 text-white shadow-2xl shadow-primary-950/30 backdrop-blur-md md:p-12">
           {header && (
-            <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">
+            <h1 class="mb-5 font-serif text-5xl font-semibold leading-[0.9] tracking-[-0.04em] text-white md:text-7xl">
               {header}
             </h1>
           )}
-          {copy && <p class="text-xl md:text-2xl mb-8">{copy}</p>}
+          {copy && <p class="mb-8 max-w-2xl text-xl leading-relaxed text-cosmic-cream md:text-2xl">{copy}</p>}
 
           {button && (
             <div class="flex flex-wrap gap-4">

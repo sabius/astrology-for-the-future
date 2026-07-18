@@ -54,12 +54,12 @@ const bodySegments = Array.isArray(body_copy)
 
       <!-- Right side: Content Box -->
       <div
-        class="bg-white/95 backdrop-blur-sm p-8 md:p-10 rounded-lg shadow-lg"
+        class="surface-card rounded-[2rem] p-8 md:p-10"
       >
         {/* Mobile headline */}
         {
           headline && (
-            <h2 class="md:hidden text-3xl font-serif text-gray-900 mb-4">
+            <h2 class="md:hidden text-3xl font-serif text-primary-950 mb-4">
               {headline}
             </h2>
           )
@@ -67,7 +67,7 @@ const bodySegments = Array.isArray(body_copy)
 
         {
           subheadline && (
-            <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-950 mb-6 break-words">
+            <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-primary-950 mb-6 break-words">
               {subheadline}
             </h3>
           )
@@ -75,7 +75,7 @@ const bodySegments = Array.isArray(body_copy)
 
         {
           bodySegments.length > 0 && (
-            <div class="space-y-4 text-gray-950 text-xl leading-relaxed">
+            <div class="space-y-4 text-primary-950 text-xl leading-relaxed">
               {bodySegments.map((paragraph) => (
                 <p set:html={paragraph} />
               ))}

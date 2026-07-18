@@ -26,13 +26,13 @@ const {
 
 const baseStyles = [
   "inline-flex items-center justify-center gap-2",
-  "font-sans text-base font-medium",
-  "border-2 rounded-lg",
+  "font-sans text-base font-bold tracking-wide",
+  "border rounded-full",
   "transition-all duration-300 ease-in-out",
   "focus:outline-none focus:ring-2 focus:ring-offset-2",
   "disabled:opacity-50 disabled:cursor-not-allowed",
   "min-h-[44px] min-w-[44px]", // Mobile touch target
-  "transform hover:scale-105 active:scale-95",
+  "shadow-sm hover:-translate-y-0.5 active:translate-y-0",
 ];
 
 const sizeStyles = {
@@ -43,17 +43,17 @@ const sizeStyles = {
 
 const variantStyles = {
   primary: [
-    "bg-gradient-to-r from-primary-600 to-primary-700 text-white border-primary-600",
-    "hover:from-primary-700 hover:to-primary-800 hover:border-primary-700",
-    "active:from-primary-800 active:to-primary-900",
+    "bg-primary-900 text-white border-primary-900",
+    "hover:bg-primary-800 hover:border-primary-800",
+    "active:bg-primary-950",
     "focus:ring-primary-500",
     "shadow-lg hover:shadow-xl",
   ].join(" "),
   secondary: [
-    "bg-gradient-to-r from-purple-600 to-purple-700 text-white border-purple-600",
-    "hover:from-purple-700 hover:to-purple-800 hover:border-purple-700",
-    "active:from-purple-800 active:to-purple-900",
-    "focus:ring-purple-500",
+    "bg-cosmic-gold text-primary-950 border-cosmic-gold",
+    "hover:bg-[#e5b95b] hover:border-[#e5b95b]",
+    "active:bg-[#c7902f]",
+    "focus:ring-cosmic-gold",
     "shadow-lg hover:shadow-xl",
   ].join(" "),
   accent: [

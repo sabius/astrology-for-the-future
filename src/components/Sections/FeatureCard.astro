@@ -9,14 +9,14 @@ const { header, copy, image, image_alt, list_items, button } = Astro.props;
 ---
 
 <!-- Map Section -->
-<section class="feature-card py-16">
+<section class="feature-card py-20 md:py-28">
   <div class="container">
     {
       (header || copy) && (
         <div class="text-center mb-16">
-          {header && <h2 class="text-3xl md:text-5xl font-bold">{header}</h2>}
+          {header && <h2 class="text-4xl md:text-6xl font-semibold tracking-tight text-primary-950">{header}</h2>}
           {copy && (
-            <p class="text-3xl text-gray-700 max-w-3xl mx-auto">{copy}</p>
+            <p class="text-xl md:text-2xl text-primary-800 max-w-3xl mx-auto">{copy}</p>
           )}
         </div>
       )
@@ -41,7 +41,7 @@ const { header, copy, image, image_alt, list_items, button } = Astro.props;
       }
 
       <div class:list={[!image && "text-center flex flex-col items-center"]}>
-        <div class="bg-white p-8 rounded-lg shadow-md w-full">
+        <div class="surface-card rounded-[2rem] p-8 md:p-10 w-full">
           {
             list_items &&
               list_items.map(async (card_item: { heading?: string; copy?: string }) => {
@@ -57,7 +57,7 @@ const { header, copy, image, image_alt, list_items, button } = Astro.props;
                     )}
                     {card_item.copy && (
                       <div
-                        class="text-gray-950 text-xl"
+                        class="text-primary-950 text-xl"
                         set:html={cleanCardHtml}
                       />
                     )}

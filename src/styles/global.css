@@ -1,39 +1,109 @@
 @import "tailwindcss";
 
 @theme {
-  /* Font */
-  --font-sans: "Cormorant Garamond Variable", serif;
+  /* Typography */
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: "Cormorant Garamond Variable", Cormorant, Georgia, serif;
 
-  /* Colors */
-  --color-background-gray: 239, 234, 246;
-  --color-brand-whatsapp: #25D366;
+  /* Brand accents */
+  --color-brand-whatsapp: #25d366;
 
-  /* Primary Palette (Astrology Theme) */
-  --color-primary-50: #f5f3fa;
-  --color-primary-100: #ebe5f5;
-  --color-primary-200: #d4c5eb;
-  --color-primary-300: #b8a0dd;
-  --color-primary-400: #9a76cc;
-  --color-primary-500: #8050bc;
-  --color-primary-600: #6B4FAE;
-  --color-primary-700: #573f8c;
-  --color-primary-800: #4f3c57;
-  --color-primary-900: #2e2133;
-  --color-primary-950: #1F1534;
+  /* Celestial primary palette */
+  --color-primary-50: #fbf7ff;
+  --color-primary-100: #f2e8ff;
+  --color-primary-200: #dec7ff;
+  --color-primary-300: #c39bf4;
+  --color-primary-400: #a46de4;
+  --color-primary-500: #8848cf;
+  --color-primary-600: #6f35ad;
+  --color-primary-700: #572987;
+  --color-primary-800: #432263;
+  --color-primary-900: #301a46;
+  --color-primary-950: #1b1028;
+
+  /* Warm supporting palette */
+  --color-cosmic-cream: #fff8ed;
+  --color-cosmic-blush: #f8e7df;
+  --color-cosmic-gold: #d9a441;
+  --color-cosmic-rose: #b86b77;
+  --color-cosmic-ink: #1a1224;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    background: var(--color-cosmic-cream);
+    color: var(--color-cosmic-ink);
+    font-size: clamp(16px, 0.95rem + 0.2vw, 18px);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-width: 320px;
+    background:
+      radial-gradient(circle at top left, rgba(217, 164, 65, 0.18), transparent 28rem),
+      radial-gradient(circle at top right, rgba(136, 72, 207, 0.16), transparent 24rem),
+      linear-gradient(180deg, #fff8ed 0%, #f5edf8 52%, #fffaf2 100%);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    color: var(--color-primary-950);
+    font-weight: 650;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+  }
+
+  p,
+  li {
+    line-height: 1.75;
+  }
+
+  a {
+    text-underline-offset: 0.22em;
+  }
+
+  ::selection {
+    background: rgba(217, 164, 65, 0.35);
+    color: var(--color-primary-950);
+  }
+}
+
+@layer components {
+  .container {
+    width: min(100% - 2rem, 72rem);
+    margin-inline: auto;
+  }
+
+  .section-kicker {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-cosmic-rose);
+  }
+
+  .surface-card {
+    border: 1px solid rgba(87, 41, 135, 0.12);
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 24px 80px rgba(48, 26, 70, 0.12);
+    backdrop-filter: blur(18px);
+  }
 }
 
 main {
-  background-color: rgba(var(--color-background-gray), 0.95);
+  background:
+    linear-gradient(180deg, rgba(255, 248, 237, 0.78), rgba(245, 237, 248, 0.92)),
+    radial-gradient(circle at 15% 20%, rgba(217, 164, 65, 0.2), transparent 20rem),
+    radial-gradient(circle at 90% 35%, rgba(136, 72, 207, 0.14), transparent 28rem);
 }
-
-.container {
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-
-/*
-@media (min-width: 1440px) {
-  html {
-    font-size: 1.1rem;
-  }
-} */
