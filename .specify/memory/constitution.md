@@ -1,50 +1,77 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+------------------
+Version Change: Initial Template -> 1.0.0
+Type of Bump: Initial Ratification
+
+Modified / Added Principles:
+- Added: Principle I: Code Quality & Architecture Discipline
+- Added: Principle II: Testing Standards & Quality Gates
+- Added: Principle III: User Experience Consistency & i18n Parity
+- Added: Principle IV: Performance Requirements & Core Web Vitals
+
+Added Sections:
+- Technical Constraints & Architecture Standards
+- Development & Quality Workflow
+- Governance Rules
+
+Templates Status:
+- ✅ .specify/templates/plan-template.md (Constitution Check gate aligned)
+- ✅ .specify/templates/spec-template.md (Requirements & success criteria aligned)
+- ✅ .specify/templates/tasks-template.md (Quality gates and testing discipline aligned)
+
+Deferred Items / TODOs: None
+-->
+
+# Astrology for the Future Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Principle I: Code Quality & Architecture Discipline
+- **Strict Typing**: All TypeScript code MUST compile cleanly under strict mode with zero `any` types or suppressed compiler warnings.
+- **Page Builder Schema Compliance**: Page section components residing in `src/components/Sections/` MUST strictly comply with Zod content schemas defined in `src/content/config.ts` and registered within `src/components/componentMap.ts`.
+- **Modular Component Isolation**: Components MUST be single-responsibility, highly reusable, and free of untyped prop drilling or unhandled visual state fallbacks.
+- **Maintainable & Self-Documenting**: Code structure MUST favor explicit naming, clean interfaces, and clear separation of content data (Content Collections) from presentational logic.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Principle II: Testing Standards & Quality Gates
+- **Automated Validation**: All Content Collection Zod schemas, helper utilities, and i18n lookup routines MUST be covered by unit tests.
+- **Zero Regression Quality Gate**: Builds (`npm run build`) MUST execute without errors or unhandled warnings before code is merged into `main`.
+- **Test Integrity**: Tests MUST be written to validate actual contracts and outcomes. Disabling assertions, mocking away core functionality without justification, or skipping failing tests is strictly prohibited.
+- **i18n Key Parity**: Dictionaries (`src/i18n/en.json`, `src/i18n/es.json`) MUST maintain 100% key completeness across all supported locales, validated programmatically.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Principle III: User Experience Consistency & i18n Parity
+- **Unified Design System**: All section components MUST strictly adhere to the central design system tokens, typography scales, and color schemes defined in `styles/global.css` and Tailwind CSS v4.
+- **Rich & Premium Aesthetics**: Interfaces MUST deliver a polished, modern visual feel (curated harmonious color palettes, dark/light visual harmony, fluid transitions, micro-animations) while avoiding generic default browser styling.
+- **Complete Multilingual Parity**: Content and layout quality MUST remain structurally identical and accessible across all languages (e.g., English and Spanish). Hardcoded UI text outside of i18n dictionary files or Content Collections is strictly forbidden.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Principle IV: Performance Requirements & Core Web Vitals
+- **Static Site Generation (SSG)**: Astro 5 SSG MUST be leveraged to pre-render static HTML. Client-side JavaScript MUST be minimized, reserving client directives (`client:load`, `client:visible`) strictly for interactive components requiring dynamic client state.
+- **Core Web Vitals Targets**: All pages MUST target and maintain top-tier Web Vitals metrics:
+  - **LCP (Largest Contentful Paint)**: < 2.5 seconds
+  - **CLS (Cumulative Layout Shift)**: < 0.1
+  - **INP (Interaction to Next Paint)**: < 200 ms
+- **Asset Optimization**: Images MUST utilize modern WebP/AVIF formats with explicit dimensions, optimized responsive loading (`loading="lazy"` for below-the-fold content), and Lightning CSS transforms.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+## Technical Constraints & Architecture Standards
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+- **Core Tech Stack**: Astro 5 (Static Site Generation), TypeScript (Strict Mode), Tailwind CSS v4, Lightning CSS, Zod schema validation.
+- **Page Builder Architecture**: Content defined in `src/content/pages/[lang]/` as Markdown/Frontmatter with structured component arrays. Section rendering dispatch via `src/pages/[...slug].astro` and `src/components/componentMap.ts`.
+- **Localization Pattern**: Content translations organized by language folder (`src/content/pages/en/`, `src/content/pages/es/`); UI strings driven by dictionary files in `src/i18n/`.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Development & Quality Workflow
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- **Pre-Commit / Pre-PR Validation**: Code changes MUST pass type checking, linting, unit tests, and local SSG build compilation (`npm run build`).
+- **Feature Specification & Planning**: All non-trivial features MUST undergo formal specification (`/speckit-specify`) and implementation planning (`/speckit-plan`), including an explicit Constitution Check gate.
+- **Code Reviews**: PRs MUST be reviewed for adherence to this Constitution, design system consistency, and zero breaking changes to Content Collection schemas.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+- **Supremacy**: This Constitution supersedes informal team conventions. All architectural decisions, pull requests, and feature plans MUST align with these principles.
+- **Amendment Process**: Amendments to this Constitution require explicit documentation, approval by project maintainers, a documented migration path for affected content schemas or components, and a semantic version bump.
+- **Versioning Policy**:
+  - **MAJOR**: Removal or incompatible redefinition of a core principle or governance policy.
+  - **MINOR**: Addition of new principles, structural sections, or material expansion of guidelines.
+  - **PATCH**: Non-semantic rewording, clarifications, or formatting fixes.
+- **Compliance Review**: Regular compliance checks MUST be performed during planning (`/speckit-plan`) and code review phases.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-07-26 | **Last Amended**: 2026-07-26
