@@ -1,0 +1,29 @@
+---
+interface Props {
+  /**
+   * Google Tag / Analytics measurement container ID.
+   * Defaults to import.meta.env.PUBLIC_GTM_ID or 'G-ERLJ63MV2B'.
+   */
+  id?: string;
+}
+
+const { id = import.meta.env.PUBLIC_GTM_ID || "G-ERLJ63MV2B" } = Astro.props as Props;
+const gtmId = id?.trim();
+---
+
+{
+  gtmId && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gtmId}`} />
+      <script
+        is:inline
+        set:html={`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${gtmId}');
+        `}
+      />
+    </>
+  )
+}
