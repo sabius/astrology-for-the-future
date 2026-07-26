@@ -60,9 +60,11 @@ Deferred Items / TODOs: None
 
 ## Development & Quality Workflow
 
+- **No Automatic Commits or Pushes**: Agents MUST NEVER run `git commit`, `git push`, or automatically stage/commit code changes unless the user explicitly requests it in their message. Always leave code changes unstaged and uncommitted for explicit user review.
 - **Pre-Commit / Pre-PR Validation**: Code changes MUST pass type checking, linting, unit tests, and local SSG build compilation (`npm run build`).
 - **Feature Specification & Planning**: All non-trivial features MUST undergo formal specification (`/speckit-specify`) and implementation planning (`/speckit-plan`), including an explicit Constitution Check gate.
 - **Code Reviews**: PRs MUST be reviewed for adherence to this Constitution, design system consistency, and zero breaking changes to Content Collection schemas.
+
 
 ## Governance
 
