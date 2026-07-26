@@ -18,7 +18,7 @@ content:
   # Block: Image Overlay Section
   - component: "image-overlay"
     headline: "Navega Tu Vida con Propósito"
-    subheadline: "Sabiduría antigua para desafíos modernos"
+    subheadline: "Sabiduría Antigua para Desafíos Modernos"
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/Glenda%20Ferreira/image-asset_2_v5ailt.jpg"
     image_alt: "Cielo nocturno estrellado con montañas"
     body_copy:
