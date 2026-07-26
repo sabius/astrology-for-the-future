@@ -12,6 +12,7 @@
     "install:ext": "code --install-extension astro-build.astro-vscode --install-extension bradlc.vscode-tailwindcss --install-extension EditorConfig.EditorConfig --install-extension eamodio.gitlens --install-extension vscode-icons-team.vscode-icons --install-extension esbenp.prettier-vscode --install-extension dbaeumer.vscode-eslint"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "@fontsource-variable/cormorant-garamond": "^5.2.4",
     "@tailwindcss/vite": "^4.1.12",
     "astro": "^5.13.10",
