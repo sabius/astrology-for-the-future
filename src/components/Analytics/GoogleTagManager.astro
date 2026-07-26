@@ -1,0 +1,36 @@
+---
+interface Props {
+  /**
+   * Google Tag / Analytics measurement container ID.
+   * Defaults to import.meta.env.PUBLIC_GTM_ID or 'G-ERLJ63MV2B'.
+   */
+  id?: string;
+}
+
+const { id = import.meta.env.PUBLIC_GTM_ID || "G-ERLJ63MV2B" } = Astro.props as Props;
+
+// Validate that container ID is non-empty and strictly matches valid alphanumeric identifier format
+const rawId = typeof id === "string" ? id.trim() : "";
+const isValidGtmId = /^[A-Za-z0-9_-]+$/.test(rawId);
+
+const gtmId = isValidGtmId ? rawId : null;
+const encodedGtmId = gtmId ? encodeURIComponent(gtmId) : "";
+const safeJsonId = gtmId ? JSON.stringify(gtmId) : '""';
+---
+
+{
+  gtmId && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${encodedGtmId}`} />
+      <script
+        is:inline
+        set:html={`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', ${safeJsonId});
+        `}
+      />
+    </>
+  )
+}

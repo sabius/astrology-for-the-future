@@ -70,7 +70,12 @@ content:
 - Use **Tailwind CSS v4**.
 - `styles/global.css` contains global imports and base styles.
 
+## Git & Version Control Rules
+
+- **NEVER Commit or Push Automatically**: Agents MUST NEVER run `git commit`, `git push`, or stage/commit code changes automatically unless the user explicitly requests it in their message. Always leave code changes unstaged/uncommitted for the user to review.
+
 ## Development & Build
 
 - `npm run dev`: Start dev server.
 - `npm run build`: Build for production.
+

@@ -1,4 +1,6 @@
 ---
+import GoogleTagManager from "../components/Analytics/GoogleTagManager.astro";
+
 // Root language-detection redirect.
 // JavaScript (runs immediately): checks navigator.language and redirects.
 // <meta http-equiv="refresh"> is the no-JS fallback — defaults to /en.
@@ -7,6 +9,7 @@
 <!doctype html>
 <html>
   <head>
+    <GoogleTagManager />
     <meta charset="utf-8" />
     <title>Redirecting…</title>
     <meta http-equiv="refresh" content="0; url=/en" />

@@ -16,6 +16,8 @@ import faviconIco from "../assets/favicon.ico";
 import android192 from "../assets/android-chrome-192x192.png";
 import android512 from "../assets/android-chrome-512x512.png";
 
+import GoogleTagManager from "../components/Analytics/GoogleTagManager.astro";
+
 interface Props {
   title: string;
   description?: string;
@@ -30,6 +32,7 @@ const whatsappMessage = await t("whatsapp.message", currentLocale);
 <!doctype html>
 <html lang={currentLocale}>
   <head>
+    <GoogleTagManager />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ffffff" />
