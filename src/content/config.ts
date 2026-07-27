@@ -2,6 +2,7 @@ import { defineCollection, z } from "astro:content";
 
 const heroBlock = z.object({
   component: z.literal("hero"),
+  hidden_h1: z.string().optional(),
   header: z.string().optional(),
   copy: z.string().optional(),
   button: z.object({ text: z.string(), url: z.string() }).optional(),

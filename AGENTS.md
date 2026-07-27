@@ -70,12 +70,17 @@ content:
 - Use **Tailwind CSS v4**.
 - `styles/global.css` contains global imports and base styles.
 
+## Shell & Environment Rules
+
+- **Use Git Bash for Commands**: Agents MUST NOT run terminal commands using PowerShell. Agents MUST use Git Bash (e.g. `& "C:\Program Files\Git\bin\bash.exe" -l -c "<command>"` or bash shell invocation) for all shell commands on Windows to ensure Node.js environment paths, bash profiles, and Unix-style utilities execute properly.
+
 ## Git & Version Control Rules
 
 - **NEVER Commit or Push Automatically**: Agents MUST NEVER run `git commit`, `git push`, or stage/commit code changes automatically unless the user explicitly requests it in their message. Always leave code changes unstaged/uncommitted for the user to review.
 
 ## Development & Build
 
-- `npm run dev`: Start dev server.
 - `npm run build`: Build for production.
+- `npm run dev`: Start dev server.
+
 

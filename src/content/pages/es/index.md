@@ -1,14 +1,15 @@
 ---
 meta:
-  title: "Glenda Ferreira"
-  description: "Glenda Ferreira ofrece lecturas astrológicas personalizadas, artículos y videos para guiarte en tu camino de vida. Reserva una lectura hoy."
+  title: "Consultas de Astrología Online | Glenda Ferreira"
+  description: "Consultas de astrología online con Glenda Ferreira, astróloga bilingüe radicada en Bogotá. Sesiones en español e inglés para clientes en Colombia, Estados Unidos y Europa."
   image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1768882107/Glenda%20Ferreira/meta-img-es.jpg"
 
 content:
   # Block 1: The Hero Section
   - component: "hero"
-    header: "Claridad y Dirección"
-    copy: "Consultas de astrología y orientación experta."
+    hidden_h1: "Astrología con Glenda Ferreira: consultas presenciales y online"
+    header: "Tu Carta Natal Como Herramienta de Comprensión"
+    copy: "Consultas presenciales y online con Glenda Ferreira, médica cirujana y astróloga con formación en astrología médica."
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
     image_alt: "La foto de un cielo estrellado y una aurora boreal"
     button:
