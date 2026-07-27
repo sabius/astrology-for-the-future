@@ -60,6 +60,7 @@ Deferred Items / TODOs: None
 
 ## Development & Quality Workflow
 
+- **Shell Execution Standard**: Agents MUST NOT execute terminal commands via PowerShell on Windows. Agents MUST use Git Bash (e.g. `& "C:\Program Files\Git\bin\bash.exe" -l -c "<command>"` or bash shell invocation) to ensure node environment variables, PATH configuration, and bash scripts run reliably.
 - **No Automatic Commits or Pushes**: Agents MUST NEVER run `git commit`, `git push`, or automatically stage/commit code changes unless the user explicitly requests it in their message. Always leave code changes unstaged and uncommitted for explicit user review.
 - **Pre-Commit / Pre-PR Validation**: Code changes MUST pass type checking, linting, unit tests, and local SSG build compilation (`npm run build`).
 - **Feature Specification & Planning**: All non-trivial features MUST undergo formal specification (`/speckit-specify`) and implementation planning (`/speckit-plan`), including an explicit Constitution Check gate.
