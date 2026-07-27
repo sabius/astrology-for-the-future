@@ -11,7 +11,16 @@ const { title, description, image } = Astro.props as Props;
 
 const site = Astro.site?.toString();
 const pathname = Astro.url?.pathname ?? "/";
-const canonical = site ? new URL(pathname, site).toString() : undefined;
+
+function normalizePath(path: string): string {
+  // Keep the English homepage canonical on /en because / is a language redirect route.
+  if (path === "/en" || path === "/en/") return "/en";
+  if (path.startsWith("/en/")) return path.slice(3);
+  return path;
+}
+
+const normalizedPath = normalizePath(pathname);
+const canonical = site ? new URL(normalizedPath, site).toString() : undefined;
 const locale = getCurrentLocaleFromAstro(Astro);
 const ogLocale = locale === "es" ? "es_ES" : "en_US";
 const siteName = "Glenda Ferreira";

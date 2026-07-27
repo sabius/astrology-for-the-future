@@ -15,9 +15,10 @@ export const getStaticPaths = (async () => {
   // Show docs in development and Cloudflare Pages preview deployments (staging)
   // Hide docs only in production builds
   const isDevelopment = import.meta.env.DEV;
+  const productionBranches = new Set(["master", "main"]);
   const isCloudflarePreview =
     import.meta.env.CF_PAGES_BRANCH &&
-    import.meta.env.CF_PAGES_BRANCH !== "master";
+    !productionBranches.has(import.meta.env.CF_PAGES_BRANCH);
   const showDocs = isDevelopment || isCloudflarePreview;
 
   const filteredPages = showDocs

@@ -1,6 +1,7 @@
 ---
 import { t, getCurrentLocaleFromAstro } from "../../i18n/index";
 const locale = getCurrentLocaleFromAstro(Astro);
+const localePath = (path: string) => `/${locale}${path}`;
 // Social media links
 const socialLinks = [
   {
@@ -70,10 +71,10 @@ const terms = await t("footer.terms", locale);
     >
       <p>&copy; {currentYear} {await t("site.title", locale)}. {copyright}</p>
       <p class="mt-2">
-        <a href="/privacy-policy" class="hover:text-primary-300 mr-4"
+        <a href={localePath("/privacy-policy")} class="hover:text-primary-300 mr-4"
           >{privacy}</a
         >
-        <a href="/terms-of-service" class="hover:text-primary-300">{terms}</a>
+        <a href={localePath("/terms-of-service")} class="hover:text-primary-300">{terms}</a>
       </p>
     </div>
   </div>

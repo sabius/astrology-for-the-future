@@ -1,5 +1,7 @@
 import { defineCollection, z } from "astro:content";
 
+const buttonStyle = z.enum(["primary", "secondary", "accent", "outline"]);
+
 const heroBlock = z.object({
   component: z.literal("hero"),
   hidden_h1: z.string().optional(),
@@ -49,7 +51,7 @@ const featureCardBlock = z.object({
     )
     .optional(),
   button: z
-    .object({ text: z.string(), url: z.string(), style: z.string().optional() })
+    .object({ text: z.string(), url: z.string(), style: buttonStyle.optional() })
     .optional(),
 });
 
@@ -65,7 +67,7 @@ const ctaBlock = z.object({
   button: z.object({
     text: z.string(),
     url: z.string(),
-    style: z.string().optional(),
+    style: buttonStyle.optional(),
   }),
 });
 
@@ -83,7 +85,7 @@ const featureGridBlock = z.object({
           .object({
             text: z.string(),
             url: z.string(),
-            style: z.string().optional(),
+            style: buttonStyle.optional(),
           })
           .optional(),
       })
