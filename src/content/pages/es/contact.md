@@ -30,7 +30,7 @@ content:
         copy: "Conéctate conmigo directamente para consultas rápidas."
         button:
           text: "Mensaje"
-          url: "https://wa.me/1234567890"
+          url: "https://wa.me/573054315796?text=Hola,%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20una%20consulta%20de%20astrolog%C3%ADa."
           style: "secondary"
       - icon: "🌍"
         heading: "Alcance Global"

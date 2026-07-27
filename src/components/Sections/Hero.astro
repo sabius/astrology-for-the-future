@@ -2,14 +2,15 @@
 import Button from "../UI/Button.astro";
 import ResponsivePicture from "../UI/ResponsivePicture.astro";
 
-const { header, copy, button, background_image } = Astro.props;
+const { hidden_h1, header, copy, button, background_image } = Astro.props;
 
-const heroImageAlt = header ?? "";
+const heroImageAlt = hidden_h1 ?? header ?? "";
 ---
 
 <section
   class="hero-section relative min-h-[70vh] flex items-center pt-30 text-white overflow-hidden"
 >
+  {hidden_h1 && <h1 class="sr-only">{hidden_h1}</h1>}
   <script is:inline>
     // Progressive enhancement: Add loading state only if JS is enabled
     document.currentScript.parentElement.classList.add("is-loading");
@@ -33,13 +34,22 @@ const heroImageAlt = header ?? "";
   >
     {
       (header || copy) && (
-        <div class="max-w-3xl text-white bg-gray-900/50 backdrop-blur-sm p-10 rounded-md">
-          {header && (
-            <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">
-              {header}
-            </h1>
+        <div class="max-w-3xl text-white bg-gray-900/50 backdrop-blur-sm p-6 sm:p-8 md:p-10 rounded-md">
+          {header &&
+            (hidden_h1 ? (
+              <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight">
+                {header}
+              </p>
+            ) : (
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight">
+                {header}
+              </h1>
+            ))}
+          {copy && (
+            <p class="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-gray-100">
+              {copy}
+            </p>
           )}
-          {copy && <p class="text-xl md:text-2xl mb-8">{copy}</p>}
 
           {button && (
             <div class="flex flex-wrap gap-4">

@@ -1,14 +1,15 @@
 ---
 meta:
-  title: "Glenda Ferreira"
-  description: "Glenda Ferreira offers personalized astrology readings, articles and videos to guide you on your life's journey. Book a reading today."
+  title: "Online Astrology Readings | Glenda Ferreira"
+  description: "Online astrology consultations with Glenda Ferreira, bilingual astrologer based in Bogotá. Sessions in Spanish and English for clients in Colombia, the United States, and Europe."
   image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1768881851/Glenda%20Ferreira/meta-img-en.jpg"
 
 content:
   # Block 1: The Hero Section
   - component: "hero"
-    header: "Clarity and Direction"
-    copy: "Expert Astrology Readings and Guidance"
+    hidden_h1: "Astrology with Glenda Ferreira: in-person and online consultations"
+    header: "Your Birth Chart as a Tool for Understanding"
+    copy: "In-person and online consultations with Glenda Ferreira, M.D., surgeon and astrologer with training in medical astrology."
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
     image_alt: "The photo of a starred sky and an aurora boreal"
     button:
