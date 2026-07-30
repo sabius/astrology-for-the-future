@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   // You might want to update this to your new production URL for SEO
-  site: "https://astrology-for-the-future.pages.dev",
+  site: "https://glendaferreira.com",
   base: "/", // Always deploy to the root
   integrations: [
     sitemap({
