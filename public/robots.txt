@@ -6,4 +6,4 @@ Allow: /
 Disallow: /404
 
 # Sitemap location
-Sitemap: https://astrology-for-the-future.pages.dev/sitemap-index.xml
+Sitemap: https://glendaferreira.com/sitemap-index.xml
