@@ -28,6 +28,15 @@ export class LanguageSwitcher extends LitElement {
         localStorage.setItem("user_lang", targetLang);
       } catch (err) {}
       document.documentElement.lang = targetLang;
+
+      // Dispatch custom event for any listening components
+      this.dispatchEvent(
+        new CustomEvent("locale-change", {
+          detail: { locale: targetLang },
+          bubbles: true,
+          composed: true,
+        })
+      );
     }
   };
 
