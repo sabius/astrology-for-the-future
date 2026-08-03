@@ -26,6 +26,9 @@ interface Props {
 
 const { title, description, image } = Astro.props as Props;
 const currentLocale = getCurrentLocaleFromAstro(Astro);
+const isRoot = Astro.url.pathname === "/";
+const enWhatsappMessage = await t("whatsapp.message", "en");
+const esWhatsappMessage = await t("whatsapp.message", "es");
 const whatsappMessage = await t("whatsapp.message", currentLocale);
 ---
 
@@ -45,6 +48,7 @@ const whatsappMessage = await t("whatsapp.message", currentLocale);
     <meta name="generator" content={Astro.generator} />
     <Meta title={title} description={description} image={image} />
     <title>{title}</title>
+    <slot name="head" />
   </head>
   <body class="font-sans">
     <div class="flex flex-col min-h-screen">
@@ -58,7 +62,16 @@ const whatsappMessage = await t("whatsapp.message", currentLocale);
     </div>
 
     <!-- WhatsApp Floating Button -->
-    <WhatsAppButton message={whatsappMessage} />
+    {
+      isRoot ? (
+        <>
+          <WhatsAppButton class="lang-en" message={enWhatsappMessage} />
+          <WhatsAppButton class="lang-es hidden" message={esWhatsappMessage} />
+        </>
+      ) : (
+        <WhatsAppButton message={whatsappMessage} />
+      )
+    }
   </body>
 </html>
 
