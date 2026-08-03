@@ -45,6 +45,7 @@ const whatsappMessage = await t("whatsapp.message", currentLocale);
     <meta name="generator" content={Astro.generator} />
     <Meta title={title} description={description} image={image} />
     <title>{title}</title>
+    <slot name="head" />
   </head>
   <body class="font-sans">
     <div class="flex flex-col min-h-screen">

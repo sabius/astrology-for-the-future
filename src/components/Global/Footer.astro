@@ -1,7 +1,14 @@
 ---
 import { t, getCurrentLocaleFromAstro } from "../../i18n/index";
 const locale = getCurrentLocaleFromAstro(Astro);
-const localePath = (path: string) => `/${locale}${path}`;
+const currentPath = Astro.url.pathname;
+const isRoot = currentPath === "/";
+
+const getLocalePath = (path: string, loc: string) => {
+  if (isRoot) return path;
+  return `/${loc}${path}`;
+};
+
 // Social media links
 const socialLinks = [
   {
@@ -27,20 +34,48 @@ const socialLinks = [
   },
 ];
 
-// Current year for copyright
 const currentYear = new Date().getFullYear();
 
-const followMe = await t("footer.follow", locale);
-const copyright = await t("footer.rights", locale);
-const privacy = await t("footer.privacy", locale);
-const terms = await t("footer.terms", locale);
+// Fetch UI strings for both languages
+const enFollowMe = await t("footer.follow", "en");
+const enCopyright = await t("footer.rights", "en");
+const enPrivacy = await t("footer.privacy", "en");
+const enTerms = await t("footer.terms", "en");
+
+const esFollowMe = await t("footer.follow", "es");
+const esCopyright = await t("footer.rights", "es");
+const esPrivacy = await t("footer.privacy", "es");
+const esTerms = await t("footer.terms", "es");
+
+const siteTitle = await t("site.title", locale);
+
+const getSwitchHref = (targetLoc: string) => {
+  if (isRoot) return "/";
+  const segments = currentPath.split("/").filter(Boolean);
+  if (segments.length > 0 && (segments[0] === "es" || segments[0] === "en")) {
+    segments[0] = targetLoc;
+    return `/${segments.join("/")}`;
+  }
+  return `/${targetLoc}`;
+};
 ---
 
 <footer class="bg-gray-900 text-white pt-16 pb-8">
   <div class="container">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
       <div class="flex justify-center">
-        <h4 class="mr-6 space-x-4 text-lg font-bold text-white">{followMe}</h4>
+        {
+          isRoot ? (
+            <>
+              <h4 class="lang-en mr-6 space-x-4 text-lg font-bold text-white">{enFollowMe}</h4>
+              <h4 class="lang-es hidden mr-6 space-x-4 text-lg font-bold text-white">{esFollowMe}</h4>
+            </>
+          ) : (
+            <h4 class="mr-6 space-x-4 text-lg font-bold text-white">
+              {locale === "es" ? esFollowMe : enFollowMe}
+            </h4>
+          )
+        }
         <ul class="flex space-x-4">
           {
             socialLinks.map((link) => (
@@ -59,23 +94,74 @@ const terms = await t("footer.terms", locale);
           }
         </ul>
       </div>
+
+      <!-- Language Links in Footer -->
       <div class="flex justify-center">
-        <a class="pr-6" href={Astro.url.pathname.replace(/^\/(en|es)/, "/en")}>English</a>
-        <a class="pl-6" href={Astro.url.pathname.replace(/^\/(en|es)/, "/es")}>Español</a>
+        <a class="pr-6 cursor-pointer hover:text-primary-300 transition-colors" href={getSwitchHref("en")} data-lang-btn="en">English</a>
+        <a class="pl-6 cursor-pointer hover:text-primary-300 transition-colors" href={getSwitchHref("es")} data-lang-btn="es">Español</a>
       </div>
     </div>
 
     <!-- Copyright -->
-    <div
-      class="pt-8 mt-8 border-t border-gray-800 text-center text-gray-400 text-sm"
-    >
-      <p>&copy; {currentYear} {await t("site.title", locale)}. {copyright}</p>
-      <p class="mt-2">
-        <a href={localePath("/privacy-policy")} class="hover:text-primary-300 mr-4"
-          >{privacy}</a
-        >
-        <a href={localePath("/terms-of-service")} class="hover:text-primary-300">{terms}</a>
-      </p>
+    <div class="pt-8 mt-8 border-t border-gray-800 text-center text-gray-400 text-sm">
+      {
+        isRoot ? (
+          <>
+            <div class="lang-en">
+              <p>&copy; {currentYear} {siteTitle}. {enCopyright}</p>
+              <p class="mt-2">
+                <a href={getLocalePath("/privacy-policy", "en")} class="hover:text-primary-300 mr-4">{enPrivacy}</a>
+                <a href={getLocalePath("/terms-of-service", "en")} class="hover:text-primary-300">{enTerms}</a>
+              </p>
+            </div>
+            <div class="lang-es hidden">
+              <p>&copy; {currentYear} {siteTitle}. {esCopyright}</p>
+              <p class="mt-2">
+                <a href={getLocalePath("/privacy-policy", "es")} class="hover:text-primary-300 mr-4">{esPrivacy}</a>
+                <a href={getLocalePath("/terms-of-service", "es")} class="hover:text-primary-300">{esTerms}</a>
+              </p>
+            </div>
+          </>
+        ) : (
+          <div>
+            <p>&copy; {currentYear} {siteTitle}. {locale === "es" ? esCopyright : enCopyright}</p>
+            <p class="mt-2">
+              <a href={getLocalePath("/privacy-policy", locale)} class="hover:text-primary-300 mr-4">{locale === "es" ? esPrivacy : enPrivacy}</a>
+              <a href={getLocalePath("/terms-of-service", locale)} class="hover:text-primary-300">{locale === "es" ? esTerms : enTerms}</a>
+            </p>
+          </div>
+        )
+      }
     </div>
   </div>
 </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const langButtons = document.querySelectorAll("[data-lang-btn]");
+    langButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetLang = btn.getAttribute("data-lang-btn");
+        if (targetLang === "es" || targetLang === "en") {
+          try {
+            localStorage.setItem("user_lang", targetLang);
+          } catch (e) {}
+
+          if (window.location.pathname === "/") {
+            const rootStyle = document.getElementById("root-lang-style");
+            if (rootStyle) {
+              if (targetLang === "es") {
+                rootStyle.innerHTML =
+                  "#root-content-en, .lang-en { display: none !important; } #root-content-es { display: block !important; } .lang-es { display: flex !important; } span.lang-es, a.lang-es, p.lang-es, h4.lang-es, div.lang-es { display: block !important; }";
+              } else {
+                rootStyle.innerHTML =
+                  "#root-content-es, .lang-es { display: none !important; } #root-content-en { display: block !important; } .lang-en { display: flex !important; } span.lang-en, a.lang-en, p.lang-en, h4.lang-en, div.lang-en { display: block !important; }";
+              }
+            }
+            document.documentElement.lang = targetLang;
+          }
+        }
+      });
+    });
+  });
+</script>

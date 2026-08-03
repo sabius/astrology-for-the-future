@@ -1,31 +1,88 @@
 ---
-import GoogleTagManager from "../components/Analytics/GoogleTagManager.astro";
+import { getCollection } from "astro:content";
+import { components } from "../components/componentMap";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Root language-detection redirect.
-// JavaScript (runs immediately): checks navigator.language and redirects.
-// <meta http-equiv="refresh"> is the no-JS fallback — defaults to /en.
+// Fetch homepage entries for both languages for static pre-rendering
+const pages = await getCollection("pages");
+const enEntry = pages.find(
+  (p) => p.id === "en/index.md" || p.id === "en/index" || (p as any).slug === "en/index"
+);
+const esEntry = pages.find(
+  (p) => p.id === "es/index.md" || p.id === "es/index" || (p as any).slug === "es/index"
+);
+
+const enContent = enEntry?.data.content ?? [];
+const esContent = esEntry?.data.content ?? [];
+
+const enMeta = enEntry?.data.meta ?? {
+  title: "Online Astrology Readings | Glenda Ferreira",
+  description:
+    "Online astrology consultations with Glenda Ferreira, bilingual astrologer based in Bogotá.",
+};
 ---
 
-<!doctype html>
-<html>
-  <head>
-    <GoogleTagManager />
-    <meta charset="utf-8" />
-    <title>Redirecting…</title>
-    <meta http-equiv="refresh" content="0; url=/en" />
+<BaseLayout
+  title={enMeta.title}
+  description={enMeta.description}
+  image={enMeta.image}
+>
+  <Fragment slot="head">
+    <!-- Instant client-side browser language detection before paint -->
     <script is:inline>
       (function () {
-        const lang = (
-          navigator.language ||
-          navigator.userLanguage ||
-          "en"
-        ).toLowerCase();
-        const target = lang.startsWith("es") ? "/es" : "/en";
-        window.location.replace(target);
+        let lang = "en";
+        try {
+          const saved = localStorage.getItem("user_lang");
+          if (saved === "es" || saved === "en") {
+            lang = saved;
+          } else {
+            const nav = (
+              navigator.language ||
+              navigator.userLanguage ||
+              ""
+            ).toLowerCase();
+            if (nav.startsWith("es")) {
+              lang = "es";
+            }
+          }
+        } catch (e) {}
+
+        document.documentElement.lang = lang;
+
+        var style = document.createElement("style");
+        style.id = "root-lang-style";
+        if (lang === "es") {
+          style.innerHTML =
+            "#root-content-en, .lang-en { display: none !important; } #root-content-es { display: block !important; } .lang-es { display: flex !important; } span.lang-es, a.lang-es, p.lang-es, h4.lang-es { display: inline !important; }";
+        } else {
+          style.innerHTML =
+            "#root-content-es, .lang-es { display: none !important; } #root-content-en { display: block !important; } .lang-en { display: flex !important; } span.lang-en, a.lang-en, p.lang-en, h4.lang-en { display: inline !important; }";
+        }
+        document.head.appendChild(style);
       })();
     </script>
-  </head>
-  <body>
-    <p>Redirecting…</p>
-  </body>
-</html>
+  </Fragment>
+
+  <div id="root-homepage">
+    <!-- English Pre-rendered Content -->
+    <div id="root-content-en" class="lang-view" data-lang="en">
+      {
+        enContent.map((block) => {
+          const Component = components[block.component] ?? components.fallback;
+          return <Component {...block} />;
+        })
+      }
+    </div>
+
+    <!-- Spanish Pre-rendered Content -->
+    <div id="root-content-es" class="lang-view" data-lang="es">
+      {
+        esContent.map((block) => {
+          const Component = components[block.component] ?? components.fallback;
+          return <Component {...block} />;
+        })
+      }
+    </div>
+  </div>
+</BaseLayout>

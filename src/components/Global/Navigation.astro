@@ -1,46 +1,100 @@
 ---
 import { t, getCurrentLocaleFromAstro } from "../../i18n/index";
 const locale = getCurrentLocaleFromAstro(Astro);
-const getPath = (path: string, locale: string) => {
-  // Always use locale prefix so links stay within the current language
-  return `/${locale}${path === "/" ? "" : path}`;
+const currentPath = Astro.url.pathname;
+const isRoot = currentPath === "/";
+
+const getPath = (path: string, loc: string) => {
+  if (path === "/") {
+    return isRoot ? "/" : `/${loc}`;
+  }
+  return `/${loc}${path}`;
 };
-const navItems = [
-  { text: await t("nav.home", locale), href: getPath("/", locale) },
-  { text: await t("nav.videos", locale), href: getPath("/videos", locale) },
-  { text: await t("nav.contact", locale), href: getPath("/contact", locale) },
+
+const enNavItems = [
+  { text: await t("nav.home", "en"), href: getPath("/", "en") },
+  { text: await t("nav.videos", "en"), href: getPath("/videos", "en") },
+  { text: await t("nav.contact", "en"), href: getPath("/contact", "en") },
 ];
 
-const currentPath = Astro.url.pathname;
+const esNavItems = [
+  { text: await t("nav.home", "es"), href: getPath("/", "es") },
+  { text: await t("nav.videos", "es"), href: getPath("/videos", "es") },
+  { text: await t("nav.contact", "es"), href: getPath("/contact", "es") },
+];
 
-const navLinks = navItems.map((item) => {
-  const isActive =
-    item.href === getPath("/", locale)
-      ? currentPath === item.href
-      : currentPath.startsWith(item.href);
-  return { ...item, isActive };
-});
+const enNavLinks = enNavItems.map((item) => ({
+  ...item,
+  isActive:
+    item.href === "/"
+      ? currentPath === "/"
+      : currentPath.startsWith(item.href),
+}));
+
+const esNavLinks = esNavItems.map((item) => ({
+  ...item,
+  isActive:
+    item.href === "/"
+      ? currentPath === "/"
+      : currentPath.startsWith(item.href),
+}));
 ---
 
 <!-- Desktop Navigation -->
-<nav class="hidden lg:block">
-  <ul class="flex items-center space-x-6">
-    {
-      navLinks.map((item) => (
-        <li>
-          <a
-            href={item.href}
-            class={`nav-link text-xl font-medium transition-colors hover:text-primary-600 hover:underline ${
-              item.isActive ? "text-primary-600" : "text-stone-950"
-            }`}
-            aria-current={item.isActive ? "page" : undefined}
-          >
-            {item.text}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+<nav class="hidden lg:flex items-center space-x-6">
+  {
+    isRoot ? (
+      <>
+        <ul class="lang-en flex items-center space-x-6">
+          {enNavLinks.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class={`nav-link text-xl font-medium transition-colors hover:text-primary-600 hover:underline ${
+                  item.isActive ? "text-primary-600" : "text-stone-950"
+                }`}
+                aria-current={item.isActive ? "page" : undefined}
+              >
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <ul class="lang-es hidden items-center space-x-6">
+          {esNavLinks.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class={`nav-link text-xl font-medium transition-colors hover:text-primary-600 hover:underline ${
+                  item.isActive ? "text-primary-600" : "text-stone-950"
+                }`}
+                aria-current={item.isActive ? "page" : undefined}
+              >
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </>
+    ) : (
+      <ul class="flex items-center space-x-6">
+        {(locale === "es" ? esNavLinks : enNavLinks).map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class={`nav-link text-xl font-medium transition-colors hover:text-primary-600 hover:underline ${
+                item.isActive ? "text-primary-600" : "text-stone-950"
+              }`}
+              aria-current={item.isActive ? "page" : undefined}
+            >
+              {item.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
 </nav>
 
 <!-- Mobile Menu Button -->
@@ -74,24 +128,62 @@ const navLinks = navItems.map((item) => {
 >
   <!-- Navigation Links in Grid -->
   <div class="px-4 py-6">
-    <div class="grid grid-cols-1 gap-3">
-      {
-        navLinks.map((item) => (
-          <a
-            href={item.href}
-            class={`block px-4 py-3 font-medium rounded-lg transition-colors text-center text-3xl text-stone-950 ${
-              item.isActive
-                ? "bg-primary-50 text-primary-600 border border-primary-200"
-                : "text-gray-900 hover:text-primary-600 border border-transparent"
-            }`}
-            role="menuitem"
-            aria-current={item.isActive ? "page" : undefined}
-          >
-            {item.text}
-          </a>
-        ))
-      }
-    </div>
+    {
+      isRoot ? (
+        <>
+          <div class="lang-en grid grid-cols-1 gap-3">
+            {enNavLinks.map((item) => (
+              <a
+                href={item.href}
+                class={`block px-4 py-3 font-medium rounded-lg transition-colors text-center text-3xl text-stone-950 ${
+                  item.isActive
+                    ? "bg-primary-50 text-primary-600 border border-primary-200"
+                    : "text-gray-900 hover:text-primary-600 border border-transparent"
+                }`}
+                role="menuitem"
+                aria-current={item.isActive ? "page" : undefined}
+              >
+                {item.text}
+              </a>
+            ))}
+          </div>
+
+          <div class="lang-es hidden grid-cols-1 gap-3">
+            {esNavLinks.map((item) => (
+              <a
+                href={item.href}
+                class={`block px-4 py-3 font-medium rounded-lg transition-colors text-center text-3xl text-stone-950 ${
+                  item.isActive
+                    ? "bg-primary-50 text-primary-600 border border-primary-200"
+                    : "text-gray-900 hover:text-primary-600 border border-transparent"
+                }`}
+                role="menuitem"
+                aria-current={item.isActive ? "page" : undefined}
+              >
+                {item.text}
+              </a>
+            ))}
+          </div>
+        </>
+      ) : (
+        <div class="grid grid-cols-1 gap-3">
+          {(locale === "es" ? esNavLinks : enNavLinks).map((item) => (
+            <a
+              href={item.href}
+              class={`block px-4 py-3 font-medium rounded-lg transition-colors text-center text-3xl text-stone-950 ${
+                item.isActive
+                  ? "bg-primary-50 text-primary-600 border border-primary-200"
+                  : "text-gray-900 hover:text-primary-600 border border-transparent"
+              }`}
+              role="menuitem"
+              aria-current={item.isActive ? "page" : undefined}
+            >
+              {item.text}
+            </a>
+          ))}
+        </div>
+      )
+    }
   </div>
 </div>
 

@@ -2,6 +2,8 @@
 import Navigation from "./Navigation.astro";
 import { t, getCurrentLocaleFromAstro } from "../../i18n/index";
 const locale = getCurrentLocaleFromAstro(Astro);
+const homeHref = Astro.url.pathname === "/" ? "/" : `/${locale}`;
+
 let siteTitle = "Glenda Ferreira";
 try {
   siteTitle = await t("site.title", locale);
@@ -22,7 +24,7 @@ declare global {
 >
   <div class="container flex items-center justify-between h-20">
     <a
-      href={`/${locale}`}
+      href={homeHref}
       class="text-2xl font-bold text-primary-800 flex items-center"
     >
       <span class="sr-only">{siteTitle}</span>
