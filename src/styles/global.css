@@ -37,3 +37,37 @@ main {
     font-size: 1.1rem;
   }
 } */
+
+/* Declarative Root Domain i18n Visibility Rules */
+html:not([lang="es"]) .lang-es {
+  display: none !important;
+}
+
+html[lang="es"] .lang-en {
+  display: none !important;
+}
+
+/* Active / Inactive Language Switcher Styling */
+html[lang="es"] [data-lang-btn="es"] {
+  font-weight: 700 !important;
+  text-decoration: underline;
+  opacity: 1;
+}
+
+html[lang="es"] [data-lang-btn="en"] {
+  font-weight: 400;
+  text-decoration: none;
+  opacity: 0.75;
+}
+
+html:not([lang="es"]) [data-lang-btn="en"] {
+  font-weight: 700 !important;
+  text-decoration: underline;
+  opacity: 1;
+}
+
+html:not([lang="es"]) [data-lang-btn="es"] {
+  font-weight: 400;
+  text-decoration: none;
+  opacity: 0.75;
+}
