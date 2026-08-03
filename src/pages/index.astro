@@ -32,11 +32,17 @@ const enMeta = enEntry?.data.meta ?? {
     <script is:inline>
       (function () {
         let lang = "en";
+        let saved = null;
         try {
-          const saved = localStorage.getItem("user_lang");
-          if (saved === "es" || saved === "en") {
-            lang = saved;
-          } else {
+          saved = localStorage.getItem("user_lang");
+        } catch (e) {
+          // localStorage access blocked or unavailable
+        }
+
+        if (saved === "es" || saved === "en") {
+          lang = saved;
+        } else {
+          try {
             const nav = (
               navigator.language ||
               navigator.userLanguage ||
@@ -45,8 +51,8 @@ const enMeta = enEntry?.data.meta ?? {
             if (nav.startsWith("es")) {
               lang = "es";
             }
-          }
-        } catch (e) {}
+          } catch (e) {}
+        }
 
         document.documentElement.lang = lang;
 
@@ -54,10 +60,10 @@ const enMeta = enEntry?.data.meta ?? {
         style.id = "root-lang-style";
         if (lang === "es") {
           style.innerHTML =
-            "#root-content-en, .lang-en { display: none !important; } #root-content-es { display: block !important; } .lang-es { display: flex !important; } span.lang-es, a.lang-es, p.lang-es, h4.lang-es { display: inline !important; }";
+            "#root-content-en, .lang-en { display: none !important; } #root-content-es { display: block !important; } ul.lang-es.hidden { display: flex !important; } div.lang-es.hidden { display: grid !important; } h4.lang-es.hidden { display: block !important; } div.lang-es.hidden:not(.grid) { display: block !important; }";
         } else {
           style.innerHTML =
-            "#root-content-es, .lang-es { display: none !important; } #root-content-en { display: block !important; } .lang-en { display: flex !important; } span.lang-en, a.lang-en, p.lang-en, h4.lang-en { display: inline !important; }";
+            "#root-content-es, .lang-es { display: none !important; }";
         }
         document.head.appendChild(style);
       })();
@@ -65,7 +71,7 @@ const enMeta = enEntry?.data.meta ?? {
   </Fragment>
 
   <div id="root-homepage">
-    <!-- English Pre-rendered Content -->
+    <!-- English Pre-rendered Content (Static Fallback for non-JS & Search Engine Crawlers) -->
     <div id="root-content-en" class="lang-view" data-lang="en">
       {
         enContent.map((block) => {
@@ -75,8 +81,8 @@ const enMeta = enEntry?.data.meta ?? {
       }
     </div>
 
-    <!-- Spanish Pre-rendered Content -->
-    <div id="root-content-es" class="lang-view" data-lang="es">
+    <!-- Spanish Pre-rendered Content (Hidden by default for non-JS clients) -->
+    <div id="root-content-es" class="lang-view hidden" data-lang="es">
       {
         esContent.map((block) => {
           const Component = components[block.component] ?? components.fallback;

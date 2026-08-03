@@ -23,20 +23,21 @@ const esNavItems = [
   { text: await t("nav.contact", "es"), href: getPath("/contact", "es") },
 ];
 
+const isHomeHref = (href: string) =>
+  href === "/" || href === "/en" || href === "/es";
+
 const enNavLinks = enNavItems.map((item) => ({
   ...item,
-  isActive:
-    item.href === "/"
-      ? currentPath === "/"
-      : currentPath.startsWith(item.href),
+  isActive: isHomeHref(item.href)
+    ? currentPath === item.href
+    : currentPath.startsWith(item.href),
 }));
 
 const esNavLinks = esNavItems.map((item) => ({
   ...item,
-  isActive:
-    item.href === "/"
-      ? currentPath === "/"
-      : currentPath.startsWith(item.href),
+  isActive: isHomeHref(item.href)
+    ? currentPath === item.href
+    : currentPath.startsWith(item.href),
 }));
 ---
 
