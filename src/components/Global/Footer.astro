@@ -9,6 +9,16 @@ const getLocalePath = (path: string, loc: string) => {
   return path;
 };
 
+const getSwitchHref = (targetLoc: string) => {
+  if (isRoot) return "/";
+  const segments = currentPath.split("/").filter(Boolean);
+  if (segments.length > 0 && (segments[0] === "es" || segments[0] === "en")) {
+    segments[0] = targetLoc;
+    return `/${segments.join("/")}`;
+  }
+  return `/${targetLoc}`;
+};
+
 // Social media links
 const socialLinks = [
   {
@@ -48,27 +58,18 @@ const esPrivacy = await t("footer.privacy", "es");
 const esTerms = await t("footer.terms", "es");
 
 const siteTitle = await t("site.title", locale);
-
-const getSwitchHref = (targetLoc: string) => {
-  if (isRoot) return "/";
-  const segments = currentPath.split("/").filter(Boolean);
-  if (segments.length > 0 && (segments[0] === "es" || segments[0] === "en")) {
-    segments[0] = targetLoc;
-    return `/${segments.join("/")}`;
-  }
-  return `/${targetLoc}`;
-};
 ---
 
 <footer class="bg-gray-900 text-white pt-16 pb-8">
   <div class="container">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
-      <div class="flex justify-center">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 items-center">
+      <!-- Left: Social Links -->
+      <div class="flex justify-center items-center">
         {
           isRoot ? (
             <>
               <h4 class="lang-en mr-6 space-x-4 text-lg font-bold text-white">{enFollowMe}</h4>
-              <h4 class="lang-es hidden mr-6 space-x-4 text-lg font-bold text-white">{esFollowMe}</h4>
+              <h4 class="lang-es mr-6 space-x-4 text-lg font-bold text-white">{esFollowMe}</h4>
             </>
           ) : (
             <h4 class="mr-6 space-x-4 text-lg font-bold text-white">
@@ -95,14 +96,18 @@ const getSwitchHref = (targetLoc: string) => {
         </ul>
       </div>
 
-      <!-- Language Links in Footer -->
-      <div class="flex justify-center">
-        <a class="pr-6 cursor-pointer hover:text-primary-300 transition-colors" href={getSwitchHref("en")} data-lang-btn="en">English</a>
-        <a class="pl-6 cursor-pointer hover:text-primary-300 transition-colors" href={getSwitchHref("es")} data-lang-btn="es">Español</a>
+      <!-- Right: Lit Language Switcher Web Component -->
+      <div class="flex justify-center items-center">
+        <language-switcher currentPath={currentPath} isRoot={isRoot}>
+          <div class="flex justify-center items-center">
+            <a class="pr-6 cursor-pointer hover:text-primary-300 transition-colors" href={getSwitchHref("en")} data-lang-btn="en">English</a>
+            <a class="pl-6 cursor-pointer hover:text-primary-300 transition-colors" href={getSwitchHref("es")} data-lang-btn="es">Español</a>
+          </div>
+        </language-switcher>
       </div>
     </div>
 
-    <!-- Copyright -->
+    <!-- Copyright & Legal Links -->
     <div class="pt-8 mt-8 border-t border-gray-800 text-center text-gray-400 text-sm">
       {
         isRoot ? (
@@ -114,7 +119,7 @@ const getSwitchHref = (targetLoc: string) => {
                 <a href={getLocalePath("/terms-of-service", "en")} class="hover:text-primary-300">{enTerms}</a>
               </p>
             </div>
-            <div class="lang-es hidden">
+            <div class="lang-es">
               <p>&copy; {currentYear} {siteTitle}. {esCopyright}</p>
               <p class="mt-2">
                 <a href={getLocalePath("/privacy-policy", "es")} class="hover:text-primary-300 mr-4">{esPrivacy}</a>
@@ -136,32 +141,4 @@ const getSwitchHref = (targetLoc: string) => {
   </div>
 </footer>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const langButtons = document.querySelectorAll("[data-lang-btn]");
-    langButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const targetLang = btn.getAttribute("data-lang-btn");
-        if (targetLang === "es" || targetLang === "en") {
-          try {
-            localStorage.setItem("user_lang", targetLang);
-          } catch (e) {}
-
-          if (window.location.pathname === "/") {
-            const rootStyle = document.getElementById("root-lang-style");
-            if (rootStyle) {
-              if (targetLang === "es") {
-                rootStyle.innerHTML =
-                  "#root-content-en, .lang-en { display: none !important; } #root-content-es { display: block !important; } ul.lang-es.hidden { display: flex !important; } div.lang-es.hidden { display: grid !important; } h4.lang-es.hidden { display: block !important; } div.lang-es.hidden:not(.grid) { display: block !important; }";
-              } else {
-                rootStyle.innerHTML =
-                  "#root-content-es, .lang-es { display: none !important; }";
-              }
-            }
-            document.documentElement.lang = targetLang;
-          }
-        }
-      });
-    });
-  });
-</script>
+<script src="../../components/Lit/LanguageSwitcher.ts"></script>

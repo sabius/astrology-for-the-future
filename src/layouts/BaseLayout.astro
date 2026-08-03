@@ -66,7 +66,7 @@ const whatsappMessage = await t("whatsapp.message", currentLocale);
       isRoot ? (
         <>
           <WhatsAppButton class="lang-en" message={enWhatsappMessage} />
-          <WhatsAppButton class="lang-es hidden" message={esWhatsappMessage} />
+          <WhatsAppButton class="lang-es" message={esWhatsappMessage} />
         </>
       ) : (
         <WhatsAppButton message={whatsappMessage} />

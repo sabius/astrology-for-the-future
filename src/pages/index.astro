@@ -55,24 +55,13 @@ const enMeta = enEntry?.data.meta ?? {
         }
 
         document.documentElement.lang = lang;
-
-        var style = document.createElement("style");
-        style.id = "root-lang-style";
-        if (lang === "es") {
-          style.innerHTML =
-            "#root-content-en, .lang-en { display: none !important; } #root-content-es { display: block !important; } ul.lang-es.hidden { display: flex !important; } div.lang-es.hidden { display: grid !important; } h4.lang-es.hidden { display: block !important; } div.lang-es.hidden:not(.grid) { display: block !important; }";
-        } else {
-          style.innerHTML =
-            "#root-content-es, .lang-es { display: none !important; }";
-        }
-        document.head.appendChild(style);
       })();
     </script>
   </Fragment>
 
   <div id="root-homepage">
     <!-- English Pre-rendered Content (Static Fallback for non-JS & Search Engine Crawlers) -->
-    <div id="root-content-en" class="lang-view" data-lang="en">
+    <div id="root-content-en" class="lang-en" data-lang="en">
       {
         enContent.map((block) => {
           const Component = components[block.component] ?? components.fallback;
@@ -81,8 +70,8 @@ const enMeta = enEntry?.data.meta ?? {
       }
     </div>
 
-    <!-- Spanish Pre-rendered Content (Hidden by default for non-JS clients) -->
-    <div id="root-content-es" class="lang-view hidden" data-lang="es">
+    <!-- Spanish Pre-rendered Content -->
+    <div id="root-content-es" class="lang-es" data-lang="es">
       {
         esContent.map((block) => {
           const Component = components[block.component] ?? components.fallback;

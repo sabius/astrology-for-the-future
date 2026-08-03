@@ -5,6 +5,7 @@
 This is a **Multilingual Astro 5 Website** utilizing a "page builder" architecture driven by Content Collections.
 
 - **Framework**: Astro 5 (Static Site Generation)
+- **Web Components**: Lit (`lit` + `@astrojs/lit`) for interactive client-side components
 - **Styling**: Tailwind CSS v4 (with Lightning CSS transformer)
 - **Language**: TypeScript
 - **i18n**: Astro built-in routing + JSON dictionaries
@@ -64,6 +65,12 @@ content:
 - **UI Strings**: Use `src/i18n/index.ts`.
   - Add keys to `src/i18n/en.json` and `src/i18n/es.json`.
   - Use the helper `t(key, currentLocale)` or `entry.slug` detection to switch languages.
+
+### How to Create a Lit Web Component
+
+1. Add your Lit component class extending `LitElement` in `src/components/Lit/YourComponent.ts`.
+2. Register the custom element using `@customElement('your-component')` or `customElements.define('your-component', YourComponent)`.
+3. Import and use it in Astro pages/components using `<your-component client:only="lit" />` or standard custom element tags.
 
 ## Styling
 
