@@ -5,22 +5,59 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  canonicalUrl?: string;
 }
 
-const { title, description, image } = Astro.props as Props;
+const { title, description, image, canonicalUrl } = Astro.props as Props;
 
-const site = Astro.site?.toString();
-const pathname = Astro.url?.pathname ?? "/";
+const site = Astro.site?.toString() || "https://glendaferreira.com";
+const origin = site.endsWith("/") ? site.slice(0, -1) : site;
+const rawPathname = Astro.url?.pathname ?? "/";
 
-function normalizePath(path: string): string {
-  // Keep the English homepage canonical on /en because / is a language redirect route.
-  if (path === "/en" || path === "/en/") return "/en";
-  if (path.startsWith("/en/")) return path.slice(3);
-  return path;
+function getSeoUrls(pathname: string, originUrl: string) {
+  let clean = pathname;
+  if (!clean.startsWith("/")) clean = "/" + clean;
+  
+  let enPath = "/";
+  let esPath = "/es/";
+  let currentCanonicalPath = "/";
+
+  if (clean === "/" || clean === "/en" || clean === "/en/") {
+    enPath = "/";
+    esPath = "/es/";
+    currentCanonicalPath = clean.startsWith("/es") ? "/es/" : "/";
+  } else if (clean === "/es" || clean === "/es/") {
+    enPath = "/";
+    esPath = "/es/";
+    currentCanonicalPath = "/es/";
+  } else if (clean.startsWith("/es/")) {
+    const sub = clean.slice(3);
+    const formattedSub = sub.endsWith("/") ? sub : sub + "/";
+    enPath = formattedSub;
+    esPath = "/es" + formattedSub;
+    currentCanonicalPath = esPath;
+  } else if (clean.startsWith("/en/")) {
+    const sub = clean.slice(3);
+    const formattedSub = sub.endsWith("/") ? sub : sub + "/";
+    enPath = formattedSub;
+    esPath = "/es" + formattedSub;
+    currentCanonicalPath = enPath;
+  } else {
+    const formattedSub = clean.endsWith("/") ? clean : clean + "/";
+    enPath = formattedSub;
+    esPath = "/es" + formattedSub;
+    currentCanonicalPath = enPath;
+  }
+
+  return {
+    canonical: canonicalUrl || `${originUrl}${currentCanonicalPath}`,
+    hreflangEn: `${originUrl}${enPath}`,
+    hreflangEs: `${originUrl}${esPath}`,
+    hreflangDefault: `${originUrl}${enPath}`,
+  };
 }
 
-const normalizedPath = normalizePath(pathname);
-const canonical = site ? new URL(normalizedPath, site).toString() : undefined;
+const { canonical, hreflangEn, hreflangEs, hreflangDefault } = getSeoUrls(rawPathname, origin);
 const locale = getCurrentLocaleFromAstro(Astro);
 const ogLocale = locale === "es" ? "es_ES" : "en_US";
 const siteName = "Glenda Ferreira";
@@ -28,14 +65,19 @@ const twitterCard = image ? "summary_large_image" : "summary";
 ---
 
 {description && <meta name="description" content={description} />}
-{canonical && <link rel="canonical" href={canonical} />}
+<link rel="canonical" href={canonical} />
+
+<!-- Multilingual hreflang annotations -->
+<link rel="alternate" hreflang="en" href={hreflangEn} />
+<link rel="alternate" hreflang="es" href={hreflangEs} />
+<link rel="alternate" hreflang="x-default" href={hreflangDefault} />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content={siteName} />
 <meta property="og:title" content={title} />
 {description && <meta property="og:description" content={description} />}
-{canonical && <meta property="og:url" content={canonical} />}
+<meta property="og:url" content={canonical} />
 <meta property="og:locale" content={ogLocale} />
 {image && <meta property="og:image" content={image} />}
 

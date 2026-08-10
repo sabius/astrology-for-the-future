@@ -20,8 +20,10 @@ export default defineConfig({
       },
       filter: (page) => {
         const pathname = new URL(page).pathname;
-        if (pathname.includes("/404")) return false;
-        return pathname.startsWith("/en/") || pathname.startsWith("/es/");
+        if (pathname.includes("/404") || pathname.includes("/docs")) return false;
+        // Exclude duplicate /en/ prefix paths so sitemap strictly contains primary canonical URLs
+        if (pathname.startsWith("/en/") || pathname === "/en") return false;
+        return true;
       },
     }),
   ],
