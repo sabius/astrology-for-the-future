@@ -106,13 +106,36 @@ const videoSectionBlock = z.object({
   component: z.literal("video-section"),
   header: z.string().optional(),
   copy: z.string().optional(),
-  videos: z.array(
-    z.object({
-      video_id: z.string(),
-      title: z.string().optional(),
-      copy: z.string().optional(),
-    })
-  ).optional(),
+  videos: z
+    .array(
+      z.object({
+        video_id: z.string(),
+        title: z.string().optional(),
+        copy: z.string().optional(),
+        summary: z.string().optional(),
+        url: z.string().optional(),
+        upload_date: z.string().optional(),
+        thumbnail: z.string().optional(),
+      })
+    )
+    .optional(),
+});
+
+const videoDetailBlock = z.object({
+  component: z.literal("video-detail"),
+  video_id: z.string(),
+  header: z.string().optional(),
+  copy: z.string().optional(),
+  upload_date: z.string().optional(),
+  button: z
+    .object({ text: z.string(), url: z.string(), style: buttonStyle.optional() })
+    .optional(),
+  prev_video: z
+    .object({ text: z.string().optional(), title: z.string().optional(), url: z.string() })
+    .optional(),
+  next_video: z
+    .object({ text: z.string().optional(), title: z.string().optional(), url: z.string() })
+    .optional(),
 });
 
 // Define the main collection for our pages
@@ -122,6 +145,10 @@ const pagesCollection = defineCollection({
       title: z.string(),
       description: z.string(),
       image: z.string().url().optional(),
+      video_id: z.string().optional(),
+      upload_date: z.string().optional(),
+      en_url: z.string().optional(),
+      es_url: z.string().optional(),
     }),
     content: z.array(
       // This tells Zod that `content` is an array of one of our defined blocks
@@ -134,6 +161,7 @@ const pagesCollection = defineCollection({
         imageOverlayBlock,
         ctaBlock,
         videoSectionBlock,
+        videoDetailBlock,
       ])
     ),
   }),

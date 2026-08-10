@@ -86,6 +86,10 @@ const { Content } = await entry.render();
       title={meta.title}
       description={meta.description}
       image={meta.image}
+      videoId={(meta as any).video_id}
+      uploadDate={(meta as any).upload_date}
+      enUrl={(meta as any).en_url}
+      esUrl={(meta as any).es_url}
     >
       <main>
         {content.map((block) => {
