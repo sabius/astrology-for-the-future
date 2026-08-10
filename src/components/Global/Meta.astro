@@ -6,9 +6,13 @@ interface Props {
   description?: string;
   image?: string;
   canonicalUrl?: string;
+  videoId?: string;
+  uploadDate?: string;
+  enUrl?: string;
+  esUrl?: string;
 }
 
-const { title, description, image, canonicalUrl } = Astro.props as Props;
+const { title, description, image, canonicalUrl, videoId, uploadDate, enUrl, esUrl } = Astro.props as Props;
 
 const site = Astro.site?.toString() || "https://glendaferreira.com";
 const origin = site.endsWith("/") ? site.slice(0, -1) : site;
@@ -18,42 +22,54 @@ function getSeoUrls(pathname: string, originUrl: string) {
   let clean = pathname;
   if (!clean.startsWith("/")) clean = "/" + clean;
   
-  let enPath = "/";
-  let esPath = "/es/";
+  let defaultEnPath = "/";
+  let defaultEsPath = "/es/";
   let currentCanonicalPath = "/";
 
   if (clean === "/" || clean === "/en" || clean === "/en/") {
-    enPath = "/";
-    esPath = "/es/";
+    defaultEnPath = "/";
+    defaultEsPath = "/es/";
     currentCanonicalPath = clean.startsWith("/es") ? "/es/" : "/";
   } else if (clean === "/es" || clean === "/es/") {
-    enPath = "/";
-    esPath = "/es/";
+    defaultEnPath = "/";
+    defaultEsPath = "/es/";
     currentCanonicalPath = "/es/";
   } else if (clean.startsWith("/es/")) {
     const sub = clean.slice(3);
     const formattedSub = sub.endsWith("/") ? sub : sub + "/";
-    enPath = formattedSub;
-    esPath = "/es" + formattedSub;
-    currentCanonicalPath = esPath;
+    defaultEnPath = formattedSub;
+    defaultEsPath = "/es" + formattedSub;
+    currentCanonicalPath = defaultEsPath;
   } else if (clean.startsWith("/en/")) {
     const sub = clean.slice(3);
     const formattedSub = sub.endsWith("/") ? sub : sub + "/";
-    enPath = formattedSub;
-    esPath = "/es" + formattedSub;
-    currentCanonicalPath = enPath;
+    defaultEnPath = formattedSub;
+    defaultEsPath = "/es" + formattedSub;
+    currentCanonicalPath = defaultEnPath;
   } else {
     const formattedSub = clean.endsWith("/") ? clean : clean + "/";
-    enPath = formattedSub;
-    esPath = "/es" + formattedSub;
-    currentCanonicalPath = enPath;
+    defaultEnPath = formattedSub;
+    defaultEsPath = "/es" + formattedSub;
+    currentCanonicalPath = defaultEnPath;
   }
+
+  const finalEnHref = enUrl
+    ? enUrl.startsWith("http")
+      ? enUrl
+      : `${originUrl}${enUrl.startsWith("/") ? enUrl : "/" + enUrl}`
+    : `${originUrl}${defaultEnPath}`;
+
+  const finalEsHref = esUrl
+    ? esUrl.startsWith("http")
+      ? esUrl
+      : `${originUrl}${esUrl.startsWith("/") ? esUrl : "/" + esUrl}`
+    : `${originUrl}${defaultEsPath}`;
 
   return {
     canonical: canonicalUrl || `${originUrl}${currentCanonicalPath}`,
-    hreflangEn: `${originUrl}${enPath}`,
-    hreflangEs: `${originUrl}${esPath}`,
-    hreflangDefault: `${originUrl}${enPath}`,
+    hreflangEn: finalEnHref,
+    hreflangEs: finalEsHref,
+    hreflangDefault: finalEnHref,
   };
 }
 
@@ -62,6 +78,19 @@ const locale = getCurrentLocaleFromAstro(Astro);
 const ogLocale = locale === "es" ? "es_ES" : "en_US";
 const siteName = "Glenda Ferreira";
 const twitterCard = image ? "summary_large_image" : "summary";
+
+const cleanVideoId = videoId ? videoId.split("?")[0] : undefined;
+const videoThumbnail = image || (cleanVideoId ? `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg` : undefined);
+
+const videoSchemaJson = videoId ? JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": title,
+  "description": description || title,
+  "thumbnailUrl": videoThumbnail ? [videoThumbnail] : [],
+  "uploadDate": uploadDate || "2025-01-01T00:00:00Z",
+  "embedUrl": `https://www.youtube.com/embed/${videoId}`
+}) : undefined;
 ---
 
 {description && <meta name="description" content={description} />}
@@ -86,3 +115,6 @@ const twitterCard = image ? "summary_large_image" : "summary";
 <meta name="twitter:title" content={title} />
 {description && <meta name="twitter:description" content={description} />}
 {image && <meta name="twitter:image" content={image} />}
+
+<!-- Structured Data VideoObject -->
+{videoSchemaJson && <script type="application/ld+json" set:html={videoSchemaJson}></script>}

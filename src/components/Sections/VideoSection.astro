@@ -1,11 +1,16 @@
 ---
 import { marked } from "marked";
 import DOMPurify from "isomorphic-dompurify";
+import { getCurrentLocaleFromAstro } from "../../i18n";
+import Button from "../UI/Button.astro";
 
 interface Video {
   video_id: string;
   title?: string;
   copy?: string;
+  summary?: string;
+  url?: string;
+  thumbnail?: string;
 }
 
 interface Props {
@@ -15,10 +20,12 @@ interface Props {
 }
 
 const { header, copy, videos } = Astro.props;
+const currentLocale = getCurrentLocaleFromAstro(Astro);
+const defaultButtonText = currentLocale === "es" ? "Ver Video" : "Watch Video";
 ---
 
 <section class="py-16 bg-gray-50">
-  <div class="container">
+  <div class="container mx-auto px-4 max-w-6xl">
     {(header || copy) && (
       <div class="text-center mb-16">
         {header && <h2 class="text-3xl md:text-5xl font-bold mb-4">{header}</h2>}
@@ -26,30 +33,68 @@ const { header, copy, videos } = Astro.props;
       </div>
     )}
 
-    <div class="flex flex-col gap-16">
-      {videos && videos.map(async (video, index: number) => {
-        const rawCopyHtml = await marked.parse(video.copy ?? "");
-        const cleanCopyHtml = DOMPurify.sanitize(rawCopyHtml);
-        const flexDir = index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse";
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {videos && videos.map(async (video) => {
+        const cleanVideoId = video.video_id ? video.video_id.split("?")[0] : "";
+        const thumbnailUrl = video.thumbnail || (cleanVideoId ? `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg` : "");
+        const rawSummaryHtml = await marked.parse(video.summary || video.copy || "");
+        const cleanSummaryHtml = DOMPurify.sanitize(rawSummaryHtml);
 
         return (
-          <div class={`flex flex-col ${flexDir} gap-8 items-center`}>
-            <div class="w-full md:w-1/2 rounded-lg overflow-hidden shadow-lg aspect-video">
-              <iframe
-                class="w-full h-full"
-                src={`https://www.youtube.com/embed/${video.video_id}`}
-                title={video.title || "YouTube video player"}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              ></iframe>
-            </div>
-            
-            <div class="w-full md:w-1/2">
-              <div class="bg-white p-8 rounded-lg shadow-md h-full flex flex-col justify-center">
-                {video.title && <h3 class="text-2xl font-bold mb-4">{video.title}</h3>}
-                <div class="text-gray-800 text-lg leading-relaxed space-y-4" set:html={cleanCopyHtml}></div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col hover:shadow-xl transition-shadow duration-300">
+            {video.url ? (
+              <a href={video.url} class="relative group aspect-video overflow-hidden bg-gray-900 block">
+                {thumbnailUrl && (
+                  <img
+                    src={thumbnailUrl}
+                    alt={video.title || "Video thumbnail"}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-90 group-hover:opacity-100"
+                    loading="lazy"
+                  />
+                )}
+                <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
+                  <div class="w-14 h-14 bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 fill-current ml-1 text-white" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+              </a>
+            ) : (
+              <div class="relative aspect-video overflow-hidden bg-gray-900">
+                {thumbnailUrl && (
+                  <img
+                    src={thumbnailUrl}
+                    alt={video.title || "Video thumbnail"}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                )}
               </div>
+            )}
+            
+            <div class="p-6 flex flex-col flex-grow">
+              {video.title && (
+                <h3 class="text-xl font-bold mb-3 text-gray-900 line-clamp-2">
+                  {video.url ? (
+                    <a href={video.url} class="hover:text-primary-600 transition-colors">
+                      {video.title}
+                    </a>
+                  ) : (
+                    video.title
+                  )}
+                </h3>
+              )}
+
+              <div class="text-gray-600 text-sm line-clamp-3 mb-6 flex-grow leading-relaxed" set:html={cleanSummaryHtml}></div>
+
+              {video.url && (
+                <div class="mt-auto">
+                  <Button href={video.url} variant="primary" class="w-full text-center">
+                    {defaultButtonText}
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         );
