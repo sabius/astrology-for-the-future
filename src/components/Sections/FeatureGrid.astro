@@ -3,12 +3,14 @@ import Button from "../UI/Button.astro";
 
 interface Card {
   icon?: string;
+  icon_image?: string;
   heading?: string;
   copy?: string;
   button?: {
     url: string;
     text: string;
     style?: string;
+    copy_text?: string;
   };
 }
 
@@ -37,37 +39,57 @@ const allowedVariants = new Set(["primary", "secondary", "accent", "outline"]);
     )}
 
     <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 max-w-7xl mx-auto"
+      class:list={[
+        "grid grid-cols-1 gap-8 md:gap-10 mx-auto",
+        cards?.length === 2
+          ? "md:grid-cols-2 max-w-4xl"
+          : "md:grid-cols-2 lg:grid-cols-3 max-w-7xl",
+      ]}
     >
       {
         cards &&
           cards.map((card, index: number) => (
             <div
-              class={`bg-white rounded-[32px] shadow-lg p-8 md:p-10 hover:shadow-xl transition-shadow duration-300 ${cards.length === 3 && index === 2 ? "md:col-span-2 md:max-w-md md:mx-auto lg:col-span-1 lg:max-w-none" : ""}`}
+              class={`bg-white rounded-[32px] shadow-lg p-8 md:p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between ${cards.length === 3 && index === 2 ? "md:col-span-2 md:max-w-md md:mx-auto lg:col-span-1 lg:max-w-none" : ""}`}
             >
-              {card.icon && (
-                <div class="flex justify-center mb-6">
-                  <div class="text-7xl md:text-8xl" set:html={card.icon} />
-                </div>
-              )}
-              {card.heading && (
-                <h3 class="text-2xl md:text-[2rem] font-medium text-center mb-4 text-[#2e2133] tracking-[0.01em]">
-                  {card.heading}
-                </h3>
-              )}
-              {card.copy && (
-                <p class="text-xl text-center mb-8 leading-relaxed">
-                  {card.copy}
-                </p>
-              )}
+              <div>
+                {card.icon_image ? (
+                  <div class="flex justify-center mb-6">
+                    <img
+                      src={card.icon_image}
+                      alt={card.heading || "Icon"}
+                      class="w-16 h-16 md:w-20 md:h-20 object-contain transition-transform duration-300 hover:scale-110 drop-shadow-md"
+                      loading="lazy"
+                    />
+                  </div>
+                ) : card.icon ? (
+                  <div class="flex justify-center mb-6">
+                    <div class="text-7xl md:text-8xl" set:html={card.icon} />
+                  </div>
+                ) : null}
+                {card.heading && (
+                  <h3 class="text-2xl md:text-[2rem] font-medium text-center mb-4 text-[#2e2133] tracking-[0.01em]">
+                    {card.heading}
+                  </h3>
+                )}
+                {card.copy && (
+                  <p class="text-xl text-center mb-8 leading-relaxed">
+                    {card.copy}
+                  </p>
+                )}
+              </div>
               {card.button && (
-                <div class="flex justify-center">
-                  <Button
-                    href={card.button.url}
-                    variant={allowedVariants.has(card.button.style ?? "") ? card.button.style as "primary" | "secondary" | "accent" | "outline" : "secondary"}
-                  >
-                    {card.button.text}
-                  </Button>
+                <div class="flex justify-center mt-auto">
+                  <copy-button>
+                    <Button
+                      href={card.button.url}
+                      target={card.button.url.startsWith("http") || card.button.url.includes("wa.me") ? "_blank" : undefined}
+                      variant={allowedVariants.has(card.button.style ?? "") ? card.button.style as "primary" | "secondary" | "accent" | "outline" : "secondary"}
+                      data-copy-text={card.button.copy_text}
+                    >
+                      {card.button.text}
+                    </Button>
+                  </copy-button>
                 </div>
               )}
             </div>
@@ -76,3 +98,5 @@ const allowedVariants = new Set(["primary", "secondary", "accent", "outline"]);
     </div>
   </div>
 </section>
+
+<script src="../Lit/CopyButton.ts"></script>

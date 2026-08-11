@@ -79,6 +79,7 @@ const featureGridBlock = z.object({
     .array(
       z.object({
         icon: z.string().optional(),
+        icon_image: z.string().optional(),
         heading: z.string().optional(),
         copy: z.string().optional(),
         button: z
@@ -86,6 +87,7 @@ const featureGridBlock = z.object({
             text: z.string(),
             url: z.string(),
             style: buttonStyle.optional(),
+            copy_text: z.string().optional(),
           })
           .optional(),
       })
