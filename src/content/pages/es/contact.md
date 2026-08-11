@@ -12,7 +12,7 @@ content:
     image_alt: "Cielo nocturno estrellado"
     button:
       text: "Reservar una Lectura"
-      url: "mailto:astrologyforthefuture@gmail.com"
+      url: "https://wa.me/573054315796?text=Hola,%20quisiera%20reservar%20una%20consulta%20de%20astrolog%C3%ADa."
 
   - component: "feature-grid"
     header: "Ponte en Contacto"
@@ -22,8 +22,8 @@ content:
         heading: "Correo Electrónico"
         copy: "astrologyforthefuture@gmail.com"
         button:
-          text: "Enviar Correo"
-          url: "mailto:astrologyforthefuture@gmail.com"
+          text: "Copiar Correo"
+          url: "#"
           copy_text: "astrologyforthefuture@gmail.com"
           style: "primary"
       - icon_image: "/img/whatsapp-icon.png"
@@ -51,6 +51,6 @@ content:
       - copy: "Es más que un regalo: es una invitación a explorar su propósito, potencial y camino guiado por el universo."
     button:
       text: "Consultar Tarjeta Regalo"
-      url: "mailto:astrologyforthefuture@gmail.com"
+      url: "https://wa.me/573054315796?text=Hola,%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20Tarjeta%20Regalo."
       style: "secondary"
 ---

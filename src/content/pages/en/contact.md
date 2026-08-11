@@ -12,7 +12,7 @@ content:
     image_alt: "Starry night sky background"
     button:
       text: "Book a Reading"
-      url: "mailto:astrologyforthefuture@gmail.com"
+      url: "https://wa.me/573054315796?text=Hello,%20I%20would%20like%20to%20book%20an%20astrology%20consultation."
 
   - component: "feature-grid"
     header: "Get in Touch"
@@ -22,8 +22,8 @@ content:
         heading: "Email"
         copy: "astrologyforthefuture@gmail.com"
         button:
-          text: "Send Email"
-          url: "mailto:astrologyforthefuture@gmail.com"
+          text: "Copy Email"
+          url: "#"
           copy_text: "astrologyforthefuture@gmail.com"
           style: "primary"
       - icon_image: "/img/whatsapp-icon.png"
@@ -51,6 +51,6 @@ content:
       - copy: "It's more than a gift—it's an invitation to explore their purpose, potential, and path guided by the universe."
     button:
       text: "Inquire About Gift Cards"
-      url: "mailto:astrologyforthefuture@gmail.com"
+      url: "https://wa.me/573054315796?text=Hello,%20I%20would%20like%20information%20about%20a%20Gift%20Card."
       style: "secondary"
 ---

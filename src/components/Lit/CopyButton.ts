@@ -23,6 +23,8 @@ export class CopyButton extends LitElement {
     const copyText = target.getAttribute("data-copy-text");
     if (!copyText) return;
 
+    e.preventDefault();
+
     try {
       await navigator.clipboard.writeText(copyText);
       const originalText = target.textContent;
