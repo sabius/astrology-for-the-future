@@ -6,61 +6,51 @@ meta:
 
 content:
   - component: "hero"
-    header: "Contact"
-    copy: "Begin your journey through the stars today. Book a personalized reading."
+    header: "Contact Dr. Glenda Ferreira"
+    copy: "Begin your journey through the stars today. Book a personalized astrology consultation or reach out with any questions."
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
-    image_alt: "Starry night sky"
+    image_alt: "Starry night sky background"
     button:
       text: "Book a Reading"
-      url: "mailto:astrologyforthefuture@gmail.com"
+      url: "https://wa.me/573054315796?text=Hello,%20I%20would%20like%20to%20book%20an%20astrology%20consultation."
 
   - component: "feature-grid"
     header: "Get in Touch"
-    copy: "Whether you have questions about a reading or want to book a session, I'm here to guide you."
+    copy: "Whether you have questions about a consultation or want to book a session, reach out directly through your preferred channel."
     cards:
-      - icon: "✉️"
+      - icon_image: "/img/email-icon.png"
         heading: "Email"
         copy: "astrologyforthefuture@gmail.com"
         button:
-          text: "Send Email"
-          url: "mailto:astrologyforthefuture@gmail.com"
+          text: "Copy Email"
+          url: "#"
+          copy_text: "astrologyforthefuture@gmail.com"
           style: "primary"
-      - icon: "📱"
+      - icon_image: "/img/whatsapp-icon.png"
         heading: "WhatsApp"
-        copy: "Connect with me directly for quick inquiries."
+        copy: "Connect directly for fast inquiries and scheduling."
         button:
           text: "Message Me"
           url: "https://wa.me/573054315796?text=Hello,%20I%20would%20like%20to%20receive%20information%20about%20an%20astrology%20consultation."
           style: "secondary"
-      - icon: "🌍"
-        heading: "Global Reach"
-        copy: "Online sessions available worldwide via Zoom, recorded for you."
-        button:
-          text: "Learn More"
-          url: "#sessions"
-          style: "outline"
 
   - component: "feature-card"
-    header: "Online Sessions"
-    copy: "From anywhere in the world."
+    header: "Online Sessions & Readings"
+    copy: "Personalized consultations available worldwide."
     list_items:
-      - heading: "VIA ZOOM"
-        copy: "Convenient online sessions that you can revisit anytime. All readings are recorded so you can focus on the experience."
-    button:
-      text: "Bookings"
-      url: "mailto:astrologyforthefuture@gmail.com"
-      style: "primary"
+      - heading: "CONVENIENT VIA ZOOM"
+        copy: "Online sessions designed around your schedule and available worldwide via Zoom. All readings are recorded in high quality so you can revisit your insights whenever you wish."
 
   - component: "feature-card"
     header: "GIFT CARD"
-    copy: "✨ A Journey Through the Stars Awaits! ✨"
+    copy: "The perfect solution for a special occasion!"
     image: "https://images.squarespace-cdn.com/content/v1/62abeeecef350e13e6c8010d/36eaacf9-043f-4ea1-9a43-ae751bfc684d/Gift+Card+PLANTILLA.png"
     image_alt: "Blue gift card template for Dr. Glenda Ferreira P., M.D., with gold and white text, stars, and contact information for astrology services."
     list_items:
       - copy: "Surprise someone special with an astrology reading gift card."
       - copy: "It's more than a gift—it's an invitation to explore their purpose, potential, and path guided by the universe."
     button:
-      text: "Gift Card Info"
-      url: "mailto:astrologyforthefuture@gmail.com"
+      text: "Inquire About Gift Cards"
+      url: "https://wa.me/573054315796?text=Hello,%20I%20would%20like%20information%20about%20a%20Gift%20Card."
       style: "secondary"
 ---
