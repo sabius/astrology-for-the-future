@@ -78,7 +78,7 @@ const esTerms = await t("footer.terms", "es");
 const siteTitle = await t("site.title", locale);
 ---
 
-<footer class="bg-gray-900 text-white pt-16 pb-8">
+<footer class="bg-midnight text-white border-t border-accent-300/15 pt-16 pb-8">
   <div class="container">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 items-center">
       <!-- Left: Social Links -->
@@ -86,11 +86,11 @@ const siteTitle = await t("site.title", locale);
         {
           isRoot ? (
             <>
-              <h4 class="lang-en mr-6 space-x-4 text-lg font-bold text-white">{enFollowMe}</h4>
-              <h4 class="lang-es mr-6 space-x-4 text-lg font-bold text-white">{esFollowMe}</h4>
+              <h4 class="lang-en mr-6 text-xl font-semibold text-white">{enFollowMe}</h4>
+              <h4 class="lang-es mr-6 text-xl font-semibold text-white">{esFollowMe}</h4>
             </>
           ) : (
-            <h4 class="mr-6 space-x-4 text-lg font-bold text-white">
+            <h4 class="mr-6 text-xl font-semibold text-white">
               {locale === "es" ? esFollowMe : enFollowMe}
             </h4>
           )
@@ -103,7 +103,7 @@ const siteTitle = await t("site.title", locale);
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-gray-400 hover:text-white transition-colors"
+                  class="text-primary-300 hover:text-accent-300 transition-colors"
                   aria-label={link.name}
                 >
                   <Fragment set:html={link.icon} />
@@ -117,31 +117,31 @@ const siteTitle = await t("site.title", locale);
       <!-- Right: Lit Language Switcher Web Component -->
       <div class="flex justify-center items-center">
         <language-switcher currentPath={currentPath} isRoot={isRoot}>
-          <div class="flex justify-center items-center">
-            <a class="pr-6 cursor-pointer hover:text-primary-300 transition-colors" href={getSwitchHref("en")} data-lang-btn="en">English</a>
-            <a class="pl-6 cursor-pointer hover:text-primary-300 transition-colors" href={getSwitchHref("es")} data-lang-btn="es">Español</a>
+          <div class="flex justify-center items-center text-sm font-medium">
+            <a class="pr-6 cursor-pointer text-primary-200 hover:text-accent-300 transition-colors" href={getSwitchHref("en")} data-lang-btn="en">English</a>
+            <a class="pl-6 cursor-pointer text-primary-200 hover:text-accent-300 transition-colors" href={getSwitchHref("es")} data-lang-btn="es">Español</a>
           </div>
         </language-switcher>
       </div>
     </div>
 
     <!-- Copyright & Legal Links -->
-    <div class="pt-8 mt-8 border-t border-gray-800 text-center text-gray-400 text-sm">
+    <div class="pt-8 mt-8 border-t border-white/10 text-center text-primary-300 text-sm">
       {
         isRoot ? (
           <>
             <div class="lang-en">
               <p>&copy; {currentYear} {siteTitle}. {enCopyright}</p>
               <p class="mt-2">
-                <a href={getLocalePath("/privacy-policy", "en")} class="hover:text-primary-300 mr-4">{enPrivacy}</a>
-                <a href={getLocalePath("/terms-of-service", "en")} class="hover:text-primary-300">{enTerms}</a>
+                <a href={getLocalePath("/privacy-policy", "en")} class="hover:text-accent-300 transition-colors mr-4">{enPrivacy}</a>
+                <a href={getLocalePath("/terms-of-service", "en")} class="hover:text-accent-300 transition-colors">{enTerms}</a>
               </p>
             </div>
             <div class="lang-es">
               <p>&copy; {currentYear} {siteTitle}. {esCopyright}</p>
               <p class="mt-2">
-                <a href={getLocalePath("/privacy-policy", "es")} class="hover:text-primary-300 mr-4">{esPrivacy}</a>
-                <a href={getLocalePath("/terms-of-service", "es")} class="hover:text-primary-300">{esTerms}</a>
+                <a href={getLocalePath("/privacy-policy", "es")} class="hover:text-accent-300 transition-colors mr-4">{esPrivacy}</a>
+                <a href={getLocalePath("/terms-of-service", "es")} class="hover:text-accent-300 transition-colors">{esTerms}</a>
               </p>
             </div>
           </>
@@ -149,8 +149,8 @@ const siteTitle = await t("site.title", locale);
           <div>
             <p>&copy; {currentYear} {siteTitle}. {locale === "es" ? esCopyright : enCopyright}</p>
             <p class="mt-2">
-              <a href={getLocalePath("/privacy-policy", locale)} class="hover:text-primary-300 mr-4">{locale === "es" ? esPrivacy : enPrivacy}</a>
-              <a href={getLocalePath("/terms-of-service", locale)} class="hover:text-primary-300">{locale === "es" ? esTerms : enTerms}</a>
+              <a href={getLocalePath("/privacy-policy", locale)} class="hover:text-accent-300 transition-colors mr-4">{locale === "es" ? esPrivacy : enPrivacy}</a>
+              <a href={getLocalePath("/terms-of-service", locale)} class="hover:text-accent-300 transition-colors">{locale === "es" ? esTerms : enTerms}</a>
             </p>
           </div>
         )

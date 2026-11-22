@@ -41,9 +41,19 @@ content:
         url: "/es/videos/pluton-en-acuario-saturno-en-piscis-2023/"
 
   - component: "cta"
+    eyebrow: "Consulta Personalizada"
     header: "¿Prefieres una lectura personal?"
+    copy: "Lleva estas herramientas a tu propia carta natal. Agenda una sesión privada con la Dra. Glenda Ferreira y recibe claridad práctica para tu momento actual."
     button:
       text: "Agenda una sesión"
-      url: "/about"
-      style: "primary"
+      url: "https://wa.me/573054315796?text=Hola,%20quisiera%20reservar%20una%20consulta%20de%20astrolog%C3%ADa."
+      style: "accent"
+    secondary_button:
+      text: "Ver opciones de contacto"
+      url: "/es/contact"
+      style: "ghost"
+    highlights:
+      - "En línea vía Zoom"
+      - "Sesión grabada en HD"
+      - "Español e inglés"
 ---

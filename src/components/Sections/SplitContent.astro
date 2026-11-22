@@ -24,10 +24,10 @@ const normalizedColumns = columns.slice(0, 2).map((column) => ({
   <div class="container">
     {
       (header || copy) && (
-        <div class="text-center mb-16">
-          {header && <h2 class="text-3xl md:text-5xl font-bold">{header}</h2>}
+        <div class="text-center mb-14">
+          {header && <h2 class="text-3xl md:text-5xl font-bold text-primary-900">{header}</h2>}
           {copy && (
-            <p class="text-3xl text-gray-700 max-w-3xl mx-auto">{copy}</p>
+            <p class="mt-3 text-base sm:text-lg md:text-xl text-ink-muted max-w-2xl mx-auto leading-relaxed">{copy}</p>
           )}
         </div>
       )
@@ -50,11 +50,11 @@ const normalizedColumns = columns.slice(0, 2).map((column) => ({
                 <ResponsivePicture
                   src={item.image}
                   alt={item.image_alt ?? ""}
-                  class="overflow-hidden rounded-[32px] shadow-md"
+                  class="overflow-hidden rounded-3xl border border-border-subtle shadow-md"
                   imageClass="h-full w-full object-cover"
                 />
                 {item?.legend && (
-                  <figcaption class="text-sm leading-relaxed text-primary-800 md:text-base">
+                  <figcaption class="text-sm leading-relaxed text-ink-muted md:text-base">
                     {item.legend}
                   </figcaption>
                 )}
@@ -62,22 +62,26 @@ const normalizedColumns = columns.slice(0, 2).map((column) => ({
             ) : (
               <article
                 class:list={[
-                  "flex flex-col gap-4 text-primary-800",
+                  "flex flex-col gap-3 text-ink-muted",
                   item?.boxed
-                    ? "rounded-[32px] bg-white p-8 shadow-lg md:p-10"
+                    ? "rounded-3xl bg-surface border border-border-subtle p-8 shadow-sm md:p-10"
                     : "",
                   normalizedColumns.length === 1 && "text-center",
                 ]}
               >
                 {item?.heading && (
-                  <h3 class="text-2xl font-bold tracking-wide text-primary-900 md:text-4xl">
+                  <h3 class="text-2xl font-bold tracking-tight text-primary-900 md:text-3xl">
                     {item.heading}
                   </h3>
                 )}
                 {item?.copySegments?.map((paragraph) => (
-                  <p class="text-lg leading-relaxed md:text-xl">{paragraph}</p>
+                  <p class="text-base leading-relaxed md:text-lg">{paragraph}</p>
                 ))}
-                {item?.meta && <p class="text-base md:text-lg">{item.meta}</p>}
+                {item?.meta && (
+                  <p class="text-sm font-semibold uppercase tracking-widest text-accent-600">
+                    {item.meta}
+                  </p>
+                )}
               </article>
             )
           )}

@@ -1,6 +1,6 @@
 import { defineCollection, z } from "astro:content";
 
-const buttonStyle = z.enum(["primary", "secondary", "accent", "outline"]);
+const buttonStyle = z.enum(["primary", "secondary", "accent", "outline", "ghost"]);
 
 const heroBlock = z.object({
   component: z.literal("hero"),
@@ -61,14 +61,20 @@ const quoteBlock = z.object({
   author: z.string().optional(),
 });
 
+const ctaButtonSchema = z.object({
+  text: z.string(),
+  url: z.string(),
+  style: buttonStyle.optional(),
+});
+
 const ctaBlock = z.object({
   component: z.literal("cta"),
+  eyebrow: z.string().optional(),
   header: z.string().optional(),
-  button: z.object({
-    text: z.string(),
-    url: z.string(),
-    style: buttonStyle.optional(),
-  }),
+  copy: z.string().optional(),
+  button: ctaButtonSchema,
+  secondary_button: ctaButtonSchema.optional(),
+  highlights: z.array(z.string()).optional(),
 });
 
 const featureGridBlock = z.object({

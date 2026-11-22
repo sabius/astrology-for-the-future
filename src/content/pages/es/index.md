@@ -14,7 +14,7 @@ content:
     image_alt: "La foto de un cielo estrellado y una aurora boreal"
     button:
       text: "Reserva una lectura"
-      url: "/about"
+      url: "/es/contact"
 
   # Block: Image Overlay Section
   - component: "image-overlay"
@@ -73,6 +73,23 @@ content:
   - component: "quote"
     quote: "El alma del bebé recién nacido queda marcada de por vida por el patrón de las estrellas en el momento en que llega al mundo; lo recuerda inconscientemente y permanece sensible al retorno de configuraciones de naturaleza similar."
     author: "Johannes Kepler"
+
+  - component: "cta"
+    eyebrow: "Consulta Personalizada"
+    header: "¿Listo para tu lectura personal?"
+    copy: "Agenda una sesión privada con la Dra. Glenda Ferreira y recibe una lectura estructurada, práctica y precisa de tu carta natal y tu momento actual."
+    button:
+      text: "Agenda una sesión"
+      url: "https://wa.me/573054315796?text=Hola,%20quisiera%20reservar%20una%20consulta%20de%20astrolog%C3%ADa."
+      style: "accent"
+    secondary_button:
+      text: "Ver opciones de contacto"
+      url: "/es/contact"
+      style: "ghost"
+    highlights:
+      - "En línea vía Zoom"
+      - "Sesión grabada en HD"
+      - "Español e inglés"
 ---
 
 <!-- We can leave the body of this markdown file empty -->

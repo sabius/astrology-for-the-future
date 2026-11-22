@@ -22,18 +22,18 @@ interface Props {
 
 const { header, copy, cards } = Astro.props;
 
-const allowedVariants = new Set(["primary", "secondary", "accent", "outline"]);
+const allowedVariants = new Set(["primary", "secondary", "accent", "outline", "ghost"]);
 ---
 
-<section class="section-feature-grid py-16">
+<section class="section-feature-grid py-16 md:py-20">
   <div class="container mx-auto px-6">
     {header && (
-      <h2 class="text-3xl md:text-5xl font-bold text-center mb-16 text-primary-900">
+      <h2 class="text-3xl md:text-5xl font-bold text-center mb-4 text-primary-900">
         {header}
       </h2>
     )}
     {copy && (
-      <p class="text-lg md:text-xl text-center text-primary-800 mb-12 max-w-3xl mx-auto leading-relaxed">
+      <p class="text-base sm:text-lg md:text-xl text-center text-ink-muted mb-12 max-w-2xl mx-auto leading-relaxed">
         {copy}
       </p>
     )}
@@ -41,6 +41,7 @@ const allowedVariants = new Set(["primary", "secondary", "accent", "outline"]);
     <div
       class:list={[
         "grid grid-cols-1 gap-8 md:gap-10 mx-auto",
+        !copy && "mt-12",
         cards?.length === 2
           ? "md:grid-cols-2 max-w-4xl"
           : "md:grid-cols-2 lg:grid-cols-3 max-w-7xl",
@@ -50,7 +51,7 @@ const allowedVariants = new Set(["primary", "secondary", "accent", "outline"]);
         cards &&
           cards.map((card, index: number) => (
             <div
-              class={`bg-white rounded-[32px] shadow-lg p-8 md:p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between ${cards.length === 3 && index === 2 ? "md:col-span-2 md:max-w-md md:mx-auto lg:col-span-1 lg:max-w-none" : ""}`}
+              class={`bg-surface border border-border-subtle rounded-3xl shadow-sm p-8 md:p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between ${cards.length === 3 && index === 2 ? "md:col-span-2 md:max-w-md md:mx-auto lg:col-span-1 lg:max-w-none" : ""}`}
             >
               <div>
                 {card.icon_image ? (
@@ -68,12 +69,12 @@ const allowedVariants = new Set(["primary", "secondary", "accent", "outline"]);
                   </div>
                 ) : null}
                 {card.heading && (
-                  <h3 class="text-2xl md:text-[2rem] font-medium text-center mb-4 text-[#2e2133] tracking-[0.01em]">
+                  <h3 class="text-2xl md:text-3xl font-bold text-center mb-4 text-primary-900 tracking-tight">
                     {card.heading}
                   </h3>
                 )}
                 {card.copy && (
-                  <p class="text-xl text-center mb-8 leading-relaxed">
+                  <p class="text-base md:text-lg text-ink-muted text-center mb-8 leading-relaxed">
                     {card.copy}
                   </p>
                 )}
@@ -84,7 +85,7 @@ const allowedVariants = new Set(["primary", "secondary", "accent", "outline"]);
                     <Button
                       href={card.button.url}
                       target={card.button.url.startsWith("http") || card.button.url.includes("wa.me") ? "_blank" : undefined}
-                      variant={allowedVariants.has(card.button.style ?? "") ? card.button.style as "primary" | "secondary" | "accent" | "outline" : "secondary"}
+                      variant={allowedVariants.has(card.button.style ?? "") ? card.button.style as "primary" | "secondary" | "accent" | "outline" | "ghost" : "primary"}
                       data-copy-text={card.button.copy_text}
                     >
                       {card.button.text}

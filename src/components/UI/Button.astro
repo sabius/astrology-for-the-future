@@ -1,7 +1,7 @@
 ---
 export interface Props {
   href?: string;
-  variant?: "primary" | "secondary" | "accent" | "outline";
+  variant?: "primary" | "secondary" | "accent" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
   class?: string;
   target?: string;
@@ -26,49 +26,55 @@ const {
 
 const baseStyles = [
   "inline-flex items-center justify-center gap-2",
-  "font-sans text-base font-medium",
-  "border-2 rounded-lg",
+  "font-sans text-sm sm:text-base font-semibold tracking-normal",
+  "border rounded-xl",
   "transition-all duration-300 ease-in-out",
   "focus:outline-none focus:ring-2 focus:ring-offset-2",
   "disabled:opacity-50 disabled:cursor-not-allowed",
-  "min-h-[44px] min-w-[44px]", // Mobile touch target
-  "transform hover:scale-105 active:scale-95",
+  "min-h-[44px] min-w-[44px]",
+  "transform hover:-translate-y-0.5 active:translate-y-0",
 ];
 
 const sizeStyles = {
   sm: "px-4 py-2 text-sm",
   md: "px-6 py-3",
-  lg: "px-8 py-4 text-lg",
+  lg: "px-7 py-3.5 text-base",
 };
 
 const variantStyles = {
   primary: [
-    "bg-gradient-to-r from-primary-600 to-primary-700 text-white border-primary-600",
-    "hover:from-primary-700 hover:to-primary-800 hover:border-primary-700",
-    "active:from-primary-800 active:to-primary-900",
-    "focus:ring-primary-500",
-    "shadow-md hover:shadow-lg hover:shadow-primary-700/25",
-  ].join(" "),
-  secondary: [
-    "bg-gradient-to-r from-primary-700 to-primary-800 text-white border-primary-700",
-    "hover:from-primary-800 hover:to-primary-900 hover:border-primary-800",
-    "active:from-primary-900 active:to-primary-950",
-    "focus:ring-primary-500",
-    "shadow-md hover:shadow-lg hover:shadow-primary-800/25",
-  ].join(" "),
-  accent: [
-    "bg-gradient-to-r from-amber-600 to-amber-700 text-white border-amber-500/30",
-    "hover:from-amber-500 hover:to-amber-600 hover:border-amber-400/50",
-    "active:from-amber-700 active:to-amber-800",
-    "focus:ring-amber-400",
-    "shadow-md hover:shadow-lg hover:shadow-amber-600/25",
-  ].join(" "),
-  outline: [
-    "bg-white text-gray-900 border-gray-300",
-    "hover:bg-gray-50 hover:text-black hover:border-gray-400",
-    "active:bg-gray-100",
+    "bg-primary-800 text-white border-primary-800",
+    "hover:bg-primary-900 hover:border-primary-900",
+    "active:bg-primary-950",
     "focus:ring-primary-500",
     "shadow-sm hover:shadow-md",
+  ].join(" "),
+  secondary: [
+    "bg-primary-700 text-white border-primary-700",
+    "hover:bg-primary-800 hover:border-primary-800",
+    "active:bg-primary-900",
+    "focus:ring-primary-500",
+    "shadow-sm hover:shadow-md",
+  ].join(" "),
+  accent: [
+    "bg-accent-500 text-white border-accent-500",
+    "hover:bg-accent-600 hover:border-accent-600",
+    "active:bg-accent-700",
+    "focus:ring-accent-400",
+    "shadow-md hover:shadow-lg",
+  ].join(" "),
+  outline: [
+    "bg-surface text-primary-900 border-border-subtle",
+    "hover:bg-surface-alt hover:text-primary-950 hover:border-primary-300",
+    "active:bg-primary-50",
+    "focus:ring-primary-500",
+    "shadow-xs hover:shadow-sm",
+  ].join(" "),
+  ghost: [
+    "bg-white/10 text-white border-accent-300/35 backdrop-blur-sm",
+    "hover:bg-white/20 hover:border-accent-300/60",
+    "active:bg-white/25",
+    "focus:ring-accent-300",
   ].join(" "),
 };
 
@@ -97,7 +103,6 @@ const Element = href ? "a" : "button";
 </Element>
 
 <style>
-  /* Ensure proper touch target size on mobile */
   @media (max-width: 640px) {
     a,
     button {

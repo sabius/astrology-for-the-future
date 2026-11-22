@@ -14,7 +14,7 @@ content:
     image_alt: "The photo of a starred sky and an aurora boreal"
     button:
       text: "Book a reading"
-      url: "/about"
+      url: "/contact"
 
   # Block: Image Overlay Section
   - component: "image-overlay"
@@ -73,6 +73,23 @@ content:
   - component: "quote"
     quote: "The soul of the newly born baby is marked for life by the pattern of the stars at the moment it comes into the world, unconsciously remembers it, and remains sensitive to the return of configurations of a similar kind."
     author: "Johannes Kepler"
+
+  - component: "cta"
+    eyebrow: "Personalized Consultation"
+    header: "Ready for your personal reading?"
+    copy: "Book a private session with Dr. Glenda Ferreira for a structured, practical, and precise reading of your birth chart and current cycle."
+    button:
+      text: "Book a session"
+      url: "https://wa.me/573054315796?text=Hello,%20I%20would%20like%20to%20book%20an%20astrology%20consultation."
+      style: "accent"
+    secondary_button:
+      text: "Contact options"
+      url: "/contact"
+      style: "ghost"
+    highlights:
+      - "Online via Zoom"
+      - "HD session recording"
+      - "English & Spanish"
 ---
 
 <!-- We can leave the body of this markdown file empty -->

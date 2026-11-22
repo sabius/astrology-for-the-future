@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import { components } from "../components/componentMap";
+import DesignSystemExplorer from "../components/Docs/DesignSystemExplorer.astro";
 
 interface Props {
   title: string;
@@ -13,6 +14,9 @@ const { title, description, entry } = Astro.props;
 const { data: pageData } = entry;
 const { content } = pageData;
 
+const isDesignSystemPage =
+  typeof entry?.slug === "string" && entry.slug.endsWith("/design-system");
+
 // List of all available components for the sidebar
 const componentsList = [
   { name: "Hero", slug: "heroes" },
@@ -24,6 +28,11 @@ const componentsList = [
 
 // Get current page from URL
 const currentPath = Astro.url.pathname;
+const isOverview =
+  currentPath === "/docs" ||
+  currentPath === "/docs/" ||
+  currentPath === "/en/docs" ||
+  currentPath === "/en/docs/";
 ---
 
 <BaseLayout
@@ -31,25 +40,25 @@ const currentPath = Astro.url.pathname;
   description={description}
   image={pageData?.meta?.image}
 >
-  <div class="docs-container min-h-screen bg-gray-50">
+  <div class="docs-container min-h-screen bg-canvas">
     <div class="flex">
       <!-- Sidebar Navigation -->
       <aside
-        class="docs-sidebar w-64 bg-white border-r border-gray-200 min-h-screen sticky top-0 overflow-y-auto"
+        class="docs-sidebar w-64 bg-surface border-r border-border-subtle min-h-screen sticky top-0 overflow-y-auto"
       >
         <div class="p-6">
-          <h2 class="text-xl font-bold text-gray-800 mb-2">Component Docs</h2>
-          <p class="text-sm text-gray-600 mb-6">Browse available components</p>
+          <h2 class="text-xl font-bold text-primary-900 mb-2">Component Docs</h2>
+          <p class="text-sm text-ink-muted mb-6">Browse available components</p>
 
           <nav>
             <ul class="space-y-1">
               <li>
                 <a
-                  href="/en/docs"
-                  class={`block px-4 py-2 rounded-lg transition-colors ${
-                    currentPath === "/en/docs" || currentPath === "/en/docs/"
-                      ? "bg-purple-100 text-purple-800 font-semibold"
-                      : "text-gray-700 hover:bg-gray-100"
+                  href="/docs"
+                  class={`block px-4 py-2 rounded-lg text-sm transition-colors ${
+                    isOverview
+                      ? "bg-primary-100 text-primary-900 font-semibold"
+                      : "text-ink-muted hover:bg-surface-alt hover:text-primary-900"
                   }`}
                 >
                   Overview
@@ -58,7 +67,29 @@ const currentPath = Astro.url.pathname;
 
               <li class="pt-4">
                 <p
-                  class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2"
+                  class="px-4 text-xs font-semibold text-ink-muted uppercase tracking-wider mb-2"
+                >
+                  Foundations
+                </p>
+                <ul class="space-y-1">
+                  <li>
+                    <a
+                      href="/docs/design-system"
+                      class={`block px-4 py-2 rounded-lg text-sm transition-colors ${
+                        currentPath.includes("/docs/design-system")
+                          ? "bg-primary-100 text-primary-900 font-semibold"
+                          : "text-ink-muted hover:bg-surface-alt hover:text-primary-900"
+                      }`}
+                    >
+                      Design System
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="pt-4">
+                <p
+                  class="px-4 text-xs font-semibold text-ink-muted uppercase tracking-wider mb-2"
                 >
                   Components
                 </p>
@@ -67,11 +98,11 @@ const currentPath = Astro.url.pathname;
                     componentsList.map((component) => (
                       <li>
                         <a
-                          href={`/en/docs/${component.slug}`}
-                          class={`block px-4 py-2 rounded-lg transition-colors ${
+                          href={`/docs/${component.slug}`}
+                          class={`block px-4 py-2 rounded-lg text-sm transition-colors ${
                             currentPath.includes(`/docs/${component.slug}`)
-                              ? "bg-purple-100 text-purple-800 font-semibold"
-                              : "text-gray-700 hover:bg-gray-100"
+                              ? "bg-primary-100 text-primary-900 font-semibold"
+                              : "text-ink-muted hover:bg-surface-alt hover:text-primary-900"
                           }`}
                         >
                           {component.name}
@@ -87,8 +118,8 @@ const currentPath = Astro.url.pathname;
       </aside>
 
       <!-- Main Content Area -->
-      <main class="docs-main flex-1 p-8 md:p-12">
-        <div class="max-w-5xl mx-auto">
+      <main class="docs-main flex-1 p-6 md:p-10">
+        <div class:list={["mx-auto", isDesignSystemPage ? "max-w-6xl" : "max-w-5xl"]}>
           <!-- Page Header -->
           <div class="mb-8">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -96,6 +127,8 @@ const currentPath = Astro.url.pathname;
             </h1>
             {description && <p class="text-xl text-gray-600">{description}</p>}
           </div>
+
+          {isDesignSystemPage && <DesignSystemExplorer />}
 
           <!-- Component Preview Section -->
           {

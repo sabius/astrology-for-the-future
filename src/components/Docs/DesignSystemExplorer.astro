@@ -1,0 +1,1058 @@
+---
+interface ThemeDef {
+  id: string;
+  name: string;
+  subtitle: string;
+  vibe: string;
+  recommended?: boolean;
+  rationale: string;
+  tokens: {
+    canvas: string;
+    surface: string;
+    surfaceAlt: string;
+    darkStart: string;
+    darkEnd: string;
+    footerBg: string;
+    primary: string;
+    primaryHover: string;
+    primaryInk: string;
+    accent: string;
+    accentHover: string;
+    accentInk: string;
+    accentSoft: string;
+    ink: string;
+    inkMuted: string;
+    darkInk: string;
+    darkInkMuted: string;
+    border: string;
+    darkBorder: string;
+    glowA: string;
+    glowB: string;
+  };
+  swatches: { label: string; role: string; hex: string }[];
+}
+
+const themes: ThemeDef[] = [
+  {
+    id: "astrolabio",
+    name: "Astrolabio Nocturno",
+    subtitle: "Celestial Navy & Antique Gold",
+    vibe: "Astronomía clásica · Calma médica · Alta confianza",
+    recommended: true,
+    rationale:
+      "Conecta directamente con las fotos de cielo nocturno, el footer oscuro y la tarjeta regalo azul con dorado de Glenda. Elimina el choque morado/naranja.",
+    tokens: {
+      canvas: "#F7F5F0",
+      surface: "#FFFFFF",
+      surfaceAlt: "#EFECE4",
+      darkStart: "#0F172A",
+      darkEnd: "#1E2D4F",
+      footerBg: "#0B1120",
+      primary: "#1E2D4F",
+      primaryHover: "#15213B",
+      primaryInk: "#FFFFFF",
+      accent: "#B88A44",
+      accentHover: "#9F7434",
+      accentInk: "#FFFFFF",
+      accentSoft: "rgba(184, 138, 68, 0.16)",
+      ink: "#141D30",
+      inkMuted: "#4B5568",
+      darkInk: "#F8FAFC",
+      darkInkMuted: "#CBD5E1",
+      border: "#E2DDD2",
+      darkBorder: "rgba(212, 180, 117, 0.25)",
+      glowA: "rgba(96, 132, 214, 0.20)",
+      glowB: "rgba(184, 138, 68, 0.18)",
+    },
+    swatches: [
+      { label: "Alabaster", role: "Canvas", hex: "#F7F5F0" },
+      { label: "Ivory", role: "Surface", hex: "#FFFFFF" },
+      { label: "Midnight", role: "Dark Band", hex: "#0F172A" },
+      { label: "Indigo", role: "Primary", hex: "#1E2D4F" },
+      { label: "Antique Gold", role: "Accent", hex: "#B88A44" },
+      { label: "Deep Ink", role: "Text", hex: "#141D30" },
+    ],
+  },
+  {
+    id: "manuscrito",
+    name: "Manuscrito Médico",
+    subtitle: "Warm Parchment, Botanical Sage & Ochre",
+    vibe: "Astrología médica tradicional · Ciencia & sabiduría antigua",
+    rationale:
+      "Diferencia a Glenda de cualquier sitio genérico de horóscopos morados. Evoca medicina hipocrática, botánica tradicional y rigor editorial cálido.",
+    tokens: {
+      canvas: "#F6F2EA",
+      surface: "#FFFDF9",
+      surfaceAlt: "#EBE5D8",
+      darkStart: "#162926",
+      darkEnd: "#223E39",
+      footerBg: "#101E1C",
+      primary: "#285247",
+      primaryHover: "#1E3F36",
+      primaryInk: "#FFFFFF",
+      accent: "#B88642",
+      accentHover: "#9D6F31",
+      accentInk: "#FFFFFF",
+      accentSoft: "rgba(184, 134, 66, 0.16)",
+      ink: "#1D2622",
+      inkMuted: "#4F5D56",
+      darkInk: "#F5F3EE",
+      darkInkMuted: "#C7D6D1",
+      border: "#DDD5C6",
+      darkBorder: "rgba(196, 166, 114, 0.26)",
+      glowA: "rgba(74, 140, 120, 0.20)",
+      glowB: "rgba(184, 134, 66, 0.16)",
+    },
+    swatches: [
+      { label: "Parchment", role: "Canvas", hex: "#F6F2EA" },
+      { label: "Cream", role: "Surface", hex: "#FFFDF9" },
+      { label: "Apothecary", role: "Dark Band", hex: "#162926" },
+      { label: "Botanical", role: "Primary", hex: "#285247" },
+      { label: "Burnished Ochre", role: "Accent", hex: "#B88642" },
+      { label: "Forest Ink", role: "Text", hex: "#1D2622" },
+    ],
+  },
+  {
+    id: "crepusculo",
+    name: "Crepúsculo Sobrio",
+    subtitle: "Muted Twilight Indigo & Champagne",
+    vibe: "Evolución pulida de la paleta actual · Mística contenida",
+    rationale:
+      "Mantiene el ADN violeta-índigo original del sitio, pero baja la saturación y reemplaza el naranja fuerte por champaña suave para que respire lujo sereno.",
+    tokens: {
+      canvas: "#F6F5F9",
+      surface: "#FFFFFF",
+      surfaceAlt: "#ECE9F3",
+      darkStart: "#1A162B",
+      darkEnd: "#2C2447",
+      footerBg: "#120F1F",
+      primary: "#4B3E7A",
+      primaryHover: "#3B3063",
+      primaryInk: "#FFFFFF",
+      accent: "#C5A467",
+      accentHover: "#AD8C4F",
+      accentInk: "#1A162B",
+      accentSoft: "rgba(197, 164, 103, 0.18)",
+      ink: "#211C33",
+      inkMuted: "#57526B",
+      darkInk: "#F6F5FA",
+      darkInkMuted: "#CFCBE0",
+      border: "#DFDBE8",
+      darkBorder: "rgba(197, 164, 103, 0.28)",
+      glowA: "rgba(128, 102, 196, 0.22)",
+      glowB: "rgba(197, 164, 103, 0.14)",
+    },
+    swatches: [
+      { label: "Pearl Mist", role: "Canvas", hex: "#F6F5F9" },
+      { label: "White", role: "Surface", hex: "#FFFFFF" },
+      { label: "Obsidian Plum", role: "Dark Band", hex: "#1A162B" },
+      { label: "Twilight", role: "Primary", hex: "#4B3E7A" },
+      { label: "Champagne", role: "Accent", hex: "#C5A467" },
+      { label: "Deep Violet", role: "Text", hex: "#211C33" },
+    ],
+  },
+  {
+    id: "editorial",
+    name: "Editorial Minimal",
+    subtitle: "Obsidian, Warm Stone & Brass Hairline",
+    vibe: "Monografía de lujo · Máxima legibilidad · Atemporal",
+    rationale:
+      "Neutralidad casi total para que las fotografías astronómicas, el retrato de Glenda y las miniaturas de YouTube lleven todo el peso cromático sin fricción.",
+    tokens: {
+      canvas: "#F4F2EE",
+      surface: "#FFFFFF",
+      surfaceAlt: "#E9E5DD",
+      darkStart: "#151517",
+      darkEnd: "#242327",
+      footerBg: "#0E0E10",
+      primary: "#1C1B1A",
+      primaryHover: "#312F2D",
+      primaryInk: "#FFFFFF",
+      accent: "#B5945B",
+      accentHover: "#9B7C45",
+      accentInk: "#FFFFFF",
+      accentSoft: "rgba(181, 148, 91, 0.16)",
+      ink: "#171717",
+      inkMuted: "#57534E",
+      darkInk: "#FAF8F4",
+      darkInkMuted: "#CBC7BF",
+      border: "#DFDBD2",
+      darkBorder: "rgba(181, 148, 91, 0.28)",
+      glowA: "rgba(255, 255, 255, 0.06)",
+      glowB: "rgba(181, 148, 91, 0.14)",
+    },
+    swatches: [
+      { label: "Warm Stone", role: "Canvas", hex: "#F4F2EE" },
+      { label: "Paper", role: "Surface", hex: "#FFFFFF" },
+      { label: "Obsidian", role: "Dark Band", hex: "#151517" },
+      { label: "Charcoal", role: "Primary", hex: "#1C1B1A" },
+      { label: "Hairline Brass", role: "Accent", hex: "#B5945B" },
+      { label: "Ink Black", role: "Text", hex: "#171717" },
+    ],
+  },
+];
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<div
+  id="ds-explorer"
+  class="ds-explorer"
+  data-theme="astrolabio"
+  data-typo="paired"
+  data-cta-surface="dark"
+>
+  <!-- Sticky Control Bar -->
+  <section
+    class="ds-controls sticky top-20 z-30 rounded-2xl border border-gray-200 bg-white/95 p-4 md:p-5 shadow-lg backdrop-blur-md mb-8"
+  >
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p
+            class="text-xs font-semibold uppercase tracking-widest text-gray-500"
+            style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif;"
+          >
+            Explorador Interactivo · Selecciona una dirección visual
+          </p>
+        </div>
+        <div
+          class="flex flex-wrap items-center gap-2"
+          style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif;"
+        >
+          <!-- Typography Mode Toggle -->
+          <div
+            class="inline-flex rounded-lg border border-gray-200 bg-gray-100 p-1 text-xs"
+            role="group"
+            aria-label="Modo tipográfico"
+          >
+            <button
+              type="button"
+              data-typo-btn="paired"
+              class="ds-toggle-btn is-active rounded-md px-3 py-1.5 font-medium transition-colors cursor-pointer"
+            >
+              Serif + Sans UI
+            </button>
+            <button
+              type="button"
+              data-typo-btn="all-serif"
+              class="ds-toggle-btn rounded-md px-3 py-1.5 font-medium transition-colors cursor-pointer"
+            >
+              All Serif (actual)
+            </button>
+          </div>
+
+          <!-- CTA Surface Variant Toggle -->
+          <div
+            class="inline-flex rounded-lg border border-gray-200 bg-gray-100 p-1 text-xs"
+            role="group"
+            aria-label="Estilo de tarjeta CTA"
+          >
+            <button
+              type="button"
+              data-cta-btn="dark"
+              class="ds-toggle-btn is-active rounded-md px-3 py-1.5 font-medium transition-colors cursor-pointer"
+            >
+              CTA Oscuro
+            </button>
+            <button
+              type="button"
+              data-cta-btn="light"
+              class="ds-toggle-btn rounded-md px-3 py-1.5 font-medium transition-colors cursor-pointer"
+            >
+              CTA Editorial Claro
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Theme Cards -->
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"
+        style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif;"
+      >
+        {
+          themes.map((theme, idx) => (
+            <button
+              type="button"
+              data-theme-btn={theme.id}
+              class:list={[
+                "ds-theme-card text-left rounded-xl border-2 p-3.5 transition-all cursor-pointer",
+                idx === 0
+                  ? "is-active border-gray-900 bg-gray-50 shadow-sm"
+                  : "border-gray-200 bg-white hover:border-gray-400",
+              ]}
+            >
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center -space-x-1">
+                  <span
+                    class="h-4 w-4 rounded-full border border-white shadow-xs"
+                    style={`background:${theme.tokens.canvas}`}
+                  />
+                  <span
+                    class="h-4 w-4 rounded-full border border-white shadow-xs"
+                    style={`background:${theme.tokens.darkStart}`}
+                  />
+                  <span
+                    class="h-4 w-4 rounded-full border border-white shadow-xs"
+                    style={`background:${theme.tokens.primary}`}
+                  />
+                  <span
+                    class="h-4 w-4 rounded-full border border-white shadow-xs"
+                    style={`background:${theme.tokens.accent}`}
+                  />
+                </div>
+                {theme.recommended && (
+                  <span class="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-900">
+                    Sugerida
+                  </span>
+                )}
+              </div>
+              <div class="text-sm font-bold text-gray-900">{theme.name}</div>
+              <div class="text-xs text-gray-500 mt-0.5">{theme.subtitle}</div>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Active Theme Rationale + Swatches -->
+  <section
+    class="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm mb-10"
+  >
+    {
+      themes.map((theme) => (
+        <div data-theme-panel={theme.id} class="ds-theme-panel">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-gray-200">
+            <div>
+              <p
+                class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-1"
+                style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif;"
+              >
+                {theme.vibe}
+              </p>
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+                {theme.name}
+              </h2>
+              <p
+                class="mt-2 text-sm md:text-base text-gray-600 max-w-2xl"
+                style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif;"
+              >
+                {theme.rationale}
+              </p>
+            </div>
+            <div
+              class="text-xs text-gray-500 shrink-0"
+              style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif;"
+            >
+              Haz clic en cualquier paleta arriba para comparar en vivo
+            </div>
+          </div>
+
+          <div
+            class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 pt-6"
+            style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif;"
+          >
+            {theme.swatches.map((swatch) => (
+              <div class="rounded-xl border border-gray-200 overflow-hidden bg-white">
+                <div
+                  class="h-16 w-full border-b border-gray-100"
+                  style={`background:${swatch.hex}`}
+                />
+                <div class="p-3">
+                  <div class="text-xs font-semibold text-gray-900">
+                    {swatch.label}
+                  </div>
+                  <div class="text-[11px] text-gray-500">{swatch.role}</div>
+                  <code class="mt-1 inline-block text-[11px] font-mono text-gray-700">
+                    {swatch.hex}
+                  </code>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </section>
+
+  <!-- Live Site Sandbox: Real Components with Active Tokens -->
+  <section
+    class="ds-sandbox rounded-3xl overflow-hidden border shadow-xl mb-10"
+  >
+    <!-- Simulated Site Header -->
+    <div
+      class="ds-surface border-b px-6 md:px-10 py-4 flex items-center justify-between"
+    >
+      <span class="ds-display text-2xl font-bold tracking-tight">
+        Glenda Ferreira
+      </span>
+      <nav class="ds-ui hidden sm:flex items-center gap-6 text-sm font-medium">
+        <span class="opacity-70">Inicio</span>
+        <span class="ds-nav-active pb-0.5 font-semibold">Videos</span>
+        <span class="opacity-70">Contacto</span>
+      </nav>
+    </div>
+
+    <!-- 1. Mini Hero with Real Night Sky Asset -->
+    <div class="relative overflow-hidden px-6 md:px-12 py-16 md:py-20">
+      <img
+        src="https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
+        alt="Cielo estrellado sobre montañas"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+      <div class="ds-hero-scrim absolute inset-0" aria-hidden="true"></div>
+      <div class="relative z-10 max-w-2xl">
+        <p
+          class="ds-ui ds-dark-pill inline-flex items-center rounded-full px-3.5 py-1 text-xs font-semibold uppercase tracking-widest mb-4"
+        >
+          Astrología Médica & Tradicional
+        </p>
+        <h3
+          class="ds-display text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight"
+        >
+          Tu Carta Natal Como Herramienta de Comprensión
+        </h3>
+        <p class="ds-ui ds-dark-muted mt-4 text-base md:text-lg leading-relaxed">
+          Consultas presenciales y online con la Dra. Glenda Ferreira, médica
+          cirujana y astróloga con formación en astrología médica tradicional.
+        </p>
+        <div class="mt-7 flex flex-wrap items-center gap-3">
+          <a href="#ds-cta-preview" class="ds-btn ds-btn-accent ds-ui">
+            Reserva una lectura →
+          </a>
+          <a href="#ds-cta-preview" class="ds-btn ds-btn-ghost-dark ds-ui">
+            Explorar videos
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Video Cards & Buttons on Canvas Surface -->
+    <div class="ds-canvas px-6 md:px-12 py-14">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <p
+          class="ds-ui ds-accent-text text-xs font-semibold uppercase tracking-widest mb-2"
+        >
+          Biblioteca de Videos
+        </p>
+        <h3 class="ds-display ds-ink text-3xl md:text-4xl font-bold">
+          Videos Destacados
+        </h3>
+        <p class="ds-ui ds-ink-muted mt-2 text-base">
+          Así conviven las tarjetas claras sobre el fondo principal antes de
+          llegar al bloque de lectura personal.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <article
+          class="ds-surface ds-border rounded-2xl border overflow-hidden shadow-sm flex flex-col"
+        >
+          <div class="relative aspect-video bg-gray-900 overflow-hidden">
+            <img
+              src="https://img.youtube.com/vi/ohmv0HEbS8U/hqdefault.jpg"
+              alt="Astrología Médica: La Decumbitura"
+              class="h-full w-full object-cover opacity-90"
+            />
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h4 class="ds-display ds-ink text-2xl font-bold leading-snug">
+              Astrología Médica: La Decumbitura
+            </h4>
+            <p class="ds-ui ds-ink-muted text-sm mt-2 leading-relaxed flex-grow">
+              Conversación con la Dra. Glenda Ferreira sobre decumbitura,
+              técnicas de astrología médica tradicional y análisis de salud.
+            </p>
+            <div class="mt-5">
+              <span class="ds-btn ds-btn-primary ds-ui w-full text-center">
+                Ver Video
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Typography & Button System Card -->
+        <div
+          class="ds-surface ds-border rounded-2xl border p-6 shadow-sm flex flex-col justify-between gap-6"
+        >
+          <div>
+            <p
+              class="ds-ui ds-accent-text text-xs font-semibold uppercase tracking-widest mb-3"
+            >
+              Botones sobre fondo claro
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <span class="ds-btn ds-btn-primary ds-ui">Primary</span>
+              <span class="ds-btn ds-btn-accent ds-ui">Accent</span>
+              <span class="ds-btn ds-btn-outline-light ds-ui">Outline</span>
+            </div>
+          </div>
+
+          <div class="pt-5 ds-border border-t">
+            <p
+              class="ds-ui ds-accent-text text-xs font-semibold uppercase tracking-widest mb-2"
+            >
+              Cita Editorial
+            </p>
+            <blockquote
+              class="ds-display ds-ink text-xl italic leading-relaxed"
+            >
+              “La medicina me enseñó el cómo funciona el cuerpo; la astrología
+              me enseñó el por qué nos sucede lo que nos sucede.”
+            </blockquote>
+            <p class="ds-ui ds-ink-muted text-xs font-medium mt-2">
+              — Dra. Glenda Ferreira, M.D.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Personal Reading CTA Preview (Switches between Dark Card & Editorial Light Card) -->
+    <div id="ds-cta-preview" class="ds-surface-alt px-6 md:px-12 py-16">
+      <div class="max-w-4xl mx-auto">
+        <!-- Dark CTA Variant -->
+        <div
+          class="ds-cta-dark relative overflow-hidden rounded-3xl px-6 py-12 sm:px-12 md:py-14 text-center shadow-2xl border"
+        >
+          <div class="ds-glow-a pointer-events-none" aria-hidden="true"></div>
+          <div class="ds-glow-b pointer-events-none" aria-hidden="true"></div>
+
+          <div class="relative z-10 mx-auto max-w-2xl">
+            <div
+              class="mb-5 flex items-center justify-center gap-4"
+              aria-hidden="true"
+            >
+              <span class="ds-divider-line-left h-px w-12"></span>
+              <svg
+                class="ds-accent-icon h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2L14.3 9.7L22 12L14.3 14.3L12 22L9.7 14.3L2 12L9.7 9.7L12 2Z"
+                ></path>
+              </svg>
+              <span class="ds-divider-line-right h-px w-12"></span>
+            </div>
+
+            <p
+              class="ds-ui ds-dark-pill mb-4 inline-flex items-center rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-widest"
+            >
+              Consulta Personalizada
+            </p>
+
+            <h3
+              class="ds-display ds-dark-ink text-3xl sm:text-4xl md:text-5xl font-bold leading-tight"
+            >
+              ¿Prefieres una lectura personal?
+            </h3>
+
+            <p
+              class="ds-ui ds-dark-muted mt-4 text-base sm:text-lg leading-relaxed max-w-xl mx-auto"
+            >
+              Lleva estas herramientas a tu propia carta natal. Agenda una
+              sesión privada con la Dra. Glenda Ferreira y recibe claridad
+              práctica para tu momento actual.
+            </p>
+
+            <div
+              class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5"
+            >
+              <span class="ds-btn ds-btn-accent ds-ui w-full sm:w-auto">
+                Agenda una sesión →
+              </span>
+              <span class="ds-btn ds-btn-ghost-dark ds-ui w-full sm:w-auto">
+                Ver opciones de contacto
+              </span>
+            </div>
+
+            <ul
+              class="ds-ui ds-dark-muted ds-dark-border mt-9 pt-7 border-t flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5 text-sm"
+            >
+              <li class="inline-flex items-center gap-2">
+                <span class="ds-accent-icon">✦</span>
+                <span>En línea vía Zoom</span>
+              </li>
+              <li class="inline-flex items-center gap-2">
+                <span class="ds-accent-icon">✦</span>
+                <span>Sesión grabada en HD</span>
+              </li>
+              <li class="inline-flex items-center gap-2">
+                <span class="ds-accent-icon">✦</span>
+                <span>Español e inglés</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Light Editorial CTA Variant -->
+        <div
+          class="ds-cta-light ds-surface ds-border relative overflow-hidden rounded-3xl px-6 py-12 sm:px-12 md:py-14 text-center shadow-lg border"
+        >
+          <div class="relative z-10 mx-auto max-w-2xl">
+            <div
+              class="mb-5 flex items-center justify-center gap-4"
+              aria-hidden="true"
+            >
+              <span class="ds-divider-line-left h-px w-12"></span>
+              <svg
+                class="ds-accent-icon h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2L14.3 9.7L22 12L14.3 14.3L12 22L9.7 14.3L2 12L9.7 9.7L12 2Z"
+                ></path>
+              </svg>
+              <span class="ds-divider-line-right h-px w-12"></span>
+            </div>
+
+            <p
+              class="ds-ui ds-light-pill mb-4 inline-flex items-center rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-widest"
+            >
+              Consulta Personalizada
+            </p>
+
+            <h3
+              class="ds-display ds-ink text-3xl sm:text-4xl md:text-5xl font-bold leading-tight"
+            >
+              ¿Prefieres una lectura personal?
+            </h3>
+
+            <p
+              class="ds-ui ds-ink-muted mt-4 text-base sm:text-lg leading-relaxed max-w-xl mx-auto"
+            >
+              Lleva estas herramientas a tu propia carta natal. Agenda una
+              sesión privada con la Dra. Glenda Ferreira y recibe claridad
+              práctica para tu momento actual.
+            </p>
+
+            <div
+              class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5"
+            >
+              <span class="ds-btn ds-btn-primary ds-ui w-full sm:w-auto">
+                Agenda una sesión →
+              </span>
+              <span class="ds-btn ds-btn-outline-light ds-ui w-full sm:w-auto">
+                Ver opciones de contacto
+              </span>
+            </div>
+
+            <ul
+              class="ds-ui ds-ink-muted ds-border mt-9 pt-7 border-t flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5 text-sm"
+            >
+              <li class="inline-flex items-center gap-2">
+                <span class="ds-accent-icon">✦</span>
+                <span>En línea vía Zoom</span>
+              </li>
+              <li class="inline-flex items-center gap-2">
+                <span class="ds-accent-icon">✦</span>
+                <span>Sesión grabada en HD</span>
+              </li>
+              <li class="inline-flex items-center gap-2">
+                <span class="ds-accent-icon">✦</span>
+                <span>Español e inglés</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Simulated Footer Seam -->
+    <div
+      class="ds-footer px-6 md:px-12 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm"
+    >
+      <div class="ds-ui opacity-80">
+        © 2026 Glenda Ferreira · Todos los derechos reservados
+      </div>
+      <div class="ds-ui flex items-center gap-5 opacity-80">
+        <span>English</span>
+        <span class="font-semibold underline">Español</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const explorer = document.getElementById("ds-explorer");
+  if (explorer) {
+    const themeButtons =
+      explorer.querySelectorAll<HTMLButtonElement>("[data-theme-btn]");
+    const typoButtons =
+      explorer.querySelectorAll<HTMLButtonElement>("[data-typo-btn]");
+    const ctaButtons =
+      explorer.querySelectorAll<HTMLButtonElement>("[data-cta-btn]");
+
+    const setActiveTheme = (themeId: string) => {
+      explorer.dataset.theme = themeId;
+      themeButtons.forEach((btn) => {
+        const active = btn.dataset.themeBtn === themeId;
+        btn.classList.toggle("is-active", active);
+        btn.classList.toggle("border-gray-900", active);
+        btn.classList.toggle("bg-gray-50", active);
+        btn.classList.toggle("shadow-sm", active);
+        btn.classList.toggle("border-gray-200", !active);
+        btn.classList.toggle("bg-white", !active);
+      });
+    };
+
+    const setActiveTypo = (mode: string) => {
+      explorer.dataset.typo = mode;
+      typoButtons.forEach((btn) => {
+        btn.classList.toggle("is-active", btn.dataset.typoBtn === mode);
+      });
+    };
+
+    const setActiveCtaSurface = (surface: string) => {
+      explorer.dataset.ctaSurface = surface;
+      ctaButtons.forEach((btn) => {
+        btn.classList.toggle("is-active", btn.dataset.ctaBtn === surface);
+      });
+    };
+
+    themeButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.themeBtn) setActiveTheme(btn.dataset.themeBtn);
+      });
+    });
+
+    typoButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.typoBtn) setActiveTypo(btn.dataset.typoBtn);
+      });
+    });
+
+    ctaButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.ctaBtn) setActiveCtaSurface(btn.dataset.ctaBtn);
+      });
+    });
+  }
+</script>
+
+<style>
+  /* Theme Token Maps */
+  .ds-explorer[data-theme="astrolabio"] {
+    --ds-canvas: #f7f5f0;
+    --ds-surface: #ffffff;
+    --ds-surface-alt: #efece4;
+    --ds-dark-start: #0f172a;
+    --ds-dark-end: #1e2d4f;
+    --ds-footer-bg: #0b1120;
+    --ds-primary: #1e2d4f;
+    --ds-primary-hover: #15213b;
+    --ds-primary-ink: #ffffff;
+    --ds-accent: #b88a44;
+    --ds-accent-hover: #9f7434;
+    --ds-accent-ink: #ffffff;
+    --ds-accent-soft: rgba(184, 138, 68, 0.16);
+    --ds-ink: #141d30;
+    --ds-ink-muted: #4b5568;
+    --ds-dark-ink: #f8fafc;
+    --ds-dark-ink-muted: #cbd5e1;
+    --ds-border: #e2ddd2;
+    --ds-dark-border: rgba(212, 180, 117, 0.28);
+    --ds-glow-a: rgba(96, 132, 214, 0.22);
+    --ds-glow-b: rgba(184, 138, 68, 0.18);
+  }
+
+  .ds-explorer[data-theme="manuscrito"] {
+    --ds-canvas: #f6f2ea;
+    --ds-surface: #fffdf9;
+    --ds-surface-alt: #ebe5d8;
+    --ds-dark-start: #162926;
+    --ds-dark-end: #223e39;
+    --ds-footer-bg: #101e1c;
+    --ds-primary: #285247;
+    --ds-primary-hover: #1e3f36;
+    --ds-primary-ink: #ffffff;
+    --ds-accent: #b88642;
+    --ds-accent-hover: #9d6f31;
+    --ds-accent-ink: #ffffff;
+    --ds-accent-soft: rgba(184, 134, 66, 0.16);
+    --ds-ink: #1d2622;
+    --ds-ink-muted: #4f5d56;
+    --ds-dark-ink: #f5f3ee;
+    --ds-dark-ink-muted: #c7d6d1;
+    --ds-border: #ddd5c6;
+    --ds-dark-border: rgba(196, 166, 114, 0.28);
+    --ds-glow-a: rgba(74, 140, 120, 0.22);
+    --ds-glow-b: rgba(184, 134, 66, 0.18);
+  }
+
+  .ds-explorer[data-theme="crepusculo"] {
+    --ds-canvas: #f6f5f9;
+    --ds-surface: #ffffff;
+    --ds-surface-alt: #ece9f3;
+    --ds-dark-start: #1a162b;
+    --ds-dark-end: #2c2447;
+    --ds-footer-bg: #120f1f;
+    --ds-primary: #4b3e7a;
+    --ds-primary-hover: #3b3063;
+    --ds-primary-ink: #ffffff;
+    --ds-accent: #c5a467;
+    --ds-accent-hover: #ad8c4f;
+    --ds-accent-ink: #1a162b;
+    --ds-accent-soft: rgba(197, 164, 103, 0.18);
+    --ds-ink: #211c33;
+    --ds-ink-muted: #57526b;
+    --ds-dark-ink: #f6f5fa;
+    --ds-dark-ink-muted: #cfcbe0;
+    --ds-border: #dfdbe8;
+    --ds-dark-border: rgba(197, 164, 103, 0.28);
+    --ds-glow-a: rgba(128, 102, 196, 0.22);
+    --ds-glow-b: rgba(197, 164, 103, 0.14);
+  }
+
+  .ds-explorer[data-theme="editorial"] {
+    --ds-canvas: #f4f2ee;
+    --ds-surface: #ffffff;
+    --ds-surface-alt: #e9e5dd;
+    --ds-dark-start: #151517;
+    --ds-dark-end: #242327;
+    --ds-footer-bg: #0e0e10;
+    --ds-primary: #1c1b1a;
+    --ds-primary-hover: #312f2d;
+    --ds-primary-ink: #ffffff;
+    --ds-accent: #b5945b;
+    --ds-accent-hover: #9b7c45;
+    --ds-accent-ink: #ffffff;
+    --ds-accent-soft: rgba(181, 148, 91, 0.16);
+    --ds-ink: #171717;
+    --ds-ink-muted: #57534e;
+    --ds-dark-ink: #faf8f4;
+    --ds-dark-ink-muted: #cbc7bf;
+    --ds-border: #dfdbd2;
+    --ds-dark-border: rgba(181, 148, 91, 0.28);
+    --ds-glow-a: rgba(255, 255, 255, 0.06);
+    --ds-glow-b: rgba(181, 148, 91, 0.14);
+  }
+
+  /* Typography Modes */
+  .ds-explorer[data-typo="paired"] {
+    --ds-font-display: "Cormorant Garamond Variable", Georgia, serif;
+    --ds-font-ui: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  }
+
+  .ds-explorer[data-typo="all-serif"] {
+    --ds-font-display: "Cormorant Garamond Variable", Georgia, serif;
+    --ds-font-ui: "Cormorant Garamond Variable", Georgia, serif;
+  }
+
+  .ds-display {
+    font-family: var(--ds-font-display);
+  }
+
+  .ds-ui {
+    font-family: var(--ds-font-ui);
+  }
+
+  /* Toggle buttons */
+  .ds-toggle-btn {
+    color: #4b5563;
+  }
+
+  .ds-toggle-btn.is-active {
+    background-color: #111827;
+    color: #ffffff;
+  }
+
+  /* Show only active theme description panel */
+  .ds-theme-panel {
+    display: none;
+  }
+  .ds-explorer[data-theme="astrolabio"] [data-theme-panel="astrolabio"],
+  .ds-explorer[data-theme="manuscrito"] [data-theme-panel="manuscrito"],
+  .ds-explorer[data-theme="crepusculo"] [data-theme-panel="crepusculo"],
+  .ds-explorer[data-theme="editorial"] [data-theme-panel="editorial"] {
+    display: block;
+  }
+
+  /* CTA dark vs light variant toggle */
+  .ds-explorer[data-cta-surface="dark"] .ds-cta-light {
+    display: none;
+  }
+  .ds-explorer[data-cta-surface="light"] .ds-cta-dark {
+    display: none;
+  }
+
+  /* Sandbox Surface Bindings */
+  .ds-sandbox {
+    border-color: var(--ds-border);
+    transition: border-color 0.25s ease;
+  }
+
+  .ds-canvas {
+    background-color: var(--ds-canvas);
+    transition: background-color 0.25s ease;
+  }
+
+  .ds-surface {
+    background-color: var(--ds-surface);
+    color: var(--ds-ink);
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .ds-surface-alt {
+    background-color: var(--ds-surface-alt);
+    transition: background-color 0.25s ease;
+  }
+
+  .ds-border {
+    border-color: var(--ds-border);
+  }
+
+  .ds-dark-border {
+    border-color: var(--ds-dark-border);
+  }
+
+  .ds-ink {
+    color: var(--ds-ink);
+  }
+
+  .ds-ink-muted {
+    color: var(--ds-ink-muted);
+  }
+
+  .ds-dark-ink {
+    color: var(--ds-dark-ink);
+  }
+
+  .ds-dark-muted {
+    color: var(--ds-dark-ink-muted);
+  }
+
+  .ds-accent-text,
+  .ds-accent-icon {
+    color: var(--ds-accent);
+  }
+
+  .ds-nav-active {
+    color: var(--ds-primary);
+    border-bottom: 2px solid var(--ds-accent);
+  }
+
+  .ds-hero-scrim {
+    background: linear-gradient(
+      110deg,
+      var(--ds-dark-start) 0%,
+      color-mix(in srgb, var(--ds-dark-end) 80%, transparent) 60%,
+      color-mix(in srgb, var(--ds-dark-start) 45%, transparent) 100%
+    );
+  }
+
+  .ds-cta-dark {
+    background: linear-gradient(135deg, var(--ds-dark-start), var(--ds-dark-end));
+    border-color: var(--ds-dark-border);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .ds-glow-a {
+    position: absolute;
+    top: -6rem;
+    right: -6rem;
+    width: 18rem;
+    height: 18rem;
+    border-radius: 9999px;
+    background: var(--ds-glow-a);
+    filter: blur(56px);
+  }
+
+  .ds-glow-b {
+    position: absolute;
+    bottom: -6rem;
+    left: -6rem;
+    width: 16rem;
+    height: 16rem;
+    border-radius: 9999px;
+    background: var(--ds-glow-b);
+    filter: blur(56px);
+  }
+
+  .ds-divider-line-left {
+    background: linear-gradient(to right, transparent, var(--ds-accent));
+    opacity: 0.65;
+  }
+
+  .ds-divider-line-right {
+    background: linear-gradient(to left, transparent, var(--ds-accent));
+    opacity: 0.65;
+  }
+
+  .ds-dark-pill {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--ds-dark-border);
+    color: var(--ds-dark-ink);
+  }
+
+  .ds-light-pill {
+    background: var(--ds-accent-soft);
+    border: 1px solid var(--ds-border);
+    color: var(--ds-ink);
+  }
+
+  /* Buttons */
+  .ds-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.625rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 1.5px solid transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .ds-btn-primary {
+    background-color: var(--ds-primary);
+    color: var(--ds-primary-ink);
+  }
+  .ds-btn-primary:hover {
+    background-color: var(--ds-primary-hover);
+  }
+
+  .ds-btn-accent {
+    background-color: var(--ds-accent);
+    color: var(--ds-accent-ink);
+  }
+  .ds-btn-accent:hover {
+    background-color: var(--ds-accent-hover);
+  }
+
+  .ds-btn-ghost-dark {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--ds-dark-ink);
+    border-color: var(--ds-dark-border);
+  }
+  .ds-btn-ghost-dark:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .ds-btn-outline-light {
+    background-color: transparent;
+    color: var(--ds-ink);
+    border-color: var(--ds-border);
+  }
+  .ds-btn-outline-light:hover {
+    background-color: var(--ds-surface-alt);
+  }
+
+  .ds-footer {
+    background-color: var(--ds-footer-bg);
+    color: var(--ds-dark-ink-muted);
+    transition: background-color 0.25s ease;
+  }
+</style>
