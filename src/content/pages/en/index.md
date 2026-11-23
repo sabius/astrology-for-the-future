@@ -21,7 +21,7 @@ content:
       style: "ghost"
     highlights:
       - "Physician, M.D."
-      - "25+ years of practice"
+      - "Nearly 30 years of practice"
       - "English & Spanish sessions"
 
   # Block: Image Overlay Section
@@ -35,14 +35,20 @@ content:
       - "Astrology is not about predicting a fixed fate. It is an invitation to explore recurring patterns, personal challenges, spiritual questions, and periods of transition. Whether you are reflecting on changes in your personal life, career, or relationships, a birth chart reading can offer a different perspective and encourage a more conscious understanding of your own journey."
 
   - component: "feature-card"
-    header: "About me"
+    header: "A Journey Through Medicine and Astrology"
     image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Glenda%20Ferreira/Mater3_dvnuhy.png"
     image_alt: "Portrait of Dr. Glenda Ferreira, M.D."
     list_items:
       - copy: |
-          Medicine taught me 'how' the body functions, but astrology taught me the 'why' behind our life experiences. My mission is to unite the best of science and spirit to help you find not just health, but meaning in your own story. <br><br>
+          My interest in understanding and helping others led me to study Medicine four decades ago. I am a physician with a specialization in Public Health Management.
 
-          I bridge clinical science and spiritual understanding. Trained as a Physician and Public Health Administrator, I bring decades of analytical discipline to my astrology readings. Having accompanied hundreds of clients and served as an educator at the advanced levels of Academic Medical Astrology, I offer a structured, reflective, and thoughtful reading.
+          My journey into astrology began in the early 1990s, following a personal consultation with the Colombian astrologer Germán Rodríguez Sanabria. I was fascinated by the depth of his interpretation, and this experience inspired me to explore astrology through years of study, research, and practice.
+
+          Over time, I had the opportunity to study with respected astrologers, including Mauricio Puerta, Deborah Houlding, and Dr. Lee Lehman. My studies have included traditional astrology, horary astrology, and medical astrology, with a particular interest in the relationship between astrological symbolism and health.
+
+          I began offering consultations in the late 1990s. Today, with nearly three decades of experience, I continue to practice, teach, and study astrology. I also work as a translator and interpreter for the Traditional Medical Astrology Program at Astrología Campus Virtual.
+
+          My approach brings together the analytical perspective shaped by my medical background and a lifelong interest in astrology as a symbolic language for exploring human experience.
 
   # Block: Support hero section with a single image
   - component: "hero"

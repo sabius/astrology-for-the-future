@@ -74,8 +74,35 @@ content:
 
 ## Styling
 
-- Use **Tailwind CSS v4**.
-- `styles/global.css` contains global imports and base styles.
+- Use **Tailwind CSS v4** and follow `design.md` (**Astrolabio Nocturno** design system).
+- `src/styles/global.css` contains global imports and semantic theme tokens.
+
+## Brand Voice, Copy Ethics & Biographical Ground Truth
+
+All copy written or edited for this site (English and Spanish) MUST stay strictly faithful to Dr. Glenda Ferreira's authentic voice, ethical standards, and verified biography:
+
+### 1. Tone & Ethical Guardrails
+- **Calm, grounded, reflective, and humble**: Frame astrology as a **symbolic language for reflecting on human experience**, recurring patterns, personal challenges, karmic/spiritual questions, life lessons, and periods of transition.
+- **NEVER promise what astrology cannot deliver**: Do NOT write claims that guarantee outcomes, predict a fixed fate, cure/diagnose medical conditions, or promise certainty/answers (*avoid* "unlock your destiny", "align with the rhythm of the universe", "guided by the universe", "cosmic weather", "journey through the stars", "revelations", "guaranteed clarity", or New-Age/Instagram marketing clichés).
+- Prefer invitational, reflective phrasing: *"an invitation to explore..."*, *"offers a different perspective..."*, *"encourages a more conscious understanding..."*, *"tool for self-understanding"*.
+
+### 2. Verified Career & Biography (Do Not Invent or Inflate)
+- **Medical background**: Physician (`M.D.`), studied Medicine four decades ago (Colegio Mayor de Nuestra Señora del Rosario, 1983), with a specialization in **Public Health Management** (2000).
+  - **English title rule**: Always refer to her as **"physician"** or **"Glenda Ferreira, M.D."** — NEVER **"surgeon"** in English (in Colombia *Médica Cirujana* is the general M.D. diploma title, not a surgical specialty).
+- **Astrology lineage & training**:
+  - Began studying astrology in the early 1990s after a personal consultation with Colombian astrologer **Germán Rodríguez Sanabria**.
+  - Studied with respected astrologers including **Mauricio Puerta**, **Deborah Houlding**, and **Dr. Lee Lehman** (including School of Traditional Astrology, 2022–2024).
+  - Areas of study: **traditional astrology**, **horary astrology**, and **medical astrology** (exploring the relationship between astrological symbolism and health).
+- **Practice & Teaching**:
+  - Offering consultations since the **late 1990s** (**nearly three decades of experience**).
+  - Continues to practice, teach, and study astrology.
+  - Works as a **translator and interpreter** for the **Traditional Medical Astrology Program** at **Astrología Campus Virtual**.
+  - Do NOT inflate roles (e.g., do not invent academic titles she hasn't claimed).
+
+### 3. Services & Consultation Scope
+- **Formats**: In-person (Bogotá) and online consultations via **Zoom**, recorded in high quality, available in **English and Spanish** worldwide.
+- **Core offerings**: Natal Chart Reading (*Lectura de Carta Natal*), Relationship Astrology / Synastry & Composite Charts (*Astrología de Relaciones*), Predictive Astrology / Transits, Progressions & Solar Returns (*Astrología Predictiva*), Medical Astrology perspective (symbolic, never replacing clinical medical care), and personalized Digital Gift Cards (*Tarjeta Regalo*).
+- **Booking channels**: WhatsApp (`+57 305 431 5796`) and email (`astrologyforthefuture@gmail.com`).
 
 ## Shell & Environment Rules
 
