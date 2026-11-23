@@ -48,43 +48,45 @@ const HOUSE_NUMERALS = [
   "XII",
 ];
 
+// All 5 planetary bodies orbit clockwise on their own dedicated concentric orbit,
+// with Keplerian speed ordering: inner orbits move faster than outer orbits.
 const BODIES: OrbitingBody[] = [
   {
-    orbitRatio: 0.73,
-    speed: 0.09,
+    orbitRatio: 0.76,
+    speed: 0.055,
+    startAngle: 4.15,
+    size: 3.6,
+    color: "#D9BA7C",
+    glow: "rgba(217, 186, 124, 0.52)",
+    hasRing: true,
+  },
+  {
+    orbitRatio: 0.64,
+    speed: 0.085,
     startAngle: 0.45,
-    size: 4.2,
+    size: 4.0,
     color: "#F5ECD7",
     glow: "rgba(233, 214, 174, 0.55)",
   },
   {
-    orbitRatio: 0.73,
-    speed: -0.06,
+    orbitRatio: 0.53,
+    speed: 0.12,
     startAngle: 2.65,
     size: 3.1,
     color: "#C3CFE6",
     glow: "rgba(195, 207, 230, 0.45)",
   },
   {
-    orbitRatio: 0.54,
-    speed: 0.13,
-    startAngle: 4.15,
-    size: 3.4,
-    color: "#D9BA7C",
-    glow: "rgba(217, 186, 124, 0.50)",
-    hasRing: true,
-  },
-  {
-    orbitRatio: 0.54,
-    speed: 0.075,
-    startAngle: 1.55,
-    size: 2.6,
+    orbitRatio: 0.42,
+    speed: 0.16,
+    startAngle: 1.35,
+    size: 2.7,
     color: "#E9D6AE",
     glow: "rgba(233, 214, 174, 0.40)",
   },
   {
-    orbitRatio: 0.35,
-    speed: -0.16,
+    orbitRatio: 0.31,
+    speed: 0.21,
     startAngle: 5.2,
     size: 2.5,
     color: "#9BB0D4",
@@ -100,10 +102,17 @@ const seededRandom = (seed: number) => {
   };
 };
 
+const smoothstep = (edge0: number, edge1: number, x: number) => {
+  const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
+  return t * t * (3 - 2 * t);
+};
+
 export class CelestialHeroCanvas extends LitElement {
   private canvas: HTMLCanvasElement | null = null;
   private ctx: CanvasRenderingContext2D | null = null;
   private heroStage: HTMLElement | null = null;
+  private heroCopy: HTMLElement | null = null;
+  private heroActions: HTMLElement | null = null;
   private rafId: number | null = null;
   private resizeObserver: ResizeObserver | null = null;
   private intersectionObserver: IntersectionObserver | null = null;
@@ -121,6 +130,10 @@ export class CelestialHeroCanvas extends LitElement {
   private pointerX = 0.72;
   private pointerY = 0.48;
   private hoverMix = 0;
+
+  // Mobile sticky scroll-linked reveal state (0 = text visible, 1 = full astrolabe showcase)
+  private scrollProgress = 0;
+  private targetScrollProgress = 0;
 
   private stars: HeroStar[] = [];
   private shootingStar: ShootingStar = {
@@ -162,6 +175,8 @@ export class CelestialHeroCanvas extends LitElement {
       "pointerleave",
       this.handlePointerLeave
     );
+    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("resize", this.handleScroll);
   }
 
   private initStars() {
@@ -181,15 +196,19 @@ export class CelestialHeroCanvas extends LitElement {
   private setupCanvas() {
     this.canvas = this.querySelector<HTMLCanvasElement>("[data-hero-canvas]");
     this.heroStage = this.querySelector<HTMLElement>("[data-hero-stage]");
+    this.heroCopy = this.querySelector<HTMLElement>("[data-hero-copy]");
+    this.heroActions = this.querySelector<HTMLElement>("[data-hero-actions]");
     if (!this.canvas || !this.heroStage) return;
 
     this.ctx = this.canvas.getContext("2d");
     if (!this.ctx) return;
 
     this.resizeCanvas();
+    this.handleScroll();
 
     this.resizeObserver = new ResizeObserver(() => {
       this.resizeCanvas();
+      this.handleScroll();
       if (this.reducedMotion) {
         this.drawFrame(0);
       } else if (this.isVisible && this.width > 0 && this.rafId === null) {
@@ -210,11 +229,13 @@ export class CelestialHeroCanvas extends LitElement {
       },
       { threshold: 0.02 }
     );
-    this.intersectionObserver.observe(this.heroStage);
+    this.intersectionObserver.observe(this);
 
     this.heroStage.addEventListener("pointermove", this.handlePointerMove);
     this.heroStage.addEventListener("pointerenter", this.handlePointerEnter);
     this.heroStage.addEventListener("pointerleave", this.handlePointerLeave);
+    window.addEventListener("scroll", this.handleScroll, { passive: true });
+    window.addEventListener("resize", this.handleScroll, { passive: true });
 
     if (this.reducedMotion) {
       this.drawFrame(0);
@@ -259,6 +280,36 @@ export class CelestialHeroCanvas extends LitElement {
     this.targetPointerY = 0.48;
   };
 
+  private handleScroll = () => {
+    const enabled =
+      this.dataset.stickyReveal === "true" &&
+      !this.reducedMotion &&
+      typeof window !== "undefined" &&
+      window.innerWidth < 1024;
+
+    if (!enabled || !this.heroStage) {
+      this.targetScrollProgress = 0;
+      this.scrollProgress = 0;
+      if (this.heroCopy) {
+        this.heroCopy.style.opacity = "";
+        this.heroCopy.style.transform = "";
+      }
+      if (this.heroActions) {
+        this.heroActions.style.pointerEvents = "";
+      }
+      return;
+    }
+
+    const rect = this.getBoundingClientRect();
+    const travel = this.offsetHeight - this.heroStage.offsetHeight;
+    if (travel <= 20) {
+      this.targetScrollProgress = 0;
+      return;
+    }
+
+    this.targetScrollProgress = Math.max(0, Math.min(1, -rect.top / travel));
+  };
+
   private startLoop() {
     if (this.rafId !== null) return;
     this.lastFrameTime = performance.now();
@@ -296,6 +347,28 @@ export class CelestialHeroCanvas extends LitElement {
     const targetMix = this.isHovered ? 1 : 0;
     this.hoverMix += (targetMix - this.hoverMix) * (1 - Math.exp(-4.5 * dt));
 
+    // Smoothly damp mobile sticky scroll reveal
+    if (
+      this.dataset.stickyReveal === "true" &&
+      !this.reducedMotion &&
+      window.innerWidth < 1024
+    ) {
+      const scrollEase = 1 - Math.exp(-14 * dt);
+      this.scrollProgress +=
+        (this.targetScrollProgress - this.scrollProgress) * scrollEase;
+
+      const copyFade = 1 - smoothstep(0.05, 0.58, this.scrollProgress);
+      if (this.heroCopy) {
+        this.heroCopy.style.opacity = copyFade.toFixed(3);
+        const shiftY = -28 * (1 - copyFade);
+        this.heroCopy.style.transform = `translate3d(0, ${shiftY.toFixed(1)}px, 0)`;
+      }
+      if (this.heroActions) {
+        this.heroActions.style.pointerEvents =
+          copyFade < 0.25 ? "none" : "auto";
+      }
+    }
+
     if (!this.shootingStar.active) {
       this.shootingStar.cooldown -= dt;
       if (this.shootingStar.cooldown <= 0 && this.width > 0) {
@@ -323,7 +396,10 @@ export class CelestialHeroCanvas extends LitElement {
     const h = this.height;
     if (!ctx || w === 0 || h === 0) return;
 
-    const isDesktop = w >= 900;
+    const isDesktop = w >= 1024;
+    const mobileBloom = !isDesktop
+      ? smoothstep(0.04, 0.72, this.scrollProgress)
+      : 0;
     const pxOffset = (this.pointerX - 0.5) * 26;
     const pyOffset = (this.pointerY - 0.5) * 18;
 
@@ -338,11 +414,13 @@ export class CelestialHeroCanvas extends LitElement {
     ctx.fillRect(0, 0, w, h);
 
     const cx = (isDesktop ? w * 0.74 : w * 0.5) - pxOffset * 0.4;
-    const cy = (isDesktop ? h * 0.5 : h * 0.52) - pyOffset * 0.4;
+    const cy =
+      (isDesktop ? h * 0.5 : h * (0.52 - 0.02 * mobileBloom)) -
+      pyOffset * 0.4;
     const outerR = isDesktop
       ? Math.min(h * 0.43, w * 0.24)
-      : Math.min(w * 0.44, h * 0.34);
-    const dialAlphaScale = isDesktop ? 1 : 0.42;
+      : Math.min(w, h) * (0.41 + 0.05 * mobileBloom);
+    const dialAlphaScale = isDesktop ? 1 : 0.36 + 0.64 * mobileBloom;
 
     // 2. Ambient Cosmic Luminescence (Indigo + Warm Antique Gold)
     const indigoAura = ctx.createRadialGradient(
@@ -353,7 +431,10 @@ export class CelestialHeroCanvas extends LitElement {
       cy,
       outerR * 1.9
     );
-    indigoAura.addColorStop(0, "rgba(74, 101, 155, 0.34)");
+    indigoAura.addColorStop(
+      0,
+      `rgba(74, 101, 155, ${(0.34 + 0.08 * mobileBloom).toFixed(3)})`
+    );
     indigoAura.addColorStop(0.5, "rgba(36, 53, 91, 0.16)");
     indigoAura.addColorStop(1, "rgba(11, 17, 32, 0)");
     ctx.fillStyle = indigoAura;
@@ -367,7 +448,10 @@ export class CelestialHeroCanvas extends LitElement {
       cy,
       outerR * 1.45
     );
-    goldAura.addColorStop(0, "rgba(184, 138, 68, 0.16)");
+    goldAura.addColorStop(
+      0,
+      `rgba(184, 138, 68, ${(0.16 + 0.09 * mobileBloom).toFixed(3)})`
+    );
     goldAura.addColorStop(0.55, "rgba(184, 138, 68, 0.05)");
     goldAura.addColorStop(1, "rgba(184, 138, 68, 0)");
     ctx.fillStyle = goldAura;
@@ -449,7 +533,7 @@ export class CelestialHeroCanvas extends LitElement {
     ctx.globalAlpha = dialAlphaScale;
 
     const ringInner = outerR * 0.85;
-    const eclipticR = outerR * 0.63;
+    const eclipticR = outerR * 0.64;
     const coreR = outerR * 0.2;
 
     // 5a. Outer Brass Zodiac / House Band (slow clockwise)
@@ -541,8 +625,8 @@ export class CelestialHeroCanvas extends LitElement {
     ctx.stroke();
     ctx.restore();
 
-    // Concentric planetary orbit tracks
-    for (const ratio of [0.73, 0.54, 0.35]) {
+    // Dedicated concentric planetary orbit tracks (0.64 is the dashed ecliptic ring above)
+    for (const ratio of [0.76, 0.53, 0.42, 0.31]) {
       ctx.strokeStyle = "rgba(217, 186, 124, 0.14)";
       ctx.lineWidth = 0.7;
       ctx.beginPath();
