@@ -37,7 +37,10 @@ const isExternalUrl = (url: string) =>
   url.includes("wa.me");
 ---
 
-<celestial-hero-canvas class="block">
+<celestial-hero-canvas
+  data-sticky-reveal={compact ? "false" : "true"}
+  class:list={["block", !compact && "celestial-hero-runway"]}
+>
   <section
     data-hero-stage
     class:list={[
@@ -57,8 +60,9 @@ const isExternalUrl = (url: string) =>
 
     <!-- Editorial Content Column -->
     <div
+      data-hero-copy
       class:list={[
-        "container relative z-10 px-4 sm:px-6 pointer-events-none",
+        "container relative z-10 px-4 sm:px-6 pointer-events-none will-change-transform",
         compact
           ? "py-14 sm:py-16 lg:py-20"
           : "py-16 sm:py-20 lg:py-24",
@@ -104,7 +108,10 @@ const isExternalUrl = (url: string) =>
 
         {
           (button || secondary_button) && (
-            <div class="mt-8 md:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pointer-events-auto">
+            <div
+              data-hero-actions
+              class="mt-8 md:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pointer-events-auto"
+            >
               {button && (
                 <Button
                   href={button.url}
@@ -169,11 +176,11 @@ const isExternalUrl = (url: string) =>
       </div>
     </div>
 
-    <!-- Subtle Bottom Scroll Hairline Cue (desktop, flagship only) -->
+    <!-- Subtle Bottom Scroll Hairline Cue (flagship only) -->
     {
       !compact && (
         <div
-          class="hidden lg:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2 pointer-events-none"
+          class="flex absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2 pointer-events-none"
           aria-hidden="true"
         >
           <span class="h-8 w-px bg-gradient-to-b from-accent-300/60 to-transparent" />
@@ -184,3 +191,18 @@ const isExternalUrl = (url: string) =>
 </celestial-hero-canvas>
 
 <script src="../Lit/CelestialHeroCanvas.ts"></script>
+
+<style>
+  @media (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
+    .celestial-hero-runway {
+      min-height: 155svh;
+      background-color: var(--color-midnight);
+    }
+
+    .celestial-hero-runway > .celestial-hero {
+      position: sticky;
+      top: 0;
+      min-height: 100svh;
+    }
+  }
+</style>
