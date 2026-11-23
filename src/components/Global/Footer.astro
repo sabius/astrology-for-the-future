@@ -16,8 +16,9 @@ const currentPath = Astro.url.pathname;
 const isRoot = currentPath === "/";
 
 const getLocalePath = (path: string, loc: string) => {
-  if (loc === "es") return `/es${path}`;
-  return path;
+  const normalized = path.endsWith("/") ? path : `${path}/`;
+  if (loc === "es") return `/es${normalized}`;
+  return normalized;
 };
 
 const getSwitchHref = (targetLoc: "en" | "es") =>

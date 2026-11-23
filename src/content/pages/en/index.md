@@ -13,7 +13,7 @@ content:
     copy: "In-person and online consultations with Glenda Ferreira, M.D., physician and astrologer with training in medical astrology."
     button:
       text: "Book a reading"
-      url: "/contact"
+      url: "/contact/"
       style: "accent"
     secondary_button:
       text: "Explore videos"
@@ -113,7 +113,7 @@ content:
       style: "accent"
     secondary_button:
       text: "Contact options"
-      url: "/contact"
+      url: "/contact/"
       style: "ghost"
     highlights:
       - "Online via Zoom"

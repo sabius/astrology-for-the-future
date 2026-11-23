@@ -13,7 +13,7 @@ content:
     copy: "Consultas presenciales y online con Glenda Ferreira, médica y astróloga con formación en astrología médica."
     button:
       text: "Reserva una lectura"
-      url: "/es/contact"
+      url: "/es/contact/"
       style: "accent"
     secondary_button:
       text: "Explorar videos"
@@ -113,7 +113,7 @@ content:
       style: "accent"
     secondary_button:
       text: "Ver opciones de contacto"
-      url: "/es/contact"
+      url: "/es/contact/"
       style: "ghost"
     highlights:
       - "En línea vía Zoom"
