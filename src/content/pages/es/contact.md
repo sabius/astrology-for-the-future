@@ -9,7 +9,7 @@ content:
     compact: true
     eyebrow: "Consultas y Contacto"
     header: "Contacto con la Dra. Glenda Ferreira"
-    copy: "Un espacio tranquilo para mirar tu carta natal, tus procesos kármicos y el aprendizaje de tu momento actual. Reserva tu lectura o escríbeme si tienes preguntas."
+    copy: "Explora tu carta natal y reflexiona sobre los patrones, temas y transiciones que dan forma a tu vida. Agenda una consulta personal o escríbeme si tienes alguna pregunta. Será un gusto saber de ti."
     button:
       text: "Reservar una Lectura"
       url: "https://wa.me/573054315796?text=Hola,%20quisiera%20reservar%20una%20consulta%20de%20astrolog%C3%ADa."

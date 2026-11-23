@@ -9,7 +9,7 @@ content:
     compact: true
     eyebrow: "Consultations & Contact"
     header: "Contact Dr. Glenda Ferreira"
-    copy: "A calm space to look at your natal chart, your karmic patterns, and the lessons of your current chapter. Book a personal reading or reach out with any questions."
+    copy: "Explore your birth chart and reflect on the patterns, themes, and transitions that shape your life. Book a personal consultation or get in touch if you have any questions. I would be pleased to hear from you."
     button:
       text: "Book a Reading"
       url: "https://wa.me/573054315796?text=Hello,%20I%20would%20like%20to%20book%20an%20astrology%20consultation."
