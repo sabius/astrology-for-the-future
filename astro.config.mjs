@@ -8,7 +8,7 @@ export default defineConfig({
   site: "https://glendaferreira.com",
   base: "/", // Always deploy to the root
   build: {
-    inlineStylesheets: "always",
+    inlineStylesheets: "auto",
   },
   integrations: [
     sitemap({
