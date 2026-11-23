@@ -5,11 +5,11 @@ meta:
   image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/Glenda%20Ferreira/image-asset_2_v5ailt.jpg"
 
 content:
-  - component: "hero"
+  - component: "celestial-hero"
+    compact: true
+    eyebrow: "Enseñanzas y Conversaciones"
     header: "Biblioteca de Videos de Astrología"
-    copy: "Pronósticos, guías prácticas y análisis en vivo que puedes repetir cada vez que necesites claridad."
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
-    image_alt: "Cielo estrellado sobre montañas"
+    copy: "Análisis astrológicos, astrología médica y conversaciones para profundizar en tus ciclos y aprendizajes de vida."
 
   - component: "video-section"
     header: "Videos Destacados"

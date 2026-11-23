@@ -5,36 +5,65 @@ meta:
   image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1768882107/Glenda%20Ferreira/meta-img-es.jpg"
 
 content:
-  # Block 1: The Hero Section
-  - component: "hero"
+  # Block 1: The Celestial Astrolabe Hero Section
+  - component: "celestial-hero"
     hidden_h1: "Astrología con Glenda Ferreira: consultas presenciales y online"
-    header: "Tu Carta Natal Como Herramienta de Comprensión"
-    copy: "Consultas presenciales y online con Glenda Ferreira, médica cirujana y astróloga con formación en astrología médica."
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
-    image_alt: "La foto de un cielo estrellado y una aurora boreal"
+    eyebrow: "Astrología Médica & Tradicional"
+    header: "Tu Carta Natal Como Herramienta de Autocomprensión"
+    copy: "Consultas presenciales y online con Glenda Ferreira, médica y astróloga con formación en astrología médica."
     button:
       text: "Reserva una lectura"
       url: "/es/contact"
+      style: "accent"
+    secondary_button:
+      text: "Explorar videos"
+      url: "/es/videos/"
+      style: "ghost"
+    highlights:
+      - "Médica, M.D."
+      - "Casi 30 años de práctica"
+      - "Sesiones en español e inglés"
+
+  # Block: Featured Video Presentation
+  - component: "featured-video"
+    eyebrow: "Ponencia Destacada"
+    header: "El Eje Nodal Acuario–Leo en 2026 y su impacto en la Economía Mundial"
+    copy: "En esta charla para Congresos de Astrología Online, la Dra. Glenda Ferreira reflexiona sobre el simbolismo del eje nodal Acuario–Leo en 2026 y las perspectivas que ofrece para observar los ciclos económicos y colectivos."
+    video_id: "O7xXVOFUJZc"
+    source_label: "Congresos de Astrología Online"
+    language_note: "Español"
+    play_label: "Reproducir ponencia"
+    youtube_label: "Ver en YouTube"
+    button:
+      text: "Ver biblioteca de videos"
+      url: "/es/videos/"
+      style: "primary"
 
   # Block: Image Overlay Section
   - component: "image-overlay"
-    headline: "Comprende Tu Camino con Conciencia"
-    subheadline: "La carta natal como espejo de aprendizaje"
+    headline: "Comprende Tu Camino con Mayor Conciencia"
+    subheadline: "Tu carta natal como espejo de los aprendizajes de la vida."
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/Glenda%20Ferreira/image-asset_2_v5ailt.jpg"
     image_alt: "Cielo nocturno estrellado con montañas"
     body_copy:
-      - "Durante miles de años, la astrología ha observado los ciclos planetarios como un lenguaje simbólico para comprender la experiencia humana. Hoy, esa misma tradición nos ayuda a leer con serenidad las etapas que atravesamos."
-      - "No se trata de predecir un destino rígido, sino de reconocer los patrones kármicos, los aprendizajes del alma y los tiempos de cambio. Desde decisiones vocacionales hasta vínculos profundos, una lectura te da claridad espiritual y humana para transitar tu proceso con mayor conciencia."
+      - "Durante miles de años, la astrología ha explorado los ciclos planetarios como un lenguaje simbólico para reflexionar sobre la experiencia humana. Esta tradición ofrece una manera de considerar las distintas etapas de la vida y los temas que pueden acompañarlas."
+      - "La astrología no consiste en predecir un destino fijo. Es una invitación a explorar patrones recurrentes, desafíos personales, preguntas espirituales y momentos de transición. Ya sea que estés reflexionando sobre cambios en tu vida personal, tu vocación o tus relaciones, una lectura de carta natal puede ofrecer una perspectiva diferente y fomentar una comprensión más consciente de tu propio camino."
 
   - component: "feature-card"
-    header: "Sobre mí"
+    header: "Un Recorrido entre la Medicina y la Astrología"
     image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1765858011/Glenda%20Ferreira/Mater3_dvnuhy.png"
     image_alt: "Un retrato de Glenda Ferreira P., M.D."
     list_items:
       - copy: |
-          La medicina me enseñó el 'cómo' funciona el cuerpo, pero la astrología me enseñó el 'por qué' nos sucede lo que nos sucede. Mi misión es unir lo mejor de la ciencia y el espíritu para ayudarte a encontrar, no solo salud, sino sentido a tu propia historia. <br><br>
+          Mi interés por comprender y ayudar a los demás me llevó a estudiar Medicina hace cuatro décadas. Soy médica con especialización en Gestión de Salud Pública.
 
-          Tiendo un puente entre la ciencia clínica y la comprensión espiritual. Con formación como Médica Cirujana y Administradora de Salud Pública, aporto décadas de rigor diagnóstico a mis lecturas de Astrología. Habiendo acompañado a cientos de consultantes y sirviendo como educadora en los niveles superiores de Astrología Médica Académica, ofrezco una lectura que une intuición, profundidad espiritual y rigor práctico.
+          Mi acercamiento a la astrología comenzó a principios de los años noventa, a raíz de una consulta personal con el astrólogo colombiano Germán Rodríguez Sanabria. Me fascinó la profundidad de su interpretación, y esa experiencia me inspiró a explorar la astrología a través de años de estudio, investigación y práctica.
+
+          Con el tiempo tuve la oportunidad de formarme con astrólogos muy respetados, entre ellos Mauricio Puerta, Deborah Houlding y la Dra. Lee Lehman. Mis estudios han abarcado la astrología tradicional, la astrología horaria y la astrología médica, con un interés particular en la relación entre el simbolismo astrológico y la salud.
+
+          Comencé a ofrecer consultas a finales de los años noventa. Hoy, con casi tres décadas de experiencia, continúo practicando, enseñando y estudiando astrología. También trabajo como traductora e intérprete del Programa de Astrología Médica Tradicional en Astrología Campus Virtual.
+
+          Mi enfoque reúne la perspectiva analítica formada por mi trayectoria médica y un interés de toda la vida por la astrología como un lenguaje simbólico para explorar la experiencia humana.
 
   # Block 1: The Hero Section
   - component: "hero"
@@ -45,11 +74,11 @@ content:
     header: "Mis Servicios"
     cards:
       - heading: "Lectura de Carta Natal"
-        copy: "Comprende tus talentos, tus retos kármicos y los aprendizajes espirituales de tu historia a través de un análisis profundo de tu carta natal."
+        copy: "Una invitación a reflexionar sobre tus tendencias personales, desafíos kármicos y aprendizajes de vida a través de una lectura profunda de tu carta natal."
       - heading: "Astrología de Relaciones"
-        copy: "Explora los vínculos significativos, sus dinámicas y los aprendizajes compartidos mediante la sinastría y las cartas compuestas."
+        copy: "Una mirada simbólica para explorar vínculos significativos, dinámicas relacionales y aprendizajes compartidos mediante la sinastría y las cartas compuestas."
       - heading: "Astrología Predictiva"
-        copy: "Acompaña los ciclos que vienen con serenidad y discernimiento usando tránsitos, progresiones y retornos solares."
+        copy: "Reflexiona sobre las etapas venideras y los temas recurrentes mediante tránsitos, progresiones y retornos solares como herramienta de discernimiento."
 
   # Block 2: A Split Content Section
   - component: "split-content"
@@ -77,7 +106,7 @@ content:
   - component: "cta"
     eyebrow: "Consulta Personalizada"
     header: "¿Listo para tu lectura personal?"
-    copy: "Agenda una sesión privada con la Dra. Glenda Ferreira para mirar tu carta natal, tus aprendizajes kármicos y el sentido de la etapa que estás viviendo."
+    copy: "Agenda una sesión privada con la Dra. Glenda Ferreira para reflexionar sobre tu carta natal, tus patrones recurrentes y la etapa de vida que estás transitando."
     button:
       text: "Agenda una sesión"
       url: "https://wa.me/573054315796?text=Hola,%20quisiera%20reservar%20una%20consulta%20de%20astrolog%C3%ADa."
