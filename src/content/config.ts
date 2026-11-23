@@ -174,6 +174,19 @@ const celestialHeroBlock = z.object({
   highlights: z.array(z.string()).optional(),
 });
 
+const featuredVideoBlock = z.object({
+  component: z.literal("featured-video"),
+  eyebrow: z.string().optional(),
+  header: z.string(),
+  copy: z.string().optional(),
+  video_id: z.string(),
+  source_label: z.string().optional(),
+  language_note: z.string().optional(),
+  play_label: z.string().optional(),
+  youtube_label: z.string().optional(),
+  button: ctaButtonSchema.optional(),
+});
+
 // Define the main collection for our pages
 const pagesCollection = defineCollection({
   schema: z.object({
@@ -191,6 +204,7 @@ const pagesCollection = defineCollection({
       z.discriminatedUnion("component", [
         heroBlock,
         celestialHeroBlock,
+        featuredVideoBlock,
         splitContentBlock,
         featureCardBlock,
         featureGridBlock,

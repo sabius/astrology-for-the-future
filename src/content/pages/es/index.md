@@ -24,6 +24,21 @@ content:
       - "Casi 30 años de práctica"
       - "Sesiones en español e inglés"
 
+  # Block: Featured Video Presentation
+  - component: "featured-video"
+    eyebrow: "Ponencia Destacada"
+    header: "El Eje Nodal Acuario–Leo en 2026 y su impacto en la Economía Mundial"
+    copy: "En esta charla para Congresos de Astrología Online, la Dra. Glenda Ferreira reflexiona sobre el simbolismo del eje nodal Acuario–Leo en 2026 y las perspectivas que ofrece para observar los ciclos económicos y colectivos."
+    video_id: "O7xXVOFUJZc"
+    source_label: "Congresos de Astrología Online"
+    language_note: "Español"
+    play_label: "Reproducir ponencia"
+    youtube_label: "Ver en YouTube"
+    button:
+      text: "Ver biblioteca de videos"
+      url: "/es/videos/"
+      style: "primary"
+
   # Block: Image Overlay Section
   - component: "image-overlay"
     headline: "Comprende Tu Camino con Mayor Conciencia"

@@ -7,6 +7,7 @@ import Quote from "./Sections/Quote.astro";
 import ImageOverlay from "./Sections/ImageOverlay.astro";
 import VideoSection from "./Sections/VideoSection.astro";
 import VideoDetail from "./Sections/VideoDetail.astro";
+import FeaturedVideo from "./Sections/FeaturedVideo.astro";
 import GiftCard from "./Sections/GiftCard.astro";
 import Cta from "./UI/Cta.astro";
 import Fallback from "./Fallback.astro";
@@ -14,6 +15,7 @@ import Fallback from "./Fallback.astro";
 export const components = {
   hero: Hero,
   "celestial-hero": CelestialHero,
+  "featured-video": FeaturedVideo,
   "split-content": SplitContent,
   "feature-card": FeatureCard,
   "feature-grid": FeatureGrid,

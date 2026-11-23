@@ -24,6 +24,21 @@ content:
       - "Nearly 30 years of practice"
       - "English & Spanish sessions"
 
+  # Block: Featured Video Presentation
+  - component: "featured-video"
+    eyebrow: "Featured Talk"
+    header: "The Aquarius–Leo Nodal Axis in 2026 & the Global Economy"
+    copy: "In this presentation for Congresos de Astrología Online, Dr. Glenda Ferreira reflects on the symbolism of the 2026 Aquarius–Leo nodal axis and the questions it raises around collective and economic cycles."
+    video_id: "O7xXVOFUJZc"
+    source_label: "Congresos de Astrología Online"
+    language_note: "In Spanish"
+    play_label: "Play talk"
+    youtube_label: "Watch on YouTube"
+    button:
+      text: "Explore video library"
+      url: "/videos/"
+      style: "primary"
+
   # Block: Image Overlay Section
   - component: "image-overlay"
     headline: "Understand Your Path with Greater Awareness"
