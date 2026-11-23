@@ -1,5 +1,6 @@
 ---
 import Button from "../UI/Button.astro";
+import CopyButtonWrapper from "../UI/CopyButtonWrapper.astro";
 
 interface Card {
   icon?: string;
@@ -81,16 +82,26 @@ const allowedVariants = new Set(["primary", "secondary", "accent", "outline", "g
               </div>
               {card.button && (
                 <div class="flex justify-center mt-auto">
-                  <copy-button>
+                  {card.button.copy_text ? (
+                    <CopyButtonWrapper>
+                      <Button
+                        href={card.button.url}
+                        target={card.button.url.startsWith("http") || card.button.url.includes("wa.me") ? "_blank" : undefined}
+                        variant={allowedVariants.has(card.button.style ?? "") ? card.button.style as "primary" | "secondary" | "accent" | "outline" | "ghost" : "primary"}
+                        data-copy-text={card.button.copy_text}
+                      >
+                        {card.button.text}
+                      </Button>
+                    </CopyButtonWrapper>
+                  ) : (
                     <Button
                       href={card.button.url}
                       target={card.button.url.startsWith("http") || card.button.url.includes("wa.me") ? "_blank" : undefined}
                       variant={allowedVariants.has(card.button.style ?? "") ? card.button.style as "primary" | "secondary" | "accent" | "outline" | "ghost" : "primary"}
-                      data-copy-text={card.button.copy_text}
                     >
                       {card.button.text}
                     </Button>
-                  </copy-button>
+                  )}
                 </div>
               )}
             </div>
@@ -99,5 +110,3 @@ const allowedVariants = new Set(["primary", "secondary", "accent", "outline", "g
     </div>
   </div>
 </section>
-
-<script src="../Lit/CopyButton.ts"></script>

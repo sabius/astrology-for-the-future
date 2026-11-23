@@ -1,5 +1,3 @@
-import { LitElement, html } from "lit";
-
 interface HeroStar {
   x: number;
   y: number;
@@ -107,7 +105,7 @@ const smoothstep = (edge0: number, edge1: number, x: number) => {
   return t * t * (3 - 2 * t);
 };
 
-export class CelestialHeroCanvas extends LitElement {
+export class CelestialHeroCanvas extends HTMLElement {
   private canvas: HTMLCanvasElement | null = null;
   private ctx: CanvasRenderingContext2D | null = null;
   private heroStage: HTMLElement | null = null;
@@ -124,6 +122,7 @@ export class CelestialHeroCanvas extends LitElement {
   private startTime = 0;
   private lastFrameTime = 0;
 
+  private hasSignaledReady = false;
   private isHovered = false;
   private targetPointerX = 0.72;
   private targetPointerY = 0.48;
@@ -148,12 +147,7 @@ export class CelestialHeroCanvas extends LitElement {
     cooldown: 2.8,
   };
 
-  protected createRenderRoot() {
-    return this;
-  }
-
   connectedCallback() {
-    super.connectedCallback();
     this.reducedMotion =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -162,7 +156,6 @@ export class CelestialHeroCanvas extends LitElement {
   }
 
   disconnectedCallback() {
-    super.disconnectedCallback();
     this.stopLoop();
     this.resizeObserver?.disconnect();
     this.intersectionObserver?.disconnect();
@@ -237,11 +230,20 @@ export class CelestialHeroCanvas extends LitElement {
     window.addEventListener("scroll", this.handleScroll, { passive: true });
     window.addEventListener("resize", this.handleScroll, { passive: true });
 
-    if (this.reducedMotion) {
-      this.drawFrame(0);
-    } else {
+    this.drawFrame(0);
+    if (!this.reducedMotion) {
       this.startLoop();
     }
+    this.markCanvasReady();
+  }
+
+  private markCanvasReady() {
+    if (this.hasSignaledReady) return;
+    this.hasSignaledReady = true;
+    this.dataset.canvasReady = "true";
+    this.dispatchEvent(
+      new CustomEvent("hero:ready", { bubbles: true, composed: true })
+    );
   }
 
   private resizeCanvas() {
@@ -803,10 +805,6 @@ export class CelestialHeroCanvas extends LitElement {
       ctx.fillStyle = readScrim;
       ctx.fillRect(0, 0, w * 0.62, h);
     }
-  }
-
-  render() {
-    return html`<slot></slot>`;
   }
 }
 

@@ -20,17 +20,41 @@ const safeJsonId = gtmId ? JSON.stringify(gtmId) : '""';
 
 {
   gtmId && (
-    <>
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${encodedGtmId}`} />
-      <script
-        is:inline
-        set:html={`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', ${safeJsonId});
-        `}
-      />
-    </>
+    <script
+      is:inline
+      set:html={`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', ${safeJsonId});
+
+        (function(){
+          var loaded = false;
+          function loadGtag(){
+            if (loaded) return;
+            loaded = true;
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=${encodedGtmId}';
+            document.head.appendChild(s);
+          }
+          function scheduleGtag(){
+            if ('requestIdleCallback' in window) {
+              requestIdleCallback(loadGtag, { timeout: 2500 });
+            } else {
+              setTimeout(loadGtag, 1500);
+            }
+          }
+          if (document.readyState === 'complete') {
+            scheduleGtag();
+          } else {
+            window.addEventListener('load', scheduleGtag, { once: true });
+          }
+          ['pointerdown', 'keydown', 'scroll'].forEach(function(evt){
+            window.addEventListener(evt, loadGtag, { once: true, passive: true });
+          });
+        })();
+      `}
+    />
   )
 }
