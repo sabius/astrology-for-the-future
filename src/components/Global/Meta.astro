@@ -77,10 +77,60 @@ const { canonical, hreflangEn, hreflangEs, hreflangDefault } = getSeoUrls(rawPat
 const locale = getCurrentLocaleFromAstro(Astro);
 const ogLocale = locale === "es" ? "es_ES" : "en_US";
 const siteName = "Glenda Ferreira";
-const twitterCard = image ? "summary_large_image" : "summary";
+
+const DEFAULT_OG_IMAGES = {
+  en: {
+    url: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1768881851/Glenda%20Ferreira/meta-img-en.jpg",
+    width: 982,
+    height: 647,
+    type: "image/jpeg",
+  },
+  es: {
+    url: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1768882107/Glenda%20Ferreira/meta-img-es.jpg",
+    width: 975,
+    height: 687,
+    type: "image/jpeg",
+  },
+} as const;
 
 const cleanVideoId = videoId ? videoId.split("?")[0] : undefined;
-const videoThumbnail = image || (cleanVideoId ? `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg` : undefined);
+const defaultOg = locale === "es" ? DEFAULT_OG_IMAGES.es : DEFAULT_OG_IMAGES.en;
+const ogImage =
+  image ||
+  (cleanVideoId
+    ? `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`
+    : defaultOg.url);
+
+const getImageMetadata = (imgUrl: string) => {
+  if (imgUrl === DEFAULT_OG_IMAGES.en.url) {
+    return {
+      width: DEFAULT_OG_IMAGES.en.width,
+      height: DEFAULT_OG_IMAGES.en.height,
+      type: DEFAULT_OG_IMAGES.en.type,
+    };
+  }
+  if (imgUrl === DEFAULT_OG_IMAGES.es.url) {
+    return {
+      width: DEFAULT_OG_IMAGES.es.width,
+      height: DEFAULT_OG_IMAGES.es.height,
+      type: DEFAULT_OG_IMAGES.es.type,
+    };
+  }
+  if (imgUrl.includes("img.youtube.com/vi/") && imgUrl.endsWith("/hqdefault.jpg")) {
+    return { width: 480, height: 360, type: "image/jpeg" };
+  }
+  const lower = imgUrl.toLowerCase();
+  const type = lower.endsWith(".png")
+    ? "image/png"
+    : lower.endsWith(".webp")
+      ? "image/webp"
+      : "image/jpeg";
+  return { width: undefined, height: undefined, type };
+};
+
+const ogImageMeta = getImageMetadata(ogImage);
+const twitterCard = ogImage ? "summary_large_image" : "summary";
+const videoThumbnail = ogImage;
 
 const videoSchemaJson = videoId ? JSON.stringify({
   "@context": "https://schema.org",
@@ -108,13 +158,30 @@ const videoSchemaJson = videoId ? JSON.stringify({
 {description && <meta property="og:description" content={description} />}
 <meta property="og:url" content={canonical} />
 <meta property="og:locale" content={ogLocale} />
-{image && <meta property="og:image" content={image} />}
+{
+  ogImage && (
+    <>
+      <meta property="og:image" content={ogImage} />
+      {ogImage.startsWith("https://") && (
+        <meta property="og:image:secure_url" content={ogImage} />
+      )}
+      <meta property="og:image:type" content={ogImageMeta.type} />
+      {ogImageMeta.width && (
+        <meta property="og:image:width" content={String(ogImageMeta.width)} />
+      )}
+      {ogImageMeta.height && (
+        <meta property="og:image:height" content={String(ogImageMeta.height)} />
+      )}
+      <meta property="og:image:alt" content={title} />
+    </>
+  )
+}
 
 <!-- Twitter -->
 <meta name="twitter:card" content={twitterCard} />
 <meta name="twitter:title" content={title} />
 {description && <meta name="twitter:description" content={description} />}
-{image && <meta name="twitter:image" content={image} />}
+{ogImage && <meta name="twitter:image" content={ogImage} />}
 
 <!-- Structured Data VideoObject -->
 {videoSchemaJson && <script type="application/ld+json" set:html={videoSchemaJson}></script>}
