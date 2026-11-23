@@ -18,32 +18,39 @@ const isRoot = currentPath === "/";
 const enSwitchHref = getLocaleSwitchHref(currentPath, "en", { enUrl, esUrl });
 const esSwitchHref = getLocaleSwitchHref(currentPath, "es", { enUrl, esUrl });
 
-const getPath = (path: string, loc: string) => {
+const getPath = (path: string, loc: "en" | "es") => {
   if (path === "/") {
-    return isRoot ? "/" : `/${loc}`;
+    return loc === "es" ? "/es/" : "/";
   }
-  return `/${loc}${path}`;
+  const normalized = path.endsWith("/") ? path : `${path}/`;
+  return loc === "es" ? `/es${normalized}` : normalized;
 };
 
 const enNavItems = [
   { text: await t("nav.home", "en"), href: getPath("/", "en") },
-  { text: await t("nav.videos", "en"), href: getPath("/videos", "en") },
-  { text: await t("nav.contact", "en"), href: getPath("/contact", "en") },
+  { text: await t("nav.videos", "en"), href: getPath("/videos/", "en") },
+  { text: await t("nav.contact", "en"), href: getPath("/contact/", "en") },
 ];
 
 const esNavItems = [
   { text: await t("nav.home", "es"), href: getPath("/", "es") },
-  { text: await t("nav.videos", "es"), href: getPath("/videos", "es") },
-  { text: await t("nav.contact", "es"), href: getPath("/contact", "es") },
+  { text: await t("nav.videos", "es"), href: getPath("/videos/", "es") },
+  { text: await t("nav.contact", "es"), href: getPath("/contact/", "es") },
 ];
 
-const normalizePath = (p: string) =>
-  p.length > 1 && p.endsWith("/") ? p.slice(0, -1) : p;
+const normalizePath = (p: string) => {
+  let clean = p.length > 1 && p.endsWith("/") ? p.slice(0, -1) : p;
+  if (clean === "/en") return "/";
+  if (clean.startsWith("/en/")) clean = clean.slice(3);
+  return clean || "/";
+};
 
 const normalizedCurrentPath = normalizePath(currentPath);
 
-const isHomeHref = (href: string) =>
-  href === "/" || href === "/en" || href === "/es";
+const isHomeHref = (href: string) => {
+  const normalized = normalizePath(href);
+  return normalized === "/" || normalized === "/es";
+};
 
 const enNavLinks = enNavItems.map((item) => ({
   ...item,
@@ -55,7 +62,7 @@ const enNavLinks = enNavItems.map((item) => ({
 const esNavLinks = esNavItems.map((item) => ({
   ...item,
   isActive: isHomeHref(item.href)
-    ? normalizedCurrentPath === normalizePath(item.href)
+    ? isRoot || normalizedCurrentPath === normalizePath(item.href)
     : normalizedCurrentPath.startsWith(normalizePath(item.href)),
 }));
 ---

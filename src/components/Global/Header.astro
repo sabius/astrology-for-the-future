@@ -9,7 +9,7 @@ interface Props {
 
 const { enUrl, esUrl } = Astro.props as Props;
 const locale = getCurrentLocaleFromAstro(Astro);
-const homeHref = Astro.url.pathname === "/" ? "/" : `/${locale}`;
+const homeHref = locale === "es" ? "/es/" : "/";
 
 let siteTitle = "Glenda Ferreira";
 try {

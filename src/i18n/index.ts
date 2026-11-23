@@ -63,33 +63,45 @@ export function saveUserLocale(locale: Locale): void {
   }
 }
 
+const ensureTrailingSlash = (p: string): string =>
+  p === "/" || p.endsWith("/") ? p : `${p}/`;
+
 /**
- * Computes the safe target href when switching locales from `currentPath`.
- * Properly handles `/en` (without trailing slash) -> `/es/` instead of `/es/en`.
+ * Computes the safe canonical target href when switching locales from `currentPath`.
+ * Always returns canonical trailing-slash paths (without `/en/` prefix for English).
  */
 export function getLocaleSwitchHref(
   currentPath: string,
   targetLoc: Locale,
   overrides?: { enUrl?: string; esUrl?: string }
 ): string {
-  if (targetLoc === "en" && overrides?.enUrl) return overrides.enUrl;
-  if (targetLoc === "es" && overrides?.esUrl) return overrides.esUrl;
+  if (targetLoc === "en" && overrides?.enUrl) {
+    return ensureTrailingSlash(overrides.enUrl);
+  }
+  if (targetLoc === "es" && overrides?.esUrl) {
+    return ensureTrailingSlash(overrides.esUrl);
+  }
 
   if (currentPath === "/") return "/";
 
   const clean = currentPath.startsWith("/") ? currentPath : `/${currentPath}`;
 
   if (targetLoc === "es") {
-    if (clean === "/es" || clean.startsWith("/es/")) return clean;
+    if (clean === "/es" || clean.startsWith("/es/")) {
+      return ensureTrailingSlash(clean);
+    }
     if (clean === "/en" || clean === "/en/") return "/es/";
-    if (clean.startsWith("/en/")) return `/es${clean.slice(3)}`;
-    return `/es${clean}`;
+    if (clean.startsWith("/en/")) {
+      return ensureTrailingSlash(`/es${clean.slice(3)}`);
+    }
+    return ensureTrailingSlash(`/es${clean}`);
   }
 
   // targetLoc === "en"
   if (clean === "/es" || clean === "/es/") return "/";
-  if (clean.startsWith("/es/")) return clean.slice(3);
+  if (clean.startsWith("/es/")) return ensureTrailingSlash(clean.slice(3));
   if (clean === "/en" || clean === "/en/") return "/";
-  return clean;
+  if (clean.startsWith("/en/")) return ensureTrailingSlash(clean.slice(3));
+  return ensureTrailingSlash(clean);
 }
 

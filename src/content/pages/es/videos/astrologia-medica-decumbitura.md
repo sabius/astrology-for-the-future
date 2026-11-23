@@ -34,7 +34,7 @@ content:
       style: "accent"
     secondary_button:
       text: "Ver opciones de contacto"
-      url: "/es/contact"
+      url: "/es/contact/"
       style: "ghost"
     highlights:
       - "En línea vía Zoom"

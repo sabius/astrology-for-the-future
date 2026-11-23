@@ -50,7 +50,7 @@ content:
       style: "accent"
     secondary_button:
       text: "Contact options"
-      url: "/contact"
+      url: "/contact/"
       style: "ghost"
     highlights:
       - "Online via Zoom"
