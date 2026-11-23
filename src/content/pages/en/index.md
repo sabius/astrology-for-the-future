@@ -9,8 +9,8 @@ content:
   - component: "celestial-hero"
     hidden_h1: "Astrology with Glenda Ferreira: in-person and online consultations"
     eyebrow: "Medical & Traditional Astrology"
-    header: "Your Birth Chart as a Tool for Understanding"
-    copy: "In-person and online consultations with Dr. Glenda Ferreira, physician, surgeon, and astrologer. A calm space to understand your cycles, karmic lessons, and the meaning of your current chapter."
+    header: "Your Birth Chart as a Tool for Self-Understanding"
+    copy: "In-person and online consultations with Glenda Ferreira, M.D., physician and astrologer with training in medical astrology."
     button:
       text: "Book a reading"
       url: "/contact"
@@ -20,7 +20,7 @@ content:
       url: "/videos/"
       style: "ghost"
     highlights:
-      - "Physician & Surgeon, M.D."
+      - "Physician, M.D."
       - "25+ years of practice"
       - "English & Spanish sessions"
 
