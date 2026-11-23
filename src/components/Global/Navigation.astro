@@ -1,8 +1,22 @@
 ---
-import { t, getCurrentLocaleFromAstro } from "../../i18n/index";
+import {
+  t,
+  getCurrentLocaleFromAstro,
+  getLocaleSwitchHref,
+} from "../../i18n/index";
+
+interface Props {
+  enUrl?: string;
+  esUrl?: string;
+}
+
+const { enUrl, esUrl } = Astro.props as Props;
 const locale = getCurrentLocaleFromAstro(Astro);
 const currentPath = Astro.url.pathname;
 const isRoot = currentPath === "/";
+
+const enSwitchHref = getLocaleSwitchHref(currentPath, "en", { enUrl, esUrl });
+const esSwitchHref = getLocaleSwitchHref(currentPath, "es", { enUrl, esUrl });
 
 const getPath = (path: string, loc: string) => {
   if (path === "/") {
@@ -107,29 +121,81 @@ const esNavLinks = esNavItems.map((item) => ({
       </ul>
     )
   }
+
+  <!-- Desktop Language Switcher -->
+  <span class="h-5 w-px bg-border-subtle" aria-hidden="true"></span>
+  <language-switcher
+    currentPath={currentPath}
+    isRoot={isRoot}
+    class="nav-lang-switcher inline-flex items-center rounded-full border border-border-subtle bg-canvas p-0.5 text-xs font-semibold tracking-wider"
+    aria-label="Language switcher"
+  >
+    <a
+      href={enSwitchHref}
+      data-lang-btn="en"
+      aria-label="English"
+      class="rounded-full px-3 py-1.5 transition-colors cursor-pointer"
+    >
+      EN
+    </a>
+    <a
+      href={esSwitchHref}
+      data-lang-btn="es"
+      aria-label="Español"
+      class="rounded-full px-3 py-1.5 transition-colors cursor-pointer"
+    >
+      ES
+    </a>
+  </language-switcher>
 </nav>
 
-<!-- Mobile Menu Button -->
-<button
-  id="mobile-menu-button"
-  class="lg:hidden p-2 text-primary-900 hover:text-accent-600 focus:outline-none transition-colors relative"
-  aria-label="Toggle Menu"
-  aria-expanded="false"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    class="h-6 w-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
+<!-- Mobile Controls: Quick Language Switcher + Menu Button -->
+<div class="lg:hidden flex items-center gap-3">
+  <language-switcher
+    currentPath={currentPath}
+    isRoot={isRoot}
+    class="nav-lang-switcher inline-flex items-center rounded-full border border-border-subtle bg-canvas p-0.5 text-xs font-semibold tracking-wider"
+    aria-label="Language switcher"
   >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M4 6h16M4 12h16M4 18h16"></path>
-  </svg>
-</button>
+    <a
+      href={enSwitchHref}
+      data-lang-btn="en"
+      aria-label="English"
+      class="rounded-full px-2.5 py-1 transition-colors cursor-pointer"
+    >
+      EN
+    </a>
+    <a
+      href={esSwitchHref}
+      data-lang-btn="es"
+      aria-label="Español"
+      class="rounded-full px-2.5 py-1 transition-colors cursor-pointer"
+    >
+      ES
+    </a>
+  </language-switcher>
+
+  <button
+    id="mobile-menu-button"
+    class="p-2 text-primary-900 hover:text-accent-600 focus:outline-none transition-colors relative"
+    aria-label="Toggle Menu"
+    aria-expanded="false"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </button>
+</div>
 
 <!-- Mobile Menu Dropdown - Compact & Clean -->
 <div

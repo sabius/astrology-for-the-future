@@ -26,8 +26,15 @@ export class LanguageSwitcher extends LitElement {
     if (targetLang === "es" || targetLang === "en") {
       try {
         localStorage.setItem("user_lang", targetLang);
-      } catch (err) {}
+      } catch {
+        // localStorage unavailable
+      }
       document.documentElement.lang = targetLang;
+
+      // On the dual-language root page, switch instantaneously without reload
+      if (window.location.pathname === "/") {
+        e.preventDefault();
+      }
 
       // Dispatch custom event for any listening components
       this.dispatchEvent(

@@ -63,3 +63,33 @@ export function saveUserLocale(locale: Locale): void {
   }
 }
 
+/**
+ * Computes the safe target href when switching locales from `currentPath`.
+ * Properly handles `/en` (without trailing slash) -> `/es/` instead of `/es/en`.
+ */
+export function getLocaleSwitchHref(
+  currentPath: string,
+  targetLoc: Locale,
+  overrides?: { enUrl?: string; esUrl?: string }
+): string {
+  if (targetLoc === "en" && overrides?.enUrl) return overrides.enUrl;
+  if (targetLoc === "es" && overrides?.esUrl) return overrides.esUrl;
+
+  if (currentPath === "/") return "/";
+
+  const clean = currentPath.startsWith("/") ? currentPath : `/${currentPath}`;
+
+  if (targetLoc === "es") {
+    if (clean === "/es" || clean.startsWith("/es/")) return clean;
+    if (clean === "/en" || clean === "/en/") return "/es/";
+    if (clean.startsWith("/en/")) return `/es${clean.slice(3)}`;
+    return `/es${clean}`;
+  }
+
+  // targetLoc === "en"
+  if (clean === "/es" || clean === "/es/") return "/";
+  if (clean.startsWith("/es/")) return clean.slice(3);
+  if (clean === "/en" || clean === "/en/") return "/";
+  return clean;
+}
+

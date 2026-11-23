@@ -99,3 +99,21 @@ html:not([lang="es"]) [data-lang-btn="es"] {
   text-decoration: none;
   opacity: 0.75;
 }
+
+/* Header Navigation Language Switcher Pill Styling */
+.nav-lang-switcher [data-lang-btn] {
+  text-decoration: none !important;
+  opacity: 1 !important;
+  color: var(--color-ink-muted);
+}
+
+.nav-lang-switcher [data-lang-btn]:hover {
+  color: var(--color-primary-900);
+}
+
+html[lang="es"] .nav-lang-switcher [data-lang-btn="es"],
+html:not([lang="es"]) .nav-lang-switcher [data-lang-btn="en"] {
+  background-color: var(--color-primary-900);
+  color: #ffffff;
+  font-weight: 600 !important;
+}
