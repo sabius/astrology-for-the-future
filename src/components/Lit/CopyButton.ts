@@ -1,18 +1,9 @@
-import { LitElement, html } from "lit";
-
-export class CopyButton extends LitElement {
-  // Use light DOM so pre-rendered SSR HTML and Tailwind styles apply directly
-  protected createRenderRoot() {
-    return this;
-  }
-
+export class CopyButton extends HTMLElement {
   connectedCallback() {
-    super.connectedCallback();
     this.addEventListener("click", this.handleClick);
   }
 
   disconnectedCallback() {
-    super.disconnectedCallback();
     this.removeEventListener("click", this.handleClick);
   }
 
@@ -41,10 +32,6 @@ export class CopyButton extends LitElement {
       console.error("Failed to copy to clipboard:", err);
     }
   };
-
-  render() {
-    return html`<slot></slot>`;
-  }
 }
 
 if (typeof customElements !== "undefined" && !customElements.get("copy-button")) {

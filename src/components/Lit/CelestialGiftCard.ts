@@ -1,5 +1,3 @@
-import { LitElement, html } from "lit";
-
 interface Star {
   x: number;
   y: number;
@@ -31,7 +29,7 @@ const seededRandom = (seed: number) => {
   };
 };
 
-export class CelestialGiftCard extends LitElement {
+export class CelestialGiftCard extends HTMLElement {
   private canvas: HTMLCanvasElement | null = null;
   private ctx: CanvasRenderingContext2D | null = null;
   private cardStage: HTMLElement | null = null;
@@ -67,12 +65,7 @@ export class CelestialGiftCard extends LitElement {
     cooldown: 3.5,
   };
 
-  protected createRenderRoot() {
-    return this;
-  }
-
   connectedCallback() {
-    super.connectedCallback();
     this.reducedMotion =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -81,7 +74,6 @@ export class CelestialGiftCard extends LitElement {
   }
 
   disconnectedCallback() {
-    super.disconnectedCallback();
     this.stopLoop();
     this.resizeObserver?.disconnect();
     this.intersectionObserver?.disconnect();
@@ -541,10 +533,6 @@ export class CelestialGiftCard extends LitElement {
     ctx.beginPath();
     ctx.roundRect(pad, pad, w - pad * 2, h - pad * 2, r);
     ctx.stroke();
-  }
-
-  render() {
-    return html`<slot></slot>`;
   }
 }
 

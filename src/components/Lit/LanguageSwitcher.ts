@@ -1,21 +1,12 @@
-import { LitElement, html } from "lit";
-
-export class LanguageSwitcher extends LitElement {
+export class LanguageSwitcher extends HTMLElement {
   currentPath = "/";
   isRoot = false;
 
-  // Use light DOM so pre-rendered SSR HTML and Tailwind styles apply directly
-  protected createRenderRoot() {
-    return this;
-  }
-
   connectedCallback() {
-    super.connectedCallback();
     this.addEventListener("click", this.handleClick);
   }
 
   disconnectedCallback() {
-    super.disconnectedCallback();
     this.removeEventListener("click", this.handleClick);
   }
 
@@ -46,10 +37,6 @@ export class LanguageSwitcher extends LitElement {
       );
     }
   };
-
-  render() {
-    return html`<slot></slot>`;
-  }
 }
 
 if (typeof customElements !== "undefined" && !customElements.get("language-switcher")) {
