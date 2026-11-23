@@ -1,6 +1,13 @@
 ---
 import Navigation from "./Navigation.astro";
 import { t, getCurrentLocaleFromAstro } from "../../i18n/index";
+
+interface Props {
+  enUrl?: string;
+  esUrl?: string;
+}
+
+const { enUrl, esUrl } = Astro.props as Props;
 const locale = getCurrentLocaleFromAstro(Astro);
 const homeHref = Astro.url.pathname === "/" ? "/" : `/${locale}`;
 
@@ -31,7 +38,7 @@ declare global {
       <span>{siteTitle}</span>
     </a>
 
-    <Navigation />
+    <Navigation enUrl={enUrl} esUrl={esUrl} />
   </div>
 </header>
 
