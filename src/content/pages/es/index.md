@@ -9,8 +9,8 @@ content:
   - component: "celestial-hero"
     hidden_h1: "Astrología con Glenda Ferreira: consultas presenciales y online"
     eyebrow: "Astrología Médica & Tradicional"
-    header: "Tu Carta Natal Como Herramienta de Comprensión"
-    copy: "Consultas presenciales y online con la Dra. Glenda Ferreira, médica cirujana y astróloga. Un espacio sereno para mirar tus ciclos, tus aprendizajes kármicos y el sentido de tu momento actual."
+    header: "Tu Carta Natal Como Herramienta de Autocomprensión"
+    copy: "Consultas presenciales y online con Glenda Ferreira, médica y astróloga con formación en astrología médica."
     button:
       text: "Reserva una lectura"
       url: "/es/contact"
@@ -20,19 +20,19 @@ content:
       url: "/es/videos/"
       style: "ghost"
     highlights:
-      - "Médica Cirujana, M.D."
+      - "Médica, M.D."
       - "Más de 25 años de práctica"
       - "Sesiones en español e inglés"
 
   # Block: Image Overlay Section
   - component: "image-overlay"
-    headline: "Comprende Tu Camino con Conciencia"
-    subheadline: "La carta natal como espejo de aprendizaje"
+    headline: "Comprende Tu Camino con Mayor Conciencia"
+    subheadline: "Tu carta natal como espejo de los aprendizajes de la vida."
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/Glenda%20Ferreira/image-asset_2_v5ailt.jpg"
     image_alt: "Cielo nocturno estrellado con montañas"
     body_copy:
-      - "Durante miles de años, la astrología ha observado los ciclos planetarios como un lenguaje simbólico para comprender la experiencia humana. Hoy, esa misma tradición nos ayuda a leer con serenidad las etapas que atravesamos."
-      - "No se trata de predecir un destino rígido, sino de reconocer los patrones kármicos, los aprendizajes del alma y los tiempos de cambio. Desde decisiones vocacionales hasta vínculos profundos, una lectura te da claridad espiritual y humana para transitar tu proceso con mayor conciencia."
+      - "Durante miles de años, la astrología ha explorado los ciclos planetarios como un lenguaje simbólico para reflexionar sobre la experiencia humana. Esta tradición ofrece una manera de considerar las distintas etapas de la vida y los temas que pueden acompañarlas."
+      - "La astrología no consiste en predecir un destino fijo. Es una invitación a explorar patrones recurrentes, desafíos personales, preguntas espirituales y momentos de transición. Ya sea que estés reflexionando sobre cambios en tu vida personal, tu vocación o tus relaciones, una lectura de carta natal puede ofrecer una perspectiva diferente y fomentar una comprensión más consciente de tu propio camino."
 
   - component: "feature-card"
     header: "Sobre mí"
@@ -42,7 +42,7 @@ content:
       - copy: |
           La medicina me enseñó el 'cómo' funciona el cuerpo, pero la astrología me enseñó el 'por qué' nos sucede lo que nos sucede. Mi misión es unir lo mejor de la ciencia y el espíritu para ayudarte a encontrar, no solo salud, sino sentido a tu propia historia. <br><br>
 
-          Tiendo un puente entre la ciencia clínica y la comprensión espiritual. Con formación como Médica Cirujana y Administradora de Salud Pública, aporto décadas de rigor diagnóstico a mis lecturas de Astrología. Habiendo acompañado a cientos de consultantes y sirviendo como educadora en los niveles superiores de Astrología Médica Académica, ofrezco una lectura que une intuición, profundidad espiritual y rigor práctico.
+          Tiendo un puente entre la ciencia clínica y la comprensión espiritual. Con formación como Médica y Administradora de Salud Pública, aporto décadas de rigor analítico a mis lecturas de astrología. Habiendo acompañado a cientos de consultantes y sirviendo como educadora en los niveles superiores de Astrología Médica Académica, ofrezco una lectura estructurada, reflexiva y respetuosa de tu proceso.
 
   # Block 1: The Hero Section
   - component: "hero"
@@ -53,11 +53,11 @@ content:
     header: "Mis Servicios"
     cards:
       - heading: "Lectura de Carta Natal"
-        copy: "Comprende tus talentos, tus retos kármicos y los aprendizajes espirituales de tu historia a través de un análisis profundo de tu carta natal."
+        copy: "Una invitación a reflexionar sobre tus tendencias personales, desafíos kármicos y aprendizajes de vida a través de una lectura profunda de tu carta natal."
       - heading: "Astrología de Relaciones"
-        copy: "Explora los vínculos significativos, sus dinámicas y los aprendizajes compartidos mediante la sinastría y las cartas compuestas."
+        copy: "Una mirada simbólica para explorar vínculos significativos, dinámicas relacionales y aprendizajes compartidos mediante la sinastría y las cartas compuestas."
       - heading: "Astrología Predictiva"
-        copy: "Acompaña los ciclos que vienen con serenidad y discernimiento usando tránsitos, progresiones y retornos solares."
+        copy: "Reflexiona sobre las etapas venideras y los temas recurrentes mediante tránsitos, progresiones y retornos solares como herramienta de discernimiento."
 
   # Block 2: A Split Content Section
   - component: "split-content"
@@ -85,7 +85,7 @@ content:
   - component: "cta"
     eyebrow: "Consulta Personalizada"
     header: "¿Listo para tu lectura personal?"
-    copy: "Agenda una sesión privada con la Dra. Glenda Ferreira para mirar tu carta natal, tus aprendizajes kármicos y el sentido de la etapa que estás viviendo."
+    copy: "Agenda una sesión privada con la Dra. Glenda Ferreira para reflexionar sobre tu carta natal, tus patrones recurrentes y la etapa de vida que estás transitando."
     button:
       text: "Agenda una sesión"
       url: "https://wa.me/573054315796?text=Hola,%20quisiera%20reservar%20una%20consulta%20de%20astrolog%C3%ADa."

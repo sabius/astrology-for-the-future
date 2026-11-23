@@ -26,13 +26,13 @@ content:
 
   # Block: Image Overlay Section
   - component: "image-overlay"
-    headline: "Understand Your Path with Awareness"
+    headline: "Understand Your Path with Greater Awareness"
     subheadline: "Your birth chart as a mirror for life's lessons."
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/Glenda%20Ferreira/image-asset_2_v5ailt.jpg"
     image_alt: "Starry night sky with mountains"
     body_copy:
-      - "For thousands of years, astrology has observed planetary cycles as a symbolic language for understanding human experience. Today, that same tradition helps us read the seasons we are moving through with calm and clarity."
-      - "It is not about predicting a rigid fate, but about recognizing karmic patterns, spiritual lessons, and moments of transition. From life and career turning points to deeper relationships, a reading offers grounded perspective to walk your process with greater awareness."
+      - "For thousands of years, astrology has explored planetary cycles as a symbolic language for reflecting on human experience. This tradition offers a way to consider the different phases of life and the themes that may accompany them."
+      - "Astrology is not about predicting a fixed fate. It is an invitation to explore recurring patterns, personal challenges, spiritual questions, and periods of transition. Whether you are reflecting on changes in your personal life, career, or relationships, a birth chart reading can offer a different perspective and encourage a more conscious understanding of your own journey."
 
   - component: "feature-card"
     header: "About me"
@@ -42,7 +42,7 @@ content:
       - copy: |
           Medicine taught me 'how' the body functions, but astrology taught me the 'why' behind our life experiences. My mission is to unite the best of science and spirit to help you find not just health, but meaning in your own story. <br><br>
 
-          I bridge clinical science and spiritual understanding. Trained as a Physician, Surgeon, and Public Health Administrator, I bring decades of diagnostic rigor to my Astrology readings. Having accompanied hundreds of clients and served as an educator at the advanced levels of Academic Medical Astrology, I offer a reading that brings together intuition, spiritual depth, and practical rigor.
+          I bridge clinical science and spiritual understanding. Trained as a Physician and Public Health Administrator, I bring decades of analytical discipline to my astrology readings. Having accompanied hundreds of clients and served as an educator at the advanced levels of Academic Medical Astrology, I offer a structured, reflective, and thoughtful reading.
 
   # Block: Support hero section with a single image
   - component: "hero"
@@ -53,18 +53,18 @@ content:
     header: "My Services"
     cards:
       - heading: "Natal Chart Reading"
-        copy: "Understand your natural strengths, karmic challenges, and spiritual lessons through an in-depth reading of your birth chart."
+        copy: "An invitation to reflect on your personal tendencies, karmic challenges, and life lessons through an in-depth reading of your birth chart."
       - heading: "Relationship Astrology"
-        copy: "Explore meaningful bonds, relational dynamics, and shared life lessons through synastry and composite charts."
+        copy: "A symbolic perspective to explore meaningful bonds, relational dynamics, and shared life lessons through synastry and composite charts."
       - heading: "Predictive Astrology"
-        copy: "Approach upcoming chapters with calm and discernment using transits, progressions, and solar returns."
+        copy: "Reflect on upcoming phases and recurring themes using transits, progressions, and solar returns as a tool for discernment."
 
   # Block 2: A Split Content Section
   - component: "split-content"
     header: "My Experience"
     columns:
       - items:
-          - heading: "Surgeon Physician"
+          - heading: "Physician (M.D.)"
             copy: "Colegio Mayor de Nuestra Señora del Rosario"
             meta: "1983"
           - heading: "Astrology"
@@ -85,7 +85,7 @@ content:
   - component: "cta"
     eyebrow: "Personalized Consultation"
     header: "Ready for your personal reading?"
-    copy: "Book a private session with Dr. Glenda Ferreira to explore your birth chart, karmic lessons, and the meaning of your current life chapter."
+    copy: "Book a private session with Dr. Glenda Ferreira to reflect on your birth chart, recurring patterns, and the phase of life you are moving through."
     button:
       text: "Book a session"
       url: "https://wa.me/573054315796?text=Hello,%20I%20would%20like%20to%20book%20an%20astrology%20consultation."
