@@ -9,14 +9,14 @@ const { header, copy, image, image_alt, list_items, button } = Astro.props;
 ---
 
 <!-- Map Section -->
-<section class="feature-card py-16">
+<section class="feature-card py-16 md:py-20">
   <div class="container">
     {
       (header || copy) && (
-        <div class="text-center mb-16">
-          {header && <h2 class="text-3xl md:text-5xl font-bold">{header}</h2>}
+        <div class="text-center mb-14">
+          {header && <h2 class="text-3xl md:text-5xl font-bold text-primary-900">{header}</h2>}
           {copy && (
-            <p class="text-3xl text-gray-700 max-w-3xl mx-auto">{copy}</p>
+            <p class="mt-3 text-base sm:text-lg md:text-xl text-ink-muted max-w-2xl mx-auto leading-relaxed">{copy}</p>
           )}
         </div>
       )
@@ -30,7 +30,7 @@ const { header, copy, image, image_alt, list_items, button } = Astro.props;
     >
       {
         image && (
-          <div class="bg-gray-200 rounded-lg overflow-hidden aspect-square max-w-[26rem] md:max-h-[600px] mx-auto w-full">
+          <div class="bg-surface-alt border border-border-subtle rounded-2xl overflow-hidden aspect-square max-w-md mx-auto w-full shadow-md">
             <ResponsivePicture
               src={image}
               alt={image_alt}
@@ -41,7 +41,7 @@ const { header, copy, image, image_alt, list_items, button } = Astro.props;
       }
 
       <div class:list={[!image && "text-center flex flex-col items-center"]}>
-        <div class="bg-white p-8 rounded-lg shadow-md w-full">
+        <div class="bg-surface border border-border-subtle p-8 md:p-10 rounded-2xl shadow-sm w-full space-y-4">
           {
             list_items &&
               list_items.map(async (card_item: { heading?: string; copy?: string }) => {
@@ -51,13 +51,13 @@ const { header, copy, image, image_alt, list_items, button } = Astro.props;
                 return (
                   <div>
                     {card_item.heading && (
-                      <h4 class="font-bold text-2xl mb-2">
+                      <h4 class="font-bold text-2xl text-primary-900 mb-2">
                         {card_item.heading}
                       </h4>
                     )}
                     {card_item.copy && (
                       <div
-                        class="text-gray-950 text-xl"
+                        class="text-ink-muted text-base md:text-lg leading-relaxed"
                         set:html={cleanCardHtml}
                       />
                     )}
@@ -73,7 +73,7 @@ const { header, copy, image, image_alt, list_items, button } = Astro.props;
               <Button
                 href={button.url}
                 target="_blank"
-                variant={button.variant}
+                variant={button.style ?? "primary"}
               >
                 {button.text}
               </Button>

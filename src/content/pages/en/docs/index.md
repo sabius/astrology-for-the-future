@@ -15,18 +15,22 @@ Welcome to the component documentation! Here you can explore all available compo
 - **Properties Table**: All available props with types and descriptions
 - **Usage Examples**: How to use the component in your pages
 
+## Foundations
+
+- **[Design System Explorer](/docs/design-system)** - Interactive palette, typography, and component theme playground for Astrology for the Future
+
 ## Available Components
 
 ### Layout Components
 
-- **[Hero](/en/_docs/heroes)** - Full-width hero sections with background images, headers, and call-to-action buttons
-- **[Split Content](/en/_docs/split-content)** - Two-column layouts for text and image combinations
-- **[Feature Card](/en/_docs/feature-card)** - Feature showcases with images, lists, and CTAs
+- **[Hero](/docs/heroes)** - Full-width hero sections with background images, headers, and call-to-action buttons
+- **[Split Content](/docs/split-content)** - Two-column layouts for text and image combinations
+- **[Feature Card](/docs/feature-card)** - Feature showcases with images, lists, and CTAs
 
 ### Content Components
 
-- **[Quote](/en/_docs/quote)** - Styled blockquotes with author attribution
-- **[CTA](/en/_docs/cta)** - Call-to-action sections with buttons
+- **[Quote](/docs/quote)** - Styled blockquotes with author attribution
+- **[CTA](/docs/cta)** - Call-to-action sections with buttons
 
 ## How to Use
 

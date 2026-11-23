@@ -1,42 +1,70 @@
 @import "tailwindcss";
 
 @theme {
-  /* Font */
-  --font-sans: "Cormorant Garamond Variable", serif;
+  /* Typography — Serif + Sans UI (Astrolabio Nocturno) */
+  --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-serif: "Cormorant Garamond Variable", Georgia, serif;
 
-  /* Colors */
-  --color-background-gray: 239, 234, 246;
+  /* Semantic Surfaces & Neutrals */
+  --color-canvas: #F7F5F0;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #EFECE4;
+  --color-border-subtle: #E2DDD2;
+  --color-midnight: #0B1120;
+  --color-ink-muted: #4B5568;
   --color-brand-whatsapp: #25D366;
 
-  /* Primary Palette (Astrology Theme) */
-  --color-primary-50: #f5f3fa;
-  --color-primary-100: #ebe5f5;
-  --color-primary-200: #d4c5eb;
-  --color-primary-300: #b8a0dd;
-  --color-primary-400: #9a76cc;
-  --color-primary-500: #8050bc;
-  --color-primary-600: #6B4FAE;
-  --color-primary-700: #573f8c;
-  --color-primary-800: #463073;
-  --color-primary-900: #2e2133;
-  --color-primary-950: #1F1534;
+  /* Primary Palette — Celestial Navy & Indigo */
+  --color-primary-50: #F2F5FA;
+  --color-primary-100: #E2E8F4;
+  --color-primary-200: #C3CFE6;
+  --color-primary-300: #9BB0D4;
+  --color-primary-400: #6D88BA;
+  --color-primary-500: #4A659B;
+  --color-primary-600: #2E426F;
+  --color-primary-700: #24355B;
+  --color-primary-800: #1E2D4F;
+  --color-primary-900: #141D30;
+  --color-primary-950: #0F172A;
+
+  /* Accent Palette — Antique Gold & Champagne Brass */
+  --color-accent-50: #FBF8F1;
+  --color-accent-100: #F5ECD7;
+  --color-accent-200: #E9D6AE;
+  --color-accent-300: #D9BA7C;
+  --color-accent-400: #C89F55;
+  --color-accent-500: #B88A44;
+  --color-accent-600: #9F7434;
+  --color-accent-700: #7E5A27;
+  --color-accent-800: #634620;
+  --color-accent-900: #4D371B;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-primary-900);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  blockquote {
+    font-family: var(--font-serif);
+  }
 }
 
 main {
-  background-color: rgba(var(--color-background-gray), 0.95);
+  background-color: var(--color-canvas);
 }
 
 .container {
   margin-inline: auto;
   padding-inline: 1rem;
 }
-
-/*
-@media (min-width: 1440px) {
-  html {
-    font-size: 1.1rem;
-  }
-} */
 
 /* Declarative Root Domain i18n Visibility Rules */
 html:not([lang="es"]) .lang-es {

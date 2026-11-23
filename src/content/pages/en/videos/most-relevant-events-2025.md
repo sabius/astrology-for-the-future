@@ -20,4 +20,21 @@ content:
       text: "Back to Video Library"
       url: "/videos/"
       style: "outline"
+
+  - component: "cta"
+    eyebrow: "Personalized Consultation"
+    header: "Prefer a one-on-one reading?"
+    copy: "Bring these insights directly to your own natal chart. Book a private session with Dr. Glenda Ferreira for structured, practical clarity on your current cycle."
+    button:
+      text: "Book a session"
+      url: "https://wa.me/573054315796?text=Hello,%20I%20would%20like%20to%20book%20an%20astrology%20consultation."
+      style: "accent"
+    secondary_button:
+      text: "Contact options"
+      url: "/contact"
+      style: "ghost"
+    highlights:
+      - "Online via Zoom"
+      - "HD session recording"
+      - "English & Spanish"
 ---
