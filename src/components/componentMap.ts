@@ -6,6 +6,7 @@ import Quote from "./Sections/Quote.astro";
 import ImageOverlay from "./Sections/ImageOverlay.astro";
 import VideoSection from "./Sections/VideoSection.astro";
 import VideoDetail from "./Sections/VideoDetail.astro";
+import GiftCard from "./Sections/GiftCard.astro";
 import Cta from "./UI/Cta.astro";
 import Fallback from "./Fallback.astro";
 
@@ -18,6 +19,7 @@ export const components = {
   "image-overlay": ImageOverlay,
   "video-section": VideoSection,
   "video-detail": VideoDetail,
+  "gift-card": GiftCard,
   cta: Cta,
   fallback: Fallback,
 };

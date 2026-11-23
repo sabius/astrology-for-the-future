@@ -1,0 +1,254 @@
+---
+import Button from "../UI/Button.astro";
+
+type ButtonVariant = "primary" | "secondary" | "accent" | "outline" | "ghost";
+
+export interface Props {
+  eyebrow?: string;
+  header?: string;
+  copy?: string;
+  paragraphs?: string[];
+  highlights?: string[];
+  card_badge?: string;
+  card_title?: string;
+  card_subtitle?: string;
+  card_footer_left?: string;
+  card_footer_right?: string;
+  card_hint?: string;
+  button?: {
+    text: string;
+    url: string;
+    style?: ButtonVariant;
+  };
+}
+
+const {
+  eyebrow,
+  header,
+  copy,
+  paragraphs = [],
+  highlights = [],
+  card_badge = "GIFT CARD",
+  card_title = "Astrology Reading",
+  card_subtitle = "Dr. Glenda Ferreira, M.D.",
+  card_footer_left = "Online via Zoom · HD Recording",
+  card_footer_right = "EN / ES",
+  card_hint,
+  button,
+} = Astro.props as Props;
+
+const isExternalUrl = (url: string) =>
+  url.startsWith("http://") ||
+  url.startsWith("https://") ||
+  url.includes("wa.me");
+---
+
+<section
+  class="gift-card-section py-16 md:py-24 px-4 sm:px-6 bg-surface-alt border-t border-border-subtle"
+>
+  <div class="container max-w-6xl">
+    <div
+      class="bg-surface border border-border-subtle rounded-3xl p-6 sm:p-10 md:p-14 shadow-lg"
+    >
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <!-- Left: Interactive Canvas Celestial Gift Card -->
+        <div class="lg:col-span-6">
+          <celestial-gift-card class="block w-full max-w-lg mx-auto">
+            <div class="relative">
+              <!-- Soft ambient halo beneath the card -->
+              <div
+                class="pointer-events-none absolute -inset-2 rounded-3xl bg-gradient-to-br from-primary-800/15 via-transparent to-accent-500/20 blur-xl"
+                aria-hidden="true"
+              >
+              </div>
+
+              <div
+                data-card-stage
+                class="gift-card-stage relative w-full rounded-2xl overflow-hidden shadow-2xl border border-accent-300/35 select-none bg-midnight"
+                role="img"
+                aria-label={`${card_badge} — ${card_title} (${card_subtitle})`}
+              >
+                <canvas
+                  data-celestial-canvas
+                  class="absolute inset-0 h-full w-full block"
+                  aria-hidden="true"></canvas>
+
+                <!-- Card Face Overlay -->
+                <div
+                  class="relative z-10 h-full w-full p-5 sm:p-7 flex flex-col justify-between pointer-events-none text-white"
+                >
+                  <!-- Top Row -->
+                  <div class="flex items-center justify-between gap-3">
+                    <span
+                      class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-300"
+                    >
+                      <svg
+                        class="h-3.5 w-3.5 text-accent-400"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M12 2L14.3 9.7L22 12L14.3 14.3L12 22L9.7 14.3L2 12L9.7 9.7L12 2Z"
+                        ></path>
+                      </svg>
+                      <span>{card_badge}</span>
+                    </span>
+
+                    <div
+                      class="h-9 w-9 rounded-full border border-accent-300/45 bg-midnight/60 backdrop-blur-xs flex items-center justify-center"
+                      aria-hidden="true"
+                    >
+                      <span
+                        class="font-serif text-sm font-bold tracking-wider text-accent-200"
+                      >
+                        GF
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Center-Left Title -->
+                  <div class="max-w-xs my-auto py-3">
+                    <p
+                      class="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight"
+                    >
+                      {card_title}
+                    </p>
+                    <p
+                      class="mt-1 text-xs sm:text-sm text-accent-200 tracking-wide"
+                    >
+                      {card_subtitle}
+                    </p>
+                  </div>
+
+                  <!-- Bottom Hairline Strip -->
+                  <div
+                    class="pt-3 border-t border-accent-300/20 flex items-center justify-between gap-3 text-xs text-primary-200"
+                  >
+                    <span>{card_footer_left}</span>
+                    <span class="font-semibold tracking-wider text-accent-300">
+                      {card_footer_right}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </celestial-gift-card>
+
+          {
+            card_hint && (
+              <p class="hidden sm:flex items-center justify-center gap-2 mt-4 text-xs text-ink-muted">
+                <svg
+                  class="h-3 w-3 text-accent-500"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2L14.3 9.7L22 12L14.3 14.3L12 22L9.7 14.3L2 12L9.7 9.7L12 2Z" />
+                </svg>
+                <span>{card_hint}</span>
+              </p>
+            )
+          }
+        </div>
+
+        <!-- Right: Editorial Copy & Action -->
+        <div class="lg:col-span-6 text-left">
+          {
+            eyebrow && (
+              <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-accent-600 mb-3">
+                {eyebrow}
+              </p>
+            )
+          }
+
+          {
+            header && (
+              <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary-900 leading-tight">
+                {header}
+              </h2>
+            )
+          }
+
+          {
+            copy && (
+              <p class="mt-3 text-lg sm:text-xl font-medium text-primary-700">
+                {copy}
+              </p>
+            )
+          }
+
+          {
+            paragraphs.length > 0 && (
+              <div class="mt-5 space-y-3 text-base md:text-lg text-ink-muted leading-relaxed">
+                {paragraphs.map((p) => (
+                  <p>{p}</p>
+                ))}
+              </div>
+            )
+          }
+
+          {
+            highlights.length > 0 && (
+              <ul class="mt-6 space-y-2.5 text-sm sm:text-base text-primary-900">
+                {highlights.map((item) => (
+                  <li class="flex items-start gap-2.5">
+                    <svg
+                      class="h-4 w-4 text-accent-500 flex-shrink-0 mt-1"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 2L14.6 9.4L22 12L14.6 14.6L12 22L9.4 14.6L2 12L9.4 9.4L12 2Z" />
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+
+          {
+            button && (
+              <div class="mt-8">
+                <Button
+                  href={button.url}
+                  target={isExternalUrl(button.url) ? "_blank" : undefined}
+                  variant={button.style ?? "accent"}
+                  size="lg"
+                  class="group w-full sm:w-auto"
+                >
+                  <span>{button.text}</span>
+                  <svg
+                    class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                    />
+                  </svg>
+                </Button>
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../Lit/CelestialGiftCard.ts"></script>
+
+<style>
+  .gift-card-stage {
+    aspect-ratio: 1.586 / 1;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+</style>
