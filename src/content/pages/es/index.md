@@ -5,16 +5,24 @@ meta:
   image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1768882107/Glenda%20Ferreira/meta-img-es.jpg"
 
 content:
-  # Block 1: The Hero Section
-  - component: "hero"
+  # Block 1: The Celestial Astrolabe Hero Section
+  - component: "celestial-hero"
     hidden_h1: "Astrología con Glenda Ferreira: consultas presenciales y online"
+    eyebrow: "Astrología Médica & Tradicional"
     header: "Tu Carta Natal Como Herramienta de Comprensión"
-    copy: "Consultas presenciales y online con Glenda Ferreira, médica cirujana y astróloga con formación en astrología médica."
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
-    image_alt: "La foto de un cielo estrellado y una aurora boreal"
+    copy: "Consultas presenciales y online con la Dra. Glenda Ferreira, médica cirujana y astróloga. Un espacio sereno para mirar tus ciclos, tus aprendizajes kármicos y el sentido de tu momento actual."
     button:
       text: "Reserva una lectura"
       url: "/es/contact"
+      style: "accent"
+    secondary_button:
+      text: "Explorar videos"
+      url: "/es/videos/"
+      style: "ghost"
+    highlights:
+      - "Médica Cirujana, M.D."
+      - "Más de 25 años de práctica"
+      - "Sesiones en español e inglés"
 
   # Block: Image Overlay Section
   - component: "image-overlay"

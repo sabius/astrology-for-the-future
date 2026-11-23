@@ -5,16 +5,24 @@ meta:
   image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1768881851/Glenda%20Ferreira/meta-img-en.jpg"
 
 content:
-  # Block 1: The Hero Section
-  - component: "hero"
+  # Block 1: The Celestial Astrolabe Hero Section
+  - component: "celestial-hero"
     hidden_h1: "Astrology with Glenda Ferreira: in-person and online consultations"
+    eyebrow: "Medical & Traditional Astrology"
     header: "Your Birth Chart as a Tool for Understanding"
-    copy: "In-person and online consultations with Glenda Ferreira, M.D., surgeon and astrologer with training in medical astrology."
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
-    image_alt: "The photo of a starred sky and an aurora boreal"
+    copy: "In-person and online consultations with Dr. Glenda Ferreira, physician, surgeon, and astrologer. A calm space to understand your cycles, karmic lessons, and the meaning of your current chapter."
     button:
       text: "Book a reading"
       url: "/contact"
+      style: "accent"
+    secondary_button:
+      text: "Explore videos"
+      url: "/videos/"
+      style: "ghost"
+    highlights:
+      - "Physician & Surgeon, M.D."
+      - "25+ years of practice"
+      - "English & Spanish sessions"
 
   # Block: Image Overlay Section
   - component: "image-overlay"

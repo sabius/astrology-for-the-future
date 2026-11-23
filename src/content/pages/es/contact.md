@@ -5,14 +5,15 @@ meta:
   image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1768882107/Glenda%20Ferreira/meta-img-es.jpg"
 
 content:
-  - component: "hero"
+  - component: "celestial-hero"
+    compact: true
+    eyebrow: "Consultas y Contacto"
     header: "Contacto con la Dra. Glenda Ferreira"
     copy: "Un espacio tranquilo para mirar tu carta natal, tus procesos kármicos y el aprendizaje de tu momento actual. Reserva tu lectura o escríbeme si tienes preguntas."
-    background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
-    image_alt: "Cielo nocturno estrellado"
     button:
       text: "Reservar una Lectura"
       url: "https://wa.me/573054315796?text=Hola,%20quisiera%20reservar%20una%20consulta%20de%20astrolog%C3%ADa."
+      style: "accent"
 
   - component: "feature-grid"
     header: "Ponte en Contacto"
