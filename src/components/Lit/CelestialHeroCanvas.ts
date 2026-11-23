@@ -48,43 +48,45 @@ const HOUSE_NUMERALS = [
   "XII",
 ];
 
+// All 5 planetary bodies orbit clockwise on their own dedicated concentric orbit,
+// with Keplerian speed ordering: inner orbits move faster than outer orbits.
 const BODIES: OrbitingBody[] = [
   {
-    orbitRatio: 0.73,
-    speed: 0.09,
+    orbitRatio: 0.76,
+    speed: 0.055,
+    startAngle: 4.15,
+    size: 3.6,
+    color: "#D9BA7C",
+    glow: "rgba(217, 186, 124, 0.52)",
+    hasRing: true,
+  },
+  {
+    orbitRatio: 0.64,
+    speed: 0.085,
     startAngle: 0.45,
-    size: 4.2,
+    size: 4.0,
     color: "#F5ECD7",
     glow: "rgba(233, 214, 174, 0.55)",
   },
   {
-    orbitRatio: 0.73,
-    speed: -0.06,
+    orbitRatio: 0.53,
+    speed: 0.12,
     startAngle: 2.65,
     size: 3.1,
     color: "#C3CFE6",
     glow: "rgba(195, 207, 230, 0.45)",
   },
   {
-    orbitRatio: 0.54,
-    speed: 0.13,
-    startAngle: 4.15,
-    size: 3.4,
-    color: "#D9BA7C",
-    glow: "rgba(217, 186, 124, 0.50)",
-    hasRing: true,
-  },
-  {
-    orbitRatio: 0.54,
-    speed: 0.075,
-    startAngle: 1.55,
-    size: 2.6,
+    orbitRatio: 0.42,
+    speed: 0.16,
+    startAngle: 1.35,
+    size: 2.7,
     color: "#E9D6AE",
     glow: "rgba(233, 214, 174, 0.40)",
   },
   {
-    orbitRatio: 0.35,
-    speed: -0.16,
+    orbitRatio: 0.31,
+    speed: 0.21,
     startAngle: 5.2,
     size: 2.5,
     color: "#9BB0D4",
@@ -449,7 +451,7 @@ export class CelestialHeroCanvas extends LitElement {
     ctx.globalAlpha = dialAlphaScale;
 
     const ringInner = outerR * 0.85;
-    const eclipticR = outerR * 0.63;
+    const eclipticR = outerR * 0.64;
     const coreR = outerR * 0.2;
 
     // 5a. Outer Brass Zodiac / House Band (slow clockwise)
@@ -541,8 +543,8 @@ export class CelestialHeroCanvas extends LitElement {
     ctx.stroke();
     ctx.restore();
 
-    // Concentric planetary orbit tracks
-    for (const ratio of [0.73, 0.54, 0.35]) {
+    // Dedicated concentric planetary orbit tracks (0.64 is the dashed ecliptic ring above)
+    for (const ratio of [0.76, 0.53, 0.42, 0.31]) {
       ctx.strokeStyle = "rgba(217, 186, 124, 0.14)";
       ctx.lineWidth = 0.7;
       ctx.beginPath();

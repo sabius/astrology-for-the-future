@@ -396,9 +396,9 @@ export class CelestialGiftCard extends LitElement {
     }
     ctx.restore();
 
-    // Middle ecliptic dashed orbit (counter-clockwise) + orbiting planets
+    // Middle ecliptic dashed orbit (clockwise) + orbiting planets
     ctx.save();
-    ctx.rotate(-t * 0.085);
+    ctx.rotate(t * 0.085);
     ctx.setLineDash([3, 5]);
     ctx.strokeStyle = "rgba(217, 186, 124, 0.30)";
     ctx.lineWidth = 0.9;
