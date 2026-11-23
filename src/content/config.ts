@@ -146,6 +146,22 @@ const videoDetailBlock = z.object({
     .optional(),
 });
 
+const giftCardBlock = z.object({
+  component: z.literal("gift-card"),
+  eyebrow: z.string().optional(),
+  header: z.string().optional(),
+  copy: z.string().optional(),
+  paragraphs: z.array(z.string()).optional(),
+  highlights: z.array(z.string()).optional(),
+  card_badge: z.string().optional(),
+  card_title: z.string().optional(),
+  card_subtitle: z.string().optional(),
+  card_footer_left: z.string().optional(),
+  card_footer_right: z.string().optional(),
+  card_hint: z.string().optional(),
+  button: ctaButtonSchema.optional(),
+});
+
 // Define the main collection for our pages
 const pagesCollection = defineCollection({
   schema: z.object({
@@ -170,6 +186,7 @@ const pagesCollection = defineCollection({
         ctaBlock,
         videoSectionBlock,
         videoDetailBlock,
+        giftCardBlock,
       ])
     ),
   }),

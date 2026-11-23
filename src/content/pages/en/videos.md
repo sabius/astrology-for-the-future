@@ -1,7 +1,7 @@
 ---
 meta:
   title: "Videos | Glenda Ferreira"
-  description: "Astrology video library with forecasts, tutorials, and live Q&As to help you apply the skies to everyday life."
+  description: "Astrology video library with conversations, analyses, and teachings to understand life cycles, karma, and spiritual growth."
   image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/Glenda%20Ferreira/image-asset_2_v5ailt.jpg"
 
 content:
@@ -43,7 +43,7 @@ content:
   - component: "cta"
     eyebrow: "Personalized Consultation"
     header: "Prefer a one-on-one reading?"
-    copy: "Bring these insights directly to your own natal chart. Book a private session with Dr. Glenda Ferreira for structured, practical clarity on your current cycle."
+    copy: "Bring this perspective to your own natal chart. Book a private session with Dr. Glenda Ferreira to explore your spiritual path, karmic lessons, and the meaning of your current chapter."
     button:
       text: "Book a session"
       url: "https://wa.me/573054315796?text=Hello,%20I%20would%20like%20to%20book%20an%20astrology%20consultation."

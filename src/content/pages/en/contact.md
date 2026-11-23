@@ -7,7 +7,7 @@ meta:
 content:
   - component: "hero"
     header: "Contact Dr. Glenda Ferreira"
-    copy: "Begin your journey through the stars today. Book a personalized astrology consultation or reach out with any questions."
+    copy: "A calm space to look at your natal chart, your karmic patterns, and the lessons of your current chapter. Book a personal reading or reach out with any questions."
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1758152929/Glenda%20Ferreira/image-asset_zlvc49.webp"
     image_alt: "Starry night sky background"
     button:
@@ -39,18 +39,27 @@ content:
     copy: "Personalized consultations available worldwide."
     list_items:
       - heading: "CONVENIENT VIA ZOOM"
-        copy: "Online sessions designed around your schedule and available worldwide via Zoom. All readings are recorded in high quality so you can revisit your insights whenever you wish."
+        copy: "Online sessions designed around your schedule and available worldwide via Zoom. All readings are recorded in high quality so you can revisit your reflections and life lessons whenever you need."
 
-  - component: "feature-card"
-    header: "GIFT CARD"
-    copy: "The perfect solution for a special occasion!"
-    image: "https://images.squarespace-cdn.com/content/v1/62abeeecef350e13e6c8010d/36eaacf9-043f-4ea1-9a43-ae751bfc684d/Gift+Card+PLANTILLA.png"
-    image_alt: "Blue gift card template for Dr. Glenda Ferreira P., M.D., with gold and white text, stars, and contact information for astrology services."
-    list_items:
-      - copy: "Surprise someone special with an astrology reading gift card."
-      - copy: "It's more than a gift—it's an invitation to explore their purpose, potential, and path guided by the universe."
+  - component: "gift-card"
+    eyebrow: "A Meaningful Gift"
+    header: "Gift Card"
+    copy: "A thoughtful gesture for a special occasion."
+    paragraphs:
+      - "Surprise someone dear with a personalized astrology reading with Dr. Glenda Ferreira."
+      - "More than a gift, it is a space for reflection—to understand their spiritual path, karmic lessons, and the deeper meaning of the chapter they are living through."
+    highlights:
+      - "Personalized digital card ready to send"
+      - "Private Zoom session recorded in HD"
+      - "Available in English or Spanish worldwide"
+    card_badge: "GIFT CARD"
+    card_title: "Astrology Reading"
+    card_subtitle: "Dr. Glenda Ferreira, M.D."
+    card_footer_left: "Online via Zoom · HD Recording"
+    card_footer_right: "EN / ES"
+    card_hint: "Move cursor over the card"
     button:
       text: "Inquire About Gift Cards"
       url: "https://wa.me/573054315796?text=Hello,%20I%20would%20like%20information%20about%20a%20Gift%20Card."
-      style: "secondary"
+      style: "accent"
 ---

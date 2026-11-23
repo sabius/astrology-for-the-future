@@ -18,13 +18,13 @@ content:
 
   # Block: Image Overlay Section
   - component: "image-overlay"
-    headline: "Navega Tu Vida con Propósito"
-    subheadline: "Sabiduría antigua para desafíos modernos"
+    headline: "Comprende Tu Camino con Conciencia"
+    subheadline: "La carta natal como espejo de aprendizaje"
     background_image: "https://res.cloudinary.com/dvhwjf1zd/image/upload/v1760063474/Glenda%20Ferreira/image-asset_2_v5ailt.jpg"
     image_alt: "Cielo nocturno estrellado con montañas"
     body_copy:
-      - "Durante miles de años, las civilizaciones han observado el movimiento de los planetas para comprender los eventos en la Tierra. Hoy, usamos esa misma lógica celestial para ayudarte a navegar las estaciones de tu vida."
-      - "La astrología no se trata de predecir un futuro fijo—se trata de entender el clima cósmico para que puedas prepararte. Desde planificar grandes decisiones profesionales hasta comprender la dinámica de las relaciones, una lectura astrológica proporciona la perspectiva que necesitas para tomar decisiones empoderadas y alinear tus acciones con el ritmo natural del universo."
+      - "Durante miles de años, la astrología ha observado los ciclos planetarios como un lenguaje simbólico para comprender la experiencia humana. Hoy, esa misma tradición nos ayuda a leer con serenidad las etapas que atravesamos."
+      - "No se trata de predecir un destino rígido, sino de reconocer los patrones kármicos, los aprendizajes del alma y los tiempos de cambio. Desde decisiones vocacionales hasta vínculos profundos, una lectura te da claridad espiritual y humana para transitar tu proceso con mayor conciencia."
 
   - component: "feature-card"
     header: "Sobre mí"
@@ -34,7 +34,7 @@ content:
       - copy: |
           La medicina me enseñó el 'cómo' funciona el cuerpo, pero la astrología me enseñó el 'por qué' nos sucede lo que nos sucede. Mi misión es unir lo mejor de la ciencia y el espíritu para ayudarte a encontrar, no solo salud, sino sentido a tu propia historia. <br><br>
 
-          Cierro la brecha entre la ciencia clínica y la sabiduría cósmica. Con formación como Médica Cirujana y Administradora de Salud Pública, aporto décadas de rigor diagnóstico a mis lecturas de Astrología. Habiendo guiado a cientos de clientes y sirviendo como educadora en los niveles superiores de Astrología Médica Académica, ofrezco una lectura que no es solo intuitiva, sino estructurada, práctica y precisa.
+          Tiendo un puente entre la ciencia clínica y la comprensión espiritual. Con formación como Médica Cirujana y Administradora de Salud Pública, aporto décadas de rigor diagnóstico a mis lecturas de Astrología. Habiendo acompañado a cientos de consultantes y sirviendo como educadora en los niveles superiores de Astrología Médica Académica, ofrezco una lectura que une intuición, profundidad espiritual y rigor práctico.
 
   # Block 1: The Hero Section
   - component: "hero"
@@ -45,11 +45,11 @@ content:
     header: "Mis Servicios"
     cards:
       - heading: "Lectura de Carta Natal"
-        copy: "Descubre tu potencial único y propósito de vida con un análisis en profundidad de tu carta natal."
+        copy: "Comprende tus talentos, tus retos kármicos y los aprendizajes espirituales de tu historia a través de un análisis profundo de tu carta natal."
       - heading: "Astrología de Relaciones"
-        copy: "Obtén perspectivas más profundas sobre tus relaciones a través del arte de la sinastría y cartas compuestas."
+        copy: "Explora los vínculos significativos, sus dinámicas y los aprendizajes compartidos mediante la sinastría y las cartas compuestas."
       - heading: "Astrología Predictiva"
-        copy: "Navega los próximos períodos de vida con confianza usando tránsitos, progresiones y retornos solares."
+        copy: "Acompaña los ciclos que vienen con serenidad y discernimiento usando tránsitos, progresiones y retornos solares."
 
   # Block 2: A Split Content Section
   - component: "split-content"
@@ -77,7 +77,7 @@ content:
   - component: "cta"
     eyebrow: "Consulta Personalizada"
     header: "¿Listo para tu lectura personal?"
-    copy: "Agenda una sesión privada con la Dra. Glenda Ferreira y recibe una lectura estructurada, práctica y precisa de tu carta natal y tu momento actual."
+    copy: "Agenda una sesión privada con la Dra. Glenda Ferreira para mirar tu carta natal, tus aprendizajes kármicos y el sentido de la etapa que estás viviendo."
     button:
       text: "Agenda una sesión"
       url: "https://wa.me/573054315796?text=Hola,%20quisiera%20reservar%20una%20consulta%20de%20astrolog%C3%ADa."

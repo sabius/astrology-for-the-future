@@ -26,6 +26,7 @@ Welcome to the component documentation! Here you can explore all available compo
 - **[Hero](/docs/heroes)** - Full-width hero sections with background images, headers, and call-to-action buttons
 - **[Split Content](/docs/split-content)** - Two-column layouts for text and image combinations
 - **[Feature Card](/docs/feature-card)** - Feature showcases with images, lists, and CTAs
+- **[Gift Card](/docs/gift-card)** - Interactive HTML5 Canvas celestial gift card with 3D pointer tilt and gold foil sheen
 
 ### Content Components
 

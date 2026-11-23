@@ -27,7 +27,7 @@ content:
   - component: "cta"
     eyebrow: "Consulta Personalizada"
     header: "¿Prefieres una lectura personal?"
-    copy: "Lleva estas herramientas a tu propia carta natal. Agenda una sesión privada con la Dra. Glenda Ferreira y recibe claridad práctica para tu momento actual."
+    copy: "Lleva esta mirada a tu propia carta natal. Agenda una sesión privada con la Dra. Glenda Ferreira para explorar tus procesos espirituales, tus aprendizajes kármicos y el sentido de tu momento actual."
     button:
       text: "Agenda una sesión"
       url: "https://wa.me/573054315796?text=Hola,%20quisiera%20reservar%20una%20consulta%20de%20astrolog%C3%ADa."
